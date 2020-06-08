@@ -6,7 +6,7 @@
         <li><a href="#">HOIUPAIK</a></li>
         <li><a href="#">KAOTATUD</a></li>
         <li><a href="found.php">LEITUD</a></li>
-        <li><a href="#">OKSJON</a></li>
+        <li><a href="auction.php">OKSJON</a></li>
         <li><a href="#">KKK</a></li>
     </ul>
 
