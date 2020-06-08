@@ -1,12 +1,13 @@
 <div class="flex-row header-row"> 
-    <div class="logo">LAF</div>
+
+    <div class="logo"><a href="#">LAF</a></div>
     <div class="aside"></div>
     <ul class="ul flex-row header-list">
-        <li>HOIUPAIK</li>
-        <li><a href="http://greeny.cs.tlu.ee/~sandrmai/objektprog/LAF/index.php">KAOTATUD</a></li>
-        <li>LEITUD</li>
-        <li>OKSJON</li>
-        <li>KKK</li>
+        <li><a href="#">HOIUPAIK</a></li>
+        <li><a href="#">KAOTATUD</a></li>
+        <li><a href="#">LEITUD</a></li>
+        <li><a href="#">OKSJON</a></li>
+        <li><a href="#">KKK</a></li>
     </ul>
 
 </div>
