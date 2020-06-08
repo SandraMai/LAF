@@ -8,27 +8,36 @@
         return $data;
     }
 
-    function redirect(){
+    function redirectToLost(){
         $url = 'http://' .$_SERVER['SERVER_NAME'] .'/~sandrmai/objektprog/LAF/index.php';
         header("Location: " .$url);
         exit();
     }    
 
-    function addToDB($studentCode, $email, $lostDate, $placeLost, $filename, $category, $description){
+    function addToDB($email, $lostDate, $placeLost, $filename, $description, $category){
         $notice = null;
         $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
-        $stmt = $conn->prepare("INSERT INTO laf_lost (student_code, email, lost_date, lost_place, filename, category, description) VALUES(?,?,?,?,?,?,?)");
+        $stmt = $conn->prepare("INSERT INTO LOST_ITEM_AD (email, lost_date, lost_place, picture, description) VALUES(?,?,?,?,?)");
+        $stmt2 = $conn->prepare("INSERT INTO CATEGORY (category_name) VALUES(?)");
         echo $conn->error;
-        $stmt->bind_param("sssssss", $studentCode, $email, $lostDate, $placeLost, $filename, $category, $description);
+        $stmt->bind_param("ssssss", $email, $lostDate, $placeLost, $filename, $description);
+        $stmt2->bind_param("s", $category);
         if($stmt->execute()){
             $notice = " Kuulutus edukalt lisatud!";
         } else {
             $notice = " Kuulutuse lisamisel tekkis tõrge-> " .$stmt->error;
         }
+        if($stmt2->execute()){
+            $notice = " Kategooria lisatud";
+        } else {
+            $notice = " Tekkis error";
+        }
+        
+        $stmt2->close();
         $stmt->close();
         $conn->close();     
 
-        redirect();
+        redirectToLost();
         return $notice;
          
     }
