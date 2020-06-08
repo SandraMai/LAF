@@ -53,7 +53,7 @@ body {
 }
 
 .header-row {
-    height: 50px;
+    height: 70px;
 }
 
 .header-list li {
@@ -159,17 +159,21 @@ a{
 }
 
 /* SANDRA */
+/*title kõikidele*/
 .title{
-    color: rgb(85, 92, 91);
+    color: rgb(65, 70, 69);
     font-weight: normal;
+    font-size: xx-large;
+    margin-top: 35px;
+    margin-bottom: 10px;
 }
 
-.add-ad{
+/* .add-ad{
     position: absolute;
     padding: 10px;
     border-color: #f8f8f8;
     border-radius: 5px;
-}
+} */
 
 a, a:visited{
     text-decoration: none;
