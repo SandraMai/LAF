@@ -90,6 +90,7 @@ if(isset($_POST["koik"])){
     </div>
     <div class="aside"></div>
 </div>
+<script src="timer.js"></script>
 <script src="script.js"></script>
 </body>
 </html>
