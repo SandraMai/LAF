@@ -1,0 +1,140 @@
+body{
+    font-family: sans-serif;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.main-flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-section {
+    flex-basis: 1080px;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color:white;
+    font-size: 15px;
+    margin: 20px;
+    margin-left: 0px;
+}
+
+.header {
+    background: #6BCABA;
+}
+
+.ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.flex-column li{
+    margin: 30px;
+}
+
+.header-row {
+    height: 50px;
+}
+
+.header-list li {
+    padding: 15px;
+}
+
+.aside {
+    flex: 1 1 10px;
+}
+
+.logo{
+    font-size: xx-large;
+    color: white;
+}
+
+.title{
+    color: rgb(85, 92, 91);
+    font-weight: normal;
+}
+
+.add-ad{
+    position: absolute;
+    padding: 10px;
+    border-color: #f8f8f8;
+    border-radius: 5px;
+}
+
+a, a:visited{
+    text-decoration: none;
+    color: black;
+}
+
+.filters{
+    flex-basis: 320px;
+    background:#f8f8f8;
+    justify-content: center;
+    align-self: flex-start; 
+    color: black;
+    border-style: solid;
+    border-radius: 5px;
+    border-color: #f8f8f8;
+    margin-top: 50px;
+    margin-left: 0px;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+}
+
+.ul input{
+    margin: 30px;
+    border: none;
+    background-color: #f8f8f8;
+    font-size: medium;
+    outline: none;
+    cursor:pointer;
+}
+
+.flex-column a{
+    text-decoration: none;
+}
+
+.objects{
+    color: black;
+    margin-left: 20px;
+    flex-basis: 760px;
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    border-radius: 50px;
+}
+
+.object{
+    background: #f8f8f8;
+    margin-bottom: 10px;
+    color: black;
+    width: 760px;
+    display: flex;
+    justify-content: left;
+    border-radius: 5px;
+}
+
+.object img{
+    border: 10px solid transparent;
+    border-radius: 20px;
+}
+
+.object p{
+    margin: 40px;
+}
+
+.ul a{
+    color: white;
+}
