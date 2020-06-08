@@ -1,13 +1,12 @@
 <?php require('../head.php'); 
 require("../functions/oksjon_functions.php");
-require("../../../config_vp2019.php");
+require("../../../../../config_vp2019.php");
 /*require("functions_user.php");
 require("functions_main.php");
 require("functions_pic.php");*/
-require("classes/Test.class.php");
-require("classes/Picupload.class.php");
+require("../classes/Picupload.class.php");
 $database = "if19_herman_pe_1";
-require("classes/Session.class.php");
+
 $typeOfFilter=null;
 $notice=readAuctionPics($typeOfFilter);
 $amount=countFilters($typeOfFilter);
@@ -43,7 +42,7 @@ if(isset($_POST["koik"])){
     <div class="aside"></div>
     <!-- HEADER -->
     <div class="main-section">
-        <?php require('header.php'); ?>
+        <?php require('../header.php'); ?>
     </div>
     <div class="aside"></div>
 </div>
