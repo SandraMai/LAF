@@ -1,6 +1,6 @@
 <?php require('../head.php'); 
 
-$error = test2();
+$error = addFound();
 echo $error;
 ?>
 <body>

@@ -1,10 +1,5 @@
 <?php
 
-    function test2() {
-        return "Aaa";
-    }
-
-    
     // ANETE
     function test_input($data){
         $data = trim($data);
