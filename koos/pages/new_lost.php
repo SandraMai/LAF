@@ -1,18 +1,10 @@
 <?php
-
     require('../head.php');
 
-    /*
-    require('functions.php');
-    require('PicUpload.class.php');
-    */
-    
     $notice = null;
     $filenamePrefix = "laf_";
     $maxH = 200;
     $maxW = 200;
-    $thumbH = 150;
-    $thumbW = 150;
     $fileSizeLimit = 2500000;    
 
     $email = null;
@@ -46,6 +38,7 @@
 
         //kui pilt olemas siis tehakse õige suurus, salvestatakse ja lisatakse kõik andmed andmebaasi
         if(isset($_FILES["lostPic"]) and !empty($_FILES["lostPic"]["name"])){
+
             $picture = new PicUpload($_FILES["lostPic"], $fileSizeLimit);
 
             if($picture->error == null){
@@ -54,16 +47,13 @@
                 //teeme pildi väiksemaks
                 $picture->resizeImage($maxW, $maxH);
                 //kirjutame vähendatud pildi faili
-                $notice .= $picture->saveImage($pic_upload .$picture->fileName);          
-                //thumbnail 150x150 pilt
-                $picture->resizeImage($thumbW, $thumbH);
-                $notice .= $picture->saveImage($thumb_upload .$picture->fileName);
-                
+                $notice .= $picture->saveImage($pic_upload_dir_thumb .$picture->fileName);  
+                //salvestab originaali
+                $notice .= $picture->saveOriginal($pic_upload_dir_orig .$picture->fileName);                
                 //salvestan info andmebaasi
                 $notice .= addToDB($email, $_POST["lostDate"], $_POST["placeLost"], $picture->fileName, $_POST["category"], $description);
-                
             } else {
-                //1 - pole pildifail, 2 - liiga suur, pole lubatud tüüp
+                //1 - pole pildifail, 2 - liiga suur, 3 - pole lubatud tüüp
                 if($picture->error == 1){
                     $notice = " Valitud fail pole pilt!";
                 }
@@ -77,6 +67,8 @@
             unset($picture);
 
         }
+
+        $notice .= addToDB($email, $_POST["lostDate"], $_POST["placeLost"], $picture->fileName, $_POST["category"], $description);
 
     }
 
