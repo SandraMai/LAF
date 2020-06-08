@@ -1,12 +1,12 @@
 <?php
 
     require('../head.php');
+
     /*
-    require('../../../config_laf.php');
     require('functions.php');
     require('PicUpload.class.php');
-    $database = 'if19_anete_va_1';
-*/
+    */
+    
     $notice = null;
     $filenamePrefix = "laf_";
     $maxH = 200;
@@ -15,23 +15,16 @@
     $thumbW = 150;
     $fileSizeLimit = 2500000;    
 
-    $student_code = null;
     $email = null;
     $description = null;
     $lostDate = null;
 
-    $student_code_error = null;
     $email_error = null;
     $category_error = null;
     $description_error = null;
 
     if(isset($_POST["submitLost"])){
-        //üliõpilaskoodi kontroll
-        if(isset($_POST["studentCode"]) and !empty($_POST["studentCode"])){
-            $student_code = test_input($_POST["studentCode"]);
-        } else {
-            $student_code_error = "Palun sisesta üliõpilaskood!";
-        }
+        
         //e-maili kontroll
         if(isset($_POST["email"]) and !empty($_POST["email"])){
             $email = test_input($_POST["email"]);
@@ -67,7 +60,7 @@
                 $notice .= $picture->saveImage($thumb_upload .$picture->fileName);
                 
                 //salvestan info andmebaasi
-                $notice .= addToDB($student_code, $email, $_POST["lostDate"], $_POST["placeLost"], $picture->fileName, $_POST["category"], $description);
+                $notice .= addToDB($email, $_POST["lostDate"], $_POST["placeLost"], $picture->fileName, $_POST["category"], $description);
                 
             } else {
                 //1 - pole pildifail, 2 - liiga suur, pole lubatud tüüp
@@ -110,11 +103,6 @@
 
             <!-- kuulutuse lisamise vorm -->
             <form class="flex-column" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" enctype="multipart/form-data">
-
-                <label>Üliõpilaskood 
-                <input name="studentCode" type="text" value="<?php echo $student_code; ?>">
-                <p>*</p> <span><?php echo $student_code_error; ?></span>
-                </label>
 
                 <label>E-mail 
                 <input name="email" type="email" value="<?php echo $email; ?>">
