@@ -1,6 +1,6 @@
 <?php require('../head.php'); 
 require("../functions/oksjon_functions.php");
-require("../../../../config_vp2019.php");
+require("../../../../config_laf.php");
 /*require("functions_user.php");
 require("functions_main.php");
 require("functions_pic.php");*/
