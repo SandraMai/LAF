@@ -1,3 +1,13 @@
+<?php
+require('functions/database_functions.php');
+require('functions/functions.php');
+require('functions/oksjon_functions.php');
+
+//require("../../../config_laf.php");
+require('classes/Picupload.class.php');
+
+?>
+
 <!DOCTYPE html>
 <html lang="et">
 <head>
