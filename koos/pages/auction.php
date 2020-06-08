@@ -1,5 +1,5 @@
 <?php require('../head.php'); 
-require("oksjon_functions.php");
+require("../functions/oksjon_functions.php");
 require("../../../config_vp2019.php");
 /*require("functions_user.php");
 require("functions_main.php");
