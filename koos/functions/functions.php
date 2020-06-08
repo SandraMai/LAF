@@ -39,7 +39,7 @@
     }
 
     // SANDRA
-    require("index.php");
+
     $clothesCount = 0;
     $technologyCount = 0;
     $othersCount = 0;
