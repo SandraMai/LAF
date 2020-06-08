@@ -1,6 +1,6 @@
 <?php
 
-require("../../../config_laf.php");
+require("../../../../config_laf.php");
 require('../classes/Picupload.class.php');
 require('../functions/functions.php');
 require('../functions/database_functions.php');
