@@ -4,6 +4,7 @@
 require('../classes/Picupload.class.php');
 require('../functions/functions.php');
 require('../functions/database_functions.php');
+$database = "if19_LAF";
 
 ?>
 
