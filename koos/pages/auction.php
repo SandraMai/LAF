@@ -1,10 +1,9 @@
 <?php require('../head.php'); 
 require("../functions/oksjon_functions.php");
-require("../../../../../config_vp2019.php");
+require("../../../../config_vp2019.php");
 /*require("functions_user.php");
 require("functions_main.php");
 require("functions_pic.php");*/
-require("../classes/Picupload.class.php");
 $database = "if19_herman_pe_1";
 
 $typeOfFilter=null;
@@ -68,12 +67,12 @@ if(isset($_POST["koik"])){
         <div class="flex-row"> 
             <div class="filters">
                 <h2 class="flex-column">FILTERS</h2>
-                <ul class="ul flex-column" id="mainFilters">
+                <ul class="ul flex-column">
                 <form method="POST" action="#">
-                    <input id="clothes" name="riided" type="submit" value="RIIDED">
-                    <input id="technic" name="tehnika" type="submit" value="TEHNIKA">
-                    <input id="other" name="muu" type="submit" value="MUU">
-                    <input id="all" name="koik" type="submit" value="KÕIK" >
+                    <li><input id="clothes" name="riided" type="submit" value="RIIDED"></li>
+                    <li><input id="technic" name="tehnika" type="submit" value="TEHNIKA"></li>
+                    <li><input id="other" name="muu" type="submit" value="MUU"></li>
+                    <li><input id="all" name="koik" type="submit" value="KÕIK" ></li>
                     <?php echo $amount; ?>
                 </form>
                 </ul>
