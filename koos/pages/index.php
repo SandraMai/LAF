@@ -1,4 +1,8 @@
-<?php require('../head.php'); ?>
+<?php 
+
+
+require('../head.php'); 
+?>
 
 <body>
 
