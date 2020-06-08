@@ -95,6 +95,35 @@ textarea {
     min-height: 50px;
 }
 
+/* Homepage styles */
+.home-body{
+  background-image: url(images/home-bg.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-color: #6BCABA;
+}
+
+.homeTextWrap {
+  color: white;
+  text-transform: uppercase;
+  margin: 0;
+  position: absolute;
+  top: 250px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+
 /* ANETE */
 #submit-button{
     border-radius: 5px;

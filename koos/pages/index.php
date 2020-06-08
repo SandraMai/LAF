@@ -4,7 +4,7 @@
 require('../head.php'); 
 ?>
 
-<body>
+<body class="home-body">
 
 
 <div class="main-flex header">
@@ -19,20 +19,12 @@ require('../head.php');
 </div>
 
 <div class="main-flex">
-    <div class="aside"></div>
-
 
     <div class="main-section">
 
-        <!-- HERO TEXT  -->
-        <div class="flex-row"> 
-            <h1>KODU</h1>
-        </div>
-
-
         <!-- PAGE BODY -->
-        <div class="flex-row"> 
-
+        <div class="flex-row homeTextWrap"> 
+            <h2>Lost and Found</h2>
         </div><!--.flex-row-->
 
 
