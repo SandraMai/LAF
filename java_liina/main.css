@@ -1,0 +1,95 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.47;
+}
+
+/* Main flex settings*/
+.main-flex {
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-section {
+    flex-basis: 1080px;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    font-size: 12px;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+}
+
+.aside {
+    flex: 1 1 10px;
+}
+
+.ul {
+    list-style-type: none;
+}
+
+/* header */
+.header {
+    background: #6BCABA;
+}
+
+.header-row {
+    height: 50px;
+}
+
+.header-list li {
+    padding: 15px;
+}
+
+.header-list li:last-child{
+    padding: 0;
+}
+
+/* filters and products */
+.filters {
+    flex-basis: 360px;
+    background: #f8f8f8;
+    justify-content: center;
+    align-self: flex-start; 
+}
+
+.products {
+    flex-basis: 760px;
+}
+
+.product {
+    background: #f8f8f8;
+    margin-bottom: 10px;
+}
+
+/* jquery validate errors */
+.error-storage,
+.error-date,
+.error-image,
+.error-category,
+.error-description {
+    color: red;
+    font-weight: bold;
+}
+
+textarea {
+    min-height: 50px;
+}
