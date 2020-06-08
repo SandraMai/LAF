@@ -107,22 +107,12 @@ textarea {
 
 .homeTextWrap {
   color: white;
-  text-transform: uppercase;
   margin: 0;
   position: absolute;
   top: 250px;
   left: 50%;
   transform: translate(-50%, -50%);
 }
-
-.item {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  width: 100%;
-}
-
 
 /* ANETE */
 #submit-button{
