@@ -1,0 +1,126 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.47;
+}
+
+#submit-button{
+    border-radius: 5px;
+    font-size: 17px;
+    width: 68px;
+    border-width: 1px; 
+    height: 34px;
+}
+
+.form-section{
+    font-size: 18px !important;
+    color: black !important;
+}
+
+p{
+    color: red;
+    display: inline;
+    font-weight: bolder;
+    font-size: larger;
+    outline: none;
+}
+
+input{
+    height: 25px;
+    display: inline-block;
+    margin-left: 10px;
+    outline: none;
+}
+
+select{
+    height: 25px;
+    outline: none;
+}
+
+textarea{
+    vertical-align: top;
+    outline: none;
+}
+
+label{
+    padding: 2%;
+}
+
+/* Main flex settings*/
+.main-flex{
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-section{
+    flex-basis: 1080px;
+}
+
+.flex-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 12px;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;    
+}
+
+.aside{
+    flex: 1 1 10px;
+}
+
+.ul{
+    list-style-type: none;
+}
+
+/* header */
+.header{
+    background: #6BCABA;
+}
+
+.header-row{
+    height: 50px;
+}
+
+.header-list li{
+    padding: 15px;
+}
+
+.header-list li:last-child{
+    padding: 0;
+}
+
+.logo{
+    font-size: xx-large;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+#mainTitle{
+    font-size: 35px;
+    color: #6BCABA;
+    font-weight: 500;
+    margin-top: 30px;
+}
+
+.ul a{
+    color: white;
+}
+
+a{
+    text-decoration: none;
+}
