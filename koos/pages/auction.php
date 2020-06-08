@@ -88,7 +88,7 @@ if(isset($_POST["koik"])){
     </div>
     <div class="aside"></div>
 </div>
-<script src="timer.js"></script>
-<script src="script.js"></script>
+<script src="../js/timer.js"></script>
+<script src="../js/script.js"></script>
 </body>
 </html>
