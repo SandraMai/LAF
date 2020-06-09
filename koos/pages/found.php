@@ -26,7 +26,7 @@
 
         <!-- HERO BUTTON  -->
         <div class="flex-row"> 
-            <a href="new_found.php">LISA KUULUTUS</a>
+            <a class="add-ad" href="new_found.php">LISA ESE</a>
         </div>
 
         <!-- PAGE NUMBERS -->

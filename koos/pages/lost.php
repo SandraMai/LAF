@@ -3,7 +3,6 @@
 
     $filter = null;
     $notice = null;
-    $url = "new_lost.php";
 
 /*  // Praegu ei toota sest pole andmebaasi
     if (isset($_POST["tehnika"])){
@@ -36,7 +35,7 @@
             </div>
 
             <div class="flex-row"> 
-                <button class="add-ad"><a href="<?php echo $url ?>">Lisa kuulutus</a></button>
+                <a class="add_ad" href="new_lost.php">LISA ESE</a>
             </div>
 
         
