@@ -1,39 +1,10 @@
 <?php
 $database = "if19_LAF";
-
-
-$typeOfFilter=null;
-
-if(isset($_POST["riided"])){
-    $typeOfFilter='Riided';
-    $notice = readAuctionPics($typeOfFilter);
-    $amount =countFilters($typeOfFilter);
-
-}
-if(isset($_POST["tehnika"])){
-    $typeOfFilter='Tehnika';
-    $notice = readAuctionPics($typeOfFilter);
-    $amount =countFilters($typeOfFilter);
-
-}
-if(isset($_POST["muu"])){
-    $typeOfFilter='Muu';
-    $notice = readAuctionPics($typeOfFilter);
-    $amount =countFilters($typeOfFilter);    
-}
-if(isset($_POST["koik"])){
-    $typeOfFilter=null;
-    $notice = readAuctionPics($typeOfFilter);
-    $amount =countFilters($typeOfFilter);
-}
-
-
-
 ?>
 
 <div class="flex-row"> 
             <div class="filters">
-                <h2 class="flex-column">FILTERS</h2>
+                <h2 class="flex-column">Filtreeri</h2>
                 <ul class="ul flex-column">
                 <form method="POST" action="#" class="filterForm">
                     <li><input id="other" name="muu" type="input" placeholder="Otsingu sõna"></li>
