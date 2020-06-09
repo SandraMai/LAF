@@ -37,7 +37,12 @@ if(isset($_POST["koik"])){
                 <ul class="ul flex-column">
                 <form method="POST" action="#">
                     <li><input id="clothes" name="riided" type="submit" value="RIIDED"></li>
-                    <li><input id="technic" name="tehnika" type="submit" value="TEHNIKA"></li>
+                    <li><select name="category" id="category">
+                            <option value="riided">Riided</option>
+                            <option value="tehnika">Tehnika</option>
+                            <option value="muu">Muu</option>
+                        </select>
+                    </li>
                     <li><input id="other" name="muu" type="submit" value="MUU"></li>
                     <li><input id="all" name="koik" type="submit" value="KÕIK" ></li>
                 </form>
