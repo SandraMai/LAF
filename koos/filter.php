@@ -45,8 +45,13 @@ if(isset($_POST["koik"])){
                         </select>
                     </li>
                     <li><input id="other" name="muu" type="input" placeholder="Asukoht"></li>
-                    <li><input id="start-date" name="Date-Start" type="date" >-
-                    <input id="end-date" name="Date-End" type="date">
+                    <li><input id="start-date" name="Date-Start" type="date"></li>
+                    <li><input id="end-date" name="Date-End" type="date"></li>
+                    <li>
+                        <input name="submitSearch" id="submitSearch" type="submit" value="Otsi">
+                        <span id="notice">
+                            <?php  ?>
+                        </span>
                     </li>
                 </form>
                 </ul>
