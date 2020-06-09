@@ -1,0 +1,341 @@
+/* LIINA */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.47;
+}
+
+/* Main flex settings*/
+.main-flex {
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-section {
+    flex-basis: 1080px;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    font-size: 12px;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+}
+
+.aside {
+    flex: 1 1 10px;
+}
+
+.ul {
+    list-style-type: none;
+}
+
+/* header */
+.header {
+    background: #6BCABA;
+}
+
+.header-row {
+    height: 70px;
+}
+
+.header-list li {
+    padding: 15px;
+}
+
+.header-list li:last-child{
+    padding: 0;
+}
+
+/* filters and products */
+
+
+.products {
+    flex-basis: 760px;
+}
+
+.product {
+    background: #f8f8f8;
+    margin-bottom: 10px;
+}
+
+/* jquery validate errors */
+.error-storage,
+.error-date,
+.error-image,
+.error-category,
+.error-description {
+    color: red;
+    font-weight: bold;
+}
+
+textarea {
+    min-height: 50px;
+}
+
+/* Homepage styles */
+.homeBody{
+  background-image: url(images/home-bg.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-color: #6BCABA;
+}
+
+.homeTextWrap {
+  color: white;
+  margin: 0;
+  position: absolute;
+  top: 250px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* ANETE */
+#submit-button{
+    border-radius: 5px;
+    font-size: 17px;
+    width: 68px;
+    border-width: 1px; 
+    height: 34px;
+}
+
+.form-section{
+    font-size: 18px !important;
+    color: black !important;
+}
+
+p{
+    color: red;
+    display: inline;
+    font-weight: bolder;
+    font-size: larger;
+    outline: none;
+}
+
+
+
+select{
+    height: 25px;
+    outline: none;
+}
+
+textarea{
+    vertical-align: top;
+    outline: none;
+}
+
+label{
+    padding: 2%;
+}
+
+.logo{
+    font-size: xx-large;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+
+.ul a{
+    color: white;
+}
+
+
+/* SANDRA */
+/*title kõikidele*/
+.title{
+    color: rgb(65, 70, 69);
+    font-weight: normal;
+    font-size: xx-large;
+    margin-top: 35px;
+    margin-bottom: 10px;
+}
+
+/*kui klikib hrefi peale siis ei muutu siniseks ja joont pole all*/
+a, a:visited{
+    text-decoration: none;
+    color: black;
+}
+
+/*lisa ese nupp*/
+.add-ad{
+    font-size: medium;
+    margin-top: 10px;
+    background-color: rgb(232, 236, 236);
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+
+.ul input{
+    margin: 30px;
+    border: none;
+    background-color: #f8f8f8;
+    font-size: medium;
+    outline: none;
+    cursor:pointer;
+}
+
+.flex-column a{
+    text-decoration: none;
+}
+
+.objects{
+    color: black;
+    margin-left: 20px;
+    flex-basis: 760px;
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    border-radius: 50px;
+}
+
+.object{
+    background: #f8f8f8;
+    margin-bottom: 10px;
+    color: black;
+    width: 760px;
+    display: flex;
+    justify-content: left;
+    border-radius: 5px;
+}
+
+.object img{
+    border: 10px solid transparent;
+    border-radius: 20px;
+}
+
+.object p{
+    margin: 40px;
+}
+
+/* HERMAN */
+
+.filters {
+    flex-basis: 260px;
+    height: auto;
+    background: #f8f8f8;
+    justify-content: center;
+    align-self: flex-start; 
+    border: solid #6BCABA;
+    border-radius: 10%;
+ 
+}
+.filters input{
+    background-color: aquamarine;
+}
+#products {
+    width: auto;
+    flex-basis: 760px;
+    width: auto;
+    height: auto;
+}
+#product {
+    width: auto;
+    height: auto;
+    background: #d3d1d1;
+    margin-bottom: 10px;
+    border: solid #6BCABA;
+
+}
+
+textarea {
+    min-height: 50px;
+}
+#elements{
+    width: auto;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    max-width: 600px;
+    margin:auto;
+    background: white;
+    width: 90%;
+    height: auto;
+    text-align: center;
+    padding: 2%;
+}
+.container{
+    height: 200;
+    width: 500;
+    text-align: center;
+    font-size:300% ;
+    font-family: Calibri;
+    color: black;
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+
+#submitItem{
+    text-align: left;
+    font-size:100% ;
+    font-family: Calibri;
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.singleP{
+
+    background-color:#ffffff;
+    border-radius: 5px;
+    border: solid black;
+    width: 800px;
+    height: auto;
+    padding:20px ;
+
+}
+img{
+    max-width: 100%;
+    max-height: 100%;
+}
+.thumbs{
+    width: 200px;
+    height: 200px;
+    border-radius: 10%;
+}
+.singleP {
+    display:flex;
+    list-style-type: none;
+}
+.singleP .left {
+    flex: 1;
+    
+}
+.singleP .right {
+    flex: 1;
+}
+#productexplinations,#productexplinationsDATE{
+    text-align: left;
+    margin-left: 30px;
+}
+#priceSuggested{
+    flex:1;
+}
