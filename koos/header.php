@@ -7,7 +7,7 @@
         <li><a href="lost.php">KAOTATUD</a></li>
         <li><a href="found.php">LEITUD</a></li>
         <li><a href="auction.php">OKSJON</a></li>
-        <li><a href="#">KKK</a></li>
+        <li><a href="faq.php">KKK</a></li>
     </ul>
 
 </div>

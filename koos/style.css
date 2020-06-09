@@ -247,13 +247,14 @@ a, a:visited{
 /* HERMAN */
 
 .filters {
+    margin-top: 100px;
     flex-basis: 260px;
     height: 100%;
     background: #f8f8f8;
     justify-content: center;
     align-self: flex-start; 
     border-radius: 20px;
-    box-shadow:0px 2px  5px rgba(31, 73, 125, 0.8),0px 10px  5px  rgba(31, 73, 125, 0.8);
+    box-shadow:2px 2px 5px  black;
 }
 .filterForm{
     align-items: center;
@@ -262,15 +263,24 @@ a, a:visited{
     flex-direction: column;
     
 }
-.filterForm input,.filterForm select{
+.filterForm input{
     background-color:white;
-    border: solid #989898;
+    border: 1px solid #989898;
     padding: 10px;
-    border-radius: 3px;
+    border-radius: 10px;
     width: 220px;
     margin:20px 20px ;
+    text-align: center;
 }
-
+.filterForm select{
+    background-color:white;
+    border: 1px solid #989898;
+    border-radius: 10px;
+    width: 220px;
+    margin:20px 20px;
+    height: 40px;
+    text-align: center;
+}
 .filterForm #submitSearch{
     width: 100px;
     background-color: #707070;
