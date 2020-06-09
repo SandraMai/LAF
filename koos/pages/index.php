@@ -34,7 +34,7 @@ require('../head.php');
             <br>
             <h4>Siia veebisaidile võib lisada Tallinna Ülikoolis kaotatud esemeid või otsida leitute hulgast.</h4>
             <br>
-            <a href="found.php">LEITUD ESEMEID SIRVIMA</a>
+            <a class="redirect-found" href="found.php">LEITUD ESEMEID SIRVIMA</a>
 
 
         </div><!--.main-section-->

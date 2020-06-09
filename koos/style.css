@@ -194,6 +194,12 @@ a, a:visited{
     padding: 10px;
 }
 
+.redirect-found{
+    background-color:rgb(221, 223, 223);
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px;
+}
 
 .ul input{
     margin: 30px;
