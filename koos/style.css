@@ -255,9 +255,6 @@ a, a:visited{
 }
 
 /* HERMAN */
-#mainTitle{
-    font-size: 40px;
-}
 
 .filters {
     flex-basis: 260px;

@@ -24,7 +24,7 @@ echo $error;
     <div class="main-section">
 
         <div class="flex-row"> 
-            <h1>LISA KUULUTUS</h1>
+            <h1 class="title">LISA KUULUTUS</h1>
         </div>
 
         <form class="flex-column" action="" method="POST" name="add_new_found_form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" enctype="multipart/form-data">

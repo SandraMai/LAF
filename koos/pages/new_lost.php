@@ -90,7 +90,7 @@
         <div class="main-section">
             <!-- pealkiri  -->
             <div class="flex-row"> 
-                <p id="mainTitle">LISA KUULUTUS</p>
+                <p class="title">LISA KUULUTUS</p>
             </div>
 
             <!-- kuulutuse lisamise vorm -->

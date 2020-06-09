@@ -50,7 +50,7 @@ if(isset($_POST["koik"])){
     <div class="main-section">
         <!-- HERO TEXT  -->
         <div class="flex-row"> 
-            <h1 id="mainTitle">OKSJON</h1>
+            <h1 class="title">OKSJON</h1>
         </div>
         <!-- HERO BUTTON  -->
         <div class="flex-row"> 

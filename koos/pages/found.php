@@ -21,7 +21,7 @@
 
         <!-- HERO TEXT  -->
         <div class="flex-row"> 
-            <h1>LEITUD ESEMED</h1>
+            <h1 class="title">LEITUD ESEMED</h1>
         </div>
 
         <!-- HERO BUTTON  -->
