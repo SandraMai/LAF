@@ -17,15 +17,13 @@ $database = "if19_LAF";
     </div>
     <div class="aside"></div>
 </div>
-<div class="main-flex">
+
+<div class="main-flex page-body">
     <div class="aside"></div>
     <div class="main-section">
         <!-- HERO TEXT  -->
         <div class="flex-row"> 
             <h1 class="title">OKSJON</h1>
-        </div>
-        <!-- HERO BUTTON  -->
-        <div class="flex-row"> 
         </div>
         <!-- PAGE NUMBERS -->
         <div class="flex-row"> 
