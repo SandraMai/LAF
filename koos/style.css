@@ -156,14 +156,8 @@ label{
     padding: 2%;
 }
 
-.logo{
-    font-size: xx-large;
-    font-family: 'Times New Roman', Times, serif;
-}
-
-
 .ul a{
-    color: white;
+    color: white !important;
 }
 
 
@@ -180,7 +174,9 @@ label{
 /*kui klikib hrefi peale siis ei muutu siniseks ja joont pole all*/
 a, a:visited{
     text-decoration: none;
+    color: black;
 }
+
 
 /*lisa ese nupp*/
 .add-ad{
@@ -204,6 +200,8 @@ a, a:visited{
 
 .logo{
     color: white !important;
+    font-size: xx-large;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 .ul input{
