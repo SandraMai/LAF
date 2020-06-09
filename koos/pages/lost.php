@@ -40,25 +40,7 @@
             </div>
 
         
-            <div class="flex-row"> 
-
-                <div class="filters">
-                    <h2 class="flex-column"><a href="index.php">FILTREERI</a></h2>
-                    <form  class = "ul flex-column" method="POST" action="">
-                        <input id="clothes" name="riided" type="submit" value="RIIDED">
-                        <input id="technology" name="tehnika" type="submit" value="TEHNIKA">
-                        <input id="other" name="muu" type="submit" value="MUU">
-                    </form>
-                </div>
-
-                <div class="objects flex-column">
-
-                    <?php 
-                        echo $notice;
-                    ?>
-                    
-                </div>
-            </div><!--flex-row -->
+            <?php require("../filter.php") ?>
 
         </div> <!--main section -->
 

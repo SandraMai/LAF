@@ -30,8 +30,7 @@ if(isset($_POST["koik"])){
 
 
 ?>
-<html>
-<body>
+
 <div class="flex-row"> 
             <div class="filters">
                 <h2 class="flex-column">FILTERS</h2>
@@ -51,5 +50,3 @@ if(isset($_POST["koik"])){
         </div><!--.flex-row-->
 <script src="../js/timer.js"></script>
 <script src="../js/script.js"></script>
-</body>
-</html>
