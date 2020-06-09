@@ -2,6 +2,9 @@
 
 $error = addFound();
 echo $error;
+
+
+
 ?>
 <body>
 
@@ -20,20 +23,23 @@ echo $error;
 <div class="main-flex page-body">
     <div class="aside"></div>
 
-
     <div class="main-section">
 
         <div class="flex-row"> 
-            <h1 class="title">LISA KUULUTUS</h1>
+            <h1 class="title">LISA LEITUD KUULUTUS</h1>
         </div>
 
         <form class="flex-column" action="" method="POST" name="add_new_found_form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" enctype="multipart/form-data">
 
             <div class="error-storage"></div>
-            <label>
+               <label>
                 Hoiupaik
-                <input name="storage" type="text">
+                <select name="storage">
+                    <option disabled selected value> -- select an option -- </option>
+                    <?php echo selectStoragePlaceHTML();?>
+                </select>
             </label>
+
             <br>
 
             <div class="error-date"></div>
