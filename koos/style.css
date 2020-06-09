@@ -90,7 +90,8 @@ body {
 .error-date,
 .error-image,
 .error-category,
-.error-description {
+.error-description,
+.error-found_location {
     color: red;
     font-weight: bold;
 }
@@ -179,7 +180,6 @@ label{
 /*kui klikib hrefi peale siis ei muutu siniseks ja joont pole all*/
 a, a:visited{
     text-decoration: none;
-    color: black;
 }
 
 /*lisa ese nupp*/
@@ -188,12 +188,23 @@ a, a:visited{
     margin-top: 10px;
     background-color: rgb(232, 236, 236);
     border-radius: 5px;
-    box-shadow: 2px 2px 5px;
+    box-shadow: 2px 2px 5px black;
     display: flex;
     justify-content: center;
     padding: 10px;
 }
 
+.redirect-found{
+    background-color:rgb(221, 223, 223);
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px black;
+    font-size: small;
+}
+
+.logo{
+    color: white !important;
+}
 
 .ul input{
     margin: 30px;
@@ -241,16 +252,50 @@ a, a:visited{
 
 .filters {
     flex-basis: 260px;
-    height: auto;
+    margin-top: 50px;
+    height: 100%;
     background: #f8f8f8;
     justify-content: center;
     align-self: flex-start; 
     border: solid #6BCABA;
-    border-radius: 10%;
+    border-radius: 20px;
+    box-shadow:2px 2px 5px  black;
  
 }
-.filters input{
-    background-color: aquamarine;
+.filterForm{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+}
+.filterForm input{
+    background-color:white;
+    border: 1px solid #989898;
+    padding: 10px;
+    border-radius: 10px;
+    width: 220px;
+    margin:20px 20px ;
+    text-align: center;
+}
+
+.filterForm select{
+    background-color:white;
+    border: 1px solid #989898;
+    border-radius: 10px;
+    width: 220px;
+    margin:20px 20px;
+    height: 40px;
+    text-align: center;
+    border: solid #6BCABA;
+    border-radius: 10%;
+
+}
+
+.filterForm #submitSearch{
+    width: 100px;
+    background-color: #707070;
+    color: white;
 }
 #products {
     width: auto;

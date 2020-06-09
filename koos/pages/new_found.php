@@ -50,6 +50,13 @@ echo $error;
             </label>
             <br>
 
+            <div class="error-found_location"></div>
+            <label>Leidmise asukoht
+                <input type="text" name="found_location">
+            </label>
+            <br>
+
+
             <div class="error-image"></div>
             <label>
                 Pilt
