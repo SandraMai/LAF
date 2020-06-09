@@ -41,7 +41,7 @@
 
         
             <?php require("../filter.php") ?>
-
+            
         </div> <!--main section -->
         <div class="aside"></div>
     </div><!-- main-flex-->

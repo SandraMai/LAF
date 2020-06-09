@@ -179,7 +179,6 @@ label{
 /*kui klikib hrefi peale siis ei muutu siniseks ja joont pole all*/
 a, a:visited{
     text-decoration: none;
-    color: black;
 }
 
 /*lisa ese nupp*/
