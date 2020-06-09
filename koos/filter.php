@@ -35,7 +35,7 @@ if(isset($_POST["koik"])){
             <div class="filters">
                 <h2 class="flex-column">FILTERS</h2>
                 <ul class="ul flex-column">
-                <form method="POST" action="#">
+                <form method="POST" action="#" class="filterForm">
                     <li><input id="other" name="muu" type="input" placeholder="Otsingu sõna"></li>
                     <li>
                         <select name="category" id="category">

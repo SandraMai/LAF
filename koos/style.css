@@ -256,7 +256,19 @@ a, a:visited{
  
 }
 .filters input{
-    background-color: aquamarine;
+    background-color: white;
+    border: solid white;
+    border-radius: 3px;
+    
+}
+.filters form{
+    align-items: center;
+    left: 20px;
+}
+.filterForm{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
 #products {
     width: auto;
