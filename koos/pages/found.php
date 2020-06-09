@@ -34,24 +34,12 @@
         <!-- PAGE BODY -->
         <div class="flex-row"> 
 
-            <div class="filters">
-                <h2 class="flex-column">FILTERS</h2>
-                <ul class="ul flex-column">
-                    <li>RIIDED</li>
-                    <li>TEHNIKA</li>
-                    <li>MUU</li>
-                </ul>
-            </div>
             
-            <div class="products">
-
-                <?php //echo selectFoundPostsHTML();?>
-                
-
-            </div><!--.products -->
 
         </div><!--.flex-row-->
-
+        <?php 
+            require("../filter.php");
+        ?>
 
 
     </div>

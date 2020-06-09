@@ -4,35 +4,7 @@ require("../../../../config_laf.php");
 /*require("functions_user.php");
 require("functions_main.php");
 require("functions_pic.php");*/
-$database = "if19_herman_pe_1";
-
-$typeOfFilter=null;
-$notice=readAuctionPics($typeOfFilter);
-$amount=countFilters($typeOfFilter);
-if(isset($_POST["riided"])){
-    $typeOfFilter='Riided';
-    $notice = readAuctionPics($typeOfFilter);
-    $amount =countFilters($typeOfFilter);
-
-}
-if(isset($_POST["tehnika"])){
-    $typeOfFilter='Tehnika';
-    $notice = readAuctionPics($typeOfFilter);
-    $amount =countFilters($typeOfFilter);
-
-}
-if(isset($_POST["muu"])){
-    $typeOfFilter='Muu';
-    $notice = readAuctionPics($typeOfFilter);
-    $amount =countFilters($typeOfFilter);    
-}
-if(isset($_POST["koik"])){
-    $typeOfFilter=null;
-    $notice = readAuctionPics($typeOfFilter);
-    $amount =countFilters($typeOfFilter);
-}
-
-
+$database = "if19_LAF";
 
 ?>
 <body>
