@@ -97,10 +97,11 @@
     }
 
     function saveImage() {
-        $pic_upload_dir_orig = '../origimages/';
+        $dirname = str_replace("functions","", dirname(__FILE__));
+        $pic_upload_dir_orig = '../laf_pics/';
         $notice = null;
         $fileSizeLimit = 2500000;
-        $pic_upload_dir_w600 = '../picuploadw600h400/';
+        $pic_upload_dir_w600 = '../laf_pics_thumbnail/';
         $maxPicW = 200;
         $maxPicH = 200;
         $fileNamePrefix = "laf_";
@@ -110,7 +111,8 @@
             $myPic->resizeImage($maxPicW, $maxPicH);
             $notice .= $myPic->savePicFile($pic_upload_dir_w600 .$myPic->fileName);
             $notice .= " " .$myPic->saveOriginal($pic_upload_dir_orig .$myPic->fileName);
-            return "http://" . $_SERVER['SERVER_NAME'] . '/oop_php/picuploadw600h400/' . $myPic->fileName;
+            $returnString = $dirname . 'laf_pics_thumbnail/' . $myPic->fileName;
+            return $returnString;
         } else {
             if($myPic->error == 1){
                 $notice = "Üleslaadimiseks valitud fail pole pilt!";
