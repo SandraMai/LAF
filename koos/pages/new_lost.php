@@ -2,6 +2,7 @@
     require('../head.php');
 
     $notice = null;
+    $respond = null;
     $filenamePrefix = "laf_";
     $maxH = 200;
     $maxW = 200;
@@ -10,6 +11,8 @@
     $email = null;
     $description = null;
     $lostDate = null;
+
+    $today = date("Y-m-d");
 
     $email_error = null;
     $category_error = null;
@@ -42,12 +45,17 @@
 
         //kp kontroll
         if(isset($_POST["lostDate"]) and !empty($_POST["lostDate"])){
-            $lostDate_error = null;
-        } else {
+            if($_POST["lostDate"] > $today){
+                $lostDate_error = "Kuupäev ei saa olla tulevikus!";
+                $notice = 0;
+            }
+        } elseif(empty($_POST["lostDate"])){
             $lostDate_error = "Palun pane (umbes) kuupäev, millal eseme kaotasid!";
             $notice = 0;
+        } else {
+            $lostDate_error = null;
         }
-
+            
         //kui pilt olemas siis tehakse õige suurus, salvestatakse ja lisatakse kõik andmed andmebaasi
         if(isset($_FILES["lostPic"]) and !empty($_FILES["lostPic"]["name"])){
 
@@ -59,21 +67,24 @@
                 //teeme pildi väiksemaks
                 $picture->resizeImage($maxW, $maxH);
                 //kirjutame vähendatud pildi faili
-                $notice .= $picture->saveImage($pic_upload_dir_thumb .$picture->fileName);  
+                $respond .= $picture->saveImage($pic_upload_dir_thumb .$picture->fileName);  
                 //salvestab originaali
-                $notice .= $picture->saveOriginal($pic_upload_dir_orig .$picture->fileName);                
+                $respond .= $picture->saveOriginal($pic_upload_dir_orig .$picture->fileName);                
                 //salvestan info andmebaasi
-                $notice .= addToDB($email, $_POST["lostDate"], $_POST["placeLost"], $picture->fileName, $description, $_POST["category"]);
+                $respond .= addToDB($email, $_POST["lostDate"], $_POST["placeLost"], $picture->fileName, $description, $_POST["category"]);
             } else {
                 //1 - pole pildifail, 2 - liiga suur, 3 - pole lubatud tüüp
                 if($picture->error == 1){
-                    $notice = " Valitud fail pole pilt!";
+                    $notice = 0;
+                    $respond = " Valitud fail pole pilt!";
                 }
                 if($picture->error == 2){
-                    $notice = " Valitud fail on liiga suure failimahuga!";
+                    $notice = 0;
+                    $respond = " Valitud fail on liiga suure failimahuga!";
                 }
                 if($picture->error == 3){
-                    $notice = "Valitud fail pole lubatud tüüpi (lubatakse vaid jpg, png)!";
+                    $notice = 0;
+                    $respond = "Valitud fail pole lubatud tüüpi (lubatakse vaid jpg, png)!";
                 }
             }
             unset($picture);
@@ -83,6 +94,9 @@
             $notice .= addToDB($email, $_POST["lostDate"], $_POST["placeLost"], $picture, $description, $_POST["category"]);
         }
 
+        if($notice == 1){
+            redirectToLost();
+        }
         
     }
 
@@ -104,7 +118,7 @@
         <div class="main-section">
             <!-- pealkiri  -->
             <div class="flex-row"> 
-                <h1 class="title">LISA KUULUTUS</h1>
+                <h1 class="title">LISA KUULUTUS</h1><span><?php echo $today; ?></span>
             </div>
 
             <!-- kuulutuse lisamise vorm -->
@@ -117,7 +131,7 @@
 
                 <label>Kaotamise kuupäev
                 <input name="lostDate" type="date"> 
-                <p>*</p>
+                <p>*</p> <span><?php echo $lostDate_error; ?></span>
                 </label>
 
                 <label>Kaotamise koht
@@ -143,7 +157,7 @@
                 <p>*</p> <span><?php echo $description_error; ?></span>
                 </label>
 
-                <input name="submitLost" id="submit-button" type="submit" value="LISA"> <span><?php echo $notice; ?> </span>
+                <input name="submitLost" id="submit-button" type="submit" value="LISA"> <span><?php echo $respond; ?> </span>
             </form>
         </div>
     <div class="aside"></div>
