@@ -65,12 +65,7 @@ body {
 }
 
 /* filters and products */
-.filters {
-    flex-basis: 360px;
-    background: #f8f8f8;
-    justify-content: center;
-    align-self: flex-start; 
-}
+
 
 .products {
     flex-basis: 760px;
@@ -199,18 +194,6 @@ a, a:visited{
     color: black;
 }
 
-.filters{
-    flex-basis: 320px;
-    background:#f8f8f8;
-    justify-content: center;
-    align-self: flex-start; 
-    color: black;
-    border-style: solid;
-    border-radius: 5px;
-    border-color: #f8f8f8;
-    margin-top: 50px;
-    margin-left: 0px;
-}
 
 .ul input{
     margin: 30px;
@@ -258,7 +241,7 @@ a, a:visited{
 
 .filters {
     flex-basis: 260px;
-    height: 100px;
+    height: auto;
     background: #f8f8f8;
     justify-content: center;
     align-self: flex-start; 
