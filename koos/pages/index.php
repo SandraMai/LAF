@@ -4,7 +4,7 @@
 require('../head.php'); 
 ?>
 
-<body class="home-body">
+<body class="homeBody">
 
 
 <div class="main-flex header">
@@ -18,22 +18,25 @@ require('../head.php');
 
 </div>
 
-<div class="main-flex">
+<div>
 
-    <div class="main-section">
+    <div class="main-section homeSection">
 
         <!-- PAGE BODY -->
-        <div class="flex-row homeTextWrap"> 
-            <h2>Lost and Found</h2>
-        </div><!--.flex-row-->
+        <div class="flex-column homeTextWrap"> 
+            <h3>Lost and Found</h3>
+            <br>
+            <h4>Siia veebisaidile võib lisada Tallinna Ülikoolis kaotatud esemeid või otsida leitute hulgast.</h4>
+            <br>
+            <a href="found.php">LEITUD ESEMEID SIRVIMA</a>
+        </div><!--.flex-column-->
 
 
 
-    </div>
+    </div><!--.main-section-->
 
 
 
-    <div class="aside"></div>
 </div>
 
 

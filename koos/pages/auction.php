@@ -64,27 +64,9 @@ if(isset($_POST["koik"])){
                 ?></div>
         </div>
         <!-- PAGE BODY -->
-        <div class="flex-row"> 
-            <div class="filters">
-                <h2 class="flex-column">FILTERS</h2>
-                <ul class="ul flex-column">
-                <form method="POST" action="#">
-                    <li><input id="clothes" name="riided" type="submit" value="RIIDED"></li>
-                    <li><input id="technic" name="tehnika" type="submit" value="TEHNIKA"></li>
-                    <li><input id="other" name="muu" type="submit" value="MUU"></li>
-                    <li><input id="all" name="koik" type="submit" value="KÕIK" ></li>
-                    <?php echo $amount; ?>
-                </form>
-                </ul>
-            </div>
-            <div id="products">
-                <div id="elements">
-                   <?php
-                    echo $notice;
-                    ?>
-                </div>
-            </div><!--.products -->
-        </div><!--.flex-row-->
+        <?php 
+            require("../filter.php");
+        ?>
     </div>
     <div class="aside"></div>
 </div>

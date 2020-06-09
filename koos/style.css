@@ -131,12 +131,7 @@ p{
     outline: none;
 }
 
-input{
-    height: 25px;
-    display: inline-block;
-    margin-left: 10px;
-    outline: none;
-}
+
 
 select{
     height: 25px;
@@ -245,6 +240,9 @@ a, a:visited{
     border-radius: 10%;
  
 }
+.filters input{
+    background-color: aquamarine;
+}
 #products {
     width: auto;
     flex-basis: 760px;
@@ -291,22 +289,7 @@ textarea {
     align-items: center;
     background-color: white;
 }
-input{
-    border-radius: 5px;
-    font-size: 20px;
-    color: white;
-    background-color: #6BCABA;
-    border: solid #6BCABA;
-    width: auto;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-}
-input:hover{
-    background-color: rgb(143, 199, 190);
-    border: solid rgb(143, 199, 190);
-    border-radius: 5px;
-    width: auto;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  }
+
 #submitItem{
     text-align: left;
     font-size:100% ;
