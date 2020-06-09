@@ -88,40 +88,41 @@
         return intval(cleanTextInput($name));
     }
 
-    // Mingi probleem
-    // function saveImage() {
-    //     $pic_upload_dir_orig = 'origimages/';
-    //     $notice = null;
-    //     $fileSizeLimit = 2500000;
-    //     $pic_upload_dir_w600 = 'picuploadw600h400/';
-    //     $maxPicW = 200;
-    //     $maxPicH = 200;
-    //     $fileNamePrefix = "laf_";
-    //     $myPic = new PicUpload($_FILES["image"], $fileSizeLimit);
-    //     if($myPic->error == null){
-    //         $myPic->createFileName($fileNamePrefix);
-    //         $myPic->resizeImage($maxPicW, $maxPicH);
-    //         $notice .= $myPic->savePicFile($pic_upload_dir_w600 .$myPic->fileName);
-    //         $notice .= " " .$myPic->saveOriginal($pic_upload_dir_orig .$myPic->fileName);
-    //         return "http://" . $_SERVER['SERVER_NAME'] . '/oop_php/picuploadw600h400/' . $myPic->fileName;
-    //     } else {
-    //         if($myPic->error == 1){
-    //             $notice = "Üleslaadimiseks valitud fail pole pilt!";
-    //         }
-    //         if($myPic->error == 2){
-    //             $notice = "Üleslaadimiseks valitud fail on liiga suure failimahuga!";
-    //         }
-    //         if($myPic->error == 3){
-    //             $notice = "Üleslaadimiseks valitud fail pole lubatud tüüpi (lubatakse vaid jpg, png ja gif)!";
-    //         }
-    //         return $notice;
+    function saveImage() {
+        $pic_upload_dir_orig = '../origimages/';
+        $notice = null;
+        $fileSizeLimit = 2500000;
+        $pic_upload_dir_w600 = '../picuploadw600h400/';
+        $maxPicW = 200;
+        $maxPicH = 200;
+        $fileNamePrefix = "laf_";
+        $myPic = new PicUpload($_FILES["image"], $fileSizeLimit);
+        if($myPic->error == null){
+            $myPic->createFileName($fileNamePrefix);
+            $myPic->resizeImage($maxPicW, $maxPicH);
+            $notice .= $myPic->savePicFile($pic_upload_dir_w600 .$myPic->fileName);
+            $notice .= " " .$myPic->saveOriginal($pic_upload_dir_orig .$myPic->fileName);
+            return "http://" . $_SERVER['SERVER_NAME'] . '/oop_php/picuploadw600h400/' . $myPic->fileName;
+        } else {
+            if($myPic->error == 1){
+                $notice = "Üleslaadimiseks valitud fail pole pilt!";
+            }
+            if($myPic->error == 2){
+                $notice = "Üleslaadimiseks valitud fail on liiga suure failimahuga!";
+            }
+            if($myPic->error == 3){
+                $notice = "Üleslaadimiseks valitud fail pole lubatud tüüpi (lubatakse vaid jpg, png ja gif)!";
+            }
+            return $notice;
 
-    //     }
-    // }
+        }
+    }
 
     function postInsertedRedirect() {
-        $url = "http://" . $_SERVER['SERVER_NAME'] . '/oop_php/' . 'post-added.php';
+
+        $url = dirname(__FILE__) . 'post_added.php';
         header("Location: " . $url);
+        
         exit();
     }
     

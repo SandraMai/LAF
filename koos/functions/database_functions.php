@@ -53,11 +53,10 @@
     }
 
     // LIINA
-        
     function insertFoundPost($storage, $date, $fileName, $category, $description) {
         $response = null;
         $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
-        $stmt = $conn->prepare("INSERT INTO leitud_kuulutus (kirjeldus,leidmise_kp,pilt) VALUES(?,?,?)");
+        $stmt = $conn->prepare("INSERT INTO found_item_ad (description,found_date,picture) VALUES(?,?,?)");
         echo $conn->error;
         $stmt->bind_param("sss", $description, $date, $fileName);
         if($stmt->execute()) {
@@ -68,7 +67,7 @@
 
         $stmt->close();
         $conn->close();
-        postInsertedRedirect();
+        //postInsertedRedirect();
     }
 
 
@@ -96,4 +95,24 @@
         $conn->close();
         return $response;
     }
+
+    function selectStoragePlaceHTML() {
+        $response = null;
+        $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
+        $stmt = $conn->prepare("SELECT storage_place_name FROM storage_place");
+        echo $conn->error;
+        $stmt->bind_result($storagePlaceName);
+        $stmt->execute();
+
+        while($stmt->fetch()){
+            $response .= '<option value="' . $storagePlaceName . '">' . $storagePlaceName . '</option>';
+        }
+
+        $response .= "\n";
+
+        $stmt->close();
+        $conn->close();
+        return $response;
+    }
+
 ?>

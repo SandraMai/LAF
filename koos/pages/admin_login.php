@@ -27,14 +27,20 @@ require('../head.php');
 <div>
     <div class="main-section homeSection">
 
+        <h1 class="title flex-row">ADMIN</h1>
         <!-- PAGE BODY -->
         <div class="flex-column homeTextWrap"> 
 
-            <h3>Lost and Found</h3>
+            <!-- <h3>Lost and Found</h3>
             <br>
             <h4>Siia veebisaidile võib lisada Tallinna Ülikoolis kaotatud esemeid või otsida leitute hulgast.</h4>
             <br>
-            <a class="redirect-found" href="found.php">LEITUD ESEMEID SIRVIMA</a>
+            <a href="found.php">LEITUD ESEMEID SIRVIMA</a> -->
+
+            <form action="" method="POST">
+                kasutajanimi
+                <input type="text">
+            </form>
 
 
         </div><!--.main-section-->
