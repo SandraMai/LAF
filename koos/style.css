@@ -91,22 +91,22 @@ textarea {
 }
 
 /* Homepage styles */
-.home-body{
+.homeBody{
   background-image: url(images/home-bg.jpg);
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
   background-color: #6BCABA;
+  height: 100vh;
 }
 
 .homeTextWrap {
   color: white;
-  margin: 0;
-  position: absolute;
-  top: 250px;
-  left: 50%;
-  transform: translate(-50%, -50%);
+}
+
+.homeSection {
+    margin-top: 200px;
 }
 
 /* ANETE */
