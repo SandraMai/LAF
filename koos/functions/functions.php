@@ -9,8 +9,7 @@
     }
 
     function redirectToLost(){
-        $url = 'http://' .$_SERVER['SERVER_NAME'] .'/LAF/koos/pages/lost.php'; //vt link üle
-        header("Location: " .$url);
+        header("Location: lost.php");
         exit();
     }    
 
@@ -18,11 +17,20 @@
         $notice = null;
         $categoryID = null;
         $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
-    
-        $stmt = $conn->prepare("INSERT INTO LOST_ITEM_AD (email, lost_date, lost_place, picture, CATEGORY_category_ID, description) SELECT category_ID FROM CATEGORY WHERE category_name=? JOIN LOST_ITEM_AD ON CATEGORY.category_ID=LOST_ITEM_AD.CATEGORY_category_ID VALUES(?,?,?,?,?,?)");       
+        $stmt = $conn->prepare("SELECT category_ID FROM CATEGORY WHERE category_name=?");
+        $stmt->bind_param("s", $category);
+        $stmt->bind_result($categoryIDfromDB);
+        $stmt->execute();
+        if($stmt->fetch()){
+            $categoryID = $categoryIDfromDB;
+        } else {
+            $notice = "ei toimi";
+        }
 
+        $stmt->close();    
+        $stmt = $conn->prepare("INSERT INTO LOST_ITEM_AD (email, lost_date, lost_place, picture, CATEGORY_category_ID, description) VALUES(?,?,?,?,?,?)");
         echo $conn->error;
-        $stmt->bind_param("ssssss", $email, $lostDate, $placeLost, $filename, $description, $category);
+        $stmt->bind_param("ssssis", $email, $lostDate, $placeLost, $filename, $categoryID, $description);
         if($stmt->execute()){
             $notice = " Kuulutus edukalt lisatud!";
         } else {
@@ -32,8 +40,7 @@
         $stmt->close();
         $conn->close();     
 
-        //redirectToLost();
-        return $notice;
+        redirectToLost();
     }
 
     // SANDRA

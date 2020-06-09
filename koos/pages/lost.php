@@ -28,6 +28,7 @@
     </div>
 
     <div class="main-flex page-body">
+    <div class="aside"></div>
         <div class="main-section">
 
             <div class="flex-row"> 
@@ -40,9 +41,9 @@
 
         
             <?php require("../filter.php") ?>
-
+            
         </div> <!--main section -->
-
+        <div class="aside"></div>
     </div><!-- main-flex-->
     
 </body>

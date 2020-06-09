@@ -4,35 +4,7 @@ require("../../../../config_laf.php");
 /*require("functions_user.php");
 require("functions_main.php");
 require("functions_pic.php");*/
-$database = "if19_herman_pe_1";
-
-$typeOfFilter=null;
-$notice=readAuctionPics($typeOfFilter);
-$amount=countFilters($typeOfFilter);
-if(isset($_POST["riided"])){
-    $typeOfFilter='Riided';
-    $notice = readAuctionPics($typeOfFilter);
-    $amount =countFilters($typeOfFilter);
-
-}
-if(isset($_POST["tehnika"])){
-    $typeOfFilter='Tehnika';
-    $notice = readAuctionPics($typeOfFilter);
-    $amount =countFilters($typeOfFilter);
-
-}
-if(isset($_POST["muu"])){
-    $typeOfFilter='Muu';
-    $notice = readAuctionPics($typeOfFilter);
-    $amount =countFilters($typeOfFilter);    
-}
-if(isset($_POST["koik"])){
-    $typeOfFilter=null;
-    $notice = readAuctionPics($typeOfFilter);
-    $amount =countFilters($typeOfFilter);
-}
-
-
+$database = "if19_LAF";
 
 ?>
 <body>
@@ -45,15 +17,13 @@ if(isset($_POST["koik"])){
     </div>
     <div class="aside"></div>
 </div>
-<div class="main-flex">
+
+<div class="main-flex page-body">
     <div class="aside"></div>
     <div class="main-section">
         <!-- HERO TEXT  -->
         <div class="flex-row"> 
             <h1 class="title">OKSJON</h1>
-        </div>
-        <!-- HERO BUTTON  -->
-        <div class="flex-row"> 
         </div>
         <!-- PAGE NUMBERS -->
         <div class="flex-row"> 

@@ -180,7 +180,6 @@ label{
 /*kui klikib hrefi peale siis ei muutu siniseks ja joont pole all*/
 a, a:visited{
     text-decoration: none;
-    color: black;
 }
 
 /*lisa ese nupp*/
@@ -189,7 +188,7 @@ a, a:visited{
     margin-top: 10px;
     background-color: rgb(232, 236, 236);
     border-radius: 5px;
-    box-shadow: 2px 2px 5px;
+    box-shadow: 2px 2px 5px black;
     display: flex;
     justify-content: center;
     padding: 10px;
@@ -199,8 +198,12 @@ a, a:visited{
     background-color:rgb(221, 223, 223);
     padding: 10px;
     border-radius: 5px;
-    box-shadow: 2px 2px 5px;
+    box-shadow: 2px 2px 5px black;
     font-size: small;
+}
+
+.logo{
+    color: white !important;
 }
 
 .ul input{
@@ -249,27 +252,44 @@ a, a:visited{
 
 .filters {
     flex-basis: 260px;
+    margin-top: 50px;
     height: 100%;
     background: #f8f8f8;
     justify-content: center;
     align-self: flex-start; 
+    border: solid #6BCABA;
     border-radius: 20px;
-    box-shadow:0px 2px  5px rgba(31, 73, 125, 0.8),0px 10px  5px  rgba(31, 73, 125, 0.8);
+    box-shadow:2px 2px 5px  black;
+ 
 }
 .filterForm{
     align-items: center;
     display: flex;
     justify-content: center;
     flex-direction: column;
-    
+
 }
-.filterForm input,.filterForm select{
+.filterForm input{
     background-color:white;
-    border: solid #989898;
+    border: 1px solid #989898;
     padding: 10px;
-    border-radius: 3px;
+    border-radius: 10px;
     width: 220px;
     margin:20px 20px ;
+    text-align: center;
+}
+
+.filterForm select{
+    background-color:white;
+    border: 1px solid #989898;
+    border-radius: 10px;
+    width: 220px;
+    margin:20px 20px;
+    height: 40px;
+    text-align: center;
+    border: solid #6BCABA;
+    border-radius: 10%;
+
 }
 
 .filterForm #submitSearch{
@@ -371,4 +391,38 @@ img{
 }
 #priceSuggested{
     flex:1;
+}
+
+/* Anneli */
+.white {
+    color: white;
+}
+
+.titleSection {
+    margin-top: 160px;
+}
+
+.logInForm {
+    background-color: #f8f8f8c0;
+    padding: 50px;
+    border-radius: 5px;
+}
+
+.logInFormBox {
+    text-align: center;
+}
+
+.logInButton {
+    color: white;
+    background-color: #707070;
+    font-size: medium;
+    border: 3px #707070;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.logInInputBox input{
+    height: 25px;
+    border-radius: 5px;
 }
