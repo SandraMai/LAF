@@ -16,6 +16,9 @@ $(document).ready(function() {
             },
             description : {
                 required: true
+            },
+            found_location : {
+                required: true
             }
 
         },
@@ -24,7 +27,8 @@ $(document).ready(function() {
             date: "Palun valige leidmise kuupäev",
             image: "Palun valige eseme pilt",
             category: "Palun valige eseme kategooria",
-            description: "Palun sisestage kirjeldus"
+            description: "Palun sisestage kirjeldus",
+            found_location: "Palun sisestage leidmise koht"
         },
         errorPlacement: function(error, element) {
             // If input name is "storage", then error is appended to a class called "error-storage"

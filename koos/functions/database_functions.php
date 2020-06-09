@@ -53,12 +53,13 @@
     }
 
     // LIINA
-    function insertFoundPost($storage, $date, $fileName, $category, $description) {
+    function insertFoundPost($storage, $found_date, $fileName, $category, $description, $placeFound) {
         $response = null;
+        $zero = 0;
         $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
-        $stmt = $conn->prepare("INSERT INTO found_item_ad (description,found_date,picture) VALUES(?,?,?)");
+        $stmt = $conn->prepare("INSERT INTO found_item_ad (found_date,place_found,picture,expired,description,CATEGORY_category_ID,deleted,STORAGE_PLACE_storage_place_ID) VALUES(?,?,?,?,?,?,?,?)");
         echo $conn->error;
-        $stmt->bind_param("sss", $description, $date, $fileName);
+        $stmt->bind_param("sssisiii", $found_date, $placeFound, $fileName, $zero, $description, $category, $zero, $storage);
         if($stmt->execute()) {
             $response = "Andmete salvestamine õnnestus!";
         } else {
@@ -67,6 +68,7 @@
 
         $stmt->close();
         $conn->close();
+        // Does not work
         //postInsertedRedirect();
     }
 
@@ -99,13 +101,13 @@
     function selectStoragePlaceHTML() {
         $response = null;
         $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
-        $stmt = $conn->prepare("SELECT storage_place_name FROM storage_place");
+        $stmt = $conn->prepare("SELECT storage_place_name, storage_place_ID FROM storage_place");
         echo $conn->error;
-        $stmt->bind_result($storagePlaceName);
+        $stmt->bind_result($storagePlaceName, $storageId);
         $stmt->execute();
 
         while($stmt->fetch()){
-            $response .= '<option value="' . $storagePlaceName . '">' . $storagePlaceName . '</option>';
+            $response .= '<option value="' . $storageId . '">' . $storagePlaceName . '</option>';
         }
 
         $response .= "\n";

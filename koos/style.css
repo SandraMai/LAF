@@ -90,7 +90,8 @@ body {
 .error-date,
 .error-image,
 .error-category,
-.error-description {
+.error-description,
+.error-found_location {
     color: red;
     font-weight: bold;
 }

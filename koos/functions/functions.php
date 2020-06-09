@@ -51,7 +51,7 @@
     }
 
     // LIINA
-    // Add new found post
+    // Adds new found post (validates, triggers database function)
     function addFound() {
         $error = false;
         if ( isset($_POST['submitButton']) ) {
@@ -65,10 +65,11 @@
             $date = cleanTextInput('date');
             $category = cleanIntInput('category');
             $description = cleanTextInput('description');
+            $found_location = cleanTextInput('found_location');
 
-            if ($storage && $date && $fileName && $category && $description) {
+            if ($storage && $date && $fileName && $category && $description && $found_location) {
 
-                $error = insertFoundPost($storage, $date, $fileName, $category, $description);
+                $error = insertFoundPost($storage, $date, $fileName, $category, $description, $found_location);
             }
         }
 
