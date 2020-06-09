@@ -51,7 +51,7 @@
                 //salvestab originaali
                 $notice .= $picture->saveOriginal($pic_upload_dir_orig .$picture->fileName);                
                 //salvestan info andmebaasi
-                $notice .= addToDB($email, $_POST["lostDate"], $_POST["placeLost"], $picture->fileName, $_POST["category"], $description);
+                $notice .= addToDB($email, $_POST["lostDate"], $_POST["placeLost"], $picture->fileName, $description, $_POST["category"]);
             } else {
                 //1 - pole pildifail, 2 - liiga suur, 3 - pole lubatud tüüp
                 if($picture->error == 1){
@@ -66,10 +66,12 @@
             }
             unset($picture);
 
+        } else {
+            $picture = "puudub";
+            $notice .= addToDB($email, $_POST["lostDate"], $_POST["placeLost"], $picture, $description, $_POST["category"]);
         }
 
-        $notice .= addToDB($email, $_POST["lostDate"], $_POST["placeLost"], $picture->fileName, $_POST["category"], $description);
-
+        
     }
 
 ?>
@@ -116,8 +118,8 @@
                 <label>Kategooria
                     <select name="category">
                     <option disabled selected value>...</option>
-                    <option value="tehnika">tehnika</option>
                     <option value="riided">riided</option>
+                    <option value="tehnika">tehnika</option>
                     <option value="muu">muu</option>
                     </select>
                 <p>*</p> <span><?php echo $category_error; ?></span>

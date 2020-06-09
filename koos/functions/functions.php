@@ -9,37 +9,31 @@
     }
 
     function redirectToLost(){
-        $url = 'http://' .$_SERVER['SERVER_NAME'] .'/~sandrmai/objektprog/LAF/index.php';
+        $url = 'http://' .$_SERVER['SERVER_NAME'] .'/LAF/koos/pages/lost.php'; //vt link üle
         header("Location: " .$url);
         exit();
     }    
 
     function addToDB($email, $lostDate, $placeLost, $filename, $description, $category){
         $notice = null;
+        $categoryID = null;
         $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
-        $stmt = $conn->prepare("INSERT INTO LOST_ITEM_AD (email, lost_date, lost_place, picture, description) VALUES(?,?,?,?,?)");
-        $stmt2 = $conn->prepare("INSERT INTO CATEGORY (category_name) VALUES(?)");
+    
+        $stmt = $conn->prepare("INSERT INTO LOST_ITEM_AD (email, lost_date, lost_place, picture, CATEGORY_category_ID, description) SELECT category_ID FROM CATEGORY WHERE category_name=? JOIN LOST_ITEM_AD ON CATEGORY.category_ID=LOST_ITEM_AD.CATEGORY_category_ID VALUES(?,?,?,?,?,?)");       
+
         echo $conn->error;
-        $stmt->bind_param("ssssss", $email, $lostDate, $placeLost, $filename, $description);
-        $stmt2->bind_param("s", $category);
+        $stmt->bind_param("ssssss", $email, $lostDate, $placeLost, $filename, $description, $category);
         if($stmt->execute()){
             $notice = " Kuulutus edukalt lisatud!";
         } else {
             $notice = " Kuulutuse lisamisel tekkis tõrge-> " .$stmt->error;
         }
-        if($stmt2->execute()){
-            $notice = " Kategooria lisatud";
-        } else {
-            $notice = " Tekkis error";
-        }
         
-        $stmt2->close();
         $stmt->close();
         $conn->close();     
 
-        redirectToLost();
+        //redirectToLost();
         return $notice;
-         
     }
 
     // SANDRA
