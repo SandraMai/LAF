@@ -249,23 +249,21 @@ a, a:visited{
 /* HERMAN */
 
 .filters {
-    flex-basis: 260px;
     margin-top: 50px;
+    flex-basis: 260px;
     height: 100%;
     background: #f8f8f8;
     justify-content: center;
     align-self: flex-start; 
-    border: solid #6BCABA;
     border-radius: 20px;
     box-shadow:2px 2px 5px  black;
- 
 }
 .filterForm{
     align-items: center;
     display: flex;
     justify-content: center;
     flex-direction: column;
-
+    
 }
 .filterForm input{
     background-color:white;
@@ -276,7 +274,10 @@ a, a:visited{
     margin:20px 20px ;
     text-align: center;
 }
-
+.filterForm option{
+    text-align: center;
+    font-size: 40px;
+}
 .filterForm select{
     background-color:white;
     border: 1px solid #989898;
@@ -285,11 +286,7 @@ a, a:visited{
     margin:20px 20px;
     height: 40px;
     text-align: center;
-    border: solid #6BCABA;
-    border-radius: 10%;
-
 }
-
 .filterForm #submitSearch{
     width: 100px;
     background-color: #707070;

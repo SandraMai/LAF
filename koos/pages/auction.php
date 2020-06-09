@@ -34,9 +34,14 @@ $database = "if19_LAF";
                 ?></div>
         </div>
         <!-- PAGE BODY -->
-        <?php 
-            require("../filter.php");
-        ?>
+        <div class="flex-row"> 
+            <?php require("../filter.php") ?>
+            <div id="products">
+                <div id="elements">
+                    <p>Hetkel asju pole</p>
+                </div>
+            </div><!--.flex-row-->
+            </div><!--.products -->
     </div>
     <div class="aside"></div>
 </div>

@@ -2,7 +2,7 @@
 $database = "if19_LAF";
 ?>
 
-<div class="flex-row"> 
+
             <div class="filters">
                 <h2 class="flex-column">FILTREERI</h2>
                 <ul class="ul flex-column">
@@ -27,10 +27,5 @@ $database = "if19_LAF";
                 </form>
                 </ul>
             </div>
-            <div id="products">
-                <div id="elements">
-                </div>
-            </div><!--.products -->
-        </div><!--.flex-row-->
 <script src="../js/timer.js"></script>
 <script src="../js/script.js"></script>

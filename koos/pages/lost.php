@@ -38,10 +38,14 @@
             <div class="flex-row"> 
                 <a class="add-ad" href="new_lost.php">LISA ESE</a>
             </div>
-
-        
+            <div class="flex-row"> 
             <?php require("../filter.php") ?>
-            
+            <div id="products">
+                <div id="elements">
+                    <p>Hetkel asju pole</p>
+                </div>
+            </div><!--.flex-row-->
+            </div><!--.products -->
         </div> <!--main section -->
         <div class="aside"></div>
     </div><!-- main-flex-->
