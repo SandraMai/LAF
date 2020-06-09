@@ -272,10 +272,7 @@ a, a:visited{
     margin:20px 20px ;
     text-align: center;
 }
-.filterForm option{
-    text-align: center;
-    font-size: 40px;
-}
+
 .filterForm select{
     background-color:white;
     border: 1px solid #989898;
