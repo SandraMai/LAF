@@ -7,6 +7,7 @@ require('../head.php');
 <body class="homeBody">
 
 
+
 <div class="main-flex header">
     <div class="aside"></div>
 
@@ -16,10 +17,10 @@ require('../head.php');
     </div>
     <div class="aside"></div>
 
-</div>
+</div><!--.main-flex-->
 
+<!-- IMAGE -->
 <div>
-
     <div class="main-section homeSection">
 
         <!-- PAGE BODY -->
@@ -34,12 +35,50 @@ require('../head.php');
 
 
     </div><!--.main-section-->
-
-
-
 </div>
 
-
+<div>aaaa</div>
+<div>aaaa</div>
+<div>aaaa</div>
+<div>aaaa</div>
+<div>aaaa</div>
+<div>aaaa</div>
+<div>aaaa</div>
+<div>aaaa</div>
+<div>aaaa</div>
+<div>aaaa</div>
+<div>aaaa</div>
+<div>aaaa</div>
+<div>aaaa</div>
+<div>aaaa</div>
+<div>aaaa</div>
+<div>aaaa</div>
+<div>aaaa</div>
+<div>aaaa</div>
+<div>aaaa</div>
+<div>aaaa</div>
+<div>aaaa</div>
+<div>aaaa</div>
+<div>aaaa</div>
+<div>aaaa</div>
+<div>aaaa</div>
+<div>aaaa</div>
+<div>aaaa</div>
+<div>aaaa</div>
+<div>aaaa</div>
+<div>aaaa</div>
+<div>aaaa</div>
+<div>aaaa</div>
+<div>aaaa</div>
+<div>aaaa</div>
+<div>aaaa</div>
+<div>aaaa</div>
+<div>aaaa</div>
+<div>aaaa</div>
+<div>aaaa</div>
+<div>aaaa</div>
+<div>aaaa</div>
+<div>aaaa</div>
 
 
 </body>
