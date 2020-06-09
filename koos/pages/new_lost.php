@@ -14,6 +14,7 @@
     $email_error = null;
     $category_error = null;
     $description_error = null;
+    $lostDate_error = null;
 
     if(isset($_POST["submitLost"])){
         
@@ -34,6 +35,13 @@
             $description = test_input($_POST["description"]);
         } else {
             $description_error = "Palun kirjelda kaotatud eset!";
+        }
+
+        //kp kontroll
+        if(isset($_POST["lostDate"]) and !empty($_POST["lostDate"])){
+            $lostDate_error = null;
+        } else {
+            $lostDate_error = "Palun pane (umbes) kuupäev, millal eseme kaotasid!";
         }
 
         //kui pilt olemas siis tehakse õige suurus, salvestatakse ja lisatakse kõik andmed andmebaasi
@@ -105,6 +113,7 @@
 
                 <label>Kaotamise kuupäev
                 <input name="lostDate" type="date"> 
+                <p>*</p>
                 </label>
 
                 <label>Kaotamise koht
