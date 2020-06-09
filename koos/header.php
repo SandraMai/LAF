@@ -1,6 +1,6 @@
 <div class="flex-row header-row"> 
 
-    <div class="logo"><a href="index.php">LAF</a></div>
+    <div><a class="logo"href="index.php">LAF</a></div>
     <div class="aside"></div>
     <ul class="ul flex-row header-list">
         <li><a href="storage.php">HOIUPAIGAD</a></li>

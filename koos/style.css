@@ -194,13 +194,6 @@ a, a:visited{
     padding: 10px;
 }
 
-.redirect-found{
-    background-color:rgb(221, 223, 223);
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 2px 2px 5px;
-    font-size: small;
-}
 
 .ul input{
     margin: 30px;
@@ -247,50 +240,18 @@ a, a:visited{
 /* HERMAN */
 
 .filters {
-    margin-top: 50px;
     flex-basis: 260px;
-    height: 100%;
+    height: auto;
     background: #f8f8f8;
     justify-content: center;
     align-self: flex-start; 
-    border-radius: 20px;
-    box-shadow:2px 2px 5px  black;
+    border: solid #6BCABA;
+    border-radius: 10%;
+ 
 }
-.filterForm{
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    
+.filters input{
+    background-color: aquamarine;
 }
-.filterForm input{
-    background-color:white;
-    border: 1px solid #989898;
-    padding: 10px;
-    border-radius: 10px;
-    width: 220px;
-    margin:20px 20px ;
-    text-align: center;
-}
-.filterForm option{
-    text-align: center;
-    font-size: 40px;
-}
-.filterForm select{
-    background-color:white;
-    border: 1px solid #989898;
-    border-radius: 10px;
-    width: 220px;
-    margin:20px 20px;
-    height: 40px;
-    text-align: center;
-}
-.filterForm #submitSearch{
-    width: 100px;
-    background-color: #707070;
-    color: white;
-}
-
 #products {
     width: auto;
     flex-basis: 760px;
@@ -303,6 +264,7 @@ a, a:visited{
     background: #d3d1d1;
     margin-bottom: 10px;
     border: solid #6BCABA;
+
 }
 
 textarea {
@@ -384,4 +346,38 @@ img{
 }
 #priceSuggested{
     flex:1;
+}
+
+/* Anneli */
+.white {
+    color: white;
+}
+
+.titleSection {
+    margin-top: 160px;
+}
+
+.logInForm {
+    background-color: #f8f8f8c0;
+    padding: 50px;
+    border-radius: 5px;
+}
+
+.logInFormBox {
+    text-align: center;
+}
+
+.logInButton {
+    color: white;
+    background-color: #707070;
+    font-size: medium;
+    border: 3px #707070;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.logInInputBox input{
+    height: 25px;
+    border-radius: 5px;
 }
