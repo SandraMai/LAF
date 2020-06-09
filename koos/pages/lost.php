@@ -35,7 +35,7 @@
             </div>
 
             <div class="flex-row"> 
-                <a class="add_ad" href="new_lost.php">LISA ESE</a>
+                <a class="add-ad" href="new_lost.php">LISA ESE</a>
             </div>
 
         

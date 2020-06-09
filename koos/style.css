@@ -157,20 +157,11 @@ label{
     font-family: 'Times New Roman', Times, serif;
 }
 
-#mainTitle{
-    font-size: 35px;
-    color: #6BCABA;
-    font-weight: 500;
-    margin-top: 30px;
-}
 
 .ul a{
     color: white;
 }
 
-a{
-    text-decoration: none;
-}
 
 /* SANDRA */
 /*title kõikidele*/
@@ -182,16 +173,21 @@ a{
     margin-bottom: 10px;
 }
 
-/* .add-ad{
-    position: absolute;
-    padding: 10px;
-    border-color: #f8f8f8;
-    border-radius: 5px;
-} */
-
+/*kui klikib hrefi peale siis ei muutu siniseks ja joont pole all*/
 a, a:visited{
     text-decoration: none;
     color: black;
+}
+
+.add-ad{
+    font-size: medium;
+    margin-top: 10px;
+    background-color: rgb(232, 236, 236);
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
 }
 
 
