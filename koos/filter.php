@@ -45,7 +45,9 @@ if(isset($_POST["koik"])){
                         </select>
                     </li>
                     <li><input id="other" name="muu" type="input" placeholder="Asukoht"></li>
-                    <li><input id="all" name="koik" type="submit" value="KÕIK" ></li>
+                    <li><input id="start-date" name="Date-Start" type="date" >-
+                    <input id="end-date" name="Date-End" type="date">
+                    </li>
                 </form>
                 </ul>
             </div>
