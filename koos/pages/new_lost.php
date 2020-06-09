@@ -23,18 +23,21 @@
             $email = test_input($_POST["email"]);
         } else {
             $email_error = "Palun sisesta E-mail!";
+            $notice = 0;
         }
         //kategooria kontroll
         if(isset($_POST["category"]) and !empty($_POST["category"])){
             $category_error = null;
         } else {
             $category_error = "Palun vali kategooria!";
+            $notice = 0;
         }
         //kirjelduse kontroll
         if(isset($_POST["description"]) and !empty($_POST["description"])){
             $description = test_input($_POST["description"]);
         } else {
             $description_error = "Palun kirjelda kaotatud eset!";
+            $notice = 0;
         }
 
         //kp kontroll
@@ -42,6 +45,7 @@
             $lostDate_error = null;
         } else {
             $lostDate_error = "Palun pane (umbes) kuupäev, millal eseme kaotasid!";
+            $notice = 0;
         }
 
         //kui pilt olemas siis tehakse õige suurus, salvestatakse ja lisatakse kõik andmed andmebaasi

@@ -32,15 +32,15 @@
         echo $conn->error;
         $stmt->bind_param("ssssis", $email, $lostDate, $placeLost, $filename, $categoryID, $description);
         if($stmt->execute()){
-            $notice = " Kuulutus edukalt lisatud!";
+            $notice = 1;
         } else {
-            $notice = " Kuulutuse lisamisel tekkis tõrge-> " .$stmt->error;
+            $notice = 0;
         }
         
         $stmt->close();
         $conn->close();     
-
-        redirectToLost();
+        return $notice;
+        
     }
 
     // SANDRA
