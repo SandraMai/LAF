@@ -272,6 +272,10 @@ a, a:visited{
     margin:20px 20px ;
     text-align: center;
 }
+.filterForm option{
+    text-align: center;
+    font-size: 40px;
+}
 .filterForm select{
     background-color:white;
     border: 1px solid #989898;
@@ -286,6 +290,7 @@ a, a:visited{
     background-color: #707070;
     color: white;
 }
+
 #products {
     width: auto;
     flex-basis: 760px;
@@ -298,7 +303,6 @@ a, a:visited{
     background: #d3d1d1;
     margin-bottom: 10px;
     border: solid #6BCABA;
-
 }
 
 textarea {
