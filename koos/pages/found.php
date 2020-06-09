@@ -24,11 +24,6 @@
             <h1 class="title">LEITUD ESEMED</h1>
         </div>
 
-        <!-- HERO BUTTON  -->
-        <div class="flex-row"> 
-            <a class="add-ad" href="new_found.php">LISA ESE</a>
-        </div>
-
         <!-- PAGE NUMBERS -->
         <div class="flex-row"> 
             <div class="aside"></div>
