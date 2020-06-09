@@ -17,7 +17,7 @@ echo $error;
 
 </div>
 
-<div class="main-flex">
+<div class="main-flex page-body">
     <div class="aside"></div>
 
 

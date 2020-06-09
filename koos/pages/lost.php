@@ -27,7 +27,7 @@
         </div>
     </div>
 
-    <div class="main-flex">
+    <div class="main-flex page-body">
         <div class="main-section">
 
             <div class="flex-row"> 

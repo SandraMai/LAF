@@ -84,7 +84,7 @@
         <div class="aside"></div>
     </div>
 
-    <div class="main-flex">
+    <div class="main-flex page-body">
         <div class="aside"></div>
 
         <div class="main-section">
