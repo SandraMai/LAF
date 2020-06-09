@@ -1,11 +1,9 @@
 <?php
-    require("head.php");
-    require("../../../config_laf20.php");
-    require("functions_database.php");
-    $database = 'if19_anete_va_1';
+    require("../head.php");
+    require("../../../../config_laf.php");
+    //require("functions_database.php");
     $notice = null;
     $id = null;
-    $notice = null;
 
     if(isset($_GET["id"])){
         $id = $_GET["id"];
@@ -15,15 +13,23 @@
 
 <body>
     <div class="main-flex header">
+        <div class="aside"></div>
+
+    <!-- HEADER -->
         <div class="main-section">
-            <?php require("header.php"); ?>
+            <?php require('../header.php'); ?>
         </div>
+    <div class="aside"></div>
     </div>
-    <div class="main-flex">
-        <div class="objects flex-column">
 
-            <?php echo $notice ?>
+    <div class="main-flex page-body">
+    <div class="aside"></div>
 
-        </div>
+
+    <div class="main-section">
     </div>
+    <div class="aside"></div>
+</div>
+
+</div>
 </body>
