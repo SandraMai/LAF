@@ -180,7 +180,6 @@ label{
 /*kui klikib hrefi peale siis ei muutu siniseks ja joont pole all*/
 a, a:visited{
     text-decoration: none;
-    color: black;
 }
 
 /*lisa ese nupp*/
@@ -189,7 +188,7 @@ a, a:visited{
     margin-top: 10px;
     background-color: rgb(232, 236, 236);
     border-radius: 5px;
-    box-shadow: 2px 2px 5px;
+    box-shadow: 2px 2px 5px black;
     display: flex;
     justify-content: center;
     padding: 10px;
@@ -199,8 +198,12 @@ a, a:visited{
     background-color:rgb(221, 223, 223);
     padding: 10px;
     border-radius: 5px;
-    box-shadow: 2px 2px 5px;
+    box-shadow: 2px 2px 5px black;
     font-size: small;
+}
+
+.logo{
+    color: white !important;
 }
 
 .ul input{
