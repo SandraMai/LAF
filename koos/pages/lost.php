@@ -2,7 +2,7 @@
     require("../head.php");
 
     $filter = null;
-    $notice = null;
+    $notice = displayLostItems($filter);
 
 /*  // Praegu ei toota sest pole andmebaasi
     if (isset($_POST["tehnika"])){
