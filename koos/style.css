@@ -267,6 +267,7 @@ a, a:visited{
 
 #filterMain:hover{
     color: #6BCABA;
+    cursor: pointer;
 }
 .filterForm{
     align-items: center;   
