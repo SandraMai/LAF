@@ -41,10 +41,8 @@
             <div class="clearfix-50"></div>
             <div class="flex-row"> 
             <?php require("../filter.php") ?>
-            <div id="products">
-                <div id="elements">
-                    <p><?php echo $notice?></p>
-                </div>
+            <div class="products">
+                <?php echo $notice?>
             </div><!--.flex-row-->
             </div><!--.products -->
         </div> <!--main section -->

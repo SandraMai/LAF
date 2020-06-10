@@ -16,7 +16,7 @@
             if($pic=="puudub"){
                 $notice .= ' <div class="product flex-row">';
                 $notice .= '<p>Pilt puudub!</p>';
-                $notice .= '<div>';
+                $notice .= '<div class="flex-column productDesc">';
                 $notice .= '<p> Kirjeldus: ' .$description .'</p>';
                 $notice .= '<p>Kaotamise koht: ' .$place .'</p>';
                 $notice .= '<p> Kaotamise kuupäev: ' .$date .'</p>';
@@ -24,7 +24,7 @@
             }else{
                 $notice .= ' <div class="product flex-row">';
                 $notice .= '<a href="view_lost.php?id=' .$id .'"><img src="' .$GLOBALS["pic_read_dir_thumb"] .$pic .'"></a>';
-                $notice .= '<div>';
+                $notice .= '<div class="flex-column productDesc">';
                 $notice .= '<p> Kirjeldus: ' .$description .'</p>';
                 $notice .= '<p>Kaotamise koht: ' .$place .'</p>';
                 $notice .= '<p> Kaotamise kuupäev: ' .$date .'</p>';
@@ -48,8 +48,8 @@
         $stmt->execute();
         while($stmt->fetch()){
             $notice .= ' <div class="product flex-row">';
-            $notice .= '<img src="' .$GLOBALS["pic_read_dir_thumb"] .$pic .'">';
-            $notice .= '<div>';
+            $notice .= '<img  src="' .$GLOBALS["pic_read_dir_thumb"] .$pic .'">';
+            $notice .= '<div class="flex-column productDesc">';
             $notice .= '<p>Kirjeldus: ' .$description .'</p>';
             $notice .= '<p>Kaotamise koht: ' .$place .'</p>';
             $notice .= '<p> Kaotamise kuupäev: ' .$date .'</p>';
