@@ -1,11 +1,12 @@
 <?php require('../head.php'); 
+
 require("../functions/oksjon_functions.php");
 require("../../../../config_laf.php");
 /*require("functions_user.php");
 require("functions_main.php");
 require("functions_pic.php");*/
 $database = "if19_LAF";
-
+echo auctionFiltration();
 ?>
 <body>
     
