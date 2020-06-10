@@ -425,3 +425,7 @@ img{
     height: 25px;
     border-radius: 5px;
 }
+
+.logOutLink {
+    text-decoration: underline;
+}
