@@ -1,14 +1,17 @@
 <?php
     require("../head.php");
     require("../../../../config_laf.php");
-    //require("functions_database.php");
+
     $notice = null;
     $id = null;
 
     if(isset($_GET["id"])){
         $id = $_GET["id"];
-        $notice = viewObject($id);
+        $page= $_GET["page"];
+        $notice = viewObject($id, $page);
     }
+
+
 ?>
 
 <body>

@@ -2,6 +2,7 @@
     // SANDRA
     function displayLostItems($filter){
         $notice = null;
+        $page = basename($_SERVER['PHP_SELF']);
         $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
         if($filter == null){
             $stmt = $conn->prepare("SELECT lost_post_ID, description, picture, lost_place, DATE_FORMAT(lost_date, '%d %M %Y') FROM LOST_ITEM_AD ORDER BY lost_post_ID DESC");
@@ -23,7 +24,7 @@
                 $notice .= '</div></div>';
             }else{
                 $notice .= ' <div class="product flex-row">';
-                $notice .= '<a href="view_lost.php?id=' .$id .'"><img class="productImage" src="' .$GLOBALS["pic_read_dir_thumb"] .$pic .'"></a>';
+                $notice .= '<a href="view_ad.php?id=' .$id ."&page=" .$page .'"><img class="productImage" src="' .$GLOBALS["pic_read_dir_thumb"] .$pic .'"></a>';
                 $notice .= '<div class="flex-column productDesc">';
                 $notice .= '<p> Kirjeldus: ' .$description .'</p>';
                 $notice .= '<p>Kaotamise koht: ' .$place .'</p>';
@@ -39,27 +40,46 @@
         return $notice;
     }
 
-    function viewObject($id){
+    function viewObject($id, $page){
         $notice = null;
         $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
-        $stmt = $conn->prepare("SELECT lost_post_ID, description, picture, lost_place, DATE_FORMAT(lost_date, '%d %M %Y'), email FROM LOST_ITEM_AD WHERE lost_post_ID='{$id}'");
-        echo $conn->error;
-        $stmt->bind_result($id, $description, $pic, $place, $date, $email);
-        $stmt->execute();
-        while($stmt->fetch()){
-            $notice .= ' <div class="product flex-row view">';
-            $notice .= '<img class="productImage" src="' .$GLOBALS["pic_read_dir_thumb"] .$pic .'">';
-            $notice .= '<div class="flex-column productDesc">';
-            $notice .= '<p>Kirjeldus: ' .$description .'</p>';
-            $notice .= '<p>Kaotamise koht: ' .$place .'</p>';
-            $notice .= '<p> Kaotamise kuupäev: ' .$date .'</p>';
-            $notice .= '<p>Kontakt: ' .$email .'</p>';
-            $notice .= '</div></div>';
+        if($page=="lost.php"){
+            $stmt = $conn->prepare("SELECT description, picture, lost_place, DATE_FORMAT(lost_date, '%d %M %Y'), email FROM LOST_ITEM_AD WHERE lost_post_ID='{$id}'");
+            echo $conn->error;
+            $stmt->bind_result($description, $pic, $place, $date, $email);
+            $stmt->execute();
+            while($stmt->fetch()){
+                $notice .= ' <div class="product flex-row view">';
+                $notice .= '<img class="productImage" src="' .$GLOBALS["pic_read_dir_thumb"] .$pic .'">';
+                $notice .= '<div class="flex-column productDesc">';
+                $notice .= '<p>Kirjeldus: ' .$description .'</p>';
+                $notice .= '<p>Kaotamise koht: ' .$place .'</p>';
+                $notice .= '<p> Kaotamise kuupäev: ' .$date .'</p>';
+                $notice .= '<p>Kontakt: ' .$email .'</p>';
+                $notice .= '</div></div>';
+            }
+            $stmt->close();
+            $conn->close();
+            return $notice;
         }
-        
-        $stmt->close();
-        $conn->close();
-        return $notice;
+        if($page=="found.php"){
+            $stmt = $conn->prepare("SELECT description, picture, place_found, DATE_FORMAT(found_date, '%d %M %Y') FROM FOUND_ITEM_AD WHERE found_item_ad_ID='{$id}'");
+            echo $conn->error;
+            $stmt->bind_result($description, $pic, $place, $date);
+            $stmt->execute();
+            while($stmt->fetch()){
+                $notice .= ' <div class="product flex-row view">';
+                $notice .= '<img class="productImage" src="' .$GLOBALS["pic_read_dir_thumb"] .$pic .'">';
+                $notice .= '<div class="flex-column productDesc">';
+                $notice .= '<p>Kirjeldus: ' .$description .'</p>';
+                $notice .= '<p>Leidmise koht: ' .$place .'</p>';
+                $notice .= '<p>Leidmise kuupäev: ' .$date .'</p>';
+                $notice .= '</div></div>';
+            }
+            $stmt->close();
+            $conn->close();
+            return $notice;
+        }
     }
 
     // LIINA
@@ -85,15 +105,16 @@
 
     function selectFoundPostsHTML() {
         $response = null;
+        $page = basename($_SERVER['PHP_SELF']);
         $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
-        $stmt = $conn->prepare("SELECT description,found_date,picture,CATEGORY_category_ID,place_found FROM FOUND_ITEM_AD WHERE expired=0");
+        $stmt = $conn->prepare("SELECT found_item_ad_ID, description,found_date,picture,CATEGORY_category_ID,place_found FROM FOUND_ITEM_AD WHERE expired=0");
         echo $conn->error;
-        $stmt->bind_result($description, $found_date, $picture, $CATEGORY_category_ID, $place_found);
+        $stmt->bind_result($id, $description, $found_date, $picture, $CATEGORY_category_ID, $place_found);
         $stmt->execute();
  
         while($stmt->fetch()){
         $response .= ' <div class="product flex-row">';
-        $response .= '<img class="productImage" src="' .$GLOBALS["pic_read_dir_thumb"] . $picture  . '">';
+        $response .= '<a href="view_ad.php?id=' .$id ."&page=" .$page .'"><img class="productImage" src="' .$GLOBALS["pic_read_dir_thumb"] . $picture  .'"></a>';
         $response .= '<div class="flex-column productDesc">';
         $response .= '<p>Kirjeldus: ' . $description . '</p>';
         $response .= '<p>Leidmise koht:' . $place_found . '</p>';
