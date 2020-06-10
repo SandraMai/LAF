@@ -144,11 +144,6 @@ textarea {
 	height:50px;
 }
 /* ANETE */
-
-#add-lost{
-    border: none;    
-}
-
 /* linnakukaart*/
 .storage-pic{
     width: 600px;
@@ -209,6 +204,7 @@ a, a:visited{
     display: flex;
     justify-content: center;
     padding: 10px;
+    border: none;
 }
 
 .redirect-found{
