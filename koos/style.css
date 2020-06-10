@@ -293,7 +293,6 @@ a, a:visited{
     text-align: center;
 }
 .filterForm #submitSearch{
-    width: 100px;
     background-color: #707070;
     color: white;
 }
