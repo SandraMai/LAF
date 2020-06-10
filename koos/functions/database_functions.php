@@ -23,7 +23,7 @@
                 $notice .= '</div></div>';
             }else{
                 $notice .= ' <div class="object flex-row">';
-                $notice .= '<a href="viewAd.php?id=' .$id .'"><img src="' .$GLOBALS["pic_upload_dir_thumb"] .$pic .'"></a>';
+                $notice .= '<a href="viewAd.php?id=' .$id .'"><img src="' .$GLOBALS["pic_read_dir_thumb"] .$pic .'"></a>';
                 $notice .= '<div>';
                 $notice .= '<p> Kirjeldus: ' .$description .'</p>';
                 $notice .= '<p>Kaotamise koht: ' .$place .'</p>';

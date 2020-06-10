@@ -26,7 +26,7 @@
             <?php require("../header.php"); ?>
         </div>
     </div>
-
+    
     <div class="main-flex page-body">
     <div class="aside"></div>
         <div class="main-section">
@@ -38,6 +38,7 @@
             <div class="flex-row"> 
                 <a class="add-ad" href="new_lost.php">LISA ESE</a>
             </div>
+            <div class="clearfix-50"></div>
             <div class="flex-row"> 
             <?php require("../filter.php") ?>
             <div id="products">
