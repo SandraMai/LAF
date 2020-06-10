@@ -4,7 +4,7 @@ $database = "if19_LAF";
 
 
             <div class="filters">
-                <h2 class="flex-column">FILTREERI</h2>
+                <h2 class="flex-column" onClick="window.location.reload();" id="filterMain" >FILTREERI</h2>
                 <ul class="ul flex-column">
                 <form method="POST" action="#" class="filterForm">
                     <li><input id="other" name="muu" type="input" placeholder="Otsingu sõna"></li>

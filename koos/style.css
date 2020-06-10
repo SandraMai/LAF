@@ -259,12 +259,17 @@ a, a:visited{
     border-radius: 20px;
     box-shadow:2px 2px 5px  black;
 }
+#filterMain{
+    width: min-content;
+    text-align:center;
+	margin:15px auto;
+}
+
+#filterMain:hover{
+    color: #6BCABA;
+}
 .filterForm{
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    
+    align-items: center;   
 }
 .filterForm input{
     background-color:white;
