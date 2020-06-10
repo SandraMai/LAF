@@ -109,9 +109,10 @@
         $response = null;
         $page = basename($_SERVER['PHP_SELF']);
         $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
-        $stmt = $conn->prepare("SELECT found_item_ad_ID, description,found_date,picture,CATEGORY_category_ID,place_found FROM FOUND_ITEM_AD WHERE expired=0");
+        $stmt = $conn->prepare("SELECT found_item_ad_ID, description,found_date,picture,CATEGORY_category_ID,place_found, storage_place_name
+        FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired=0");
         echo $conn->error;
-        $stmt->bind_result($id, $description, $found_date, $picture, $CATEGORY_category_ID, $place_found);
+        $stmt->bind_result($id, $description, $found_date, $picture, $CATEGORY_category_ID, $place_found, $storage);
         $stmt->execute();
  
         while($stmt->fetch()){
@@ -121,6 +122,7 @@
         $response .= '<p>Kirjeldus: ' . $description . '</p>';
         $response .= '<p>Leidmise koht:' . $place_found . '</p>';
         $response .= '<p>Kuupäev: ' . $found_date . '</p>';
+        $response .= '<p>Hoiupaik: ' . $storage . '</p>';
         $response .= '</div><div class="aside"></div></div>';
         }
 
