@@ -2,9 +2,9 @@
 
 // LIINA 
 // -- Modal logic start
-// Post added false
-// Post not added true
-$flag = false;
+// Post added: flag needs to return false(or null)
+// Post not added: flag needs to return true(or anything)
+$flag = true;
 $flag = addFound();
 
 $case = 0;

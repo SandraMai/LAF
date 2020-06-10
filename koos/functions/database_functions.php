@@ -94,7 +94,7 @@
         echo $conn->error;
         $stmt->bind_param("sssisiii", $found_date, $placeFound, $fileName, $zero, $description, $category, $zero, $storage);
         if($stmt->execute()) {
-            $response = "Andmete salvestamine õnnestus!";
+            $response = null;
         } else {
             $response = "Andmete salvestamisel tekkis tehniline tõrge: " . $stmt->error;
         }
