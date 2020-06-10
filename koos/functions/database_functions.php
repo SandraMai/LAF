@@ -14,16 +14,16 @@
         $stmt->execute();
         while($stmt->fetch()){
             if($pic=="puudub"){
-                $notice .= ' <div class="object flex-row">';
-                $notice .= '<p></p>';
+                $notice .= ' <div class="product flex-row">';
+                $notice .= '<p>Pilt puudub!</p>';
                 $notice .= '<div>';
                 $notice .= '<p> Kirjeldus: ' .$description .'</p>';
                 $notice .= '<p>Kaotamise koht: ' .$place .'</p>';
                 $notice .= '<p> Kaotamise kuupäev: ' .$date .'</p>';
                 $notice .= '</div></div>';
             }else{
-                $notice .= ' <div class="object flex-row">';
-                $notice .= '<a href="viewAd.php?id=' .$id .'"><img src="' . "http://" . $_SERVER['SERVER_NAME'] . '/~anetevaa/LAF/koos/laf_pics_thumbnail/' .$pic .'"></a>';
+                $notice .= ' <div class="product flex-row">';
+                $notice .= '<a href="view_lost.php?id=' .$id .'"><img src="' .$GLOBALS["pic_read_dir_thumb"] .$pic .'"></a>';
                 $notice .= '<div>';
                 $notice .= '<p> Kirjeldus: ' .$description .'</p>';
                 $notice .= '<p>Kaotamise koht: ' .$place .'</p>';
@@ -47,8 +47,8 @@
         $stmt->bind_result($id, $description, $pic, $place, $date, $email);
         $stmt->execute();
         while($stmt->fetch()){
-            $notice .= ' <div class="object flex-row">';
-            $notice .= '<img src="' . "http://" . $_SERVER['SERVER_NAME'] . '/~anetevaa/LAF/koos/laf_pics_thumbnail/' .$pic .'">';
+            $notice .= ' <div class="product flex-row">';
+            $notice .= '<img src="' .$GLOBALS["pic_read_dir_thumb"] .$pic .'">';
             $notice .= '<div>';
             $notice .= '<p>Kirjeldus: ' .$description .'</p>';
             $notice .= '<p>Kaotamise koht: ' .$place .'</p>';
@@ -93,7 +93,7 @@
  
         while($stmt->fetch()){
         $response .= ' <div class="product flex-row">';
-        $response .= '<img class="productImage" src="' . "http://" . $_SERVER['SERVER_NAME'] . '/~anetevaa/LAF/koos/laf_pics_thumbnail/' . $picture  . '">';
+        $response .= '<img class="productImage" src="' .$GLOBALS["pic_read_dir_thumb"] . $picture  . '">';
         $response .= '<div class="flex-column productDesc">';
         $response .= '<p>Kirjeldus: ' . $description . '</p>';
         $response .= '<p>Leidmise koht:' . $place_found . '</p>';
