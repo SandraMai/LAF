@@ -63,9 +63,11 @@
             return $notice;
         }
         if($page=="found.php"){
-            $stmt = $conn->prepare("SELECT description, picture, place_found, DATE_FORMAT(found_date, '%d %M %Y') FROM FOUND_ITEM_AD WHERE found_item_ad_ID='{$id}'");
+            $stmt = $conn->prepare("SELECT description, picture, place_found, DATE_FORMAT(found_date, '%d %M %Y'), storage_place_name
+            FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE found_item_ad_ID='{$id}'");
+            
             echo $conn->error;
-            $stmt->bind_result($description, $pic, $place, $date);
+            $stmt->bind_result($description, $pic, $place, $date, $storage);
             $stmt->execute();
             while($stmt->fetch()){
                 $notice .= ' <div class="product flex-row view">';
@@ -74,6 +76,7 @@
                 $notice .= '<p>Kirjeldus: ' .$description .'</p>';
                 $notice .= '<p>Leidmise koht: ' .$place .'</p>';
                 $notice .= '<p>Leidmise kuupäev: ' .$date .'</p>';
+                $notice .= '<p>Hoiupaik: ' .$storage .'</p>';
                 $notice .= '</div></div>';
             }
             $stmt->close();
