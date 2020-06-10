@@ -1,9 +1,17 @@
 <?php require('../head.php'); 
 
-$error = addFound();
-echo $error;
+// LIINA 
+// -- Modal logic start
+// Post added false
+// Post not added true
+$flag = false;
+$flag = addFound();
 
-
+$case = 0;
+if (!$flag) {
+    $case = 1;
+}
+// -- Modal logic end
 
 ?>
 <body>
@@ -84,8 +92,8 @@ echo $error;
             <br>
 
 
-            <input type="submit" value="SAADA" name="submitButton">
-            <?php echo $error;?>
+               <input type="submit" value="SAADA" name="submitButton">
+        
         </form><!--.flex-row-->
 
     </div>
@@ -96,9 +104,10 @@ echo $error;
 </div>
 
 
-
+<!-- MODAL STUFF -->
+<input class="modalCase" type="hidden" data-case="<?php echo $case;?>">
+<?php require('modal.php'); ?>
 
 <script src="../js/found.js"></script>
-
 </body>
 </html>

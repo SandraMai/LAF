@@ -60,7 +60,7 @@
     // LIINA
     // Adds new found post (validates, triggers database function)
     function addFound() {
-        $error = false;
+        $error = true;
         if ( isset($_POST['submitButton']) ) {
 
             $fileName = null;
