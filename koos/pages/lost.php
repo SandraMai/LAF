@@ -40,11 +40,11 @@
             </div>
             <div class="clearfix-50"></div>
             <div class="flex-row"> 
-            <?php require("../filter.php") ?>
-            <div class="products">
-                <?php echo $notice?>
-            </div><!--.flex-row-->
-            </div><!--.products -->
+                <?php require("../filter.php") ?>
+                <div class="products">
+                    <?php echo $notice?>
+                </div>
+            </div>
         </div> <!--main section -->
         <div class="aside"></div>
     </div><!-- main-flex-->
