@@ -42,7 +42,7 @@
             <?php require("../filter.php") ?>
             <div id="products">
                 <div id="elements">
-                    <p>Hetkel asju pole</p>
+                    <p><?php echo $notice?></p>
                 </div>
             </div><!--.flex-row-->
             </div><!--.products -->
