@@ -135,7 +135,7 @@ textarea {
     color: black !important;
 }
 
-p{
+.star{
     color: red;
     display: inline;
     font-weight: bolder;

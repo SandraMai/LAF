@@ -127,12 +127,12 @@
 
                 <label>E-mail 
                 <input name="email" type="email" value="<?php echo $email; ?>">
-                <p>*</p> <span><?php echo $email_error; ?></span>
+                <p class="star">*</p> <span><?php echo $email_error; ?></span>
                 </label>
 
                 <label>Kaotamise kuupäev
                 <input name="lostDate" type="date"> 
-                <p>*</p> <span><?php echo $lostDate_error; ?></span>
+                <p class="star">*</p> <span><?php echo $lostDate_error; ?></span>
                 </label>
 
                 <label>Kaotamise koht
@@ -150,12 +150,12 @@
                     <option value="tehnika">tehnika</option>
                     <option value="muu">muu</option>
                     </select>
-                <p>*</p> <span><?php echo $category_error; ?></span>
+                <p class="star">*</p> <span><?php echo $category_error; ?></span>
                 </label>
 
                 <label>Kirjeldus
                 <textarea rows="3" cols="30" name="description"><?php echo $description; ?></textarea>
-                <p>*</p> <span><?php echo $description_error; ?></span>
+                <p class="star">*</p> <span><?php echo $description_error; ?></span>
                 </label>
 
                 <input name="submitLost" id="submit-button" type="submit" value="LISA"> <span><?php echo $respond; ?> </span>
