@@ -34,18 +34,16 @@
         <!-- PAGE BODY -->
         <div class="flex-row"> 
 
-            
-
-        </div><!--.flex-row-->
-        <div class="flex-row"> 
             <?php require("../filter.php") ?>
-            <div id="products">
-                <div id="elements">
-                    <p>Hetkel asju pole</p>
-                </div>
-            </div><!--.flex-row-->
+            <div class="products">
+                    <?php echo selectFoundPostsHTML(); ?>
+            
             </div><!--.products -->
-    </div>
+        </div><!--.flex-row-->
+
+    </div><!--.main-section-->
+
+
     <div class="aside"></div>
 </div>
 

@@ -111,7 +111,7 @@
             $myPic->resizeImage($maxPicW, $maxPicH);
             $notice .= $myPic->savePicFile($pic_upload_dir_w600 .$myPic->fileName);
             $notice .= " " .$myPic->saveOriginal($pic_upload_dir_orig .$myPic->fileName);
-            $returnString = $dirname . 'laf_pics_thumbnail/' . $myPic->fileName;
+            $returnString =  $myPic->fileName;
             return $returnString;
         } else {
             if($myPic->error == 1){
@@ -127,7 +127,7 @@
 
         }
     }
-
+    // Does not work
     function postInsertedRedirect() {
 
         $url = dirname(__FILE__) . 'post_added.php';

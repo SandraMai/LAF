@@ -76,18 +76,18 @@
     function selectFoundPostsHTML() {
         $response = null;
         $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
-        $stmt = $conn->prepare("SELECT kirjeldus,leidmise_kp,pilt,KATEGOORIA_kategooria_ID,leidmise_koht FROM leitud_kuulutus WHERE aegunud=0");
+        $stmt = $conn->prepare("SELECT description,found_date,picture,CATEGORY_category_ID,place_found FROM found_item_ad WHERE expired=0");
         echo $conn->error;
-        $stmt->bind_result($kirjeldus, $leidmise_kp, $pilt, $KATEGOORIA_kategooria_ID, $leidmise_koht);
+        $stmt->bind_result($description, $found_date, $picture, $CATEGORY_category_ID, $place_found);
         $stmt->execute();
-
+ 
         while($stmt->fetch()){
         $response .= ' <div class="product flex-row">';
-        $response .= '<img  src="' . $pilt . '">';
+        $response .= '<img  src="../laf_pics_thumbnail/' . $picture  . '">';
         $response .= '<div>';
-        $response .= '<p>' . $kirjeldus . '</p>';
-        $response .= '<p>' . $leidmise_koht . '</p>';
-        $response .= '<p>' . $leidmise_kp . '</p>';
+        $response .= '<p>' . $description . '</p>';
+        $response .= '<p>' . $place_found . '</p>';
+        $response .= '<p>' . $found_date . '</p>';
         $response .= '</div><div class="aside"></div></div>';
         }
 
