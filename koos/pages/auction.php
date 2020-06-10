@@ -39,10 +39,11 @@ $database = "if19_LAF";
             <?php require("../filter.php") ?>
             <div id="products">
                 <div id="elements">
-                    <p>Hetkel asju pole</p>
+                <?php echo getAuctionElements(); ?>
                 </div>
             </div><!--.flex-row-->
             </div><!--.products -->
+            
     </div>
     <div class="aside"></div>
 </div>

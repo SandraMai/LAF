@@ -1,38 +1,30 @@
 <?php
-	/*function auctionFiltration(){
+	function getAuctionElements(){
 		$notice = null;
 		$expiredElement;
 		$conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
-			$stmt = $conn->prepare("SELECT found_item_ad_ID from FOUND_ITEM_AD where expired=1 AND auctioned IS NULL");
-		echo $conn->error;
-		$stmt->bind_result($expiredItemID);
-		$stmt->execute();
-		if($stmt->fetch()){
-            $expiredElement = $expiredItemID;
-        } else {
-            $notice = "ei toimi";
-        }
-		
-		$stmt->close();   
-  
-        $stmt = $conn->prepare("INSERT INTO AUCTION (FOUND_ITEM_AD_found_item_ad_ID) VALUES(?)");
-        echo $conn->error;
-        $stmt->bind_param("i",$expiredElement);
-        if($stmt->execute()){
-            $notice = 1;
-        } else {
-            $notice = 0;
-        }
-
-		$stmt->close();
-		$stmt = $conn->prepare("UPDATE  FOUND_ITEM_AD SET auctioned=1 WHERE  found_item_ad_ID='{$expiredElement}' ");
-		if($stmt->execute()){
-            $notice = "Tehtud!";
-        }else{
-            $notice = "Salvestamisel tekkis tehniline tõrge: " .$stmt->error;
-        }
-        $stmt->close();
-        $conn->close();
-        return $notice;
-	}*/
+			$stmt = $conn->prepare("SELECT FOUND_ITEM_AD_found_item_ad_ID from AUCTION where expired=1 AND auctioned=1");
+			$response = null;
+			$conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
+			$stmt = $conn->prepare("SELECT description,found_date,picture,CATEGORY_category_ID,place_found FROM FOUND_ITEM_AD WHERE expired=1 AND auctioned=1");
+			echo $conn->error;
+			$stmt->bind_result($description, $found_date, $picture, $CATEGORY_category_ID, $place_found);
+			$stmt->execute();
+	 
+			while($stmt->fetch()){
+			$response .= ' <div class="product flex-row">';
+			$response .= '<img class="productImage" src="' .$GLOBALS["pic_read_dir_thumb"] . $picture  . '">';
+			$response .= '<div class="flex-column productDesc">';
+			$response .= '<p>Kirjeldus: ' . $description . '</p>';
+			$response .= '<p>Leidmise koht:' . $place_found . '</p>';
+			$response .= '<p>Kuupäev: ' . $found_date . '</p>';
+			$response .= '</div><div class="aside"></div></div>';
+			}
+	
+			$response .= "\n";
+	
+			$stmt->close();
+			$conn->close();
+			return $response;
+	}
 ?>
