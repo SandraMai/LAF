@@ -97,11 +97,10 @@
     }
 
     function saveImage() {
-        $dirname = str_replace("functions","", dirname(__FILE__));
-        $pic_upload_dir_orig = '../laf_pics/';
+        $pic_upload_dir_orig = $GLOBALS["pic_upload_dir_orig"];
         $notice = null;
         $fileSizeLimit = 2500000;
-        $pic_upload_dir_w600 = '../laf_pics_thumbnail/';
+        $pic_upload_dir_w600 = $GLOBALS["pic_upload_dir_thumb"];
         $maxPicW = 200;
         $maxPicH = 200;
         $fileNamePrefix = "laf_";

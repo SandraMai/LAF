@@ -84,8 +84,25 @@ body {
 }
 
 .product {
-    background: grey;
     margin-bottom: 10px;
+    background: rgba(255,255,255,0.95);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    border-radius: 5px;
+}
+
+.productImage {
+    border-radius: 5px 0px 0px 5px;
+}
+
+.productDesc {
+    margin-left: 50px;
+    display: flex;
+    align-self: flex-start;
+}
+
+.productDesc p {
+    margin-top: 20px;
+    margin-right: auto;
 }
 
 /* jquery validate errors */

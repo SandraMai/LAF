@@ -93,11 +93,11 @@
  
         while($stmt->fetch()){
         $response .= ' <div class="product flex-row">';
-        $response .= '<img  src="../laf_pics_thumbnail/' . $picture  . '">';
-        $response .= '<div>';
-        $response .= '<p>' . $description . '</p>';
-        $response .= '<p>' . $place_found . '</p>';
-        $response .= '<p>' . $found_date . '</p>';
+        $response .= '<img class="productImage" src="' . "http://" . $_SERVER['SERVER_NAME'] . '/~anetevaa/LAF/koos/laf_pics_thumbnail/' . $picture  . '">';
+        $response .= '<div class="flex-column productDesc">';
+        $response .= '<p>Kirjeldus: ' . $description . '</p>';
+        $response .= '<p>Leidmise koht:' . $place_found . '</p>';
+        $response .= '<p>Kuupäev: ' . $found_date . '</p>';
         $response .= '</div><div class="aside"></div></div>';
         }
 
