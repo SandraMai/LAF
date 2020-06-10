@@ -47,7 +47,7 @@
         $stmt->bind_result($id, $description, $pic, $place, $date, $email);
         $stmt->execute();
         while($stmt->fetch()){
-            $notice .= ' <div class="product flex-row">';
+            $notice .= ' <div class="product flex-row view">';
             $notice .= '<img class="productImage" src="' .$GLOBALS["pic_read_dir_thumb"] .$pic .'">';
             $notice .= '<div class="flex-column productDesc">';
             $notice .= '<p>Kirjeldus: ' .$description .'</p>';

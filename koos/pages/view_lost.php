@@ -19,14 +19,18 @@
         <div class="main-section">
             <?php require('../header.php'); ?>
         </div>
-    <div class="aside"></div>
+        <div class="aside"></div>
     </div>
 
     <div class="main-flex page-body">
     <div class="aside"></div>
 
-
     <div class="main-section">
+        <div class="flex-row"> 
+            <div class="products">
+                <?php echo $notice?>
+            </div>
+        </div>
     </div>
     <div class="aside"></div>
 </div>
