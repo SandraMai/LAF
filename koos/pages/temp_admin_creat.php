@@ -92,7 +92,8 @@ if(isset($_POST["create"])){
 
         echo $passwordError;
 
-        echo signUp($userName, $password) ?>
+        // see echo rida segas kasutaja loomist - tegi topelt kasutaja andmebaasi
+        //echo signUp($userName, $password) ?>
 
         <!-- PAGE BODY -->
         <div class="flex-column logInFormBox"> 
