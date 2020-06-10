@@ -32,17 +32,17 @@ $database = "if19_LAF";
             <div>                
                 <?php
                 echo "Tänane kuupäev " . date("Y/m/d") . "<br>";
-                ?></div>
+                ?>
+                </div>
         </div>
+        <div class="clearfix-50"></div>
         <!-- PAGE BODY -->
         <div class="flex-row"> 
             <?php require("../filter.php") ?>
-            <div id="products">
-                <div id="elements">
+            <div class="products">
                 <?php echo getAuctionElements(); ?>
-                </div>
             </div><!--.flex-row-->
-            </div><!--.products -->
+        </div><!--.products -->
             
     </div>
     <div class="aside"></div>
