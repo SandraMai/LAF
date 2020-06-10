@@ -98,8 +98,7 @@
 
         $stmt->close();
         $conn->close();
-        // Does not work
-        //postInsertedRedirect();
+        return $response;
     }
 
 
