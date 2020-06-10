@@ -23,7 +23,7 @@
                 $notice .= '</div></div>';
             }else{
                 $notice .= ' <div class="product flex-row">';
-                $notice .= '<a href="view_lost.php?id=' .$id .'"><img src="' .$GLOBALS["pic_read_dir_thumb"] .$pic .'"></a>';
+                $notice .= '<a href="view_lost.php?id=' .$id .'"><img class="productImage" src="' .$GLOBALS["pic_read_dir_thumb"] .$pic .'"></a>';
                 $notice .= '<div class="flex-column productDesc">';
                 $notice .= '<p> Kirjeldus: ' .$description .'</p>';
                 $notice .= '<p>Kaotamise koht: ' .$place .'</p>';
@@ -48,7 +48,7 @@
         $stmt->execute();
         while($stmt->fetch()){
             $notice .= ' <div class="product flex-row">';
-            $notice .= '<img  src="' .$GLOBALS["pic_read_dir_thumb"] .$pic .'">';
+            $notice .= '<img class="productImage" src="' .$GLOBALS["pic_read_dir_thumb"] .$pic .'">';
             $notice .= '<div class="flex-column productDesc">';
             $notice .= '<p>Kirjeldus: ' .$description .'</p>';
             $notice .= '<p>Kaotamise koht: ' .$place .'</p>';
