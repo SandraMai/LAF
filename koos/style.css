@@ -78,11 +78,13 @@ body {
 
 
 .products {
+    margin-left: 50px;
     flex-basis: 760px;
+    align-items: flex-start;
 }
 
 .product {
-    background: #f8f8f8;
+    background: grey;
     margin-bottom: 10px;
 }
 
@@ -250,7 +252,6 @@ a, a:visited{
 /* HERMAN */
 
 .filters {
-    margin-top: 50px;
     flex-basis: 260px;
     height: 100%;
     background: #f8f8f8;
@@ -292,7 +293,6 @@ a, a:visited{
     text-align: center;
 }
 .filterForm #submitSearch{
-    width: 100px;
     background-color: #707070;
     color: white;
 }

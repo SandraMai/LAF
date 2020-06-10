@@ -3,6 +3,7 @@
 
     $notice = null;
     $respond = null;
+
     $filenamePrefix = "laf_";
     $maxH = 200;
     $maxW = 200;
@@ -19,8 +20,7 @@
     $description_error = null;
     $lostDate_error = null;
 
-    if(isset($_POST["submitLost"])){
-        
+    if(isset($_POST["submitLost"])){        
         //e-maili kontroll
         if(isset($_POST["email"]) and !empty($_POST["email"])){
             $email = test_input($_POST["email"]);
@@ -43,14 +43,14 @@
             $notice = 0;
         }
 
-        //kp kontroll
+        //kp kontroll; ei tohi olla tühi, ei tohi olla tulevikus
         if(isset($_POST["lostDate"]) and !empty($_POST["lostDate"])){
             if($_POST["lostDate"] > $today){
                 $lostDate_error = "Kuupäev ei saa olla tulevikus!";
                 $notice = 0;
             }
         } elseif(empty($_POST["lostDate"])){
-            $lostDate_error = "Palun pane (umbes) kuupäev, millal eseme kaotasid!";
+            $lostDate_error = "Palun vali (umbes) kuupäev, millal eseme kaotasid!";
             $notice = 0;
         } else {
             $lostDate_error = null;
@@ -67,11 +67,12 @@
                 //teeme pildi väiksemaks
                 $picture->resizeImage($maxW, $maxH);
                 //kirjutame vähendatud pildi faili
-                $respond .= $picture->saveImage($pic_upload_dir_thumb .$picture->fileName);  
+                $respond .= $picture->savePicFile($pic_upload_dir_thumb .$picture->fileName);  
                 //salvestab originaali
-                $respond .= $picture->saveOriginal($pic_upload_dir_orig .$picture->fileName);                
+                //$respond .= $picture->saveOriginal($pic_upload_dir_orig .$picture->fileName);                
                 //salvestan info andmebaasi
                 $respond .= addToDB($email, $_POST["lostDate"], $_POST["placeLost"], $picture->fileName, $description, $_POST["category"]);
+                //redirectToLost();
             } else {
                 //1 - pole pildifail, 2 - liiga suur, 3 - pole lubatud tüüp
                 if($picture->error == 1){
@@ -94,9 +95,9 @@
             $notice .= addToDB($email, $_POST["lostDate"], $_POST["placeLost"], $picture, $description, $_POST["category"]);
         }
 
-        if($notice == 1){
-            redirectToLost();
-        }
+        // if($notice == 1){
+        //     redirectToLost();
+        // }
         
     }
 
@@ -118,7 +119,7 @@
         <div class="main-section">
             <!-- pealkiri  -->
             <div class="flex-row"> 
-                <h1 class="title">LISA KUULUTUS</h1><span><?php echo $today; ?></span>
+                <h1 class="title">LISA KUULUTUS</h1>
             </div>
 
             <!-- kuulutuse lisamise vorm -->
@@ -153,7 +154,7 @@
                 </label>
 
                 <label>Kirjeldus
-                <textarea rows="3" cols="30" name="description" value="<?php echo $description; ?>"></textarea>
+                <textarea rows="3" cols="30" name="description"><?php echo $description; ?></textarea>
                 <p>*</p> <span><?php echo $description_error; ?></span>
                 </label>
 
