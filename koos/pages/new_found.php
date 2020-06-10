@@ -46,7 +46,7 @@ echo $error;
             <label>Leidmise kuupäev
                 <input type="date" name="date"
                     
-                    min="2020-01-01" max="2020-01-20">
+                    min="2020-01-01" max="2020-06-10">
             </label>
             <br>
 
