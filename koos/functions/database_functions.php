@@ -42,7 +42,7 @@
     function viewObject($id){
         $notice = null;
         $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
-        $stmt = $conn->prepare("SELECT id, description, filename, lost_place, DATE_FORMAT(lost_date, '%d %M %Y'), email FROM laf_lost WHERE id='{$id}'");
+        $stmt = $conn->prepare("SELECT lost_post_ID, description, picture, lost_place, DATE_FORMAT(lost_date, '%d %M %Y'), email FROM LOST_ITEM_AD WHERE lost_post_ID='{$id}'");
         echo $conn->error;
         $stmt->bind_result($id, $description, $pic, $place, $date, $email);
         $stmt->execute();
