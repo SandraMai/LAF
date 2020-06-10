@@ -72,7 +72,7 @@
                 //$respond .= $picture->saveOriginal($pic_upload_dir_orig .$picture->fileName);                
                 //salvestan info andmebaasi
                 $respond .= addToDB($email, $_POST["lostDate"], $_POST["placeLost"], $picture->fileName, $description, $_POST["category"]);
-                redirectToLost();
+                //redirectToLost();
             } else {
                 //1 - pole pildifail, 2 - liiga suur, 3 - pole lubatud tüüp
                 if($picture->error == 1){
@@ -95,9 +95,9 @@
             $notice .= addToDB($email, $_POST["lostDate"], $_POST["placeLost"], $picture, $description, $_POST["category"]);
         }
 
-        if($notice == 1){
-            redirectToLost();
-        }
+        //if($notice == 1){
+            //redirectToLost();
+       // }
         
     }
 
