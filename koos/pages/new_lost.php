@@ -160,7 +160,7 @@
                 <p class="star">*</p> <span><?php echo $description_error; ?></span>
                 </label>
 
-                <input name="submitLost" id="submit-button" type="submit" value="LISA"> <span><?php echo $respond; ?> </span>
+                <input name="submitLost" class="add-ad" id="add-lost" type="submit" value="LISA"> <span><?php echo $respond; ?> </span>
             </form>
         </div>
     <div class="aside"></div>

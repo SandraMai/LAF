@@ -141,17 +141,11 @@ textarea {
 	height:50px;
 }
 /* ANETE */
-#submit-button{
-    border-radius: 5px;
-    font-size: 17px;
-    width: 68px;
-    border-width: 1px; 
-    height: 34px;
-}
 
-.form-section{
-    font-size: 18px !important;
-    color: black !important;
+#add-lost{
+    border: none;
+    
+    
 }
 
 .star{
@@ -161,8 +155,6 @@ textarea {
     font-size: larger;
     outline: none;
 }
-
-
 
 select{
     height: 25px;
@@ -181,7 +173,6 @@ label{
 .ul a{
     color: white !important;
 }
-
 
 /* SANDRA */
 /*title kõikidele*/
