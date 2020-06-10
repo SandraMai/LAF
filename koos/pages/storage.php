@@ -19,6 +19,10 @@
             <div class="flex-row"> 
                 <h1 class="title">HOIUPAIGAD</h1>
             </div>
+
+            <div class="storage-pic">
+                <img src="../linnakukaart.jpg">
+            </div>
         </div>
 
     <div class="aside"></div>

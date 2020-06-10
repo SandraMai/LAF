@@ -146,9 +146,15 @@ textarea {
 /* ANETE */
 
 #add-lost{
-    border: none;
-    
-    
+    border: none;    
+}
+
+/* linnakukaart*/
+.storage-pic{
+    width: 600px;
+    height: 500px;
+    float: right;
+    margin-top: 50px;
 }
 
 .star{
