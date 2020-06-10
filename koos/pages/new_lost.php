@@ -28,6 +28,7 @@
             $email_error = "Palun sisesta E-mail!";
             $notice = 0;
         }
+
         //kategooria kontroll
         if(isset($_POST["category"]) and !empty($_POST["category"])){
             $category_error = null;
@@ -35,6 +36,7 @@
             $category_error = "Palun vali kategooria!";
             $notice = 0;
         }
+
         //kirjelduse kontroll
         if(isset($_POST["description"]) and !empty($_POST["description"])){
             $description = test_input($_POST["description"]);
@@ -44,17 +46,15 @@
         }
 
         //kp kontroll; ei tohi olla tühi, ei tohi olla tulevikus
-        if(isset($_POST["lostDate"]) and !empty($_POST["lostDate"])){
-            if($_POST["lostDate"] > $today){
-                $lostDate_error = "Kuupäev ei saa olla tulevikus!";
-                $notice = 0;
-            }
-        } elseif(empty($_POST["lostDate"])){
+        if(isset($_POST["lostDate"]) and $_POST["lostDate"] > $today){
+            $lostDate_error = "Kuupäev ei saa olla tulevikus!";
+            $notice = 0;
+        }elseif($_POST["lostDate"] == null){
             $lostDate_error = "Palun vali (umbes) kuupäev, millal eseme kaotasid!";
             $notice = 0;
         } else {
             $lostDate_error = null;
-        }
+        }    
             
         //kui pilt olemas siis tehakse õige suurus, salvestatakse ja lisatakse kõik andmed andmebaasi
         if(isset($_FILES["lostPic"]) and !empty($_FILES["lostPic"]["name"])){
@@ -72,7 +72,9 @@
                 //$respond .= $picture->saveOriginal($pic_upload_dir_orig .$picture->fileName);                
                 //salvestan info andmebaasi
                 $respond .= addToDB($email, $_POST["lostDate"], $_POST["placeLost"], $picture->fileName, $description, $_POST["category"]);
-                //git predirectToLost();
+                if($notice == 1){
+                    redirectToLost();
+                }
             } else {
                 //1 - pole pildifail, 2 - liiga suur, 3 - pole lubatud tüüp
                 if($picture->error == 1){
@@ -95,9 +97,9 @@
             $notice .= addToDB($email, $_POST["lostDate"], $_POST["placeLost"], $picture, $description, $_POST["category"]);
         }
 
-        // if($notice == 1){
-        //     redirectToLost();
-        // }
+        if($notice == 1){
+            redirectToLost();
+        }
         
     }
 
