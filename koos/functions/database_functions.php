@@ -23,7 +23,7 @@
                 $notice .= '</div></div>';
             }else{
                 $notice .= ' <div class="object flex-row">';
-                $notice .= '<a href="viewAd.php?id=' .$id .'"><img src="' .$GLOBALS["pic_read_dir_thumb"] .$pic .'"></a>';
+                $notice .= '<a href="viewAd.php?id=' .$id .'"><img src="' . "http://" . $_SERVER['SERVER_NAME'] . '/~anetevaa/LAF/koos/laf_pics_thumbnail/' .$pic .'"></a>';
                 $notice .= '<div>';
                 $notice .= '<p> Kirjeldus: ' .$description .'</p>';
                 $notice .= '<p>Kaotamise koht: ' .$place .'</p>';
@@ -48,7 +48,7 @@
         $stmt->execute();
         while($stmt->fetch()){
             $notice .= ' <div class="object flex-row">';
-            $notice .= '<img src="' .$GLOBALS["picDir"] .$pic .'">';
+            $notice .= '<img src="' . "http://" . $_SERVER['SERVER_NAME'] . '/~anetevaa/LAF/koos/laf_pics_thumbnail/' .$pic .'">';
             $notice .= '<div>';
             $notice .= '<p>Kirjeldus: ' .$description .'</p>';
             $notice .= '<p>Kaotamise koht: ' .$place .'</p>';
