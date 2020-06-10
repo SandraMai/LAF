@@ -1,4 +1,6 @@
 <?php
+// see fail läheb hiljem kustutamisele...kuna klient ei soovi võimalust kasutajakontosi juurde teha
+//uut kontot saab luua, andmete tingimustele vastamise kontroll ei toimi
 
 
 require('../head.php');
@@ -6,7 +8,8 @@ require('../head.php');
 $notice = null;
 $userName = null;
 $password = null;
-$nameError = null;
+
+$userNameError = null;
 $passwordError = null;
 
 
@@ -36,31 +39,29 @@ function signUp($userName, $password){
 
 
 //kui on uue kasutaja loomise nuppu vajutatud teeme sisestatud andmete kontrolli
-//uut kontot saab luua, andmete tingimustele vastamise kontroll ei toimi
 if(isset($_POST["create"])){
     //kasutajanime kontroll
     if(isset($_POST["username"]) and !empty($_POST["username"])){
         $userName = test_input($_POST["username"]);
     } else {
-        $nameError = "palun sisesta oma kasutajanimi!";  
+        $userNameError = "palun sisesta oma kasutajanimi!";  
     }
       
-      //parool kontroll
+    //parool kontroll
     if(!isset($_POST["password"]) or empty($_POST["password"])){
         $passwordError = "Palun sisesta salasõna!";
     } else {
         if(strlen($_POST["password"]) < 8){
-            $passwordError = "Liiga lühike salasõna (sisestasite ainult ";
+            $passwordError = "Liiga lühike salasõna";
         }
     }
-    
 
-  //kui kõik on olemas, korras, siis salvestame kasutaja
-  if(empty($nameError) and empty($passwordError)){
-      $notice = signUp($userName, $_POST["password"]);
-  } else {
-      $notice = "Ei saa salvestada, andmed on puudulikud!";
-  }
+    //salvestame kasutaja
+    if(empty($userNameError) and empty($passwordError)){
+        $notice = signUp($userName, $_POST["password"]);
+    } else {
+        $notice = "Ei saa salvestada, andmed on puudulikud!";
+    }
 }
 
 
@@ -86,7 +87,7 @@ if(isset($_POST["create"])){
 
         <h1 class="title flex-row white">LOO UUS KASUTAJA (ajutiselt)</h1>
         <?php 
-        echo strlen($_POST["password"]);
+        //echo strlen($_POST["password"]);
 
 
         echo $passwordError;
