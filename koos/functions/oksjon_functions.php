@@ -1,5 +1,5 @@
 <?php
-	function auctionFiltration(){
+	/*function auctionFiltration(){
 		$notice = null;
 		$expiredElement;
 		$conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
@@ -34,5 +34,5 @@
         $stmt->close();
         $conn->close();
         return $notice;
-	}
+	}*/
 ?>

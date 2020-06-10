@@ -6,7 +6,7 @@ require("../../../../config_laf.php");
 require("functions_main.php");
 require("functions_pic.php");*/
 $database = "if19_LAF";
-echo auctionFiltration();
+/*echo auctionFiltration();*/
 ?>
 <body>
     
