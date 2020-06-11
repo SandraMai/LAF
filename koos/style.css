@@ -312,6 +312,10 @@ textarea{
     padding: 2%;
 }
 
+.storageLabel{
+    padding: 2%;
+}
+
 .ul a{
     color: white !important;
 }
