@@ -22,7 +22,6 @@ if(isset($_GET["logout"])){
 <body class="homeBody">
 
 
-
 <div class="main-flex header">
     <div class="aside"></div>
 
@@ -44,7 +43,6 @@ if(isset($_GET["logout"])){
         <!-- selle kustutab peagi ära...oli kontrolliks, kas ikka toimib -->
         <?php var_dump($_SESSION["userId"]); ?>
         </div><!--.main-section-->
-
 
     </div><!--.main-section-->
 </div>
