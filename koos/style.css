@@ -114,7 +114,9 @@ body {
 .error-image,
 .error-category,
 .error-description,
-.error-found_location {
+.error-found_location,
+.error-email,
+.error-lostDate {
     color: red;
     font-size: 14px;
     text-align: left;
@@ -308,10 +310,6 @@ textarea{
     outline: none;
 }
 
-.lostLabel{
-    padding: 2%;
-}
-
 .storageLabel{
     padding: 2%;
 }
@@ -395,6 +393,7 @@ a, a:visited{
     justify-content: center;
     padding: 10px;
     border: none;
+    cursor: pointer;
 }
 
 .redirect-found{
