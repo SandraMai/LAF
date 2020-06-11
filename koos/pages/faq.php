@@ -1,6 +1,7 @@
 <?php 
 
 require('../head.php'); 
+$faqHTML = getFAQ();
 
 ?>
 <body>
@@ -23,24 +24,7 @@ require('../head.php');
         </div>
 
         <div class="flex-row"> 
-            <h2 class="h2-title">KAOTATUD</h2>
-            <div class="answers">
-            
-            </div>
-        </div>
-
-        <div class="flex-row"> 
-            <h2 class="h2-title">LEITUD</h2>
-            <div class="answers">
-            
-            </div>
-        </div>
-
-        <div class="flex-row"> 
-            <h2 class="h2-title">OKSJON</h2>
-            <div class="answers">
-            
-            </div>
+            <?php echo $faqHTML ?>
         </div>
     </div>
     <div class="aside"></div>
