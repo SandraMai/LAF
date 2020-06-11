@@ -120,7 +120,7 @@
 
         <form class="flex-column" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" enctype="multipart/form-data">
         
-        <label clasS="storageLabel">Hoiupaiga nimetus
+        <label class="storageLabel">Hoiupaiga nimetus
             <select name="storage-name">
                 <option disabled selected value>Vali hoiupaik</option>
                 <?php echo $storageHTML; ?>
@@ -128,7 +128,7 @@
         <p class="star">*</p> <span><?php echo $storageID_error; ?></span>
         </label>
 
-        <label clasS="storageLabel">Telefoninumber
+        <label class="storageLabel">Telefoninumber
         <input name="phonenr" type="text" value="<?php echo $phonenr; ?>">
         <p class="star">*</p> <span><?php echo $phonenr_error; ?></span>
         </label>
