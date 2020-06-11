@@ -7,7 +7,7 @@
         <li><a href="">LEITUD</a></li>
         <li><a href="">OKSJON</a></li>
         <li><a href="">AEGUNUD</a></li>
-        <li><a href="">SEADED</a></li>
+        <li><a href="admin_settings.php">SEADED</a></li>
         <li><a class="logOutLink" href="admin_login.php">LOGI VÄLJA</a></li>
     </ul>
 

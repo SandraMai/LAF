@@ -247,6 +247,20 @@ label{
     color: white !important;
 }
 
+.admin-settings{
+    color: white !important;
+    background-color: #6BCABA;
+    font-size: medium;
+    margin-top: 20px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px black;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    border: none;   
+    width: 150px; 
+    text-align: center;
+}
 
 
 /* SANDRA */
