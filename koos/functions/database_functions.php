@@ -13,8 +13,12 @@
         echo $conn->error;
         $stmt->bind_result($id, $description, $pic, $place, $date);
         $stmt->execute();
+        
         while($stmt->fetch()){
             if($pic=="puudub"){
+                if($place == null){
+                    $place = "Kaotamise koha kohta info puudub!";
+                }
                 $notice .= ' <div class="product flex-row">';
                 $notice .= '<p>Pilt puudub!</p>';
                 $notice .= '<div class="flex-column productDesc">';
@@ -23,6 +27,9 @@
                 $notice .= '<p> Kaotamise kuupäev: ' .$date .'</p>';
                 $notice .= '</div></div>';
             }else{
+                if($place == null){
+                    $place = "Kaotamise koha kohta info puudub!";
+                }
                 $notice .= ' <div class="product flex-row">';
                 $notice .= '<a href="view_ad.php?id=' .$id ."&page=" .$page .'"><img class="productImage" src="' .$GLOBALS["pic_read_dir_thumb"] .$pic .'"></a>';
                 $notice .= '<div class="flex-column productDesc">';
@@ -35,6 +42,7 @@
         if($notice == null){
             $notice .= '<p class="flex-row">Hetkel esemeid pole!</p>';
         }
+        
         $stmt->close();
         $conn->close();
         return $notice;
