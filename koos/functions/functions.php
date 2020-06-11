@@ -49,25 +49,12 @@
         $stmt->bind_result($name, $phone);
         $stmt->execute();
         while($stmt->fetch()){
-            $notice .= "<li>" .$name ." &nbsp; &nbsp; Telefon: " .$phone ."</li>";
+            $notice .= "<li><b>" .$name ."</b></li>";
+            $notice .= "<li>Telefoninumber: " .$phone ."</li><hr>";
         }
         $stmt->close();
         $conn->close();
         return $notice;
-    }
-
-    // SANDRA
-
-    $clothesCount = 0;
-    $technologyCount = 0;
-    $othersCount = 0;
-
-    function counter($filter){
-
-        if (isset($_POST["tehnika"])){
-            $technologyCount++;
-            echo $technologyCount;
-        }
     }
 
     // LIINA
