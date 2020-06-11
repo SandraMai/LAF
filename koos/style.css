@@ -261,6 +261,14 @@ textarea{
     width: 150px; 
     text-align: center;
 }
+.password-box{
+    text-align: center;
+}
+
+.password-box input{
+    height: 25px;
+    border-radius: 5px;
+}
 
 
 /* SANDRA */
