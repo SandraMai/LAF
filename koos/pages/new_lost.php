@@ -131,25 +131,25 @@
             <!-- kuulutuse lisamise vorm -->
             <form class="flex-column" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" enctype="multipart/form-data">
 
-                <label>E-mail 
+                <label class="lostLabel">E-mail 
                 <input name="email" type="email" value="<?php echo $email; ?>">
                 <p class="star">*</p> <span><?php echo $email_error; ?></span>
                 </label>
 
-                <label>Kaotamise kuupäev
+                <label class="lostLabel">Kaotamise kuupäev
                 <input name="lostDate" type="date"> 
                 <p class="star">*</p> <span><?php echo $lostDate_error; ?></span>
                 </label>
 
-                <label>Kaotamise koht
+                <label class="lostLabel">Kaotamise koht
                 <input name="placeLost" type="text">
                 </label>
 
-                <label>Pilt
+                <label class="lostLabel">Pilt
                 <input name="lostPic" type="file" id="fileToUpload">
                 </label>
 
-                <label>Kategooria
+                <label class="lostLabel">Kategooria
                     <select name="category">
                     <option disabled selected value>...</option>
                     <option value="riided">riided</option>
@@ -159,7 +159,7 @@
                 <p class="star">*</p> <span><?php echo $category_error; ?></span>
                 </label>
 
-                <label>Kirjeldus
+                <label class="lostLabel">Kirjeldus
                 <textarea rows="3" cols="30" name="description"><?php echo $description; ?></textarea>
                 <p class="star">*</p> <span><?php echo $description_error; ?></span>
                 </label>
