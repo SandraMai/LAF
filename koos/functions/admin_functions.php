@@ -16,6 +16,21 @@ session_start();
 	    return $storageHTML;
     }
 
+    function readSectionForSelect(){
+      $sectionHTML = null;
+      $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
+      $stmt = $conn->prepare("SELECT section_ID, section_name FROM SECTION");
+      $stmt->bind_result($id, $section_name);
+      $stmt->execute();
+      while($stmt->fetch()){
+          $sectionHTML .= '<option value="' .$id .'"';
+          $sectionHTML .= '>' .$section_name .'</option> \n';
+      }
+      $stmt->close();
+      $conn->close();
+      return $sectionHTML;
+    }
+
     function addNewStorageToDB($newStorageName, $newPhonenr){
         $notice = null;
         $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
