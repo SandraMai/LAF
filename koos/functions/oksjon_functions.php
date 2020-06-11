@@ -16,11 +16,15 @@
 		$response .= '<div class="flex-column productDesc">';
 		$response .= '<p>Kirjeldus: ' . $description . '</p>';
 		$response .= '<p>Leidmise koht:' . $place_found . '</p>';
-		$response .= '<p>Kuupäev: ' . $found_date . '</p>';
-		$response .= '<li class="productexplinationsDATE" data-time="' . $timestamps . '">';
+		$response .= '<p>Leitud kuupäev: ' . $found_date . '</p>';
+		$response .= '<br><p>Aegub</p>';
+		$response .= '<a class="productexplinationsDATE" data-time="' . $timestamps . '">';
 		$response .= '<span class="days"></span>days<span class="hours"></span>hours<span class="minutes">';
-		$response .= '</span>minutes<span class="seconds"></span>seconds</li>';
+		$response .= '</span>minutes<span class="seconds"></span>seconds</a>';
+		$response .= '<p><a href="new_offer.php">';
+		$response .= '<input type="submit" id="priceSuggested" name="priceSuggested" value="Paku enda hind"></a></p>';
 		$response .= '</div><div class="aside"></div></div>';
+
 		
 
 		}
@@ -37,25 +41,23 @@
 	}
 	function getAuctionCountdown($idofItem){
 
-		$response = null;
-		$expiredElement;
-		$conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
-		$stmt = $conn->prepare("SELECT start_date from AUCTION where expired IS NULL AND 	FOUND_ITEM_AD_found_item_ad_ID='{$idofItem}' ");
-		echo $conn->error;
-		$stmt->bind_result($auctionActiveDate);
-		$stmt->execute();
-		while($stmt->fetch()){
-			$timestamps = strtotime($auctionActiveDate);
-			$echoing=htmlspecialchars($_SERVER["PHP_SELF"]);
-			$auctionActiveDate=date("d m y", strtotime("$auctionActiveDate +6 days"));
-			}
-			
+	$response = null;
+	$expiredElement;
+	$conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
+	$stmt = $conn->prepare("SELECT start_date from AUCTION where expired IS NULL AND 	FOUND_ITEM_AD_found_item_ad_ID='{$idofItem}' ");
+	echo $conn->error;
+	$stmt->bind_result($auctionActiveDate);
+	$stmt->execute();
+	while($stmt->fetch()){
+		$timestamps = strtotime($auctionActiveDate);
+		$echoing=htmlspecialchars($_SERVER["PHP_SELF"]);
+		$auctionActiveDate=date("d m y", strtotime("$auctionActiveDate +6 days"));
+		}
+	$response .= "\n";
 
-			$response .= "\n";
-
-			$stmt->close();
-			$conn->close();
-			return $timestamps;
+	$stmt->close();
+	$conn->close();
+	return $timestamps;
 	}
 ?>
 

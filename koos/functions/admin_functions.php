@@ -45,5 +45,41 @@
         return $notice;
     }
 
+    function logIn($userName, $password){
+        $notice = "";
+        $mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
+        $stmt = $mysqli->prepare("SELECT password FROM ADMIN WHERE username=?");
+        echo $mysqli->error;
+        $stmt->bind_param("s", $userName);
+        $stmt->bind_result($passwordFromDb);
+        if($stmt->execute()){
+          if($stmt->fetch()){
+          if(password_verify($password, $passwordFromDb)){
+            $stmt->close();
+            $stmt = $mysqli->prepare("SELECT admin_ID FROM ADMIN WHERE username=?");
+            echo $mysqli->error;
+            $stmt->bind_param("s", $userName);
+            $stmt->bind_result($idFromDb);
+            $stmt->execute();
+            $stmt->fetch();
+            $stmt->close();
+            $mysqli->close();
+            $_SESSION["userId"] = $idFromDb;
+            header("Location: admin_home.php");
+            exit();
+            } else {
+              $notice = "Vale parool!";
+            }
+          } else {
+          $notice = "Sellist kasutajat (" .$userName .") ei leitud!";
+            }
+        } else {
+          $notice = "Sisselogimisel tekkis tehniline viga!" .$stmt->error;
+        }
+      $stmt->close();
+      $mysqli->close();
+      return $notice;
+    }
+
 
 ?>
