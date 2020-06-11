@@ -1,4 +1,5 @@
 <?php
+session_start();
 
     function readStoragesForSelect(){
         $storageHTML = null;
@@ -81,23 +82,19 @@
       return $notice;
     }
 
-    function updatePassword($newPassword, $newPasswordagain){
+    function updatePassword($newPassword){
       $notice = null;
       $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
-      $stmt = $conn->prepare("UPDATE ADMIN SET password = ? WHERE admin_ID = ?");
+      $stmt = $conn->prepare("UPDATE ADMIN SET password=? WHERE admin_ID=?");
       echo $conn->error;
-      $stmt->bind_param("i", $_SESSION["userID"]);
-      $stmt->bind_result($passwordFromDb);
+      $options = ["cost" => 12, "salt" => substr(sha1(rand()), 0, 22)];
+      $pwdhash = password_hash($newPassword,PASSWORD_BCRYPT, $options);
+      $stmt->bind_param("si", $pwdhash, $_SESSION["userID"]);
       if($stmt->execute()){
-        $options = ["cost" => 12, "salt" => substr(sha1(rand()), 0, 22)];
-          $pwdhash = password_hash($newPassword,PASSWORD_BCRYPT, $options);
-          $stmt->bind_param("si", $pwdhash, $_SESSION["userID"]);
-          if($stmt->execute()){
             $notice = "Uue parooli salvestamine õnnestus!";
-          } else {
+      } else {
             $notice = "Parooli salvestamisel tekkis tehniline viga: " .$stmt->error;
-          }
-        }
+      }
       $stmt->close();
       $conn->close();
       return $notice;
