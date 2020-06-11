@@ -6,6 +6,21 @@ require("functions_main.php");
 require("functions_pic.php");*/
 $database = "if19_LAF";
 
+
+
+if(isset($_GET["item"])){
+    //echo $_GET["photoid"];
+    $picid = $_GET["item"];
+    $userPicHTML = getAuctionElements($_GET["item"]);
+} elseif(isset($_POST["item"])){
+    $picid = $_POST["item"];
+    $userPicHTML = getAuctionElements($_POST["item"]);
+} else {
+    $userPicHTML = null;
+}
+
+
+
 ?>
 <body>
     
@@ -32,11 +47,19 @@ $database = "if19_LAF";
                 <div>                
                     <?php
                     echo "Tänane kuupäev " . date("Y/m/d") . "<br>";
+                    
                     ?></div>
+                    
             </div>
             <!-- PAGE BODY -->
             <div class="flex-row"> 
-            <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+            
+            
+            
+      <?php?>
+                </div><!--.products -->
+                <?php echo $userPicHTML;?>
+                <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
                 <label> E-Mail: </label>
                 <br>
                 <input type="text" name="email">
@@ -51,17 +74,6 @@ $database = "if19_LAF";
                 <br>
                 <br>
                 <input name="submitPrice" type="submit" value="Esita Pakumine">
-      <?php
-		if(!empty($userPicHTML)){
-			echo '<input name="picid" type="hidden" value="' .$picid .'">';
-			echo '<input name="return" type="hidden" value="' .$return .'">'; 
-			echo "<br>";
-			echo $notice;
-			echo "</span> \n";
-		} else {
-			echo "<p>Pakkumist pole esitatud!</p> \n";
-		}?>
-                </div><!--.products -->
         </div>
         <div class="aside"></div>
     </div>
