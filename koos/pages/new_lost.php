@@ -72,10 +72,8 @@
                 //$respond .= $picture->saveOriginal($pic_upload_dir_orig .$picture->fileName);                
                 //salvestan info andmebaasi
                 $respond .= addToDB($email, $_POST["lostDate"], $_POST["placeLost"], $picture->fileName, $description, $_POST["category"]);
-                if($notice == 1){
-                    $case = 1;
-                   //redirectToLost();
-                }
+                
+ 
             } else {
                 //1 - pole pildifail, 2 - liiga suur, 3 - pole lubatud tüüp
                 if($picture->error == 1){
@@ -92,12 +90,12 @@
                 }
             }
             unset($picture);
-            $case = 1;
+            $notice .= $respond;
  
         } else {
             $picture = "puudub";
             $notice .= addToDB($email, $_POST["lostDate"], $_POST["placeLost"], $picture, $description, $_POST["category"]);
-            $case = 1;
+            
         }
 
         if($notice == 1){
@@ -126,16 +124,18 @@
         <div class="main-section">
             <!-- pealkiri  -->
             <div class="flex-row"> 
-                <h1 class="title">LISA KUULUTUS</h1>
+                <h1 class="title">LISA KAOTATUD KUULUTUS</h1>
             </div>
             <!-- kuulutuse lisamise vorm -->
-            <form class="flex-column" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" enctype="multipart/form-data">
+            <form name="add_new_lost_form" class="flex-column" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" enctype="multipart/form-data">
 
+                <div class="error-email"></div>
                 <label class="lostLabel">E-mail 
                 <input name="email" type="email" value="<?php echo $email; ?>">
                 <p class="star">*</p> <span><?php echo $email_error; ?></span>
                 </label>
 
+                <div class="error-lostDate"></div>
                 <label class="lostLabel">Kaotamise kuupäev
                 <input name="lostDate" type="date"> 
                 <p class="star">*</p> <span><?php echo $lostDate_error; ?></span>
@@ -149,6 +149,7 @@
                 <input name="lostPic" type="file" id="fileToUpload">
                 </label>
 
+                <div class="error-category"></div>
                 <label class="lostLabel">Kategooria
                     <select name="category">
                     <option disabled selected value>...</option>
@@ -159,6 +160,7 @@
                 <p class="star">*</p> <span><?php echo $category_error; ?></span>
                 </label>
 
+                <div class="error-description"></div>
                 <label class="lostLabel">Kirjeldus
                 <textarea rows="3" cols="30" name="description"><?php echo $description; ?></textarea>
                 <p class="star">*</p> <span><?php echo $description_error; ?></span>
@@ -176,6 +178,6 @@
 <input class="modalCase" type="hidden" data-case="<?php echo $case;?>">
 <?php require('modal.php'); ?>
 
-<script src="../js/found.js"></script>
+<script src="../js/lost.js"></script>
 </body>
 </html>
