@@ -262,13 +262,33 @@ textarea{
     text-align: center;
 }
 .password-box{
+    margin-top: 50px;
     text-align: center;
+    background-color: #eeececc0;
+    padding: 50px;
+    border-radius: 10px;    
+    width: 500px;
+    height: 300px;
+    display: flex;
+    justify-content: center;    
 }
 
-.password-box input{
+.password-input{
     height: 25px;
-    border-radius: 5px;
+    border-radius: 5px !important;
 }
+
+.password-button{
+    color: white;
+    background-color: #707070;
+    font-size: medium;
+    border: 3px #707070;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
 
 
 /* SANDRA */

@@ -24,23 +24,25 @@
                     <h1 class="title">PAROOL</h1>
                 </div>
 
-                <div class="password-box">
-                    <form class="flex-column" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" enctype="multipart/form-data">
+                <div class="flex-column">
+                    <form class="password-box flex-column" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" enctype="multipart/form-data">
             
                     <label>Uus parool</label>
-                    <input name="new-password" type="password" value="<?php ?>">
+                    <input name="new-password" class="password-input" type="password" value="<?php ?>">
                     <span><?php  ?></span>
                     
+                    <br>
 
                     <label>Uus parool uuesti</label>
-                    <input name="new-password-again" type="password" value="<?php ?>">
+                    <input name="new-password-again" class="password-input" type="password" value="<?php ?>">
                     <span><?php?></span>
-                    
-                    <input name="cancel" class="add-ad" type="submit" value="TÜHISTA"> <span><?php echo $notice; ?></span>
-                    <input name="submitNewPassword" class="add-ad" type="submit" value="MUUDA PAROOLI"> <span><?php echo $notice; ?></span>
-                    
-                    </form>
+                    <br>
+                    <input name="submitNewPassword" class="password-button" type="submit" value="MUUDA PAROOLI"> <span><?php echo $notice; ?></span>
+                    <input name="cancel" class="password-button" type="submit" value="TÜHISTA"> <span><?php echo $notice; ?></span>
+                        
+                </form>
                 </div>
+                
             </div>
         <div class="aside"></div>
     </div>
