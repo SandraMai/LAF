@@ -67,7 +67,6 @@
                     $notice .= '<p> Kirjeldus: ' .$description .'</p>';
                     $notice .= '<p>Kaotamise koht: ' .$place .'</p>';
                     $notice .= '<p> Kaotamise kuupäev: ' .$date .'</p>';
-                    $notice .= '<p> Email: ' .$email .'</p>';
                     $notice .= '</div></div>';
                 }else{
                     if($place == null){
@@ -79,7 +78,6 @@
                     $notice .= '<p> Kirjeldus: ' .$description .'</p>';
                     $notice .= '<p>Kaotamise koht: ' .$place .'</p>';
                     $notice .= '<p> Kaotamise kuupäev: ' .$date .'</p>';
-                    $notice .= '<p> Email: ' .$email .'</p>';
                     $notice .= '</div></div>';
                 }
             }
@@ -108,6 +106,30 @@
             $conn->close();
             return $notice;
         }
+    }
+
+    function getFAQ(){
+        $notice = null;
+        $counter = 0;
+
+        $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
+        $stmt = $conn->prepare("SELECT question, answer, section_name FROM FAQ JOIN SECTION ON FAQ.SECTION_section_ID = SECTION.section_ID");
+        echo $conn->error;
+
+        $stmt->bind_result($question, $answer, $section_name);
+        $stmt->execute();
+        while($stmt->fetch()){
+            // if($counter == 0){
+            $notice .= '<h2>' .$section_name .'</h2>';
+            //     $counter++;
+            // }
+            // $notice .= '<p>' .$question .'</p>';
+            // $notice .= '<p>' .$answer .'</p>';
+            // $counter = 0;
+        }
+        $stmt->close();
+        $conn->close();
+        return $notice;
     }
 
     // LIINA

@@ -99,4 +99,52 @@ session_start();
       $conn->close();
       return $notice;
     }
+
+    function updateAuction($startPrice, $step){
+      $notice = null;
+      $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
+      $stmt = $conn->prepare("UPDATE OFFER_CHANGE SET start_price=?, offer_step=?");
+      echo $conn->error;
+      $stmt->bind_param("dd", $startPrice, $step);
+      if($stmt->execute()){
+        $notice = "Uuendus õnnestus!";
+      } else {
+        $notice = "Tekkis tehniline viga: " .$stmt->error;
+      }
+      $stmt->close();
+      $conn->close();
+      return $notice;
+    }
+
+    function auctionDefaultStartPrice(){
+      $start = null;
+      $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
+      $stmt = $conn->prepare("SELECT start_price FROM OFFER_CHANGE");
+      $stmt->bind_result($startDB);
+      $stmt->execute();
+      if($stmt->fetch()){
+        $start = $startDB;
+      } else {
+        $start = $stmt->error;
+      }
+      $stmt->close();
+      $conn->close();
+      return $start;
+    }
+
+    function auctionDefaultStep(){
+      $step = null;
+      $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
+      $stmt = $conn->prepare("SELECT offer_step FROM OFFER_CHANGE");
+      $stmt->bind_result($stepDB);
+      $stmt->execute();
+      if($stmt->fetch()){
+        $step = $stepDB;
+      } else {
+        $step = $stmt->error;
+      }
+      $stmt->close();
+      $conn->close();
+      return $step;
+    }
 ?>

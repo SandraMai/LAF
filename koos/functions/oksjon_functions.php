@@ -97,41 +97,49 @@
 	$conn->close();
 	return $timestamps;
 	}
-	function setFirstBid($idofAuctionedItem){
+	function setFirstBid($email,$notification,$offer,$idofAuctionedItem){
 		$response = null;
 		$expiredElement;
 		$conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]); 
-			$stmt = $conn->prepare("SELECT found_item_ad_ID,description,found_date,picture,CATEGORY_category_ID,place_found FROM FOUND_ITEM_AD WHERE expired=1 AND auctioned=1");
-			echo $conn->error;
-			$stmt->bind_result($id,$description, $found_date, $picture, $CATEGORY_category_ID, $place_found);
-			$stmt->execute();
-
-			while($stmt->fetch()){
-			$timestamps = getAuctionCountdown($id);
-			$echoing=htmlspecialchars($_SERVER["PHP_SELF"]);
-			$response .= ' <div class="product flex-row">';
-			$response .= '<img class="productImage" src="' .$GLOBALS["pic_read_dir_thumb"] . $picture  . '">';
-			$response .= '<div class="flex-column productDesc">';
-			$response .= '<p>Kirjeldus: ' . $description . '</p>';
-			$response .= '<p>Leidmise koht:' . $place_found . '</p>';
-			$response .= '<p>Leitud kuupäev: ' . $found_date . '</p>';
-			$response .= '<br><p>Aegub</p>';
-			$response .= '<a class="productexplinationsDATE" data-time="' . $timestamps . '">';
-			$response .= '<span class="days"></span>days<span class="hours"></span>hours<span class="minutes">';
-			$response .= '</span>minutes<span class="seconds"></span>seconds</a>';
-			$response .= '<p><a href="new_offer.php?item='.$id.'">';
-			$response .= '<input type="submit" id="priceSuggested" name="priceSuggested" value="Paku enda hind"></a></p>';
-			$response .= '</div><div class="aside"></div></div>';
-			}
-			
-
-			$response .= "\n";
-
-			$stmt->close();
-			$conn->close();
-			return $response;
+			$stmt = $conn->prepare("UPDATE  OFFER SET email=?,offer=? WHERE AUCTION_auction_ID='{$idofAuctionedItem}' ");
+			$stmt->bind_param("sd",$email,$offer);
+		echo $conn->error;
+		if($stmt->execute()){
+			$notice = "Pakkumine edukalt lisatud";
+		} else {
+			$notice = "Muutmisel tekkis tehniline viga: " .$stmt->error;
+		}
+		$stmt->close();
+		$conn->close();
+		return $notice;
 	}
-
+		function priceBoundary($auctionedItem){
+		$notice = null;
+		//echo "Muuda: " .$altText;
+		$conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
+		$stmt = $conn->prepare("SELECT auction_ID FROM AUCTION WHERE FOUND_ITEM_AD_found_item_ad_ID='{$auctionedItem}'");
+		echo $conn->error;
+		$stmt->bind_result($auctionFromDb);
+		$stmt->execute();
+		if($stmt->fetch()){
+            $currentAuction=$auctionFromDb;
+        } else {
+            $notice = "ei toimi";
+        }
+		$stmt->close();
+		$stmt = $conn->prepare("SELECT offer FROM OFFER WHERE AUCTION_auction_ID='{$currentAuction}'");
+		echo $conn->error;
+		$stmt->bind_result($offerFromDb);
+		$stmt->execute();
+		if($stmt->fetch()){
+            $currentOffer=$offerFromDb;
+        } else {
+            $notice = "ei toimi";
+        }
+		$stmt->close();
+		$conn->close();
+		return $currentOffer;
+	}
 ?>
 
 

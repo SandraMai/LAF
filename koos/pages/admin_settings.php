@@ -35,8 +35,8 @@
                 </div>
 
                 <div class="flex-column"> 
-                    <a class="admin-settings" href="admin_allsettings.php">ÜLDSEADED</a>
                     <a class="admin-settings" href="admin_change_password.php">MUUDA PAROOLI</a>
+                    <a class="admin-settings" href="admin_auction.php">OKSJONI SEADED</a>                    
                     <a class="admin-settings" href="admin_faq.php">KKK <br> LEHE MUUTMINE</a>
                     <a class="admin-settings" href="admin_storage.php">HOIUPAIGAD</a>     
                 </div>

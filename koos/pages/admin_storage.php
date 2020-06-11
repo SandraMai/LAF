@@ -98,12 +98,13 @@
         <!--hoiupaiga lisamise vormid -->
         <form class="flex-column" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" enctype="multipart/form-data">
         
-        <label>Hoiupaiga nimetus
-        <input name="new-storage-name" type="text" value="<?php echo $newStorageName; ?>">
-        <p class="star">*</p> <span><?php echo $newStorageName_error; ?></span>
-        </label>
+        <label clasS="storageLabel">Hoiupaiga nimetus 
+        <input name="new-storage-name" type="text" value="<?php echo $newStorageName; ?>"> 
+        <p class="star">*</p><span><?php echo $newStorageName_error; ?></span>        
+        </label> 
+        
 
-        <label>Telefoninumber
+        <label clasS="storageLabel">Telefoninumber
         <input name="new-phonenr" type="text" value="<?php echo $newPhonenr; ?>">
         <p class="star">*</p> <span><?php echo $newPhonenr_error; ?></span>
         </label>
@@ -119,7 +120,7 @@
 
         <form class="flex-column" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" enctype="multipart/form-data">
         
-        <label>Hoiupaiga nimetus
+        <label class="storageLabel">Hoiupaiga nimetus
             <select name="storage-name">
                 <option disabled selected value>Vali hoiupaik</option>
                 <?php echo $storageHTML; ?>
@@ -127,7 +128,7 @@
         <p class="star">*</p> <span><?php echo $storageID_error; ?></span>
         </label>
 
-        <label>Telefoninumber
+        <label class="storageLabel">Telefoninumber
         <input name="phonenr" type="text" value="<?php echo $phonenr; ?>">
         <p class="star">*</p> <span><?php echo $phonenr_error; ?></span>
         </label>
