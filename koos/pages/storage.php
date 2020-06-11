@@ -1,5 +1,6 @@
 <?php
     require('../head.php');
+    $storagePlacesHTML = readStoragePlaces();
 ?>
 <body>
     <div class="main-flex header">
@@ -18,6 +19,15 @@
             <!-- pealkiri  -->
             <div class="flex-row"> 
                 <h1 class="title">HOIUPAIGAD</h1>
+            </div>
+
+            <div class="storage-places flex-column">
+                <ul>
+                <?php
+                    echo $storagePlacesHTML;
+                ?>
+                </ul>
+
             </div>
 
             <div class="storage-pic">

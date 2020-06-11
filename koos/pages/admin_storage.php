@@ -50,13 +50,14 @@
         }
         //tel nr kontroll
         if(isset($_POST["phonenr"]) and !empty($_POST["phonenr"])){
-            $phonenr = test_input($_POST["phonenr"]);
+            $phonenr = $_POST["phonenr"];
         } else {
             $phonenr_error = "Palun sisesta hoiupaiga telefoninumber!";
         }
 
         if(empty($newStorageName_error) and empty($newPhonenr_error)){
             $notice = updateStorage($storageID, $phonenr);
+            $phonenr = null;
         }
     }
 
@@ -111,7 +112,7 @@
                 <option disabled selected value>Vali hoiupaik</option>
                 <?php echo $storageHTML; ?>
             </select>
-        <p class="star">*</p> <span><?php echo $storageName_error; ?></span>
+        <p class="star">*</p> <span><?php echo $storageID_error; ?></span>
         </label>
 
         <label>Telefoninumber

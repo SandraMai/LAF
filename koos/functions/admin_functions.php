@@ -7,7 +7,7 @@
         $stmt->bind_result($id, $storage_name);
         $stmt->execute();
         while($stmt->fetch()){
-            $storageHTML .= '<option value"' .$id .'"';
+            $storageHTML .= '<option value="' .$id .'"';
             $storageHTML .= '>' .$storage_name .'</option> \n';
         }
         $stmt->close();

@@ -210,6 +210,17 @@ textarea {
     margin-top: 50px;
 }
 
+.storage-places{
+    float: left;
+    margin-top: 50px;
+       
+}
+.storage-places ul{
+    list-style-type: none;
+    font-size: 20px;
+    line-height: 2.5;
+}
+
 .star{
     color: red;
     display: inline;
@@ -235,6 +246,8 @@ label{
 .ul a{
     color: white !important;
 }
+
+
 
 /* SANDRA */
 /*title kõikidele*/

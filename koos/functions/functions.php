@@ -39,8 +39,21 @@
         
         $stmt->close();
         $conn->close();     
+        return $notice;        
+    }
+
+    function readStoragePlaces(){
+        $notice = null;
+        $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
+        $stmt = $conn->prepare("SELECT storage_place_name, phonenr FROM STORAGE_PLACE");
+        $stmt->bind_result($name, $phone);
+        $stmt->execute();
+        while($stmt->fetch()){
+            $notice .= "<li>" .$name ." &nbsp; &nbsp; Telefon: " .$phone ."</li>";
+        }
+        $stmt->close();
+        $conn->close();
         return $notice;
-        
     }
 
     // SANDRA
