@@ -1,7 +1,20 @@
-<?php 
+<?php
+session_start();
+
+require('../head.php');
 
 
-require('../head.php'); 
+if(!isset($_SESSION["userId"])){
+    header("Location: admin_login.php");
+    exit();
+}
+
+if(isset($_GET["logout"])){
+  session_unset();
+  session_destroy();
+  header("Location: admin_login.php");
+  exit();
+}
 
 
 ?>
@@ -28,7 +41,8 @@ require('../head.php');
         <!-- PAGE BODY -->
         <div class="flex-column homeTextWrap"> 
 
-
+        <!-- selle kustutab peagi ära...oli kontrolliks, kas ikka toimib -->
+        <?php var_dump($_SESSION["userId"]); ?>
         </div><!--.main-section-->
 
 

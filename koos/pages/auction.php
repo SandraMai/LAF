@@ -1,5 +1,5 @@
 <?php require('../head.php'); 
-
+$show=null;
 require("../functions/oksjon_functions.php");
 require("../../../../config_laf.php");
 /*require("functions_user.php");
@@ -40,7 +40,7 @@ $database = "if19_LAF";
         <div class="flex-row"> 
             <?php require("../filter.php") ?>
             <div class="products">
-                <?php echo getAuctionElements(); ?>
+                <?php echo getAuctionElements($show); ?>
             </div><!--.flex-row-->
         </div><!--.products -->
             

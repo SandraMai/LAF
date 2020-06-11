@@ -20,7 +20,7 @@
                     $place = "Kaotamise koha kohta info puudub!";
                 }
                 $notice .= ' <div class="product flex-row">';
-                $notice .= '<p>Pilt puudub!</p>';
+                $notice .= '<a href="view_ad.php?id=' .$id ."&page=" .$page .'"><img class="productImage" src="' .$GLOBALS["pic_read_dir_thumb"] ."missing.png" .'"></a>';
                 $notice .= '<div class="flex-column productDesc">';
                 $notice .= '<p> Kirjeldus: ' .$description .'</p>';
                 $notice .= '<p>Kaotamise koht: ' .$place .'</p>';
@@ -57,14 +57,31 @@
             $stmt->bind_result($description, $pic, $place, $date, $email);
             $stmt->execute();
             while($stmt->fetch()){
-                $notice .= ' <div class="product flex-row view">';
-                $notice .= '<img class="productImage" src="' .$GLOBALS["pic_read_dir_thumb"] .$pic .'">';
-                $notice .= '<div class="flex-column productDesc">';
-                $notice .= '<p>Kirjeldus: ' .$description .'</p>';
-                $notice .= '<p>Kaotamise koht: ' .$place .'</p>';
-                $notice .= '<p> Kaotamise kuupäev: ' .$date .'</p>';
-                $notice .= '<p>Kontakt: ' .$email .'</p>';
-                $notice .= '</div></div>';
+                if($pic=="puudub"){
+                    if($place == null){
+                        $place = "Kaotamise koha kohta info puudub!";
+                    }
+                    $notice .= ' <div class="product flex-row view">';
+                    $notice .= '<img class="productImage" src="' .$GLOBALS["pic_read_dir_thumb"] ."missing.png" .'">';
+                    $notice .= '<div class="flex-column productDesc">';
+                    $notice .= '<p> Kirjeldus: ' .$description .'</p>';
+                    $notice .= '<p>Kaotamise koht: ' .$place .'</p>';
+                    $notice .= '<p> Kaotamise kuupäev: ' .$date .'</p>';
+                    $notice .= '<p> Email: ' .$email .'</p>';
+                    $notice .= '</div></div>';
+                }else{
+                    if($place == null){
+                        $place = "Kaotamise koha kohta info puudub!";
+                    }
+                    $notice .= '<div class="product flex-row view">';
+                    $notice .= '<img class="productImage" src="' .$GLOBALS["pic_read_dir_thumb"] .$pic .'">';
+                    $notice .= '<div class="flex-column productDesc">';
+                    $notice .= '<p> Kirjeldus: ' .$description .'</p>';
+                    $notice .= '<p>Kaotamise koht: ' .$place .'</p>';
+                    $notice .= '<p> Kaotamise kuupäev: ' .$date .'</p>';
+                    $notice .= '<p> Email: ' .$email .'</p>';
+                    $notice .= '</div></div>';
+                }
             }
             $stmt->close();
             $conn->close();
