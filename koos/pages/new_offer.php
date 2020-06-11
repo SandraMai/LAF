@@ -6,9 +6,9 @@ require("functions_main.php");
 require("functions_pic.php");*/
 $database = "if19_LAF";
 $notice=null;
+$return = null;
 
-
-
+$neededNumber = getAuctionId($_GET["item"]);
 if(isset($_GET["item"])){
     //echo $_GET["photoid"];
     $auctionedItem = $_GET["item"];
@@ -26,14 +26,14 @@ if(isset($_POST["submitPrice"])){
     $notification =($_POST["notification"]);
     $offer =($_POST["offer"]);
 	if((!empty($offer))&&(!empty($email))){
-        if($offer>$compare){$notice = setFirstBid($email,$notification,$offer,$auctionedItem);}else{
+        if($offer>$compare){$notice = setFirstBid($email,$notification,$offer,$neededNumber);}else{
             $notice = "Su pakkutud hind on väiksem praegusest";
-        }
+        
     }
 	} else {
 		$notice = "Täida kõik lahtrid ära";
 	}
-
+}
 
 ?>
 <body>
@@ -91,7 +91,17 @@ if(isset($_POST["submitPrice"])){
                 <br>
                 <br>
                 <input name="submitPrice" type="submit" value="Esita Pakumine">
-                
+                <?php
+		if(!empty($userPicHTML)){
+			echo '<input name="item" type="hidden" value="' .$_GET["item"] .'">';
+			echo '<input name="return" type="hidden" value="' .$return .'">'; 
+			echo "<br>";
+			echo $notice;
+			echo "</span> \n";
+		} else {
+			echo "<p>Pildi laadimisel tekkis viga!</p> \n";
+		}
+	?>
 	</form>
         </div>
         <div class="aside"></div>

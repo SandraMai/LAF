@@ -101,8 +101,8 @@
 		$response = null;
 		$expiredElement;
 		$conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]); 
-			$stmt = $conn->prepare("UPDATE  OFFER SET email=?,offer=? WHERE AUCTION_auction_ID='{$idofAuctionedItem}' ");
-			$stmt->bind_param("sd",$email,$offer);
+		$stmt = $conn->prepare("UPDATE  OFFER SET email=?,notification=?,offer=? WHERE AUCTION_auction_ID=?");
+		$stmt->bind_param("sii",$email,$notification,$offer,$idofAuctionedItem);
 		echo $conn->error;
 		if($stmt->execute()){
 			$notice = "Pakkumine edukalt lisatud";
@@ -111,7 +111,7 @@
 		}
 		$stmt->close();
 		$conn->close();
-		return $notice;
+		return $idofAuctionedItem;
 	}
 		function priceBoundary($auctionedItem){
 		$notice = null;
@@ -139,6 +139,23 @@
 		$stmt->close();
 		$conn->close();
 		return $currentOffer;
+	}
+	function getAuctionId($auctionedItem){
+		$notice = null;
+		//echo "Muuda: " .$altText;
+		$conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
+		$stmt = $conn->prepare("SELECT auction_ID FROM AUCTION WHERE FOUND_ITEM_AD_found_item_ad_ID='{$auctionedItem}'");
+		echo $conn->error;
+		$stmt->bind_result($auctionFromDb);
+		$stmt->execute();
+		if($stmt->fetch()){
+            $currentAuction=$auctionFromDb;
+        } else {
+            $notice = "ei toimi";
+        }
+		$stmt->close();
+		$conn->close();
+		return $currentAuction;
 	}
 ?>
 
