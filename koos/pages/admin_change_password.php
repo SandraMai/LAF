@@ -16,9 +16,33 @@
     $notice = null;
     $newPassword_error = null;
 
-    if(isset($_POST["submitNewPassword"])){
-        //kontroll kas matchivad
+    if(isset($_POST["submitNewPassword"])){ 
+        if(strlen($_POST["new-password"]) < 8 && strlen($_POST["new-password-again"]) < 8){
+            $newPassword_error = "Uus parool on liiga lühike!";
+        }
+
+        if(empty($_POST["new-password-again"])){
+            $newPassword_error = "Palun sisesta parool teist korda ka!";
+        } else {
+            if(($_POST["new-password"] != $_POST["new-password-again"])){            
+                $newPassword_error = "Paroolid ei ole samasugused!";
+            }
+        }
+        
+        
+
+        if($newPassword_error == null){
+            $password = $_POST["new-password"];
+            $notice = updatePassword($password);
+        }        
     }
+
+    if(isset($_POST["cancel"])){
+        header("Location: admin_settings.php");
+        exit();
+    }
+
+   
 
 ?>
 <body>
@@ -46,17 +70,14 @@
                     <form class="password-box flex-column" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" enctype="multipart/form-data">
             
                     <label>Uus parool</label>
-                    <input name="new-password" class="password-input" type="password">
-                    <span><?php  ?></span>
-                    
+                    <input name="new-password" class="password-input" type="password">                   
                     <br>
 
                     <label>Uus parool uuesti</label>
                     <input name="new-password-again" class="password-input" type="password">
-                    <span><?php?></span>
                     <br>
-                    <input name="submitNewPassword" class="password-button" type="submit" value="MUUDA PAROOLI"> <span><?php echo $newPassword_error; ?></span>
-                    <input name="cancel" class="password-button" type="submit" value="TÜHISTA"> <span><?php echo $notice; ?></span>
+                    <input name="submitNewPassword" class="password-button" type="submit" value="MUUDA PAROOLI"> <span><?php echo $notice; echo $newPassword_error; ?></span>
+                    <input name="cancel" class="password-button" type="submit" value="TÜHISTA">
                         
                 </form>
                 </div>

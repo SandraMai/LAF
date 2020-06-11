@@ -39,7 +39,6 @@
                     <a class="admin-settings" href="admin_change_password.php">MUUDA PAROOLI</a>
                     <a class="admin-settings" href="">KKK <br> LEHE MUUTMINE</a>
                     <a class="admin-settings" href="admin_storage.php">HOIUPAIGAD</a>     
-                    
                 </div>
             </div>
         <div class="aside"></div>

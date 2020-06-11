@@ -37,7 +37,7 @@ session_start();
         $stmt = $conn->prepare("UPDATE STORAGE_PLACE SET phonenr=? WHERE storage_place_ID='{$storageID}'");
         $stmt->bind_param("s", $phonenr);
         if($stmt->execute()){
-            $notice = " Telefoninumber uuendatud!";
+            $notice = "Telefoninumber uuendatud!";
         } else {
             $notice = "Midagi läks valesti: " .$stmt->error;
         }
@@ -88,8 +88,8 @@ session_start();
       $stmt = $conn->prepare("UPDATE ADMIN SET password=? WHERE admin_ID=?");
       echo $conn->error;
       $options = ["cost" => 12, "salt" => substr(sha1(rand()), 0, 22)];
-      $pwdhash = password_hash($newPassword,PASSWORD_BCRYPT, $options);
-      $stmt->bind_param("si", $pwdhash, $_SESSION["userID"]);
+      $pwdhash = password_hash($newPassword, PASSWORD_BCRYPT, $options);
+      $stmt->bind_param("si", $pwdhash, $_SESSION["userId"]);
       if($stmt->execute()){
             $notice = "Uue parooli salvestamine õnnestus!";
       } else {
