@@ -212,6 +212,26 @@
             $notice = "Salvestamisel tekkis tehniline tõrge: " .$stmt->error;
         }
         $stmt->close();
+        $stmt = $conn->prepare("SELECT auction_ID from AUCTION where FOUND_ITEM_AD_found_item_ad_ID='{$expiredElement}' AND expired IS NULL");
+		echo $conn->error;
+		$stmt->bind_result($id);
+		$stmt->execute();
+		if($stmt->fetch()){
+            $auctionID = $id;
+        } else {
+            $notice = "ei toimi";
+        }
+        $stmt->close();
+        $stmt = $conn->prepare("INSERT INTO OFFER (AUCTION_auction_ID) VALUES(?)");
+		echo $conn->error;
+        $stmt->bind_param("i",$auctionID);
+        if($stmt->execute()){
+            $notice = 1;
+        } else {
+            $notice = 0;
+        }
+
+		$stmt->close();   
         $conn->close();
         return $notice;
 	}
