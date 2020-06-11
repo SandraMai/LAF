@@ -34,6 +34,15 @@
         $notice = null;
         $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
         $stmt = $conn->prepare("UPDATE STORAGE_PLACE SET phonenr=? WHERE storage_place_ID='{$storageID}'");
+        $stmt->bind_param("s", $phonenr);
+        if($stmt->execute()){
+            $notice = " Telefoninumber uuendatud!";
+        } else {
+            $notice = "Midagi läks valesti: " .$stmt->error;
+        }
+        $stmt->close();
+        $conn->close();
+        return $notice;
     }
 
 

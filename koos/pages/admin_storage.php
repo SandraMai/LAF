@@ -8,12 +8,12 @@
 
     $newStorageName = null;
     $newPhonenr = null;
-    $storageName = null;
+    $storageID = null;
     $phonenr = null;
 
     $newPhonenr_error = null;
     $newStorageName_error = null;
-    $storageName_error = null;
+    $storageID_error = null;
     $phonenr_error = null;
 
     //uus hoiupaik
@@ -33,6 +33,9 @@
 
         if(empty($newStorageName_error) and empty($newPhonenr_error)){
             $noticeNew = addNewStorageToDB($newStorageName, $newPhonenr);
+            $newStorageName = null;
+            $newPhonenr = null;
+            $storageHTML = readStoragesForSelect();
         }
     }
 
@@ -40,9 +43,10 @@
     if(isset($_POST["updateStorage"])){
         //nimetuse kontroll
         if(isset($_POST["storage-name"]) and !empty($_POST["storage-name"])){
-            $storageName_error = null;
+            $storageID_error = null;
+            $storageID = $_POST["storage-name"];
         } else {
-            $storageName_error = "Palun vali hoiupaiga nimetus!";
+            $storageID_error = "Palun vali hoiupaiga nimetus!";
         }
         //tel nr kontroll
         if(isset($_POST["phonenr"]) and !empty($_POST["phonenr"])){
@@ -52,7 +56,7 @@
         }
 
         if(empty($newStorageName_error) and empty($newPhonenr_error)){
-            //$notice = updateStorage($storageName, $phonenr);
+            $notice = updateStorage($storageID, $phonenr);
         }
     }
 

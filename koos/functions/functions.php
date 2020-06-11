@@ -34,7 +34,7 @@
         if($stmt->execute()){
             $notice = 1;
         } else {
-            $notice = 0;
+            $notice = "pahasti" .$stmt->error;
         }
         
         $stmt->close();
