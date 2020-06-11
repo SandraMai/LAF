@@ -34,14 +34,14 @@ if(isset($_POST["submitPrice"])){
     $studentId = ($_POST["studentId"]);
     $studentName =($_POST["nameOfStudent"]);
     $newPrice =($_POST["newPrice"]);
-	if((!empty($newPrice ))&&(!empty($studentId))&&(!empty($studentName))){
-        if($newPrice>$compare){$notice = setPrice($studentId,$studentName,$newPrice,$picid);}else{
+	  if((!empty($newPrice ))&&(!empty($studentId))&&(!empty($studentName))){
+        if($newPrice>$compare){$notice = setPrice($studentId,$studentName,$newPrice,$_GET["item"]);}else{
             $notice = "Su pakkutud hind on väiksem praegusest";
         }
         
-	} else {
+  } else {
 		$notice = "Täida kõik lahtrid ära";
-	}
+	  }
   }
   ?>
 

@@ -5,32 +5,48 @@ require("../../../../config_laf.php");
 require("functions_main.php");
 require("functions_pic.php");*/
 $database = "if19_LAF";
+$notice=null;
 
 
 
 if(isset($_GET["item"])){
     //echo $_GET["photoid"];
-    $picid = $_GET["item"];
+    $auctionedItem = $_GET["item"];
     $userPicHTML = getAuctionElements($_GET["item"]);
 } elseif(isset($_POST["item"])){
-    $picid = $_POST["item"];
+    $auctionedItem = $_POST["item"];
     $userPicHTML = getAuctionElements($_POST["item"]);
 } else {
     $userPicHTML = null;
 }
 
+$compare = priceBoundary($_GET["item"]);
+if(isset($_POST["submitPrice"])){
+    $email = ($_POST["email"]);
+    $notification =($_POST["notification"]);
+    $offer =($_POST["offer"]);
+	if((!empty($offer))&&(!empty($email))){
+        if($offer>$compare){$notice = setFirstBid($email,$notification,$offer,$auctionedItem);}else{
+            $notice = "Su pakkutud hind on väiksem praegusest";
+        }
+    }
+	} else {
+		$notice = "Täida kõik lahtrid ära";
+	}
 
 
 ?>
 <body>
-    
+
     <div class="main-flex header">
         <div class="aside"></div>
         <!-- HEADER -->
         <div class="main-section">
             <?php require('../header.php'); ?>
+            <?php echo $compare; ?>
         </div>
         <div class="aside"></div>
+        
     </div>
     
     <div class="main-flex page-body">
@@ -59,21 +75,24 @@ if(isset($_GET["item"])){
       <?php?>
                 </div><!--.products -->
                 <?php echo $userPicHTML;?>
-                <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+
+                <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"])."?item=".$_GET["item"];?>">
                 <label> E-Mail: </label>
                 <br>
                 <input type="text" name="email">
                 <br>
                 <label> Teavitused: </label>
                 <br>
-                <input type="checkbox" name="notifications" value="1">
+                <input type="checkbox" name="notification" value="1">
                 <br>
                 <label> Pakumine: </label>
                 <br>
-                <input type="text" name="newPrice">
+                <input type="text" name="offer">
                 <br>
                 <br>
                 <input name="submitPrice" type="submit" value="Esita Pakumine">
+                
+	</form>
         </div>
         <div class="aside"></div>
     </div>
