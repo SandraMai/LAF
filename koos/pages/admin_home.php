@@ -1,5 +1,5 @@
-<?php 
-
+<?php
+session_start();
 
 require('../head.php'); 
 
@@ -28,7 +28,7 @@ require('../head.php');
         <!-- PAGE BODY -->
         <div class="flex-column homeTextWrap"> 
 
-
+        <?php var_dump($_SESSION["userId"]); ?>
         </div><!--.main-section-->
 
 
