@@ -114,7 +114,9 @@ body {
 .error-image,
 .error-category,
 .error-description,
-.error-found_location {
+.error-found_location,
+.error-email,
+.error-lostDate {
     color: red;
     font-size: 14px;
     text-align: left;
@@ -312,10 +314,6 @@ textarea{
     padding: 2%;
 }
 
-.storageLabel{
-    padding: 2%;
-}
-
 .ul a{
     color: white !important;
 }
@@ -362,10 +360,6 @@ textarea{
     margin-top: 20px;
 }
 
-.auction-input{
-    width: 70px;
-    height: 20px;
-}
 
 
 /* SANDRA */
@@ -395,6 +389,7 @@ a, a:visited{
     justify-content: center;
     padding: 10px;
     border: none;
+    cursor: pointer;
 }
 
 .redirect-found{
