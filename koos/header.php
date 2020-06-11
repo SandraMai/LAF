@@ -8,6 +8,6 @@
         <li><a href="found.php">LEITUD</a></li>
         <li><a href="auction.php">OKSJON</a></li>
         <li><a href="faq.php">KKK</a></li>
+        <div class="aside"></div>
     </ul>
-
 </div>
