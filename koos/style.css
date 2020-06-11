@@ -407,6 +407,11 @@ a, a:visited{
     cursor: pointer;
 }
 
+.add-ad:hover{
+    background-color: #6BCABA;
+    transition: .5s;
+}
+
 .redirect-found{
     background-color:rgb(221, 223, 223);
     padding: 10px;
