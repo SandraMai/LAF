@@ -55,7 +55,7 @@
             $phonenr_error = "Palun sisesta hoiupaiga telefoninumber!";
         }
 
-        if(empty($newStorageName_error) and empty($newPhonenr_error)){
+        if(empty($storageID_error) and empty($phonenr_error)){
             $notice = updateStorage($storageID, $phonenr);
             $phonenr = null;
         }
