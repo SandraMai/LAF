@@ -33,7 +33,7 @@
             }
         }
         if($notice == null){
-            $notice = '<p>Hetkel asju pole!</p>';
+            $notice .= '<p class="flex-row">Hetkel esemeid pole!</p>';
         }
         $stmt->close();
         $conn->close();
@@ -125,7 +125,9 @@
         $response .= '<p>Hoiupaik: ' . $storage . '</p>';
         $response .= '</div><div class="aside"></div></div>';
         }
-
+        if($response == null){
+            $response .= '<p class="flex-row">Hetkel esemeid pole!</p>';
+        }
         $response .= "\n";
 
         $stmt->close();
