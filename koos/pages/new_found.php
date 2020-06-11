@@ -40,10 +40,10 @@ if (!$flag) {
         <form class="flex-column" action="" method="POST" name="add_new_found_form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" enctype="multipart/form-data">
 
             <div class="error-storage"></div>
-               <label>
-                Hoiupaik
-                <select name="storage">
-                    <option disabled selected value> -- select an option -- </option>
+               <label class="foundLabel">
+                <p>Hoiupaik</p>
+                <select class="foundInput textInput inputBoxStyle" name="storage">
+                    <option disabled selected value>  Vali hoiupaik  </option>
                     <?php echo selectStoragePlaceHTML();?>
                 </select>
             </label>
@@ -51,32 +51,38 @@ if (!$flag) {
             <br>
 
             <div class="error-date"></div>
-            <label>Leidmise kuupäev
-                <input type="date" name="date"
+            <label class="foundLabel">
+            <p>Leidmise kuupäev</p>
+                <input class="foundInput textInput inputBoxStyle" type="date" name="date"
                     
                     min="2020-01-01" max="2020-06-10">
             </label>
             <br>
 
             <div class="error-found_location"></div>
-            <label>Leidmise asukoht
-                <input type="text" name="found_location">
+            <label class="foundLabel">
+            <p>Leidmise asukoht</p>
+                <input class="foundInput textInput inputBoxStyle" type="text" name="found_location">
             </label>
             <br>
 
 
             <div class="error-image"></div>
-            <label>
-                Pilt
-                <input name="image" type="file">
+            <label class="foundLabel fileLabel">
+                <p>Pilt</p>
+                <div class="fileInputBox foundInput inputBoxStyle">
+                    <img src="../images/upload-file.png" alt="">
+                </div>
+                <p class="js-file-input-name"></p>
+                <input class="fileInput js-file-input" name="image" type="file">
             </label>
             <br>
 
             <div class="error-category"></div>
-            <label>
-                Kategooria
-                <select name="category">
-                    <option disabled selected value> -- select an option -- </option>
+            <label class="foundLabel">
+                <p>Kategooria</p>
+                <select class="foundInput textInput inputBoxStyle" name="category">
+                    <option disabled selected value>  Vali kategooria  </option>
                     <option value="1">riided</option>
                     <option value="2">tehnika</option>
                     <option value="3">muu</option>
@@ -85,14 +91,13 @@ if (!$flag) {
             <br>
 
             <div class="error-description"></div>
-            <label>
-                Kirjeldus
-                <textarea name="description" id="" cols="30" rows="5"></textarea>
+            <label class="foundLabel">
+                <p>Kirjeldus</p>
+                <textarea class="foundInput textInput inputBoxStyle" name="description" id="" cols="30" rows="5"></textarea>
             </label>
             <br>
 
-
-               <input type="submit" value="SAADA" name="submitButton">
+               <input class="add-ad" type="submit" value="LISA" name="submitButton">
         
         </form><!--.flex-row-->
 
@@ -109,5 +114,6 @@ if (!$flag) {
 <?php require('modal.php'); ?>
 
 <script src="../js/found.js"></script>
+
 </body>
 </html>
