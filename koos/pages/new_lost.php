@@ -1,6 +1,6 @@
 <?php
     require('../head.php');
-
+    $case = 0;
     $notice = null;
     $respond = null;
 
@@ -73,7 +73,8 @@
                 //salvestan info andmebaasi
                 $respond .= addToDB($email, $_POST["lostDate"], $_POST["placeLost"], $picture->fileName, $description, $_POST["category"]);
                 if($notice == 1){
-                    redirectToLost();
+                    $case = 1;
+                   //redirectToLost();
                 }
             } else {
                 //1 - pole pildifail, 2 - liiga suur, 3 - pole lubatud tüüp
@@ -91,17 +92,21 @@
                 }
             }
             unset($picture);
-
+            $case = 1;
+ 
         } else {
             $picture = "puudub";
             $notice .= addToDB($email, $_POST["lostDate"], $_POST["placeLost"], $picture, $description, $_POST["category"]);
+            $case = 1;
         }
 
         if($notice == 1){
-            redirectToLost();
+            $case = 1;
+            //redirectToLost();
         }
         
     }
+
 
 ?>
 
@@ -123,7 +128,6 @@
             <div class="flex-row"> 
                 <h1 class="title">LISA KUULUTUS</h1>
             </div>
-
             <!-- kuulutuse lisamise vorm -->
             <form class="flex-column" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" enctype="multipart/form-data">
 
@@ -165,4 +169,13 @@
         </div>
     <div class="aside"></div>
     </div>    
+
+
+
+<!-- MODAL STUFF -->
+<input class="modalCase" type="hidden" data-case="<?php echo $case;?>">
+<?php require('modal.php'); ?>
+
+<script src="../js/found.js"></script>
 </body>
+</html>

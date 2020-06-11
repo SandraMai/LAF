@@ -1,7 +1,5 @@
 <?php
 // see fail läheb hiljem kustutamisele...kuna klient ei soovi võimalust kasutajakontosi juurde teha
-//uut kontot saab luua, andmete tingimustele vastamise kontroll ei toimi
-
 
 require('../head.php');
 
@@ -44,15 +42,15 @@ if(isset($_POST["create"])){
     if(isset($_POST["username"]) and !empty($_POST["username"])){
         $userName = test_input($_POST["username"]);
     } else {
-        $userNameError = "palun sisesta oma kasutajanimi!";  
+        $userNameError = "Palun sisesta oma kasutajanimi!";
     }
       
     //parool kontroll
     if(!isset($_POST["password"]) or empty($_POST["password"])){
-        $passwordError = "Palun sisesta salasõna!";
+        $passwordError = "Palun sisesta parool!";
     } else {
         if(strlen($_POST["password"]) < 8){
-            $passwordError = "Liiga lühike salasõna";
+            $passwordError = "Liiga lühike parool";
         }
     }
 
@@ -86,14 +84,9 @@ if(isset($_POST["create"])){
     <div class="main-section titleSection">
 
         <h1 class="title flex-row white">LOO UUS KASUTAJA (ajutiselt)</h1>
-        <?php 
-        //echo strlen($_POST["password"]);
 
-
-        echo $passwordError;
-
-        // see echo rida segas kasutaja loomist - tegi topelt kasutaja andmebaasi
-        //echo signUp($userName, $password) ?>
+        <p class="flex-row white " ><?php echo $passwordError; ?></p>
+        <p class="flex-row white" ><?php echo $userNameError; ?></p>
 
         <!-- PAGE BODY -->
         <div class="flex-column logInFormBox"> 
