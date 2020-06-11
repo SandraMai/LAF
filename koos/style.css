@@ -608,7 +608,7 @@ img{
 .logInForm {
     background-color: #f8f8f8c0;
     padding: 50px;
-    border-radius: 5px;
+    border-radius: 30px;
 }
 
 .logInFormBox {
@@ -621,13 +621,17 @@ img{
     font-size: medium;
     border: 3px #707070;
     padding: 10px;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
+}
+
+.logInButton:hover {
+    background-color: #413f3f;
 }
 
 .logInInputBox input{
     height: 25px;
-    border-radius: 5px;
+    border-radius: 8px;
 }
 
 .logOutLink {
