@@ -67,7 +67,6 @@
                     $notice .= '<p> Kirjeldus: ' .$description .'</p>';
                     $notice .= '<p>Kaotamise koht: ' .$place .'</p>';
                     $notice .= '<p> Kaotamise kuupäev: ' .$date .'</p>';
-                    $notice .= '<p> Email: ' .$email .'</p>';
                     $notice .= '</div></div>';
                 }else{
                     if($place == null){
@@ -79,7 +78,6 @@
                     $notice .= '<p> Kirjeldus: ' .$description .'</p>';
                     $notice .= '<p>Kaotamise koht: ' .$place .'</p>';
                     $notice .= '<p> Kaotamise kuupäev: ' .$date .'</p>';
-                    $notice .= '<p> Email: ' .$email .'</p>';
                     $notice .= '</div></div>';
                 }
             }
