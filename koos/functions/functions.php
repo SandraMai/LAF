@@ -78,6 +78,8 @@
 
                 $error = insertFoundPost($storage, $date, $fileName, $category, $description, $found_location);
             }
+        } else {
+            $error = true;
         }
 
         return $error;
