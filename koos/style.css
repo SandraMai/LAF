@@ -642,13 +642,16 @@ img{
     padding: 15px;
     border-radius: 5px;
     box-shadow: 2px 2px 5px black;
-    justify-content: center;
     text-align: center;
-    width: 175px;
+    width: 140px;
     border: none;
-    display: flex;
+    align-self: flex-start
 }
 
 .adminHomeSection {
     margin-top: 100px;
+}
+
+.adminHomeButton:hover {
+    background-color: #2a917f;
 }
