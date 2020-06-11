@@ -28,6 +28,7 @@ require('../head.php');
         <!-- PAGE BODY -->
         <div class="flex-column homeTextWrap"> 
 
+        <!-- selle kustutab peagi ära...oli kontrolliks, kas ikka toimib -->
         <?php var_dump($_SESSION["userId"]); ?>
         </div><!--.main-section-->
 
