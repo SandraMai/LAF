@@ -420,6 +420,11 @@ a, a:visited{
     font-size: small;
 }
 
+.redirect-found:hover{
+    background-color: white;
+    transition: .5s;
+}
+
 .logo{
     color: white !important;
     font-size: xx-large;
