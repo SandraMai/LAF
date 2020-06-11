@@ -67,7 +67,7 @@
                 //teeme pildi väiksemaks
                 $picture->resizeImage($maxW, $maxH);
                 //kirjutame vähendatud pildi faili
-                $respond .= $picture->savePicFile($pic_upload_dir_thumb .$picture->fileName);  
+                $picture->savePicFile($pic_upload_dir_thumb .$picture->fileName);  
                 //salvestab originaali
                 //$respond .= $picture->saveOriginal($pic_upload_dir_orig .$picture->fileName);                
                 //salvestan info andmebaasi
@@ -130,40 +130,58 @@
             <form name="add_new_lost_form" class="flex-column" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" enctype="multipart/form-data">
 
                 <div class="error-email"></div>
-                <label class="lostLabel">E-mail 
-                <input name="email" type="email" value="<?php echo $email; ?>">
-                <p class="star">*</p> <span><?php echo $email_error; ?></span>
+                <label class="foundLabel">
+                    <p>
+                        <span>E-mail</span><span class="star">&nbsp; *</span> <span><?php echo $email_error; ?></span>
+                    </p>
+                    <input class="foundInput textInput inputBoxStyle" name="email" type="email" value="<?php echo $email; ?>">
                 </label>
 
                 <div class="error-lostDate"></div>
-                <label class="lostLabel">Kaotamise kuupäev
-                <input name="lostDate" type="date"> 
-                <p class="star">*</p> <span><?php echo $lostDate_error; ?></span>
+                <label class="foundLabel">
+                    <p>
+                        <span>Kaotamise kuupäev</span><span class="star">&nbsp; *</span> <span><?php echo $lostDate_error; ?></span>
+                    </p>
+                    <input class="foundInput textInput inputBoxStyle" name="lostDate" type="date"> 
                 </label>
 
-                <label class="lostLabel">Kaotamise koht
-                <input name="placeLost" type="text">
+                <label class="foundLabel">
+                    <p>Kaotamise koht</p>
+                    <input class="foundInput textInput inputBoxStyle" name="placeLost" type="text">
                 </label>
 
-                <label class="lostLabel">Pilt
-                <input name="lostPic" type="file" id="fileToUpload">
+                <label class="foundLabel fileLabel">
+                    <p>Pilt</p>
+                    <div class="fileInputBox foundInput inputBoxStyle">
+                        <img src="../images/upload-file.png" alt="">
+                    </div>
+                    <p class="js-file-input-name"></p>
+                    <input class="fileInput js-file-input"  name="lostPic" type="file" id="fileToUpload">
                 </label>
 
                 <div class="error-category"></div>
-                <label class="lostLabel">Kategooria
-                    <select name="category">
-                    <option disabled selected value>...</option>
-                    <option value="riided">riided</option>
-                    <option value="tehnika">tehnika</option>
-                    <option value="muu">muu</option>
+                <label class="foundLabel">
+                    <p>
+                        <span>Kategooria</span><span class="star">&nbsp; *</span><span><?php echo $category_error; ?></span>
+                    </p>
+                    
+                    <select class="foundInput textInput inputBoxStyle" name="category">
+                        <option disabled selected value>  Vali kategooria  </option>
+                        <option value="riided">riided</option>
+                        <option value="tehnika">tehnika</option>
+                        <option value="muu">muu</option>
                     </select>
-                <p class="star">*</p> <span><?php echo $category_error; ?></span>
+                
                 </label>
 
                 <div class="error-description"></div>
-                <label class="lostLabel">Kirjeldus
-                <textarea rows="3" cols="30" name="description"><?php echo $description; ?></textarea>
-                <p class="star">*</p> <span><?php echo $description_error; ?></span>
+                <label class="foundLabel">
+
+                    <p>
+                        <span>Kirjeldus</span><span class="star">&nbsp; *</span> <span><?php echo $description_error; ?></span>
+                    </p>
+                    <textarea class="foundInput textInput inputBoxStyle" name="description"><?php echo $description; ?></textarea>
+                    
                 </label>
 
                 <input name="submitLost" class="add-ad" id="add-lost" type="submit" value="LISA"> <span><?php echo $respond; ?> </span>
