@@ -8,7 +8,7 @@
         <li><a href="">OKSJON</a></li>
         <li><a href="">AEGUNUD</a></li>
         <li><a href="admin_settings.php">SEADED</a></li>
-        <li><a class="logOutLink" href="admin_login.php">LOGI VÄLJA</a></li>
+        <li><a class="logOutLink" href="?logout=1">LOGI VÄLJA</a></li>
     </ul>
 
 </div>
