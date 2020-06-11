@@ -116,7 +116,9 @@ body {
 .error-description,
 .error-found_location {
     color: red;
-    font-weight: bold;
+    font-size: 14px;
+    text-align: left;
+    width: 280px;
 }
 
 textarea {
@@ -124,7 +126,7 @@ textarea {
 }
 
 /* Homepage styles */
-.homeBody{
+.homeBody {
   background-image: url(images/home-bg.jpg);
   background-position: center center;
   background-repeat: no-repeat;
@@ -184,7 +186,6 @@ textarea {
     text-align: center;
 }
 
-
 .dialogBox__closeIcon {
     position: absolute;
     top: -7px;
@@ -201,6 +202,70 @@ textarea {
     width: 50px;
     height: 50px;
 }
+
+/* Add new found item styles */
+
+.fileInputBox {
+    width: 280px; 
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.foundLabel {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    font-size: 12px;
+}
+
+.foundLabel p {
+    display: flex;
+    align-self: flex-start;
+    color: rgb(65, 70, 69);
+}
+
+.foundLabel input {
+    display: flex;
+    align-self: flex-end;
+    color: rgb(65, 70, 69);
+}
+
+.textInput {
+    width: 280px; 
+}
+
+.fileLabel input {
+  display: none;
+}
+
+
+.inputBoxStyle {
+    border: 1px solid #dad9d9;
+    min-height: 36px;
+    padding: 10px 12px;
+    outline: none;
+    border-radius: 8px;
+}
+
+.foundLabel select {
+    font-size: 12px;
+    height: 40px;
+    -moz-appearance:none; /* Firefox */
+    -webkit-appearance:none; /* Safari and Chrome */
+    appearance:none;
+    color: rgb(65, 70, 69);
+}
+
+.inputBoxStyle:focus {
+    border: 1px solid rgb(63, 58, 61);
+}
+
 /* ANETE */
 /* linnakukaart*/
 .storage-pic{
