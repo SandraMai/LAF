@@ -627,6 +627,7 @@ img{
 
 .logInButton:hover {
     background-color: #413f3f;
+    transition: .5s;
 }
 
 .logInInputBox input{
@@ -658,4 +659,5 @@ img{
 
 .adminHomeButton:hover {
     background-color: #2a917f;
+    transition: .5s;
 }
