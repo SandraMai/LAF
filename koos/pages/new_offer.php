@@ -90,7 +90,7 @@ if(isset($_POST["submitPrice"])){
                 <input type="text" name="offer">
                 <br>
                 <br>
-                <input name="submitPrice" type="submit" value="Esita Pakumine">
+                <input name="submitPrice" type="submit" value="Esita pakkumine">
                 <?php
 		if(!empty($userPicHTML)){
 			echo '<input name="item" type="hidden" value="' .$_GET["item"] .'">';

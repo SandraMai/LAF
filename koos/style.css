@@ -332,6 +332,11 @@ textarea{
     width: 150px; 
     text-align: center;
 }
+
+.admin-settings:hover{
+    background-color: #2a917f;
+    transition: .5s;
+}
 .password-box{
     margin-top: 50px;
     text-align: center;
@@ -358,6 +363,12 @@ textarea{
     border-radius: 5px;
     cursor: pointer;
     margin-top: 20px;
+    box-shadow: 2px 2px 5px black;
+}
+
+.password-button:hover{
+    background-color: #413f3f;
+    transition: .5s;
 }
 
 .auction-input{
@@ -489,6 +500,12 @@ a, a:visited{
     background-color: #707070;
     color: white;
 }
+
+.filterForm #submitSearch:hover{
+    background-color: #413f3f;
+    transition: .5s;
+}
+
 #priceSuggested{
     padding: 10px;
     border-radius: 10px;
@@ -498,6 +515,12 @@ a, a:visited{
     background-color: #707070;
     color: white;
 }
+
+#priceSuggested:hover{
+    background-color: #413f3f;
+    transition: .5s;
+}
+
 .productexplinationsDATE{
     text-align: right;
     
@@ -623,6 +646,7 @@ img{
     padding: 10px;
     border-radius: 8px;
     cursor: pointer;
+    box-shadow: 2px 2px 5px black;
 }
 
 .logInButton:hover {
