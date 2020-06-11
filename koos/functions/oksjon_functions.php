@@ -101,8 +101,8 @@
 		$response = null;
 		$expiredElement;
 		$conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]); 
-		$stmt = $conn->prepare("UPDATE  OFFER SET email=?,notification=?,offer=? WHERE AUCTION_auction_ID=?");
-		$stmt->bind_param("sii",$email,$notification,$offer,$idofAuctionedItem);
+		$stmt = $conn->prepare("UPDATE  OFFER SET email=?,notification=?,offer=? WHERE AUCTION_auction_ID='{$idofAuctionedItem}'");
+		$stmt->bind_param("sid",$email,$notification,$offer);
 		echo $conn->error;
 		if($stmt->execute()){
 			$notice = "Pakkumine edukalt lisatud";
@@ -111,7 +111,7 @@
 		}
 		$stmt->close();
 		$conn->close();
-		return $idofAuctionedItem;
+		return $idofAuctionedItem+$email+$offer;
 	}
 		function priceBoundary($auctionedItem){
 		$notice = null;
