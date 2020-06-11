@@ -633,3 +633,22 @@ img{
 .logOutLink {
     text-decoration: underline;
 }
+
+.adminHomeButton {
+    margin-top: 20px;
+    color: white !important;
+    background-color: #6BCABA;
+    font-size: medium;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px black;
+    justify-content: center;
+    text-align: center;
+    width: 175px;
+    border: none;
+    display: flex;
+}
+
+.adminHomeSection {
+    margin-top: 100px;
+}
