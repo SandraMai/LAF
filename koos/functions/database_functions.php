@@ -20,7 +20,7 @@
                     $place = "Kaotamise koha kohta info puudub!";
                 }
                 $notice .= ' <div class="product flex-row">';
-                $notice .= '<p>Pilt puudub!</p>';
+                $notice .= '<img class="productImage" src="' .$GLOBALS["pic_read_dir_thumb"] ."missing.png" .'"></a>';
                 $notice .= '<div class="flex-column productDesc">';
                 $notice .= '<p> Kirjeldus: ' .$description .'</p>';
                 $notice .= '<p>Kaotamise koht: ' .$place .'</p>';
