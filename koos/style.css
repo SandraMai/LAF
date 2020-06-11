@@ -239,7 +239,7 @@ textarea{
     outline: none;
 }
 
-label{
+.lostLabel{
     padding: 2%;
 }
 
