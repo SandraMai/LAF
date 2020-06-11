@@ -40,4 +40,11 @@ $(document).ready(function() {
 
 	$('textarea').autoheight();
 
+
+    // Filename for custom input
+    $(document).on('change', '.js-file-input', function() {
+        var fileName = $(this)[0].files[0].name;
+        $('.js-file-input-name').text(fileName);
+    });
+
 });
