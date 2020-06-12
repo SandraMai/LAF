@@ -2,7 +2,7 @@ $(document).ready(function() {
 
     // Only letters, numbers, or dashes allowed
     $.validator.addMethod("aznumeric", function(value, element) {
-        return this.optional(element) || /^[a-z0-9\-\s]+$/i.test(value);
+        return this.optional(element) || /^[a-zA-ZäöüõÄÖÜÕ0-9,.!? -]*$/i.test(value);
     });
 
     $('[name="add_new_found_form"]').validate({
@@ -30,17 +30,20 @@ $(document).ready(function() {
 
         },
         messages: {
-            storage:  "Palun valige hoiupaik",
-            date: "Palun valige leidmise kuupäev",
-            image: "Palun valige eseme pilt",
-            category: "Palun valige eseme kategooria",
+            storage:  "Palun valige hoiupaik.",
+            date: {
+                required: "Palun valige leidmise kuupäev.",
+                max: "Valitud kuupäev ei tohi olla tulevikus."
+            },
+            image: "Palun valige eseme pilt.",
+            category: "Palun valige eseme kategooria.",
             description: {
-                required: "Palun sisestage kirjeldus",
-                aznumeric: "Lubatud on ainult numbrid,tähed ja sidekriipsud."
+                required: "Palun sisestage kirjeldus.",
+                aznumeric: "Lubatud on ainult numbrid, tähed ja kirjavahemärgid."
             },
             found_location: {
-                required: "Palun sisestage leidmise koht",
-                aznumeric: "Lubatud on ainult numbrid,tähed ja sidekriipsud."
+                required: "Palun sisestage leidmise koht.",
+                aznumeric: "Lubatud on ainult numbrid, tähed ja kirjavahemärgid."
             }
             
             

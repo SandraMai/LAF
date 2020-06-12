@@ -141,9 +141,9 @@
         exit();
     }
     
-    // Returns true if string consists of only numbers and digits
+    // Returns true if string consists of only characters, numbers, dashes, commas, periods, spaces and exclamation marks
     function rejectTags($input) {
-        if (ctype_alnum($input)) {
+        if (preg_match("/^[a-zA-ZäöüõÄÖÜÕ0-9,.!? -]*$/", $input)) {
             return htmlspecialchars($input);
         } 
         return false;

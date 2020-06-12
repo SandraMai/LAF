@@ -2,7 +2,7 @@ $(document).ready(function() {
 
     // Only letters, numbers, or dashes allowed
     $.validator.addMethod("aznumeric", function(value, element) {
-        return this.optional(element) || /^[a-z0-9\-\s]+$/i.test(value);
+        return this.optional(element) || /^[a-zA-ZäöüõÄÖÜÕ0-9,.!? -]*$/i.test(value);
     });
 
     $('[name="add_new_lost_form"]').validate({
@@ -29,19 +29,19 @@ $(document).ready(function() {
         },
         messages: {
             email:  {
-                required: "Palun sisestage meiliaddress",
+                required: "Palun sisestage meiliaddress.",
                 email: "Palun sisestage korrektne meiliaddress."
             },
             lostDate: {
-                required: "Palun valige kaotamise kuupäev",
-                max: "Kuupäev ei saa olla suurem tänasest"
-                },
-            category: "Palun valige eseme kategooria",
-            description: {
-                required: "Palun sisestage kirjeldus",
-                aznumeric: "Lubatud on ainult numbrid, tähed ja sidekriipsud."
+                required: "Palun valige kaotamise kuupäev.",
+                max: "Valitud kuupäev ei tohi olla tulevikus."
             },
-            placeLost: "Lubatud on ainult numbrid, tähed ja sidekriipsud."
+            category: "Palun valige eseme kategooria.",
+            description: {
+                required: "Palun sisestage kirjeldus.",
+                aznumeric: "Lubatud on ainult numbrid, tähed ja kirjavahemärgid."
+            },
+            placeLost: "Lubatud on ainult numbrid, tähed ja kirjavahemärgid."
             
         },
         errorPlacement: function(error, element) {
