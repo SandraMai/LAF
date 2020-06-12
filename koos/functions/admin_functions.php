@@ -1,5 +1,5 @@
 <?php
-session_start();
+  session_start();
 
     function readStoragesForSelect(){
         $storageHTML = null;
@@ -161,5 +161,20 @@ session_start();
       $stmt->close();
       $conn->close();
       return $step;
+    }
+
+    function addFAQ($sectionID, $question, $answer){
+      $notice = null;
+      $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
+      $stmt = $conn->prepare("INSERT INTO FAQ (question, answer, SECTION_section_ID) VALUES (?,?,?)");
+      $stmt->bind_param("ssi", $question, $answer, $sectionID);
+      if($stmt->execute()){
+        $notice = "Uus korduma kippuv küsimus lisatud!";
+      } else {
+        $notice = "Midagi läks valesti" .$stmt->error;
+      }
+      $stmt->close();
+      $conn->close();
+      return $notice;
     }
 ?>
