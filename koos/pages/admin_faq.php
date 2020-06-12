@@ -22,6 +22,31 @@
     $question_error = null;
     $answer_error = null;
     $sectionName_error = null;
+
+    if(isset($_POST["addFAQ"])){
+        if(isset($_POST["section-id"]) and !empty($_POST["section-id"])){
+            $sectionName_error = null;
+        } else {
+            $sectionName_error = "Palun vali rubriik!";
+        }
+
+        if(isset($_POST["question"]) and !empty($_POST["question"])){
+            $question = test_input($_POST["question"]);
+        } else {
+            $question_error = "Palun sisesta küsimus!";
+        }
+
+        if(isset($_POST["answer"]) and !empty($_POST["answer"])){
+            $answer = test_input($_POST["answer"]);
+        } else {
+            $answer_error = "Palun sisesta küsimusele vastus!";
+        }
+
+        if(empty($sectionName_error) and empty($question_error) and empty($answer_error)){
+            $notice = addFAQ($_POST["section-id"], $question, $answer);
+        }
+    }
+
 ?>
 <body>
     <div class="main-flex header">
@@ -47,7 +72,7 @@
                 <form class="flex-column" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" enctype="multipart/form-data">
         
                 <label class="section">Rubriik
-                    <select name="section-name">
+                    <select name="section-id">
                         <option disabled selected value>Vali rubriik</option>
                         <?php echo $sectionHTML; ?>
                     </select>

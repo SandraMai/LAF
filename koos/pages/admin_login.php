@@ -15,15 +15,15 @@ if(isset($_POST["login"])){
     $usernameError = "Palun sisesta kasutajanimi!";
   }
   
-  if (!isset($_POST["password"]) or strlen($_POST["password"]) < 4){
-    $passwordError = "Palun sisesta parool, vähemalt 8 märki pikk!";
+  if (!isset($_POST["password"]) or strlen($_POST["password"]) < 1){
+    $passwordError = "Palun sisesta parool!";
   }
   
   if(empty($usernameError) and empty($passwordError)){
     $notice = logIn($userName, $_POST["password"]);
 
   } else {
-    $notice = "Ei saa sisse logida!";
+    $notice = "Sisesta oma kasutajanimi ja parool";
   }
 }
 
@@ -49,8 +49,6 @@ if(isset($_POST["login"])){
 
         <h1 class="title flex-row white">ADMIN</h1>
 
-        <p class="flex-row white" ><?php echo $usernameError; ?></p>
-        <p class="flex-row white " ><?php echo $passwordError; ?></p>
         <p class="flex-row white " ><?php echo $notice; ?></p>
 
         <!-- PAGE BODY -->

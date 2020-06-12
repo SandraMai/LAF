@@ -180,11 +180,11 @@
                     <p>
                         <span>Kirjeldus</span><span class="star">&nbsp; *</span> <span><?php echo $description_error; ?></span>
                     </p>
-                    <textarea class="foundInput textInput inputBoxStyle" name="description"><?php echo $description; ?></textarea>
+                    <textarea class="foundInput textInput inputBoxStyle" name="description"></textarea>
                     
                 </label>
 
-                <input name="submitLost" class="add-ad" id="add-lost" type="submit" value="LISA"> <span><?php echo $respond; ?> </span>
+                <input name="submitLost" class="add-ad" id="add-lost" type="submit" value="LISA">
             </form>
         </div>
     <div class="aside"></div>
