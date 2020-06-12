@@ -4,6 +4,7 @@ $(document).ready(function() {
         rules: {
             email: {
                 required: true,
+                email: true
             },
             lostDate : {
                 required: true
@@ -12,15 +13,23 @@ $(document).ready(function() {
                 required: true
             },
             description : {
-                required: true
-            }
+                required: true,
+                alphanumeric: true
+            },
 
         },
         messages: {
-            email:  "Palun sisestage meiliaddress",
+            email:  {
+                required: "Palun sisestage meiliaddress",
+                email: "Palun sisestage korrektne meiliaddress."
+            },
             lostDate: "Palun valige kaotamise kuupäev",
             category: "Palun valige eseme kategooria",
-            description: "Palun sisestage kirjeldus",
+            description: {
+                required: "Palun sisestage kirjeldus",
+                alphanumeric: "Lubatud on ainult numbrid ja tähed."
+            }
+            
         },
         errorPlacement: function(error, element) {
             // If input name is "storage", then error is appended to a class called "error-storage"

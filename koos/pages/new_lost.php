@@ -1,5 +1,6 @@
 <?php
     require('../head.php');
+    $flag = null;
     $case = 0;
     $notice = null;
     $respond = null;
@@ -99,10 +100,11 @@
         }
 
         if($notice == 1){
-            $case = 1;
+            $flag = 1;
             //redirectToLost();
+        } elseif ($notice) {
+            $flag = 404;
         }
-        
     }
 
 
@@ -193,6 +195,16 @@
 
 
 <!-- MODAL STUFF -->
+
+<?php 
+
+if ($flag == 1) {
+    $case = 1;
+} elseif ($flag == 404) {
+    $case = 404;
+}
+?>
+
 <input class="modalCase" type="hidden" data-case="<?php echo $case;?>">
 <?php require('modal.php'); ?>
 
