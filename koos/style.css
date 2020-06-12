@@ -80,7 +80,7 @@ body {
 .products {
     margin-left: 50px;
     flex-basis: 760px;
-    align-items: flex-start;
+    align-self: flex-start;
 }
 
 .product {
