@@ -211,7 +211,6 @@
         
         echo $conn->error;
         $stmt->bind_param("ii", $one, $zero);
-        $stmt->bind_result($idFromDb);
         $stmt->execute();
 
         if($stmt->execute()) {
