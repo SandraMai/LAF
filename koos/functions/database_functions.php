@@ -110,8 +110,6 @@
 
     function getFAQ(){
         $notice = null;
-        $counter = 0;
-
         $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
         $stmt = $conn->prepare("SELECT question, answer, section_name FROM FAQ JOIN SECTION ON FAQ.SECTION_section_ID = SECTION.section_ID");
         echo $conn->error;
