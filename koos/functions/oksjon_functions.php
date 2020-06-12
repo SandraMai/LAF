@@ -169,4 +169,5 @@
 		$conn->close();
 		return $currentAuction;
 	}
+
 ?>

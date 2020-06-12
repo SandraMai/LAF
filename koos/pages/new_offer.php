@@ -7,6 +7,8 @@ require("functions_pic.php");*/
 $database = "if19_LAF";
 $notice=null;
 $return = null;
+$start = auctionDefaultStartPrice();
+$step = auctionDefaultStep();
 
 $neededNumber = getAuctionId($_GET["item"]);
 if(isset($_GET["item"])){
@@ -21,6 +23,8 @@ if(isset($_GET["item"])){
 }
 
 $compare = priceBoundary($_GET["item"]);
+$maxbid=$compare+10;
+
 if(isset($_POST["submitPrice"])){
     $email = ($_POST["email"]);
     $notification =($_POST["notification"]);
@@ -87,10 +91,13 @@ if(isset($_POST["submitPrice"])){
                 <br>
                 <label> Pakumine: </label>
                 <br>
-                <input type="text" name="offer">
+                <input type="number" class="size-36" value="<?php echo $compare?>" min="<?php echo $compare?>" max="<?php echo $maxbid?>" step="<?php echo $step; ?>" name="offer">
                 <br>
                 <br>
                 <input name="submitPrice" type="submit" value="Esita pakkumine">
+
+
+
                 <?php
 		if(!empty($userPicHTML)){
 			echo '<input name="item" type="hidden" value="' .$_GET["item"] .'">';
