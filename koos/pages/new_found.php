@@ -18,15 +18,17 @@ if(isset($_GET["logout"])){
 // -- Modal logic start
 // Post added: flag needs to return false(or null)
 // Post not added: flag needs to return true(or anything)
-$flag = true;
+$flag = null;
 $flag = addFound();
 
 $case = 0;
-if (!$flag) {
-    $case = 1;
-}
-// -- Modal logic end
 
+// -- Modal logic end
+if ($flag == 1) {
+    $case = 1;
+} elseif ($flag == 404) {
+    $case = 404;
+}
 ?>
 <body>
 

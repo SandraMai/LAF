@@ -144,16 +144,16 @@
 
     // LIINA
     function insertFoundPost($storage, $found_date, $fileName, $category, $description, $placeFound) {
-        $response = null;
+        $response = 1;
         $zero = 0;
         $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
         $stmt = $conn->prepare("INSERT INTO FOUND_ITEM_AD (found_date,place_found,picture,expired,description,CATEGORY_category_ID,deleted,STORAGE_PLACE_storage_place_ID, added_timestamp) VALUES(?,?,?,?,?,?,?,?,NOW())");
         echo $conn->error;
         $stmt->bind_param("sssisiii", $found_date, $placeFound, $fileName, $zero, $description, $category, $zero, $storage);
         if($stmt->execute()) {
-            $response = null;
+            $response = 1;
         } else {
-            $response = "Andmete salvestamisel tekkis tehniline tõrge: " . $stmt->error;
+            $response = 404;
         }
 
         $stmt->close();
@@ -223,7 +223,6 @@
         
         echo $conn->error;
         $stmt->bind_param("ii", $one, $zero);
-        $stmt->bind_result($idFromDb);
         $stmt->execute();
 
         if($stmt->execute()) {

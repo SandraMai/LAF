@@ -42,6 +42,9 @@ function detectModalText(caseNumber) {
         case 9:
             modalText = 'Uus hoiupaik on lisatud';
             break;
+        case 10:
+            modalText = 'Tekkis probleem. Vabandame!';
+            break;
         default:
             modalText = false;
             break;

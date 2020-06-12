@@ -79,12 +79,12 @@
             $found_location = cleanTextInput('found_location');
 
             if ($storage && $date && $fileName && $category && $description && $found_location) {
-
                 $error = insertFoundPost($storage, $date, $fileName, $category, $description, $found_location);
+            } else {
+                $error = 404;
             }
-        } else {
-            $error = true;
-        }
+            
+        } 
 
         return $error;
 
@@ -93,7 +93,7 @@
     // Cleans post request data
     function cleanTextInput($name) {
         if (isset($_POST[$name]) && !empty($_POST[$name])) {
-            return htmlspecialchars($_POST[$name]);
+            return rejectTags($_POST[$name]);
         }
         return false;
     }
@@ -141,4 +141,11 @@
         exit();
     }
     
+    // Returns true if string consists of only numbers and digits
+    function rejectTags($input) {
+        if (ctype_alnum($input)) {
+            return htmlspecialchars($input);
+        } 
+        return false;
+    }
 ?>

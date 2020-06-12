@@ -3,7 +3,7 @@ $(document).ready(function() {
     $('[name="add_new_found_form"]').validate({
         rules: {
             storage: {
-                required: true,
+                required: true
             },
             date : {
                 required: true
@@ -15,10 +15,12 @@ $(document).ready(function() {
                 required: true
             },
             description : {
-                required: true
+                required: true,
+                alphanumeric: true
             },
             found_location : {
-                required: true
+                required: true,
+                alphanumeric: true
             }
 
         },
@@ -27,8 +29,17 @@ $(document).ready(function() {
             date: "Palun valige leidmise kuupäev",
             image: "Palun valige eseme pilt",
             category: "Palun valige eseme kategooria",
-            description: "Palun sisestage kirjeldus",
-            found_location: "Palun sisestage leidmise koht"
+            description: {
+                required: "Palun sisestage kirjeldus",
+                alphanumeric: "Lubatud on ainult numbrid ja tähed."
+            },
+            found_location: {
+                required: "Palun sisestage leidmise koht",
+                alphanumeric: "Lubatud on ainult numbrid ja tähed."
+            }
+            
+            
+
         },
         errorPlacement: function(error, element) {
             // If input name is "storage", then error is appended to a class called "error-storage"
