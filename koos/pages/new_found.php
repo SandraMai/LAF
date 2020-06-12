@@ -53,9 +53,10 @@ if (!$flag) {
             <div class="error-date"></div>
             <label class="foundLabel">
             <p>Leidmise kuupäev</p>
+            
                 <input class="foundInput textInput inputBoxStyle" type="date" name="date"
                     
-                    min="2020-01-01" max="2020-06-10">
+                    min="<?php echo date('Y-m-d', strtotime("-14 days"));?>" max="<?php echo date('Y-m-d');?>">
             </label>
             <br>
 
