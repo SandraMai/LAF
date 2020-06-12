@@ -16,6 +16,10 @@ $(document).ready(function() {
                 required: true,
                 alphanumeric: true
             },
+            placeLost : {
+                alphanumeric: true
+            }
+
 
         },
         messages: {
@@ -23,12 +27,16 @@ $(document).ready(function() {
                 required: "Palun sisestage meiliaddress",
                 email: "Palun sisestage korrektne meiliaddress."
             },
-            lostDate: "Palun valige kaotamise kuupäev",
+            lostDate: {
+                required: "Palun valige kaotamise kuupäev",
+                max: "Kuupäev ei saa olla suurem tänasest"
+                },
             category: "Palun valige eseme kategooria",
             description: {
                 required: "Palun sisestage kirjeldus",
                 alphanumeric: "Lubatud on ainult numbrid ja tähed."
-            }
+            },
+            placeLost: "Lubatud on ainult numbrid ja tähed."
             
         },
         errorPlacement: function(error, element) {

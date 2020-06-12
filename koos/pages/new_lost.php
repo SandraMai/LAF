@@ -24,41 +24,65 @@
     if(isset($_POST["submitLost"])){        
         //e-maili kontroll
         if(isset($_POST["email"]) and !empty($_POST["email"])){
-            $email = test_input($_POST["email"]);
+            if (emailValidation($_POST["email"])) {
+                $email = test_input($_POST["email"]);
+            }else {
+                $email_error = "Ebakorrektne E-mail!";
+                $notice = 404;
+            }
+
         } else {
             $email_error = "Palun sisesta E-mail!";
-            $notice = 0;
+            $notice = 404;
         }
 
         //kategooria kontroll
-        if(isset($_POST["category"]) and !empty($_POST["category"])){
-            $category_error = null;
+        if(isset($_POST["category"]) and !empty($_POST["category"]) ){
+            if(rejectTags($_POST["category"]) ) {
+                $category_error = null;
+            } else {
+                $notice = 404;
+            }
+            
         } else {
             $category_error = "Palun vali kategooria!";
-            $notice = 0;
+            $notice = 404;
         }
 
         //kirjelduse kontroll
         if(isset($_POST["description"]) and !empty($_POST["description"])){
-            $description = test_input($_POST["description"]);
+
+            if (rejectTags($_POST["description"])) {
+                $description = test_input($_POST["description"]);
+            } else {
+                $description_error = "Palun sisestage ainult numbrid või tähed!";
+                $notice = 404;
+            }
+            
         } else {
             $description_error = "Palun kirjelda kaotatud eset!";
-            $notice = 0;
+            $notice = 404;
         }
 
         //kp kontroll; ei tohi olla tühi, ei tohi olla tulevikus
         if(isset($_POST["lostDate"]) and $_POST["lostDate"] > $today){
             $lostDate_error = "Kuupäev ei saa olla tulevikus!";
-            $notice = 0;
+            $notice = 404;
         }elseif($_POST["lostDate"] == null){
             $lostDate_error = "Palun vali (umbes) kuupäev, millal eseme kaotasid!";
-            $notice = 0;
+            $notice = 404;
         } else {
             $lostDate_error = null;
-        }    
+        }  
+
+        if(isset($_POST["placeLost"]) and !empty($_POST["placeLost"])){
+            if(!rejectTags($_POST["placeLost"])) {
+                $notice = 404;
+            }
+        } 
             
         //kui pilt olemas siis tehakse õige suurus, salvestatakse ja lisatakse kõik andmed andmebaasi
-        if(isset($_FILES["lostPic"]) and !empty($_FILES["lostPic"]["name"])){
+        if(isset($_FILES["lostPic"]) and !empty($_FILES["lostPic"]["name"]) and $notice !== 404){
 
             $picture = new PicUpload($_FILES["lostPic"], $fileSizeLimit);
 
@@ -74,35 +98,38 @@
                 //salvestan info andmebaasi
                 $respond .= addToDB($email, $_POST["lostDate"], $_POST["placeLost"], $picture->fileName, $description, $_POST["category"]);
                 
- 
+                $notice = $respond;
             } else {
                 //1 - pole pildifail, 2 - liiga suur, 3 - pole lubatud tüüp
                 if($picture->error == 1){
-                    $notice = 0;
+                    $notice = 404;
                     $respond = " Valitud fail pole pilt!";
                 }
                 if($picture->error == 2){
-                    $notice = 0;
+                    $notice = 404;
                     $respond = " Valitud fail on liiga suure failimahuga!";
                 }
                 if($picture->error == 3){
-                    $notice = 0;
+                    $notice = 404;
                     $respond = "Valitud fail pole lubatud tüüpi (lubatakse vaid jpg, png)!";
                 }
             }
             unset($picture);
-            $notice .= $respond;
+            
  
         } else {
-            $picture = "puudub";
-            $notice .= addToDB($email, $_POST["lostDate"], $_POST["placeLost"], $picture, $description, $_POST["category"]);
+
+            if ($notice !== 404) {
+                $picture = "puudub";
+                $notice .= addToDB($email, $_POST["lostDate"], $_POST["placeLost"], $picture, $description, $_POST["category"]);
+            }
             
         }
 
         if($notice == 1){
             $flag = 1;
             //redirectToLost();
-        } elseif ($notice) {
+        } elseif ($notice == 404) {
             $flag = 404;
         }
     }
@@ -136,7 +163,7 @@
                     <p>
                         <span>E-mail</span><span class="star">&nbsp; *</span> <span><?php echo $email_error; ?></span>
                     </p>
-                    <input class="foundInput textInput inputBoxStyle" name="email" type="email" value="<?php echo $email; ?>">
+                    <input class="foundInput textInput inputBoxStyle" name="email" value="<?php echo $email; ?>">
                 </label>
 
                 <div class="error-lostDate"></div>
@@ -144,9 +171,11 @@
                     <p>
                         <span>Kaotamise kuupäev</span><span class="star">&nbsp; *</span> <span><?php echo $lostDate_error; ?></span>
                     </p>
-                    <input class="foundInput textInput inputBoxStyle" name="lostDate" type="date"> 
+                    <input class="foundInput textInput inputBoxStyle" name="lostDate" type="date"
+                     min="<?php echo date('Y-m-d', strtotime("-10 years"));?>" max="<?php echo date('Y-m-d');?>"> 
                 </label>
 
+                <div class="error-placeLost"></div>
                 <label class="foundLabel">
                     <p>Kaotamise koht</p>
                     <input class="foundInput textInput inputBoxStyle" name="placeLost" type="text">

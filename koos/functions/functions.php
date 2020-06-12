@@ -24,7 +24,7 @@
         if($stmt->fetch()){
             $categoryID = $categoryIDfromDB;
         } else {
-            $notice = "ei toimi";
+            $notice = 404;//"ei toimi";
         }
 
         $stmt->close();    
@@ -34,7 +34,7 @@
         if($stmt->execute()){
             $notice = 1;
         } else {
-            $notice = "pahasti" .$stmt->error;
+            $notice = 404;//"pahasti" .$stmt->error;
         }
         
         $stmt->close();
@@ -147,5 +147,9 @@
             return htmlspecialchars($input);
         } 
         return false;
+    }
+
+    function emailValidation($email) {
+        return filter_var($email, FILTER_VALIDATE_EMAIL);
     }
 ?>

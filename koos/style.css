@@ -125,7 +125,8 @@ body {
 .error-description,
 .error-found_location,
 .error-email,
-.error-lostDate {
+.error-lostDate,
+.error-placeLost {
     color: red;
     font-size: 14px;
     text-align: left;
