@@ -1,5 +1,10 @@
 $(document).ready(function() {
-    
+
+    // Only letters, numbers, or dashes allowed
+    $.validator.addMethod("aznumeric", function(value, element) {
+        return this.optional(element) || /^[a-z0-9\-\s]+$/i.test(value);
+    });
+
     $('[name="add_new_found_form"]').validate({
         rules: {
             storage: {
@@ -16,11 +21,11 @@ $(document).ready(function() {
             },
             description : {
                 required: true,
-                alphanumeric: true
+                aznumeric: true
             },
             found_location : {
                 required: true,
-                alphanumeric: true
+                aznumeric: true
             }
 
         },
@@ -31,11 +36,11 @@ $(document).ready(function() {
             category: "Palun valige eseme kategooria",
             description: {
                 required: "Palun sisestage kirjeldus",
-                alphanumeric: "Lubatud on ainult numbrid ja tähed."
+                aznumeric: "Lubatud on ainult numbrid,tähed ja sidekriipsud."
             },
             found_location: {
                 required: "Palun sisestage leidmise koht",
-                alphanumeric: "Lubatud on ainult numbrid ja tähed."
+                aznumeric: "Lubatud on ainult numbrid,tähed ja sidekriipsud."
             }
             
             

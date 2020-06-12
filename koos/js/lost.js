@@ -1,5 +1,10 @@
 $(document).ready(function() {
-    
+
+    // Only letters, numbers, or dashes allowed
+    $.validator.addMethod("aznumeric", function(value, element) {
+        return this.optional(element) || /^[a-z0-9\-\s]+$/i.test(value);
+    });
+
     $('[name="add_new_lost_form"]').validate({
         rules: {
             email: {
@@ -14,10 +19,10 @@ $(document).ready(function() {
             },
             description : {
                 required: true,
-                alphanumeric: true
+                aznumeric: true
             },
             placeLost : {
-                alphanumeric: true
+                aznumeric: true
             }
 
 
@@ -34,9 +39,9 @@ $(document).ready(function() {
             category: "Palun valige eseme kategooria",
             description: {
                 required: "Palun sisestage kirjeldus",
-                alphanumeric: "Lubatud on ainult numbrid ja tähed."
+                aznumeric: "Lubatud on ainult numbrid, tähed ja sidekriipsud."
             },
-            placeLost: "Lubatud on ainult numbrid ja tähed."
+            placeLost: "Lubatud on ainult numbrid, tähed ja sidekriipsud."
             
         },
         errorPlacement: function(error, element) {
