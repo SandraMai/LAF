@@ -8,7 +8,8 @@ $database = "if19_LAF";
 $notice=null;
 $return = null;
 $start = auctionDefaultStartPrice();
-$step = auctionDefaultStep();
+
+
 
 $neededNumber = getAuctionId($_GET["item"]);
 if(isset($_GET["item"])){
@@ -23,6 +24,7 @@ if(isset($_GET["item"])){
 }
 
 $compare = priceBoundary($_GET["item"]);
+$test= auctionItemStep($_GET["item"]);
 $maxbid=$compare+10;
 
 if(isset($_POST["submitPrice"])){
@@ -91,7 +93,7 @@ if(isset($_POST["submitPrice"])){
                 <br>
                 <label> Pakumine: </label>
                 <br>
-                <input type="number" class="size-36" value="<?php echo $compare?>" min="<?php echo $compare?>" max="<?php echo $maxbid?>" step="<?php echo $step; ?>" name="offer">
+                <input type="number" class="size-36" value="<?php echo $compare?>" min="<?php echo $compare?>" max="<?php echo $maxbid?>" step="<?php echo auctionItemStep($_GET["item"]); ?>" name="offer">
                 <br>
                 <br>
                 <input name="submitPrice" type="submit" value="Esita pakkumine">

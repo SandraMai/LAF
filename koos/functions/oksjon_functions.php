@@ -123,7 +123,7 @@
 		}
 		$stmt->close();
 		$conn->close();
-		return $idofAuctionedItem+$email+$offer;
+		return $notice;
 	}
 		function priceBoundary($auctionedItem){
 		$notice = null;
@@ -169,5 +169,19 @@
 		$conn->close();
 		return $currentAuction;
 	}
-
+	function auctionItemStep($id){
+        $step = null;
+        $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
+        $stmt = $conn->prepare("SELECT step FROM AUCTION WHERE FOUND_ITEM_AD_found_item_ad_ID='{$id}'");
+        $stmt->bind_result($stepDB);
+        $stmt->execute();
+        if($stmt->fetch()){
+          $step = $stepDB;
+        } else {
+          $step = $stmt->error;
+        }
+        $stmt->close();
+        $conn->close();
+        return $step;
+	}
 ?>
