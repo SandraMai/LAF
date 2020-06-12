@@ -84,10 +84,10 @@
             header("Location: admin_home.php");
             exit();
             } else {
-              $notice = "Vale parool!";
+              $notice = "Vale kasutajanimi või parool!";
             }
           } else {
-          $notice = "Sellist kasutajat (" .$userName .") ei leitud!";
+          $notice = "Vale kasutajanimi või parool!";
             }
         } else {
           $notice = "Sisselogimisel tekkis tehniline viga!" .$stmt->error;
