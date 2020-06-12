@@ -31,11 +31,11 @@
       return $sectionHTML;
     }
 
-    function addNewStorageToDB($newStorageName, $newPhonenr){
+    function addNewStorageToDB($newStorageName, $newPhonenr, $email){
         $notice = null;
         $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
-        $stmt = $conn->prepare("INSERT INTO STORAGE_PLACE (storage_place_name, phonenr) VALUES(?,?)");
-        $stmt->bind_param("ss", $newStorageName, $newPhonenr);
+        $stmt = $conn->prepare("INSERT INTO STORAGE_PLACE (storage_place_name, phonenr, email) VALUES(?,?,?)");
+        $stmt->bind_param("sss", $newStorageName, $newPhonenr, $email);
         if($stmt->execute()){
             $notice = "Uus hoiupaik lisatud!";
         } else {

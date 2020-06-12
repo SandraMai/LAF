@@ -76,6 +76,7 @@
                     <label>Uus parool uuesti</label>
                     <input name="new-password-again" class="password-input" type="password">
                     <br>
+                    <p class="star">Jaga töötajatele uut parooli!</p>
                     <input name="submitNewPassword" class="password-button" type="submit" value="MUUDA PAROOLI"> <span><?php echo $notice; echo $newPassword_error; ?></span>
                     <input name="cancel" class="password-button" type="submit" value="TÜHISTA">
                         

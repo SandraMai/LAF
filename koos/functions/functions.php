@@ -45,12 +45,16 @@
     function readStoragePlaces(){
         $notice = null;
         $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
-        $stmt = $conn->prepare("SELECT storage_place_name, phonenr FROM STORAGE_PLACE");
-        $stmt->bind_result($name, $phone);
+        $stmt = $conn->prepare("SELECT storage_place_name, phonenr, email FROM STORAGE_PLACE");
+        $stmt->bind_result($name, $phone, $email);
         $stmt->execute();
         while($stmt->fetch()){
             $notice .= "<li><b>" .$name ."</b></li>";
-            $notice .= "<li>Telefoninumber: " .$phone ."</li><hr>";
+            $notice .= "<li>Telefoninumber: " .$phone ."</li>";
+            if($email != null){
+                $notice .= "<li>Email: " .$email ."</li>";
+            }
+            $notice .= "<hr>";
         }
         $stmt->close();
         $conn->close();

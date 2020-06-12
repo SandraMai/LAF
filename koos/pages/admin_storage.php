@@ -44,7 +44,7 @@
         }
 
         if(empty($newStorageName_error) and empty($newPhonenr_error)){
-            $noticeNew = addNewStorageToDB($newStorageName, $newPhonenr);
+            $noticeNew = addNewStorageToDB($newStorageName, $newPhonenr, $_POST["email"]);
             $newStorageName = null;
             $newPhonenr = null;
             $storageHTML = readStoragesForSelect();
@@ -98,15 +98,19 @@
         <!--hoiupaiga lisamise vormid -->
         <form class="flex-column" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" enctype="multipart/form-data">
         
-        <label clasS="storageLabel">Hoiupaiga nimetus 
+        <label class="storageLabel">Hoiupaiga nimetus 
         <input name="new-storage-name" type="text" value="<?php echo $newStorageName; ?>"> 
         <p class="star">*</p><span><?php echo $newStorageName_error; ?></span>        
         </label> 
         
 
-        <label clasS="storageLabel">Telefoninumber
+        <label class="storageLabel">Telefoninumber
         <input name="new-phonenr" type="text" value="<?php echo $newPhonenr; ?>">
         <p class="star">*</p> <span><?php echo $newPhonenr_error; ?></span>
+        </label>
+
+        <label class="storageLabel">E-mail
+        <input name="email" type="email">
         </label>
 
         <input name="submitNewStorage" class="add-ad" type="submit" value="LISA UUS"> <span><?php echo $noticeNew; ?></span>
