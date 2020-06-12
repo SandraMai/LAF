@@ -18,13 +18,13 @@
 				$response .= ' <div class="product flex-row">';
 				$response .= '<img class="productImage" src="' .$GLOBALS["pic_read_dir_thumb"] . $picture  . '">';
 				$response .= '<div class="flex-column productDesc">';
-				$response .= '<p>Kirjeldus: ' . $auctionID . '</p>';
-				$response .= '<p>Leidmise koht:' . $checkIfactive. '</p>';
+				$response .= '<p>Kirjeldus: ' . $description . '</p>';
+				$response .= '<p>Leidmise koht:' . $place_found . '</p>';
 				$response .= '<p>Leitud kuupäev: ' . $found_date . '</p>';
 				$response .= '<br><p>Aegub</p>';
 				$response .= '<a class="productexplinationsDATE" data-time="' . $timestamps . '">';
-				$response .= '<span class="days"></span>days<span class="hours"></span>hours<span class="minutes">';
-				$response .= '</span>minutes<span class="seconds"></span>seconds</a>';
+				$response .= '<span class="days"></span> p <span class="hours"></span> h <span class="minutes">';
+				$response .= '</span> min <span class="seconds"></span> s </a>';
 				$response .= '<p><a href="new_offer.php?item='.$id.'">';
 				$response .= '<input type="submit" id="priceSuggested" name="priceSuggested" value="Paku enda hind"></a></p>';
 				$response .= '</div><div class="aside"></div></div>';
@@ -54,8 +54,8 @@
 				$response .= '<p>Leitud kuupäev: ' . $found_date . '</p>';
 				$response .= '<br><p>Aegub</p>';
 				$response .= '<a class="productexplinationsDATE" data-time="' . $timestamps . '">';
-				$response .= '<span class="days"></span>days<span class="hours"></span>hours<span class="minutes">';
-				$response .= '</span>minutes<span class="seconds"></span>seconds</a>';
+				$response .= '<span class="days"></span> p <span class="hours"></span> h <span class="minutes">';
+				$response .= '</span> min <span class="seconds"></span> s</a>';
 				$response .= '</div><div class="aside"></div></div>';
 			}
 
