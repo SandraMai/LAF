@@ -1,6 +1,8 @@
-<?php require('../head.php'); ?>
+<?php 
+require('../head.php'); 
+foundToExpired();
+?>
 <body>
-
 
 <div class="main-flex header">
     <div class="aside"></div>

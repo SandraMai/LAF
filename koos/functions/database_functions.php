@@ -137,7 +137,7 @@
         $response = null;
         $zero = 0;
         $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
-        $stmt = $conn->prepare("INSERT INTO FOUND_ITEM_AD (found_date,place_found,picture,expired,description,CATEGORY_category_ID,deleted,STORAGE_PLACE_storage_place_ID) VALUES(?,?,?,?,?,?,?,?)");
+        $stmt = $conn->prepare("INSERT INTO FOUND_ITEM_AD (found_date,place_found,picture,expired,description,CATEGORY_category_ID,deleted,STORAGE_PLACE_storage_place_ID, added_timestamp) VALUES(?,?,?,?,?,?,?,?,NOW())");
         echo $conn->error;
         $stmt->bind_param("sssisiii", $found_date, $placeFound, $fileName, $zero, $description, $category, $zero, $storage);
         if($stmt->execute()) {
@@ -199,6 +199,30 @@
         $stmt->close();
         $conn->close();
         return $response;
+    }
+
+    // If 12 months has passed since item was inserted, set expired to 1
+    function foundToExpired() {
+        $notice = null;
+        $one = 1;
+        $zero = 0;
+        $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
+        $stmt = $conn->prepare("UPDATE FOUND_ITEM_AD SET expired=? WHERE DATEDIFF(NOW(), added_timestamp) > 12 AND auctioned is NULL AND deleted=?");
+        
+        echo $conn->error;
+        $stmt->bind_param("ii", $one, $zero);
+        $stmt->bind_result($idFromDb);
+        $stmt->execute();
+
+        if($stmt->execute()) {
+            $notice = null;
+        } else {
+            $notice = "Andmete uuendamisel tekkis tõrge!" . $stmt->error;
+        }
+
+        $stmt->close();
+        $conn->close();
+        return $notice;
     }
     ////// HERMAN OKSJON FILTRATRSIOON FROM EXPIRED TO FUNCTION
     function auctionFiltration(){
