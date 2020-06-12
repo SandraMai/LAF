@@ -108,27 +108,39 @@
         }
     }
 
-    function getFAQ(){
+    function getFAQSectionOne(){
         $notice = null;
         $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
-        $stmt = $conn->prepare("SELECT question, answer, section_name FROM FAQ JOIN SECTION ON FAQ.SECTION_section_ID = SECTION.section_ID");
+        $stmt = $conn->prepare("SELECT question, answer FROM FAQ JOIN SECTION ON FAQ.SECTION_section_ID = SECTION.section_ID WHERE section_ID = 1");
         echo $conn->error;
-
-        $stmt->bind_result($question, $answer, $section_name);
+        $stmt->bind_result($question, $answer);
         $stmt->execute();
         while($stmt->fetch()){
-            // if($counter == 0){
-            $notice .= '<h2>' .$section_name .'</h2>';
-            //     $counter++;
-            // }
-            // $notice .= '<p>' .$question .'</p>';
-            // $notice .= '<p>' .$answer .'</p>';
-            // $counter = 0;
+            $notice .= '<h4>' .$question .'</h4>';
+            $notice .= '<p>' .$answer .'</p>';
+             
         }
         $stmt->close();
         $conn->close();
         return $notice;
     }
+
+    function getFAQSectionTwo(){
+        $notice = null;
+        $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
+        $stmt = $conn->prepare("SELECT question, answer FROM FAQ JOIN SECTION ON FAQ.SECTION_section_ID = SECTION.section_ID WHERE section_ID = 2");
+        echo $conn->error;
+        $stmt->bind_result($question, $answer);
+        $stmt->execute();
+        while($stmt->fetch()){
+            $notice .= '<h4>' .$question .'</h4>';
+            $notice .= '<p>' .$answer .'</p>';
+        }
+        $stmt->close();
+        $conn->close();
+        return $notice;
+    }
+
 
     // LIINA
     function insertFoundPost($storage, $found_date, $fileName, $category, $description, $placeFound) {

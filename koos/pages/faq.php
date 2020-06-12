@@ -1,7 +1,8 @@
 <?php 
 
 require('../head.php'); 
-$faqHTML = getFAQ();
+$faqHTMLOne = getFAQSectionOne();
+$faqHTMLTwo = getFAQSectionTwo();
 
 ?>
 <body>
@@ -23,8 +24,16 @@ $faqHTML = getFAQ();
             <h1 class="title">KORDUMA KIPPUVAD KÜSIMUSED</h1>
         </div>
 
-        <div class="flex-row"> 
-            <?php echo $faqHTML ?>
+        <div class="flex-column"> 
+        <h1>LEITUD</h1>
+            <?php 
+                echo $faqHTMLOne;           
+            ?>
+    
+        <h1>KAOTATUD</h1>
+        <?php
+            echo $faqHTMLTwo;
+        ?>
         </div>
     </div>
     <div class="aside"></div>
