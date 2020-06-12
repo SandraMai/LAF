@@ -49,8 +49,6 @@ if(isset($_POST["login"])){
 
         <h1 class="title flex-row white">ADMIN</h1>
 
-        <p class="flex-row white" ><?php echo $usernameError; ?></p>
-        <p class="flex-row white " ><?php echo $passwordError; ?></p>
         <p class="flex-row white " ><?php echo $notice; ?></p>
 
         <!-- PAGE BODY -->
