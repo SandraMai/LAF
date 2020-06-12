@@ -211,6 +211,7 @@
         
         echo $conn->error;
         $stmt->bind_param("ii", $one, $zero);
+        $stmt->bind_result($idFromDb);
         $stmt->execute();
 
         if($stmt->execute()) {
@@ -225,6 +226,8 @@
     }
     ////// HERMAN OKSJON FILTRATRSIOON FROM EXPIRED TO FUNCTION
     function auctionFiltration(){
+        $start = auctionDefaultStartPrice();
+        $biding = auctionDefaultStep();
 		$notice = null;
 		$expiredElement;
 		$conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
@@ -240,9 +243,9 @@
 		
 		$stmt->close();   
   
-        $stmt = $conn->prepare("INSERT INTO AUCTION (FOUND_ITEM_AD_found_item_ad_ID) VALUES(?)");
+        $stmt = $conn->prepare("INSERT INTO AUCTION (FOUND_ITEM_AD_found_item_ad_ID,step) VALUES(?,?)");
         echo $conn->error;
-        $stmt->bind_param("i",$expiredElement);
+        $stmt->bind_param("id",$expiredElement,$biding);
         if($stmt->execute()){
             $notice = 1;
         } else {
@@ -267,9 +270,9 @@
             $notice = "ei toimi";
         }
         $stmt->close();
-        $stmt = $conn->prepare("INSERT INTO OFFER (AUCTION_auction_ID) VALUES(?)");
+        $stmt = $conn->prepare("INSERT INTO OFFER (AUCTION_auction_ID,offer) VALUES(?,?)");
 		echo $conn->error;
-        $stmt->bind_param("i",$auctionID);
+        $stmt->bind_param("id",$auctionID,$start);
         if($stmt->execute()){
             $notice = 1;
         } else {
@@ -279,5 +282,6 @@
 		$stmt->close();   
         $conn->close();
         return $notice;
-	}
+    }
+
 ?>
