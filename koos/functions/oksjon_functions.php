@@ -21,10 +21,10 @@
 				$response .= '<p>Kirjeldus: ' . $description . '</p>';
 				$response .= '<p>Leidmise koht:' . $place_found . '</p>';
 				$response .= '<p>Leitud kuupäev: ' . $found_date . '</p>';
-				$response .= '<br><p>Aegub</p>';
+				$response .= '<br><p>Aegub ';
 				$response .= '<a class="productexplinationsDATE" data-time="' . $timestamps . '">';
 				$response .= '<span class="days"></span> p <span class="hours"></span> h <span class="minutes">';
-				$response .= '</span> min <span class="seconds"></span> s </a>';
+				$response .= '</span> min <span class="seconds"></span> s </a></p>';
 				$response .= '<p><a href="new_offer.php?item='.$id.'">';
 				$response .= '<input type="submit" id="priceSuggested" name="priceSuggested" value="Paku enda hind"></a></p>';
 				$response .= '</div><div class="aside"></div></div>';
