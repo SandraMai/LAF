@@ -1,4 +1,18 @@
-<?php require('../head.php'); 
+<?php require('../head.php');
+
+
+if(!isset($_SESSION["userId"])){
+    header("Location: admin_login.php");
+    exit();
+}
+
+if(isset($_GET["logout"])){
+  session_unset();
+  session_destroy();
+  header("Location: admin_login.php");
+  exit();
+}
+
 
 // LIINA 
 // -- Modal logic start
@@ -22,7 +36,7 @@ if (!$flag) {
 
     <!-- HEADER -->
     <div class="main-section">
-        <?php require('../header.php'); ?>
+        <?php require('../header_admin.php'); ?>
     </div>
     <div class="aside"></div>
 
