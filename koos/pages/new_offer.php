@@ -43,7 +43,7 @@ if(isset($_POST["submitPrice"])){
         <!-- HEADER -->
         <div class="main-section">
             <?php require('../header.php'); ?>
-            <?php echo $compare; ?>
+            
         </div>
         <div class="aside"></div>
         
@@ -81,7 +81,7 @@ if(isset($_POST["submitPrice"])){
                 <br>
                 <input type="text" name="email">
                 <br>
-                <label> Teavitused: </label>
+                <label> Soovin teavitusi valitud oksjonile: </label>
                 <br>
                 <input type="checkbox" name="notification" value="1">
                 <br>

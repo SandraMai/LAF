@@ -3,7 +3,7 @@
 		$response = null;
 		$expiredElement;
 		$conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]); 
-		if($auctionListing!=1){
+		if($auctionListing==null){
 			$stmt = $conn->prepare("SELECT found_item_ad_ID,description,found_date,picture,CATEGORY_category_ID,place_found FROM FOUND_ITEM_AD WHERE expired=1 AND auctioned=1");
 			echo $conn->error;
 			$stmt->bind_result($id,$description, $found_date, $picture, $CATEGORY_category_ID, $place_found);
@@ -19,7 +19,7 @@
 				$response .= '<img class="productImage" src="' .$GLOBALS["pic_read_dir_thumb"] . $picture  . '">';
 				$response .= '<div class="flex-column productDesc">';
 				$response .= '<p>Kirjeldus: ' . $description . '</p>';
-				$response .= '<p>Leidmise koht:' . $place_found . '</p>';
+				$response .= '<p>Leidmise koht: ' . $place_found . '</p>';
 				$response .= '<p>Leitud kuupäev: ' . $found_date . '</p>';
 				$response .= '<br><p>Aegub ';
 				$response .= '<a class="productexplinationsDATE" data-time="' . $timestamps . '">';
@@ -34,34 +34,39 @@
 			$conn->close();
 			return $response;
 		}
-		 else if($auctionListing!=NULL){
+        else if($auctionListing!=NULL){
 			$stmt = $conn->prepare("SELECT found_item_ad_ID,description,found_date,picture,CATEGORY_category_ID,place_found FROM FOUND_ITEM_AD WHERE expired=1 AND auctioned=1 AND found_item_ad_ID='{$auctionListing}' ");
 			echo $conn->error;
 			$stmt->bind_result($id,$description, $found_date, $picture, $CATEGORY_category_ID, $place_found);
 			$stmt->execute();
 
 			while($stmt->fetch()){
-			$auctionID=getAuctionId($id);
-			$checkIfactive=getAuctionExpiration($auctionID);
-			if($checkIfactive!=1){
-				$timestamps = getAuctionCountdown($id);
-				$echoing=htmlspecialchars($_SERVER["PHP_SELF"]);
-				$response .= ' <div class="product flex-row">';
-				$response .= '<img class="productImage" src="' .$GLOBALS["pic_read_dir_thumb"] . $picture  . '">';
-				$response .= '<div class="flex-column productDesc">';
-				$response .= '<p>Kirjeldus: ' . $description . '</p>';
-				$response .= '<p>Leidmise koht:' . $place_found . '</p>';
-				$response .= '<p>Leitud kuupäev: ' . $found_date . '</p>';
-				$response .= '<br><p>Aegub</p>';
-				$response .= '<a class="productexplinationsDATE" data-time="' . $timestamps . '">';
-				$response .= '<span class="days"></span> p <span class="hours"></span> h <span class="minutes">';
-				$response .= '</span> min <span class="seconds"></span> s</a>';
-				$response .= '</div><div class="aside"></div></div>';
+			$timestamps = getAuctionCountdown($id);
+			$currentBestBid=priceBoundary($id);
+			$echoing=htmlspecialchars($_SERVER["PHP_SELF"]);
+			$response .= ' <div class="product flex-row">';
+			$response .= '<img class="productImage" src="' .$GLOBALS["pic_read_dir_thumb"] . $picture  . '">';
+			$response .= '<div class="flex-column productDesc">';
+			$response .= '<p>Kirjeldus: ' . $description . '</p>';
+			$response .= '<p>Leidmise koht: ' . $place_found . '</p>';
+			$response .= '<p>Leitud kuupäev: ' . $found_date . '</p>';
+			$response .= '<p>Hetkel parim pakkumine: ' . $currentBestBid. ' €</p>';
+			$response .= '<p>Aegub ';
+			$response .= '<a class="productexplinationsDATE" data-time="' . $timestamps . '">';
+			$response .= '<span class="days"></span> p <span class="hours"></span> h <span class="minutes">';
+			$response .= '</span> min <span class="seconds"></span> s </a></p>';
+			$response .= '</div><div class="aside"></div></div>';
+
+			
+
 			}
-
-
+			if($response == null){
+			$response = "<p>Kahjuks hetkel pole ühtegi aktiivset oksjoni kuulutust</p>";
 			}
 			
+
+			$response .= "\n";
+
 			$stmt->close();
 			$conn->close();
 			return $response;
@@ -165,5 +170,3 @@
 		return $currentAuction;
 	}
 ?>
-
-
