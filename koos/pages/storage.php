@@ -31,7 +31,7 @@
             </div>
 
             <div class="storage-pic">
-                <img src="../linnakukaart.jpg">
+                <img class="img-full" src="../linnakukaart.jpg">
             </div>
         </div>
 
