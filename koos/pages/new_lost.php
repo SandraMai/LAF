@@ -6,8 +6,8 @@
     $respond = null;
 
     $filenamePrefix = "laf_";
-    $maxH = 200;
-    $maxW = 200;
+    $maxH = 240;
+    $maxW = 240;
     $fileSizeLimit = 2500000;    
 
     $email = null;
@@ -75,7 +75,7 @@
             if (rejectTags($_POST["lostDate"])) {
                 $lostDate_error = null;
             } else {
-                $error = 404;
+                $notice = 404;
             }
 
         }  

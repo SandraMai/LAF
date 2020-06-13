@@ -39,7 +39,7 @@
                 <a class="add-ad" href="new_lost.php">LISA ESE</a>
             </div>
             <div class="clearfix-50"></div>
-            <div class="flex-row"> 
+            <div class="filtersProductsLayout"> 
                 <?php require("../filter.php") ?>
                 <div class="products">
                     <?php echo $notice?>

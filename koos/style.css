@@ -74,48 +74,6 @@ body {
     padding: 0;
 }
 
-/* filters and products */
-
-
-.products {
-    margin-left: 50px;
-    flex-basis: 760px;
-    align-self: flex-start;
-}
-
-.product {
-    margin-bottom: 10px;
-    background: rgba(255,255,255,0.95);
-    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-    border-radius: 5px;
-    display: flex;
-    justify-content: inherit;
-}
-
-.productImageBox {
-    display: flex;
-    align-self: flex-start;
-    margin: 10px;
-}
-
-.productImage {
-    border-radius: 5px;
-    width: 200px;
-    height: 200px;
-}
-
-.productDesc {
-    margin-left: 50px;
-    display: flex;
-    align-self: center;
-    flex-basis: 450px;
-    margin-top: 10px;
-}
-
-.productDesc p {
-    margin-bottom: 20px;
-    margin-right: auto;
-}
 
 /* jquery validate errors */
 .error-storage,
@@ -153,9 +111,6 @@ textarea {
 
 .homeSection {
     margin-top: 200px;
-}
-.clearfix-50 {
-	height:50px;
 }
 
 /* Modal styles */
@@ -389,12 +344,12 @@ textarea{
 
 /* SANDRA */
 /*title kõikidele*/
-.title{
+.title {
     color: rgb(65, 70, 69);
     font-weight: normal;
-    font-size: xx-large;
-    margin-top: 35px;
-    margin-bottom: 10px;
+    margin-top: 30px;
+    font-size: 20px;
+    margin-bottom: 30px;
 }
 
 /*kui klikib hrefi peale siis ei muutu siniseks ja joont pole all*/
@@ -406,7 +361,6 @@ a, a:visited{
 /*lisa ese nupp*/
 .add-ad{
     font-size: medium;
-    margin-top: 10px;
     background-color: rgb(232, 236, 236);
     border-radius: 5px;
     box-shadow: 2px 2px 5px black;
@@ -500,10 +454,8 @@ a, a:visited{
 .filterForm input{
     background-color:white;
     border: 1px solid #989898;
-    padding: 10px;
     border-radius: 10px;
     width: 220px;
-    margin:20px 20px ;
     text-align: center;
 }
 
@@ -530,7 +482,7 @@ a, a:visited{
     padding: 10px;
     border-radius: 10px;
     width: 150px;
-    margin:20px 20px ;
+    margin-top: 10px ;
     text-align: center;
     background-color: #707070;
     color: white;
@@ -704,4 +656,242 @@ textarea {
 .adminHomeButton:hover {
     background-color: #2a917f;
     transition: .5s;
+}
+
+/*
+Reorganized stuff for responsiveness
+320px | 414px | 600px | 768px | 1080px
+*/
+
+.clearfix-50 {
+    height: 30px;
+}
+
+.filtersProductsLayout {
+    color: black;
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-basis: 320px;
+
+}
+
+.filters {
+    margin: auto;
+    margin-bottom: 50px;
+    border-radius: 20px;
+}
+
+.newOffer {
+    display:block;
+    text-align: center;
+}
+
+#priceSuggested {
+    width: 130px;
+    cursor: pointer;
+}
+
+
+.filterForm select,
+.filterForm input{
+    width: 200px;
+    padding: 5px;
+    margin: 10px;
+    font-size: 13px;
+}
+
+.filterForm select {
+    height: 30px;
+}
+
+.filterForm #submitSearch{
+    margin-bottom: 20px;
+}
+
+.products {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    width: 360px;
+    flex-wrap: wrap;
+}
+
+.product {
+    display: block;
+    width: 140px;
+    margin: 10px;
+    align-self: stretch;
+    background: rgba(255,255,255,0.95);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.productImageBox {
+    display: flex;
+    width: 130px;
+}
+
+.productImage {
+    width: 130px;
+    height: 130px;
+    border-radius: 5px;
+}
+
+.productDesc {
+    padding: 10px 10px 0px 10px;
+}
+
+.productDesc p {
+    margin-bottom: 10px;
+}
+
+
+@media (min-width: 414px) {
+    .product {
+        width: 160px;
+    }
+    .productImage,
+    .productImageBox {
+        width: 150px;
+        height: 150px;
+    }
+}
+
+@media (min-width: 600px) {
+    .product {
+        width: 250px;
+    }
+    .productImage,
+    .productImageBox {
+        width: 240px;
+        height: 240px;
+    }
+
+    .products {
+        width: 600px;
+    }
+    .filters {
+        font-size: 14px;
+    }
+}
+
+@media (min-width: 768px) {
+    .product {
+        width: 210px;
+    }
+    .productImage,
+    .productImageBox {
+        width: 200px;
+        height: 200px;
+    }
+
+    .products {
+        width: 768px;
+    }
+    .filters {
+        font-size: 14px;
+    }
+}
+
+/* Desktop layout */
+@media (min-width: 1024px) {
+    .clearfix-50 {
+	    height: 50px;
+    }
+
+    .filtersProductsLayout {
+        flex-basis: auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        color: black;
+        font-size: 12px;
+    }
+
+    .filters {
+        flex-basis: 260px;
+        margin: 0px;
+    }
+
+    .products {
+        flex-wrap: nowrap;
+        display: flex;
+        margin-left: 50px;
+        flex-basis: 760px;
+        align-self: flex-start;
+        flex-direction: column; 
+    }
+
+    .product {
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: row;
+        width: auto;
+        padding: 0px;
+        margin: 0px;
+        margin-bottom: 10px;
+    }
+
+    .productImageBox {
+        display: flex;
+        align-self: flex-start;
+        margin: 10px;
+        width: 200px;
+    }
+
+    .productImage {
+        width: 200px;
+        height: 200px;
+    }
+
+    .productDesc {
+        margin-left: 50px;
+        display: flex;
+        align-self: center;
+        flex-basis: 450px;
+        margin-top: 10px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0px;
+    }
+
+    .productDesc p {
+        margin-bottom: 20px;
+        margin-right: auto;
+    }
+
+    .title {
+        font-size: xx-large;
+    }
+
+    .add-ad {
+       margin-top: 10px;
+    }
+
+    .filterForm input,
+    .filterForm select {
+        margin: 20px;
+        font-size: medium;
+        width: 220px;
+    }
+
+    .filterForm input{
+        padding: 10px;
+    }
+
+    .filterForm select {
+        height: 40px;
+    }
+
+    #priceSuggested {
+        width: 150px;
+    }
+
 }

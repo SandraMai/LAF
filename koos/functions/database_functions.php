@@ -19,9 +19,9 @@
                 if($place == null){
                     $place = "Kaotamise koha kohta info puudub!";
                 }
-                $notice .= ' <div class="product flex-row">';
+                $notice .= ' <div class="product">';
                 $notice .= '<a class="productImageBox" href="view_ad.php?id=' .$id ."&page=" .$page .'"><img class="productImage" src="' .$GLOBALS["pic_read_dir_thumb"] ."missing.png" .'"></a>';
-                $notice .= '<div class="flex-column productDesc">';
+                $notice .= '<div class="productDesc">';
                 $notice .= '<p> Kirjeldus: ' .$description .'</p>';
                 $notice .= '<p>Kaotamise koht: ' .$place .'</p>';
                 $notice .= '<p> Kaotamise kuupäev: ' .$date .'</p>';
@@ -30,9 +30,9 @@
                 if($place == null){
                     $place = "Kaotamise koha kohta info puudub!";
                 }
-                $notice .= ' <div class="product flex-row">';
+                $notice .= ' <div class="product">';
                 $notice .= '<a class="productImageBox" href="view_ad.php?id=' .$id ."&page=" .$page .'"><img class="productImage" src="' .$GLOBALS["pic_read_dir_thumb"] .$pic .'"></a>';
-                $notice .= '<div class="flex-column productDesc">';
+                $notice .= '<div class="productDesc">';
                 $notice .= '<p> Kirjeldus: ' .$description .'</p>';
                 $notice .= '<p>Kaotamise koht: ' .$place .'</p>';
                 $notice .= '<p> Kaotamise kuupäev: ' .$date .'</p>';

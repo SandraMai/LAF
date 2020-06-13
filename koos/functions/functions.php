@@ -103,19 +103,19 @@
     }
 
     function saveImage() {
-        $pic_upload_dir_orig = $GLOBALS["pic_upload_dir_orig"];
+        // $pic_upload_dir_orig = $GLOBALS["pic_upload_dir_orig"];
         $notice = null;
         $fileSizeLimit = 2500000;
-        $pic_upload_dir_w600 = $GLOBALS["pic_upload_dir_thumb"];
-        $maxPicW = 200;
-        $maxPicH = 200;
+        $pic_upload_dir_thumb = $GLOBALS["pic_upload_dir_thumb"];
+        $maxPicW = 240;
+        $maxPicH = 240;
         $fileNamePrefix = "laf_";
         $myPic = new PicUpload($_FILES["image"], $fileSizeLimit);
         if($myPic->error == null){
             $myPic->createFileName($fileNamePrefix);
             $myPic->resizeImage($maxPicW, $maxPicH);
-            $notice .= $myPic->savePicFile($pic_upload_dir_w600 .$myPic->fileName);
-            $notice .= " " .$myPic->saveOriginal($pic_upload_dir_orig .$myPic->fileName);
+            $notice .= $myPic->savePicFile($pic_upload_dir_thumb .$myPic->fileName);
+            // $notice .= " " .$myPic->saveOriginal($pic_upload_dir_orig .$myPic->fileName);
             $returnString =  $myPic->fileName;
             return $returnString;
         } else {

@@ -35,9 +35,8 @@ echo auctionFiltration();
                 ?>
                 </div>
         </div>
-        <div class="clearfix-50"></div>
         <!-- PAGE BODY -->
-        <div class="flex-row"> 
+        <div class="filtersProductsLayout"> 
             <?php require("../filter.php") ?>
             <div class="products">
                 <?php echo getAuctionElements($show); ?>
