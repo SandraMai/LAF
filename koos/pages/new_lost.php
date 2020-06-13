@@ -72,7 +72,12 @@
             $lostDate_error = "Palun vali (umbes) kuupäev, millal eseme kaotasid!";
             $notice = 404;
         } else {
-            $lostDate_error = null;
+            if (rejectTags($_POST["lostDate"])) {
+                $lostDate_error = null;
+            } else {
+                $error = 404;
+            }
+
         }  
 
         if(isset($_POST["placeLost"]) and !empty($_POST["placeLost"])){
