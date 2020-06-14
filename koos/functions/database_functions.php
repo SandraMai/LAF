@@ -79,7 +79,7 @@
                     if($place == null){
                         $place = "Kaotamise koha kohta info puudub!";
                     }
-                    $notice .= '<div class="product flex-row ">';
+                    $notice .= '<div class="product flex-row">';
                     $notice .= '<img class="productImageBox" src="' .$GLOBALS["pic_read_dir_thumb"] .$pic .'">';
                     $notice .= '<div class="productDesc">';
                     $notice .= '<p class="text">Kirjeldus: ' .$description .'</p>';
@@ -103,7 +103,7 @@
             $stmt->bind_result($description, $pic, $place, $day, $month, $year, $storage);
             $stmt->execute();
             while($stmt->fetch()){
-                $notice .= ' <div class="product flex-row view">';
+                $notice .= ' <div class="product flex-row">';
                 $notice .= '<img class="productImage" src="' .$GLOBALS["pic_read_dir_thumb"] .$pic .'">';
                 $notice .= '<div class="flex-column productDesc">';
                 $notice .= '<p>Kirjeldus: ' .$description .'</p>';
