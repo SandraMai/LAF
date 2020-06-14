@@ -417,6 +417,11 @@ a, a:visited{
     background-color: #707070;
     color: white;
     align-self: end;
+    cursor: pointer;
+}
+
+#delete:hover{
+    background-color: #413f3f;
 }
 
 #deleteForm{
@@ -436,6 +441,12 @@ a, a:visited{
     background-color: #707070;
     color: white;
     align-self: baseline;
+    cursor: pointer;
+}
+
+.deleteFormButton:hover{
+    background-color: #413f3f;
+    transition: .5s;
 }
 
 .text{
