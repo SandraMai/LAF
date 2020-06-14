@@ -61,7 +61,7 @@
                     if($place == null){
                         $place = "Kaotamise koha kohta info puudub!";
                     }
-                    $notice .= ' <div class="product flex-row>';
+                    $notice .= ' <div class="product flex-row >';
                     $notice .= '<img class="productImageBox" src="' .$GLOBALS["pic_read_dir_thumb"] ."missing.png" .'">';
                     $notice .= '<div class="productDesc">';
                     $notice .= '<p class="text"> Kirjeldus: ' .$description .'</p>';
@@ -75,7 +75,7 @@
                     if($place == null){
                         $place = "Kaotamise koha kohta info puudub!";
                     }
-                    $notice .= '<div class="product flex-row">';
+                    $notice .= '<div class="product flex-row ">';
                     $notice .= '<img class="productImageBox" src="' .$GLOBALS["pic_read_dir_thumb"] .$pic .'">';
                     $notice .= '<div class="productDesc">';
                     $notice .= '<p class="text">Kirjeldus: ' .$description .'</p>';

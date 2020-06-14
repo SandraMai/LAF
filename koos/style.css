@@ -396,6 +396,10 @@ a, a:visited{
     font-family: 'Times New Roman', Times, serif;
 }
 
+.view{
+    height: 250px;
+}
+
 .h2-title{
     font-weight: normal;
 }

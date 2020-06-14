@@ -45,6 +45,7 @@
     <div class="aside"></div>
 
     <div class="main-section">
+    <div class="view"></div>
         <div class="flex-row"> 
             <div class="products">
                 <?php echo $notice;?>
