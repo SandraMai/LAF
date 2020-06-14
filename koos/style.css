@@ -428,11 +428,27 @@ a, a:visited{
     visibility: hidden;
     display: flex;
     flex-direction: column;
-    
+}
+
+.deleteFormButton{
+    padding: 10px;
+    border-radius: 10px;
+    width: 170px;
+    text-align: center;
+    background-color: #707070;
+    color: white;
+    align-self: baseline;
 }
 
 .text{
     visibility: visible;
+}
+
+.error{
+    margin-top: px;
+    font-size: large;
+    color: red;
+    font-weight: 400;
 }
 
 .ul input{

@@ -47,13 +47,13 @@
     <div class="main-section">
         <div class="flex-row"> 
             <div class="products">
-                <?php 
-                    echo $notice;
-                ?>
+                <?php echo $notice;?>
             </div>
-            <?php 
-            echo $emailError;
-            ?>
+        </div>
+        <div class="flex-row"> 
+            <div class ="error">
+                <?php echo $emailError; ?>
+            </div>
         </div>
     </div>
     <div class="aside"></div>
