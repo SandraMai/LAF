@@ -28,7 +28,7 @@
     </div>
     
     <div class="main-flex page-body">
-    <div class="aside"></div>
+        <div class="aside"></div>
         <div class="main-section">
 
             <div class="flex-row"> 

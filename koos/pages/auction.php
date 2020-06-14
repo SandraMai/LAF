@@ -1,22 +1,19 @@
-<?php require('../head.php'); 
-$show=null;
-require("../functions/oksjon_functions.php");
-require("../../../../config_laf.php");
-/*require("functions_user.php");
-require("functions_main.php");
-require("functions_pic.php");*/
+<?php 
+
+require('../head.php'); 
+
 $database = "if19_LAF";
+$show=null;
 echo auctionFiltration();
+
 ?>
 <body>
     
 <div class="main-flex header">
-    <div class="aside"></div>
     <!-- HEADER -->
     <div class="main-section">
         <?php require('../header.php'); ?>
     </div>
-    <div class="aside"></div>
 </div>
 
 <div class="main-flex page-body">
