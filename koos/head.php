@@ -21,6 +21,7 @@ $database = "if19_LAF";
     crossorigin="anonymous"></script>
     <script src="../lib/jquery-autoheight.js"></script>
     <script src="../js/active.js"></script>
+    <script defer src="../js/delete.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js" integrity="sha256-+BEKmIvQ6IsL8sHcvidtDrNOdZO3C9LtFPtF2H0dOHI=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/additional-methods.min.js" integrity="sha256-dppmU3M7PmToUPE0IZQEFK+v6GJaz5YzVOZN+uxRiDw=" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">

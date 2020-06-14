@@ -4,11 +4,27 @@
 
     $notice = null;
     $id = null;
+    $deletedNotice = null;
+    $emailError = null;
+
 
     if(isset($_GET["id"])){
         $id = $_GET["id"];
-        $page= $_GET["page"];
+        $page = $_GET["page"];
         $notice = viewObject($id, $page);
+    }
+
+    if(isset($_POST["deleteAd"])){
+        if(isset($_POST["email"]) and !empty($_POST["email"])){
+            if(checkEmail($id, $_POST["email"]) == 1){
+                $deletedNotice = deleteAd($id);
+                $emailError = "DONE!";
+            }else{
+                $emailError = "E-mailid ei klapi!";
+            }
+        }else{
+            $emailError = "Palun sisesta E-mail!";
+        }
     }
 
 
@@ -31,8 +47,13 @@
     <div class="main-section">
         <div class="flex-row"> 
             <div class="products">
-                <?php echo $notice?>
+                <?php 
+                    echo $notice;
+                ?>
             </div>
+            <?php 
+            echo $emailError;
+            ?>
         </div>
     </div>
     <div class="aside"></div>

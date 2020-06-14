@@ -5,9 +5,9 @@
         $page = basename($_SERVER['PHP_SELF']);
         $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
         if($filter == null){
-            $stmt = $conn->prepare("SELECT lost_post_ID, description, picture, lost_place, DATE_FORMAT(lost_date, '%d %M %Y') FROM LOST_ITEM_AD ORDER BY lost_post_ID DESC");
+            $stmt = $conn->prepare("SELECT lost_post_ID, description, picture, lost_place, DATE_FORMAT(lost_date, '%d %M %Y') FROM LOST_ITEM_AD WHERE expired = 0 AND deleted = 0 ORDER BY lost_post_ID DESC");
         }else{
-            $stmt = $conn->prepare("SELECT lost_post_ID, description, picture, lost_place, DATE_FORMAT(lost_date, '%d %M %Y') FROM LOST_ITEM_AD WHERE CATEGORY_category_ID = ? ORDER BY lost_date DESC");
+            $stmt = $conn->prepare("SELECT lost_post_ID, description, picture, lost_place, DATE_FORMAT(lost_date, '%d %M %Y') FROM LOST_ITEM_AD WHERE CATEGORY_category_ID = ? AND expired = 0 AND deleted = 0 ORDER BY lost_date DESC");
             $stmt->bind_param("s", $filter);
         }
         echo $conn->error;
@@ -62,22 +62,28 @@
                         $place = "Kaotamise koha kohta info puudub!";
                     }
                     $notice .= ' <div class="product flex-row view">';
-                    $notice .= '<img class="productImage" src="' .$GLOBALS["pic_read_dir_thumb"] ."missing.png" .'">';
-                    $notice .= '<div class="flex-column productDesc">';
-                    $notice .= '<p> Kirjeldus: ' .$description .'</p>';
-                    $notice .= '<p>Kaotamise koht: ' .$place .'</p>';
-                    $notice .= '<p> Kaotamise kuupäev: ' .$date .'</p>';
+                    $notice .= '<img class="productImageBox" src="' .$GLOBALS["pic_read_dir_thumb"] ."missing.png" .'">';
+                    $notice .= '<div class="productDesc">';
+                    $notice .= '<p class="text"> Kirjeldus: ' .$description .'</p>';
+                    $notice .= '<p class="text">Kaotamise koht: ' .$place .'</p>';
+                    $notice .= '<p class="text">Kaotamise kuupäev: ' .$date .'</p>';
+                    $notice .= '<button id="delete">KUSTUTA</button>';
+                    $notice .= '<form id="deleteForm" method="POST"><input class ="inputBoxStyle" type="text" name="email" placeholder="E-mail">';
+                    $notice .= '<input class="deleteFormButton" type="submit" value="KUSTUTA" name="deleteAd"></form>';
                     $notice .= '</div></div>';
                 }else{
                     if($place == null){
                         $place = "Kaotamise koha kohta info puudub!";
                     }
                     $notice .= '<div class="product flex-row view">';
-                    $notice .= '<img class="productImage" src="' .$GLOBALS["pic_read_dir_thumb"] .$pic .'">';
-                    $notice .= '<div class="flex-column productDesc">';
-                    $notice .= '<p> Kirjeldus: ' .$description .'</p>';
-                    $notice .= '<p>Kaotamise koht: ' .$place .'</p>';
-                    $notice .= '<p> Kaotamise kuupäev: ' .$date .'</p>';
+                    $notice .= '<img class="productImageBox" src="' .$GLOBALS["pic_read_dir_thumb"] .$pic .'">';
+                    $notice .= '<div class="productDesc">';
+                    $notice .= '<p class="text">Kirjeldus: ' .$description .'</p>';
+                    $notice .= '<p class="text">Kaotamise koht: ' .$place .'</p>';
+                    $notice .= '<p class="text">Kaotamise kuupäev: ' .$date .'</p>';
+                    $notice .= '<button id="delete">KUSTUTA</button>';
+                    $notice .= '<form id="deleteForm" method="POST"><input class ="inputBoxStyle" type="text" name="email" placeholder="E-mail">';
+                    $notice .= '<input class="deleteFormButton" type="submit" value="KUSTUTA" name="deleteAd"></form>';
                     $notice .= '</div></div>';
                 }
             }
@@ -106,6 +112,46 @@
             $conn->close();
             return $notice;
         }
+    }
+
+    function checkEmail($id, $email){
+        $notice = null;
+        $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
+        $stmt = $conn->prepare("SELECT email FROM LOST_ITEM_AD WHERE lost_post_ID = ?");
+        echo $conn->error;
+
+        $stmt->bind_param("i", $id);
+        $stmt->bind_result($emailFromDB);
+        $stmt->execute();
+
+        if($stmt->fetch()){
+            if($email == $emailFromDB){
+                $notice = 1;
+            }else{
+                $notice = 0;
+            }
+        }
+        $stmt->close();
+        $conn->close();
+        return $notice;
+    }
+
+    function deleteAd($id){
+        $response = null;
+        $one = 1;
+        $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
+        $stmt = $conn->prepare("UPDATE LOST_ITEM_AD SET deleted = ? WHERE lost_post_ID = ?");
+        echo $conn->error;
+        $stmt->bind_param("ii", $one, $id);
+        $stmt->execute();
+        if($stmt->execute()){
+            $response = 2;
+        }else{
+            $response = 404;
+        }
+        $stmt->close();
+        $conn->close();
+        return $response;
     }
 
     function getFAQSectionOne(){

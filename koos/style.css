@@ -401,7 +401,6 @@ a, a:visited{
     left: 50%;
     margin-right: -50%;
     transform: translate(-50%, -50%);
-    width: 720px;
 }
 
 .h2-title{
@@ -411,6 +410,29 @@ a, a:visited{
 .active{
     font-size: 1.5em;
     font-weight: 600;
+}
+
+#delete{
+    padding: 10px;
+    border-radius: 10px;
+    width: 150px;
+    text-align: center;
+    background-color: #707070;
+    color: white;
+    align-self: baseline;
+}
+
+#deleteForm{
+    position: absolute;
+    align-self: baseline;
+    visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.text{
+    visibility: visible;
 }
 
 .ul input{
