@@ -1,12 +1,14 @@
 <?php
 	function getAuctionElements($auctionListing){
+		$monthsET = ["jaanuar", "veebruar", "märts", "aprill", "mai", "juuni", "juuli", "august", "september", "oktoober", "november", "detsember"];
 		$response = null;
 		$expiredElement;
 		$conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]); 
 		if($auctionListing==null){
-			$stmt = $conn->prepare("SELECT found_item_ad_ID,description,found_date,picture,CATEGORY_category_ID,place_found FROM FOUND_ITEM_AD WHERE expired=1 AND auctioned=1");
+			$stmt = $conn->prepare("SELECT found_item_ad_ID,description,DATE_FORMAT(found_date, '%d'), DATE_FORMAT(found_date, '%c'), DATE_FORMAT(found_date, '%Y'),picture,CATEGORY_category_ID,place_found 
+			FROM FOUND_ITEM_AD WHERE expired=1 AND auctioned=1");
 			echo $conn->error;
-			$stmt->bind_result($id,$description, $found_date, $picture, $CATEGORY_category_ID, $place_found);
+			$stmt->bind_result($id,$description, $day, $month, $year, $picture, $CATEGORY_category_ID, $place_found);
 			$stmt->execute();
 
 			while($stmt->fetch()){
@@ -20,7 +22,7 @@
 				$response .= '<div class="productDesc">';
 				$response .= '<p>Kirjeldus: ' . $description . '</p>';
 				$response .= '<p>Leidmise koht: ' . $place_found . '</p>';
-				$response .= '<p>Leitud kuupäev: ' . $found_date . '</p>';
+				$response .= '<p>Leitud kuupäev: ' .$day .'.' .$monthsET[$month] .' ' .$year .'</p>';
 				$response .= '<br><p>Aegub ';
 				$response .= '<a class="productexplinationsDATE" data-time="' . $timestamps . '">';
 				$response .= '<span class="days"></span> p <span class="hours"></span> h <span class="minutes">';
@@ -35,9 +37,9 @@
 			return $response;
 		}
         else if($auctionListing!=NULL){
-			$stmt = $conn->prepare("SELECT found_item_ad_ID,description,found_date,picture,CATEGORY_category_ID,place_found FROM FOUND_ITEM_AD WHERE expired=1 AND auctioned=1 AND found_item_ad_ID='{$auctionListing}' ");
+			$stmt = $conn->prepare("SELECT found_item_ad_ID,description,DATE_FORMAT(found_date, '%d'), DATE_FORMAT(found_date, '%c'), DATE_FORMAT(found_date, '%Y'),picture,CATEGORY_category_ID,place_found FROM FOUND_ITEM_AD WHERE expired=1 AND auctioned=1 AND found_item_ad_ID='{$auctionListing}' ");
 			echo $conn->error;
-			$stmt->bind_result($id,$description, $found_date, $picture, $CATEGORY_category_ID, $place_found);
+			$stmt->bind_result($id,$description, $day, $month, $year, $picture, $CATEGORY_category_ID, $place_found);
 			$stmt->execute();
 
 			while($stmt->fetch()){
@@ -49,7 +51,7 @@
 			$response .= '<div class="productDesc">';
 			$response .= '<p>Kirjeldus: ' . $description . '</p>';
 			$response .= '<p>Leidmise koht: ' . $place_found . '</p>';
-			$response .= '<p>Leitud kuupäev: ' . $found_date . '</p>';
+			$response .= '<p>Leitud kuupäev: ' .$day .'.' .$monthsET[$month] .' ' .$year .'</p>';
 			$response .= '<p>Hetkel parim pakkumine: ' . $currentBestBid. ' €</p>';
 			$response .= '<p>Aegub ';
 			$response .= '<a class="productexplinationsDATE" data-time="' . $timestamps . '">';

@@ -1,17 +1,20 @@
 <?php
     // SANDRA
     function displayLostItems($filter){
+        $monthsET = ["jaanuar", "veebruar", "märts", "aprill", "mai", "juuni", "juuli", "august", "september", "oktoober", "november", "detsember"];
         $notice = null;
         $page = basename($_SERVER['PHP_SELF']);
         $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
         if($filter == null){
-            $stmt = $conn->prepare("SELECT lost_post_ID, description, picture, lost_place, DATE_FORMAT(lost_date, '%d %M %Y') FROM LOST_ITEM_AD WHERE expired = 0 AND deleted = 0 ORDER BY lost_post_ID DESC");
+            $stmt = $conn->prepare("SELECT lost_post_ID, description, picture, lost_place, DATE_FORMAT(lost_date, '%d'), DATE_FORMAT(lost_date, '%c'), DATE_FORMAT(lost_date, '%Y') 
+            FROM LOST_ITEM_AD WHERE expired = 0 AND deleted = 0 ORDER BY lost_post_ID DESC");
         }else{
-            $stmt = $conn->prepare("SELECT lost_post_ID, description, picture, lost_place, DATE_FORMAT(lost_date, '%d %M %Y') FROM LOST_ITEM_AD WHERE CATEGORY_category_ID = ? AND expired = 0 AND deleted = 0 ORDER BY lost_date DESC");
+            $stmt = $conn->prepare("SELECT lost_post_ID, description, picture, lost_place, DATE_FORMAT(lost_date, '%d'), DATE_FORMAT(lost_date, '%c'), DATE_FORMAT(lost_date, '%Y')
+            FROM LOST_ITEM_AD WHERE CATEGORY_category_ID = ? AND expired = 0 AND deleted = 0 ORDER BY lost_date DESC");
             $stmt->bind_param("s", $filter);
         }
         echo $conn->error;
-        $stmt->bind_result($id, $description, $pic, $place, $date);
+        $stmt->bind_result($id, $description, $pic, $place, $day, $month, $year);
         $stmt->execute();
         
         while($stmt->fetch()){
@@ -24,7 +27,7 @@
                 $notice .= '<div class="productDesc">';
                 $notice .= '<p> Kirjeldus: ' .$description .'</p>';
                 $notice .= '<p>Kaotamise koht: ' .$place .'</p>';
-                $notice .= '<p> Kaotamise kuupäev: ' .$date .'</p>';
+                $notice .= '<p> Kaotamise kuupäev: ' .$day .'.' .$monthsET[$month] .' ' .$year .'</p>';
                 $notice .= '</div></div>';
             }else{
                 if($place == null){
@@ -35,7 +38,7 @@
                 $notice .= '<div class="productDesc">';
                 $notice .= '<p> Kirjeldus: ' .$description .'</p>';
                 $notice .= '<p>Kaotamise koht: ' .$place .'</p>';
-                $notice .= '<p> Kaotamise kuupäev: ' .$date .'</p>';
+                $notice .= '<p> Kaotamise kuupäev: ' .$day .'.' .$monthsET[$month] .' ' .$year .'</p>';
                 $notice .= '</div></div>';
             }
         }
@@ -49,12 +52,13 @@
     }
 
     function viewObject($id, $page){
+        $monthsET = ["jaanuar", "veebruar", "märts", "aprill", "mai", "juuni", "juuli", "august", "september", "oktoober", "november", "detsember"];
         $notice = null;
         $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
         if($page=="lost.php"){
-            $stmt = $conn->prepare("SELECT description, picture, lost_place, DATE_FORMAT(lost_date, '%d %M %Y'), email FROM LOST_ITEM_AD WHERE lost_post_ID='{$id}'");
+            $stmt = $conn->prepare("SELECT description, picture, lost_place, DATE_FORMAT(lost_date, '%d'), DATE_FORMAT(lost_date, '%c'), DATE_FORMAT(lost_date, '%Y'), email FROM LOST_ITEM_AD WHERE lost_post_ID='{$id}'");
             echo $conn->error;
-            $stmt->bind_result($description, $pic, $place, $date, $email);
+            $stmt->bind_result($description, $pic, $place, $day, $month, $year, $email);
             $stmt->execute();
             while($stmt->fetch()){
                 if($pic=="puudub"){
@@ -66,7 +70,7 @@
                     $notice .= '<div class="productDesc">';
                     $notice .= '<p class="text"> Kirjeldus: ' .$description .'</p>';
                     $notice .= '<p class="text">Kaotamise koht: ' .$place .'</p>';
-                    $notice .= '<p class="text">Kaotamise kuupäev: ' .$date .'</p>';
+                    $notice .= '<p class="text">Kaotamise kuupäev: ' .$day .'.' .$monthsET[$month] .' ' .$year .'</p>';
                     $notice .= '<button id="delete">KUSTUTA</button>';
                     $notice .= '<form id="deleteForm" method="POST"><input class ="inputBoxStyle" type="text" name="email" placeholder="E-mail">';
                     $notice .= '<input class="deleteFormButton" type="submit" value="KUSTUTA" name="deleteAd"></form>';
@@ -80,7 +84,7 @@
                     $notice .= '<div class="productDesc">';
                     $notice .= '<p class="text">Kirjeldus: ' .$description .'</p>';
                     $notice .= '<p class="text">Kaotamise koht: ' .$place .'</p>';
-                    $notice .= '<p class="text">Kaotamise kuupäev: ' .$date .'</p>';
+                    $notice .= '<p class="text">Kaotamise kuupäev: ' .$day .'.' .$monthsET[$month] .' ' .$year .'</p>';
                     $notice .= '<button id="delete">KUSTUTA</button>';
                     $notice .= '<form id="deleteForm" method="POST"><input class ="inputBoxStyle" type="text" name="email" placeholder="E-mail">';
                     $notice .= '<input class="deleteFormButton" type="submit" value="KUSTUTA" name="deleteAd"></form>';
@@ -92,11 +96,11 @@
             return $notice;
         }
         if($page=="found.php"){
-            $stmt = $conn->prepare("SELECT description, picture, place_found, DATE_FORMAT(found_date, '%d %M %Y'), storage_place_name
+            $stmt = $conn->prepare("SELECT description, picture, place_found, DATE_FORMAT(found_date, '%d'), DATE_FORMAT(found_date, '%c'), DATE_FORMAT(found_date, '%Y'), storage_place_name
             FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE found_item_ad_ID='{$id}'");
             
             echo $conn->error;
-            $stmt->bind_result($description, $pic, $place, $date, $storage);
+            $stmt->bind_result($description, $pic, $place, $day, $month, $year, $storage);
             $stmt->execute();
             while($stmt->fetch()){
                 $notice .= ' <div class="product flex-row view">';
@@ -104,7 +108,7 @@
                 $notice .= '<div class="flex-column productDesc">';
                 $notice .= '<p>Kirjeldus: ' .$description .'</p>';
                 $notice .= '<p>Leidmise koht: ' .$place .'</p>';
-                $notice .= '<p>Leidmise kuupäev: ' .$date .'</p>';
+                $notice .= '<p>Leidmise kuupäev: ' .$day .'.' .$monthsET[$month] .' ' .$year .'</p>';
                 $notice .= '<p>Hoiupaik: ' .$storage .'</p>';
                 $notice .= '</div></div>';
             }
@@ -210,13 +214,14 @@
 
     function selectFoundPostsHTML() {
         $response = null;
+        $monthsET = ["jaanuar", "veebruar", "märts", "aprill", "mai", "juuni", "juuli", "august", "september", "oktoober", "november", "detsember"];
         $page = basename($_SERVER['PHP_SELF']);
         $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
         mysqli_set_charset($conn, 'utf8');
-        $stmt = $conn->prepare("SELECT found_item_ad_ID, description,found_date,picture,CATEGORY_category_ID,place_found, storage_place_name
+        $stmt = $conn->prepare("SELECT found_item_ad_ID, description,DATE_FORMAT(found_date, '%d'), DATE_FORMAT(found_date, '%c'), DATE_FORMAT(found_date, '%Y'),picture,CATEGORY_category_ID,place_found, storage_place_name
         FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired=0");
         echo $conn->error;
-        $stmt->bind_result($id, $description, $found_date, $picture, $CATEGORY_category_ID, $place_found, $storage);
+        $stmt->bind_result($id, $description, $day, $month, $year, $picture, $CATEGORY_category_ID, $place_found, $storage);
         $stmt->execute();
  
         while($stmt->fetch()){
@@ -225,7 +230,7 @@
         $response .= '<div class="flex-column productDesc">';
         $response .= '<p>Kirjeldus: ' . $description . '</p>';
         $response .= '<p>Leidmise koht:' . $place_found . '</p>';
-        $response .= '<p>Kuupäev: ' . $found_date . '</p>';
+        $response .= '<p>Kuupäev: ' .$day .'.' .$monthsET[$month] .' ' .$year .'</p>';
         $response .= '<p>Hoiupaik: ' . $storage . '</p>';
         $response .= '</div><div class="aside"></div></div>';
         }

@@ -416,7 +416,7 @@ a, a:visited{
     text-align: center;
     background-color: #707070;
     color: white;
-    align-self: baseline;
+    align-self: end;
 }
 
 #deleteForm{
@@ -425,6 +425,7 @@ a, a:visited{
     visibility: hidden;
     display: flex;
     flex-direction: column;
+    align-self: center;
 }
 
 .deleteFormButton{
