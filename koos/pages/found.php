@@ -27,12 +27,6 @@ $offset = 0;
             <h1 class="title">LEITUD ESEMED</h1>
         </div>
 
-        <!-- PAGE NUMBERS -->
-        <div class="flex-row"> 
-            <div class="aside"></div>
-            <div>1 2 3 </div>
-        </div>
-
         <!-- PAGE BODY -->
 
         <div class="filtersProductsLayout"> 
