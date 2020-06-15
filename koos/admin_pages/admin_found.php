@@ -9,7 +9,7 @@ foundToExpired();
 
     <!-- HEADER -->
     <div class="main-section">
-        <?php require('../header.php'); ?>
+        <?php require('../header_admin.php'); ?>
     </div>
     <div class="aside"></div>
 
