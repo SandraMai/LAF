@@ -184,15 +184,15 @@
       $page = basename($_SERVER['PHP_SELF']);
       $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
       if($filter == null){
-          $stmt = $conn->prepare("SELECT lost_post_ID, description, picture, lost_place, DATE_FORMAT(lost_date, '%d'), DATE_FORMAT(lost_date, '%c'), DATE_FORMAT(lost_date, '%Y') 
+          $stmt = $conn->prepare("SELECT lost_post_ID, email, description, picture, lost_place, DATE_FORMAT(lost_date, '%d'), DATE_FORMAT(lost_date, '%c'), DATE_FORMAT(lost_date, '%Y') 
           FROM LOST_ITEM_AD WHERE expired = 0 AND deleted = 0 ORDER BY lost_post_ID DESC");
       }else{
-          $stmt = $conn->prepare("SELECT lost_post_ID, description, picture, lost_place, DATE_FORMAT(lost_date, '%d'), DATE_FORMAT(lost_date, '%c'), DATE_FORMAT(lost_date, '%Y')
+          $stmt = $conn->prepare("SELECT lost_post_ID, email, description, picture, lost_place, DATE_FORMAT(lost_date, '%d'), DATE_FORMAT(lost_date, '%c'), DATE_FORMAT(lost_date, '%Y')
           FROM LOST_ITEM_AD WHERE CATEGORY_category_ID = ? AND expired = 0 AND deleted = 0 ORDER BY lost_date DESC");
           $stmt->bind_param("s", $filter);
       }
       echo $conn->error;
-      $stmt->bind_result($id, $description, $pic, $place, $day, $month, $year);
+      $stmt->bind_result($id, $email, $description, $pic, $place, $day, $month, $year);
       $stmt->execute();
       
       while($stmt->fetch()){
@@ -206,7 +206,9 @@
               $notice .= '<p> Kirjeldus: ' .$description .'</p>';
               $notice .= '<p>Kaotamise koht: ' .$place .'</p>';
               $notice .= '<p> Kaotamise kuupäev: ' .$day .'.' .$monthsET[$month-1] .' ' .$year .'</p>';
-              $notice .= '<input type="submit" class="deleteFormButton" id="' .$id .'" name="delete" value="KUSTUTA">';
+              $notice .= '<p class="text">E-mail: '. $email .'</p>';
+              $notice .= '<form method="POST" action="#"><input type ="hidden" value="' .$id .'" name="idInput">';
+              $notice .= '<input type="submit" id="delete" name="deleteAd" value="KUSTUTA"></form>';
               $notice .= '</div></div>';
           }else{
               if($place == null){
@@ -218,7 +220,9 @@
               $notice .= '<p> Kirjeldus: ' .$description .'</p>';
               $notice .= '<p>Kaotamise koht: ' .$place .'</p>';
               $notice .= '<p> Kaotamise kuupäev: ' .$day .'.' .$monthsET[$month-1] .' ' .$year .'</p>';
-              $notice .= '<input type="submit" class="deleteFormButton" id="' .$id .' name="delete" value="KUSTUTA">';
+              $notice .= '<p class="text">E-mail: '. $email .'</p>';
+              $notice .= '<form method="POST" action="#"><input type ="hidden" value="' .$id .'" name="idInput">';
+              $notice .= '<input type="submit" id="delete" name="deleteAd" value="KUSTUTA"></form>';
               $notice .= '</div></div>';
           }
       }
@@ -230,7 +234,7 @@
       return $notice;
   }
 
-  function deleteAdAdmin($id){
+  function deleteLostAdAdmin($id){
     $response = null;
     $one = 1;
     $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
