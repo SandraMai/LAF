@@ -28,7 +28,7 @@ $offset = 0;
         </div>
 
         <!-- PAGE BODY -->
-
+        <div class="clearfix-50"></div>
         <div class="filtersProductsLayout"> 
 
             <?php require("../filter.php") ?>
