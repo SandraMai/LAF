@@ -1,6 +1,68 @@
 <?php
   session_start();
 
+    function getFaqQuestions(){
+      $notice = null;
+      $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
+      $stmt = $conn->prepare("SELECT faq_ID, question FROM FAQ");
+      echo $conn->error;
+      $stmt->bind_result($id, $question);
+      $stmt->execute();
+      while($stmt->fetch()){
+        $notice .= '<option value="' .$id .'"';
+        $notice .= '>' .$question .'</option>';
+      }
+      $stmt->close();
+      $conn->close();
+      return $notice;
+    }
+
+    function getFaqAnswers(){
+      $notice = null;
+      $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
+      $stmt = $conn->prepare("SELECT faq_ID, answer FROM FAQ");
+      echo $conn->error;
+      $stmt->bind_result($id, $answer);
+      $stmt->execute();
+      while($stmt->fetch()){
+        $notice .= '<option value="' .$id .'"';
+        $notice .= '>' .$answer .'</option>';
+      }
+      $stmt->close();
+      $conn->close();
+      return $notice;
+    }
+
+    function updateFaqQuestion($id, $question){
+      $notice = null;
+      $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
+      $stmt = $conn->prepare("UPDATE FAQ SET question=? WHERE faq_ID='{$id}'");
+      $stmt->bind_param("s", $question);
+      if($stmt->execute()){
+          $notice = "Küsimus uuendatud!";
+      } else {
+          $notice = "Midagi läks valesti: " .$stmt->error;
+      }
+      $stmt->close();
+      $conn->close();
+      return $notice;
+    }
+
+    function updateFaqAnswer($id, $answer){
+      $notice = null;
+      $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
+      $stmt = $conn->prepare("UPDATE FAQ SET answer=? WHERE faq_ID='{$id}'");
+      $stmt->bind_param("s", $answer);
+      if($stmt->execute()){
+          $notice = "Vastus uuendatud!";
+      } else {
+          $notice = "Midagi läks valesti: " .$stmt->error;
+      }
+      $stmt->close();
+      $conn->close();
+      return $notice;
+    }
+
     function readStoragesForSelect(){
         $storageHTML = null;
         $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
