@@ -250,7 +250,34 @@ textarea {
 
 .modalUrl:hover {
     color: #386b63;
-}   
+}  
+
+.loadMoreButton {
+    text-align: center;
+    margin: 40px 0px;
+}
+
+.loadMoreButton button {
+    padding: 12px 20px;
+    background: white;
+    border: 1px solid #59a79a;
+    text-transform: uppercase;
+    cursor: pointer;
+    color:#59a79a;
+    transition: border .3s, color .3s;
+    font-size: 16px;
+    outline: 0;
+    border-radius: 3px;
+}
+
+.loadMoreButton button:hover {
+    color: #3b6e66;
+    border: 1px solid #3b6e66;
+}
+
+.loadMoreButton button::-moz-focus-inner { 
+  border: 0; 
+}
 
 /* ANETE */
 
