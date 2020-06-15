@@ -26,12 +26,10 @@ foundToExpired();
             <h1 class="title">LEITUD ESEMED</h1>
         </div>
 
-        <!-- PAGE NUMBERS -->
         <div class="flex-row"> 
-            <div class="aside"></div>
-            <div>1 2 3 </div>
+            <a class="add-ad" href="../pages/new_found.php">LISA ESE</a>
         </div>
-
+        <div class="clearfix-50"></div>
         <!-- PAGE BODY -->
 
         <div class="filtersProductsLayout"> 
