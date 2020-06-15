@@ -8,6 +8,7 @@
 
             <div class="dialogBox__fields">
                 <p class="js-modal-text">Midagi läks valesti</p>
+                <a href="index.php">Esilehele</a>
                 <br>
                 <a class="modalUrl" href="<?php echo $url;?>"><?php echo $urlTitle;?></a>
             </div>
