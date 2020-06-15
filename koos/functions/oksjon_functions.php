@@ -22,7 +22,7 @@
 				$response .= '<div class="productDesc">';
 				$response .= '<p>Kirjeldus: ' . $description . '</p>';
 				$response .= '<p>Leidmise koht: ' . $place_found . '</p>';
-				$response .= '<p>Leitud kuupäev: ' .$day .'.' .$monthsET[$month] .' ' .$year .'</p>';
+				$response .= '<p>Leitud kuupäev: ' .$day .'.' .$monthsET[$month-1] .' ' .$year .'</p>';
 				$response .= '<br><p>Aegub ';
 				$response .= '<a class="productexplinationsDATE" data-time="' . $timestamps . '">';
 				$response .= '<span class="days"></span> p <span class="hours"></span> h <span class="minutes">';
@@ -51,7 +51,7 @@
 			$response .= '<div class="productDesc">';
 			$response .= '<p>Kirjeldus: ' . $description . '</p>';
 			$response .= '<p>Leidmise koht: ' . $place_found . '</p>';
-			$response .= '<p>Leitud kuupäev: ' .$day .'.' .$monthsET[$month] .' ' .$year .'</p>';
+			$response .= '<p>Leitud kuupäev: ' .$day .'.' .$monthsET[$month-1] .' ' .$year .'</p>';
 			$response .= '<p>Hetkel parim pakkumine: ' . $currentBestBid. ' €</p>';
 			$response .= '<p>Aegub ';
 			$response .= '<a class="productexplinationsDATE" data-time="' . $timestamps . '">';

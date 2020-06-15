@@ -27,7 +27,7 @@
                 $notice .= '<div class="productDesc">';
                 $notice .= '<p> Kirjeldus: ' .$description .'</p>';
                 $notice .= '<p>Kaotamise koht: ' .$place .'</p>';
-                $notice .= '<p> Kaotamise kuupäev: ' .$day .'.' .$monthsET[$month] .' ' .$year .'</p>';
+                $notice .= '<p> Kaotamise kuupäev: ' .$day .'.' .$monthsET[$month-1] .' ' .$year .'</p>';
                 $notice .= '</div></div>';
             }else{
                 if($place == null){
@@ -38,7 +38,7 @@
                 $notice .= '<div class="productDesc">';
                 $notice .= '<p> Kirjeldus: ' .$description .'</p>';
                 $notice .= '<p>Kaotamise koht: ' .$place .'</p>';
-                $notice .= '<p> Kaotamise kuupäev: ' .$day .'.' .$monthsET[$month] .' ' .$year .'</p>';
+                $notice .= '<p> Kaotamise kuupäev: ' .$day .'.' .$monthsET[$month-1] .' ' .$year .'</p>';
                 $notice .= '</div></div>';
             }
         }
@@ -70,7 +70,7 @@
                     $notice .= '<div class="productDesc">';
                     $notice .= '<p class="text"> Kirjeldus: ' .$description .'</p>';
                     $notice .= '<p class="text">Kaotamise koht: ' .$place .'</p>';
-                    $notice .= '<p class="text">Kaotamise kuupäev: ' .$day .'.' .$monthsET[$month] .' ' .$year .'</p>';
+                    $notice .= '<p class="text">Kaotamise kuupäev: ' .$day .'.' .$monthsET[$month-1] .' ' .$year .'</p>';
                     $notice .= '<button id="delete">KUSTUTA</button>';
                     $notice .= '<form id="deleteForm" method="POST"><input class ="inputBoxStyle" type="text" name="email" placeholder="E-mail">';
                     $notice .= '<input class="deleteFormButton" type="submit" value="KUSTUTA" name="deleteAd"></form>';
@@ -84,7 +84,7 @@
                     $notice .= '<div class="productDesc">';
                     $notice .= '<p class="text">Kirjeldus: ' .$description .'</p>';
                     $notice .= '<p class="text">Kaotamise koht: ' .$place .'</p>';
-                    $notice .= '<p class="text">Kaotamise kuupäev: ' .$day .'.' .$monthsET[$month] .' ' .$year .'</p>';
+                    $notice .= '<p class="text">Kaotamise kuupäev: ' .$day .'.' .$monthsET[$month-1] .' ' .$year .'</p>';
                     $notice .= '<button id="delete">KUSTUTA</button>';
                     $notice .= '<form id="deleteForm" method="POST"><input class ="inputBoxStyle" type="text" name="email" placeholder="E-mail">';
                     $notice .= '<input class="deleteFormButton" type="submit" value="KUSTUTA" name="deleteAd"></form>';
@@ -108,7 +108,7 @@
                 $notice .= '<div class="flex-column productDesc">';
                 $notice .= '<p>Kirjeldus: ' .$description .'</p>';
                 $notice .= '<p>Leidmise koht: ' .$place .'</p>';
-                $notice .= '<p>Leidmise kuupäev: ' .$day .'.' .$monthsET[$month] .' ' .$year .'</p>';
+                $notice .= '<p>Leidmise kuupäev: ' .$day .'.' .$monthsET[$month-1] .' ' .$year .'</p>';
                 $notice .= '<p>Hoiupaik: ' .$storage .'</p>';
                 $notice .= '</div></div>';
             }
@@ -229,7 +229,7 @@
         $response .= '<div class="flex-column productDesc">';
         $response .= '<p>Kirjeldus: ' . $description . '</p>';
         $response .= '<p>Leidmise koht:' . $place_found . '</p>';
-        $response .= '<p>Kuupäev: ' .$day .'.' .$monthsET[$month] .' ' .$year .'</p>';
+        $response .= '<p>Kuupäev: ' .$day .'.' .$monthsET[$month-1] .' ' .$year .'</p>';
         $response .= '<p>Hoiupaik: ' . $storage . '</p>';
         $response .= '</div><div class="aside"></div></div>';
         }
