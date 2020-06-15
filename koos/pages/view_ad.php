@@ -29,7 +29,9 @@
 
 
 ?>
-
+<head>
+    <script src="../js/delete.js"></script>
+</head>
 <body>
     <div class="main-flex header">
         <div class="aside"></div>
