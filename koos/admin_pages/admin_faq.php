@@ -56,11 +56,11 @@
         }
     }
     //küsimuse uuendamine
-    if(isset($_POST["updateQuestion"])){
+    if(isset($_POST["updateQuestion"]) and !empty($_POST["updateQuestion"])){
         $noticeQuestion = updateFaqQuestion($_POST["question-id"], $_POST["question"]);
     }
     //vastuse uuendamine
-    if(isset($_POST["updateAnswer"])){
+    if(isset($_POST["updateAnswer"]) and !empty($_POST["updateAnswer"])){
         $noticeAnswer = updateFaqAnswer($_POST["answer-id"], $_POST["answer"]);
     }
 
