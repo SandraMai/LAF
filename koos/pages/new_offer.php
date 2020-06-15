@@ -4,6 +4,10 @@ require('../head.php');
 $database = "if19_LAF";
 $notice=null;
 $return = null;
+$searchedName=null;
+$searchedCategory=null;
+$searchedArea=null;
+$thisLink=null;
 $start = auctionDefaultStartPrice();
 
 
@@ -12,10 +16,10 @@ $neededNumber = getAuctionId($_GET["item"]);
 if(isset($_GET["item"])){
     //echo $_GET["photoid"];
     $auctionedItem = $_GET["item"];
-    $userPicHTML = getAuctionElements($_GET["item"]);
+    $userPicHTML = getAuctionElements($_GET["item"],$searchedName,$searchedCategory,$searchedArea,$thisLink);
 } elseif(isset($_POST["item"])){
     $auctionedItem = $_POST["item"];
-    $userPicHTML = getAuctionElements($_POST["item"]);
+    $userPicHTML = getAuctionElements($_POST["item"],$searchedName,$searchedCategory,$searchedArea,$thisLink);
 } else {
     $userPicHTML = null;
 }

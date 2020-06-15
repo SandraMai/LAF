@@ -1,9 +1,13 @@
 <?php
     require("../head.php");
-
+    $linkValue=1;
+    $searchedName=null;
+    $searchedCategory=null;
+    $searchedArea=null;
+    $thisLink=null;
     $offset = 0;
     $filter = null;
-    $notice = displayLostItems($filter, $offset);
+    $notice = displayLostItems($filter, $offset,$searchedName,$searchedCategory,$searchedArea,$thisLink);
     if ($notice == 100) {
         $notice = '<p class="flex-row">Hetkel esemeid pole!</p>';
     }

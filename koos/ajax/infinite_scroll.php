@@ -13,7 +13,7 @@ if( isset($_POST['inf'])) {
 
     if ($_POST['type'] == 1) {
 
-        $getMore = displayLostItems($filter, $offset);
+        $getMore = displayLostItems($filter, $offset,$filter, $offset,$searchedName,$searchedCategory,$searchedArea,$thisLink);
 
         if ($getMore == 100) {
             echo $getMore;
