@@ -128,7 +128,11 @@ if ($flag == 1) {
 
 <!-- MODAL STUFF -->
 <input class="modalCase" type="hidden" data-case="<?php echo $case;?>">
-<?php require('modal.php'); ?>
+<?php 
+
+$url = "found.php";
+$urlTitle = 'Tagasi leitud rubriiki';
+require('modal.php'); ?>
 
 <script src="../js/found.js"></script>
 
