@@ -168,6 +168,7 @@
         while($stmt->fetch()){
             $notice .= '<h4>' .$question .'</h4>';
             $notice .= '<p>' .$answer .'</p>';
+            $notice .= '<br>';
              
         }
         $stmt->close();

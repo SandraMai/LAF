@@ -239,6 +239,10 @@ textarea {
 }
 
 /* ANETE */
+
+.faq{
+    align-items: flex-start;
+}
 /* linnakukaart*/
 .storage-pic{
     width: 600px;
