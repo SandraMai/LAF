@@ -248,6 +248,24 @@
     return $response;
   }
 
+  function deleteFoundAdmin($id){
+    $response = null;
+    $one = 1;
+    $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
+    $stmt = $conn->prepare("UPDATE FOUND_ITEM_AD SET deleted = ? WHERE found_item_ad_ID = ?");
+    echo $conn->error;
+    $stmt->bind_param("ii", $one, $id);
+    $stmt->execute();
+    if($stmt->execute()){
+        $response = 2;
+    }else{
+        $response = 404;
+    }
+    $stmt->close();
+    $conn->close();
+    return $response;
+  }
+
   function viewObjectAdmin($id, $page){
     $monthsET = ["jaanuar", "veebruar", "märts", "aprill", "mai", "juuni", "juuli", "august", "september", "oktoober", "november", "detsember"];
     $notice = null;
@@ -305,7 +323,7 @@
     $page = basename($_SERVER['PHP_SELF']);
     $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
     $stmt = $conn->prepare("SELECT found_item_ad_ID, description,DATE_FORMAT(found_date, '%d'), DATE_FORMAT(found_date, '%c'), DATE_FORMAT(found_date, '%Y'),picture,CATEGORY_category_ID,place_found, storage_place_name
-    FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired=0 ORDER BY found_item_ad_ID DESC");
+    FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired=0 AND deleted = 0 ORDER BY found_item_ad_ID DESC");
     echo $conn->error;
     $stmt->bind_result($id, $description, $day, $month, $year, $picture, $CATEGORY_category_ID, $place_found, $storage);
     $stmt->execute();

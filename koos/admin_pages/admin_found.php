@@ -5,6 +5,7 @@ foundToExpired();
 
 if(isset($_POST["deleteAd"])){
     $id = $_POST["idInput"];
+    deleteFoundAdmin($id);
 }
 ?>
 <body>
@@ -32,10 +33,9 @@ if(isset($_POST["deleteAd"])){
         </div>
 
         <div class="flex-row"> 
-            <a class="add-ad" href="../pages/new_found.php">LISA ESE</a>
+            <a class="add-ad" href="new_found.php">LISA ESE</a>
         </div>
         <div class="clearfix-50">
-        <?php echo $id; ?>
         </div>
         <!-- PAGE BODY -->
 
