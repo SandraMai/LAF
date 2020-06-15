@@ -1,5 +1,18 @@
 <?php
     require("../head.php");
+
+    if(!isset($_SESSION["userId"])){
+        header("Location: admin_login.php");
+        exit();
+    }
+    
+    if(isset($_GET["logout"])){
+      session_unset();
+      session_destroy();
+      header("Location: admin_login.php");
+      exit();
+    }
+    
     $response = null;
     $filter = null;
     $notice = displayLostItemsAdmin($filter);

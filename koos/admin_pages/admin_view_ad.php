@@ -1,6 +1,19 @@
 <?php
     require("../head.php");
     require("../../../../config_laf.php");
+    
+
+    if(!isset($_SESSION["userId"])){
+        header("Location: admin_login.php");
+        exit();
+    }
+    
+    if(isset($_GET["logout"])){
+      session_unset();
+      session_destroy();
+      header("Location: admin_login.php");
+      exit();
+    }
 
     $notice = null;
     $id = null;
