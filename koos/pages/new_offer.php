@@ -21,15 +21,16 @@ if(isset($_GET["item"])){
 }
 
 $compare = priceBoundary($_GET["item"]);
-$test= auctionItemStep($_GET["item"]);
-$maxbid=$compare+10;
+$stepPrice=auctionItemStep($_GET["item"]);
+$maxbid=$stepPrice*10+$compare;
+
 
 if(isset($_POST["submitPrice"])){
     $email = ($_POST["email"]);
     $notification =($_POST["notification"]);
     $offer =($_POST["offer"]);
 	if((!empty($offer))&&(!empty($email))){
-        if($offer>$compare){$notice = setFirstBid($email,$notification,$offer,$neededNumber);}else{
+        if($offer>$compare){$notice = setFirstBid($email,$notification,$offer,$neededNumber,$maxbid,$compare);}else{
             $notice = "Su pakkutud hind on väiksem praegusest";
         
     }
@@ -90,7 +91,7 @@ if(isset($_POST["submitPrice"])){
                 <br>
                 <label> Pakumine: </label>
                 <br>
-                <input type="number" class="size-36" value="<?php echo $compare?>" min="<?php echo $compare?>" max="<?php echo $maxbid?>" step="<?php echo auctionItemStep($_GET["item"]); ?>" name="offer">
+                <input type="number"  class="size-36" value="<?php echo $compare;?>" min="<?php echo $compare;?>" max="<?php echo $maxbid;?>" step="<?php echo auctionItemStep($_GET["item"]); ?>" name="offer">
                 <br>
                 <br>
                 <input name="submitPrice" type="submit" value="Esita pakkumine">

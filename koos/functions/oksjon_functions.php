@@ -111,21 +111,32 @@
 		$conn->close();
 		return $expiredElement;;
 		}
-	function setFirstBid($email,$notification,$offer,$idofAuctionedItem){
-		$response = null;
-		$expiredElement;
-		$conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]); 
-		$stmt = $conn->prepare("UPDATE  OFFER SET email=?,notification=?,offer=? WHERE AUCTION_auction_ID='{$idofAuctionedItem}'");
-		$stmt->bind_param("sid",$email,$notification,$offer);
-		echo $conn->error;
-		if($stmt->execute()){
-			$notice = "Pakkumine edukalt lisatud";
-		} else {
-			$notice = "Muutmisel tekkis tehniline viga: " .$stmt->error;
+	function setFirstBid($email,$notification,$offer,$idofAuctionedItem,$maxCompared,$minCompare){
+		if($offer<=$maxCompared){
+			if($offer>=$minCompare){	
+			$response = null;
+			$expiredElement;
+			$conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]); 
+			$stmt = $conn->prepare("UPDATE  OFFER SET email=?,notification=?,offer=? WHERE AUCTION_auction_ID='{$idofAuctionedItem}'");
+			$stmt->bind_param("sid",$email,$notification,$offer);
+			echo $conn->error;
+			if($stmt->execute()){
+				$notice = "Pakkumine edukalt lisatud";
+			} else {
+				$notice = "Muutmisel tekkis tehniline viga: " .$stmt->error;
+			}
+			$stmt->close();
+			$conn->close();
+			return $notice;
+			}else{
+				$notice="Hind ei saa olla väiksem praegusest pakkumisest";
+			return $notice;
+			}
+		}else{
+			$notice="Hind ületab praeguse võimaliku pakkumise.";
+			return $notice;
 		}
-		$stmt->close();
-		$conn->close();
-		return $notice;
+	
 	}
 		function priceBoundary($auctionedItem){
 		$notice = null;

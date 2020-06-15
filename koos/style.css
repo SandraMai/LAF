@@ -493,6 +493,9 @@ a, a:visited{
 
 
 /* HERMAN */
+#bidEntryBox {
+    pointer-events: none;
+  }
 
 .filters {
     flex-basis: 260px;
