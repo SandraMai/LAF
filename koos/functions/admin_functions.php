@@ -201,33 +201,102 @@
                   $place = "Kaotamise koha kohta info puudub!";
               }
               $notice .= ' <div class="product">';
-              $notice .= '<a class="productImageBox" href="view_ad.php?id=' .$id ."&page=" .$page .'"><img class="productImage" src="' .$GLOBALS["pic_read_dir_thumb"] ."missing.png" .'"></a>';
+              $notice .= '<a class="productImageBox" href="admin_view_ad.php?id=' .$id ."&page=" .$page .'"><img class="productImage" src="' .$GLOBALS["pic_read_dir_thumb"] ."missing.png" .'"></a>';
               $notice .= '<div class="productDesc">';
               $notice .= '<p> Kirjeldus: ' .$description .'</p>';
               $notice .= '<p>Kaotamise koht: ' .$place .'</p>';
               $notice .= '<p> Kaotamise kuupäev: ' .$day .'.' .$monthsET[$month-1] .' ' .$year .'</p>';
-              $notice .= '<input type="submit" id="deleteAdminLost" name="delete" value="KUSTUTA">';
+              $notice .= '<input type="submit" class="deleteFormButton" id="' .$id .'" name="delete" value="KUSTUTA">';
               $notice .= '</div></div>';
           }else{
               if($place == null){
                   $place = "Kaotamise koha kohta info puudub!";
               }
               $notice .= ' <div class="product">';
-              $notice .= '<a class="productImageBox" href="view_ad.php?id=' .$id ."&page=" .$page .'"><img class="productImage" src="' .$GLOBALS["pic_read_dir_thumb"] .$pic .'"></a>';
+              $notice .= '<a class="productImageBox" href="admin_view_ad.php?id=' .$id ."&page=" .$page .'"><img class="productImage" src="' .$GLOBALS["pic_read_dir_thumb"] .$pic .'"></a>';
               $notice .= '<div class="productDesc">';
               $notice .= '<p> Kirjeldus: ' .$description .'</p>';
               $notice .= '<p>Kaotamise koht: ' .$place .'</p>';
               $notice .= '<p> Kaotamise kuupäev: ' .$day .'.' .$monthsET[$month-1] .' ' .$year .'</p>';
-              $notice .= '<input type="submit" id="deleteAdminLost" name="delete" value="KUSTUTA">';
+              $notice .= '<input type="submit" class="deleteFormButton" id="' .$id .' name="delete" value="KUSTUTA">';
               $notice .= '</div></div>';
           }
       }
       if($notice == null){
           $notice .= '<p class="flex-row">Hetkel esemeid pole!</p>';
       }
-      
       $stmt->close();
       $conn->close();
       return $notice;
+  }
+
+  function deleteAdAdmin($id){
+    $response = null;
+    $one = 1;
+    $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
+    $stmt = $conn->prepare("UPDATE LOST_ITEM_AD SET deleted = ? WHERE lost_post_ID = ?");
+    echo $conn->error;
+    $stmt->bind_param("ii", $one, $id);
+    $stmt->execute();
+    if($stmt->execute()){
+        $response = 2;
+    }else{
+        $response = 404;
+    }
+    $stmt->close();
+    $conn->close();
+    return $response;
+  }
+
+  function viewObjectAdmin($id, $page){
+    $monthsET = ["jaanuar", "veebruar", "märts", "aprill", "mai", "juuni", "juuli", "august", "september", "oktoober", "november", "detsember"];
+    $notice = null;
+    $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
+    if($page=="admin_lost.php"){
+        $stmt = $conn->prepare("SELECT description, picture, lost_place, DATE_FORMAT(lost_date, '%d'), DATE_FORMAT(lost_date, '%c'), DATE_FORMAT(lost_date, '%Y'), email FROM LOST_ITEM_AD WHERE lost_post_ID='{$id}'");
+        echo $conn->error;
+        $stmt->bind_result($description, $pic, $place, $day, $month, $year, $email);
+        $stmt->execute();
+        while($stmt->fetch()){
+            if($pic=="puudub"){
+                if($place == null){
+                    $place = "Kaotamise koha kohta info puudub!";
+                }
+                $notice .= '<div class="product flex-row >';
+                $notice .= '<img class="productImageBox" src="' .$GLOBALS["pic_read_dir_thumb"] ."missing.png" .'">';
+                $notice .= '<div class="productDesc">';
+                $notice .= '<p class="text"> Kirjeldus: ' .$description .'</p>';
+                $notice .= '<p class="text">Kaotamise koht: ' .$place .'</p>';
+                $notice .= '<p class="text">Kaotamise kuupäev: ' .$day .'.' .$monthsET[$month-1] .' ' .$year .'</p>';
+                $notice .= '<p class="text">E-mail: '. $email .'</p>';
+                $notice .= '<button id="delete">KUSTUTA</button>';
+                $notice .= '<select name="admin-view-ad">' .readStoragesForSelect();
+                $notice .= '</select>';
+                //$notice .= '<form id="deleteForm" method="POST">';
+                //$notice .= '<input class="deleteFormButton" type="submit" value="KUSTUTA" name="deleteAd"></form>';
+                $notice .= '</div></div>';
+            }else{
+                if($place == null){
+                    $place = "Kaotamise koha kohta info puudub!";
+                }
+                $notice .= '<div class="product flex-row">';
+                $notice .= '<img class="productImageBox" src="' .$GLOBALS["pic_read_dir_thumb"] .$pic .'">';
+                $notice .= '<div class="productDesc">';
+                $notice .= '<p class="text">Kirjeldus: ' .$description .'</p>';
+                $notice .= '<p class="text">Kaotamise koht: ' .$place .'</p>';
+                $notice .= '<p class="text">Kaotamise kuupäev: ' .$day .'.' .$monthsET[$month-1] .' ' .$year .'</p>';
+                $notice .= '<p class="text">E-mail: '. $email .'</p>';
+                $notice .= '<button id="delete">KUSTUTA</button>';
+                $notice .= '<select name="admin-view-ad">' .readStoragesForSelect();
+                $notice .= '</select>';
+                $notice .= '<form id="deleteForm" method="POST">';
+                $notice .= '<input class="deleteFormButton" type="submit" value="KUSTUTA" name="deleteAd"></form>';
+                $notice .= '</div></div>';
+            }
+        }
+        $stmt->close();
+        $conn->close();
+        return $notice;
+    }
   }
 ?>

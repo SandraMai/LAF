@@ -1,9 +1,13 @@
 <?php
     require("../head.php");
-
+    $response = null;
     $filter = null;
     $notice = displayLostItemsAdmin($filter);
     lostExpired();
+
+    if(isset($_POST["delete"])){
+        
+    }
 
 ?>
 <body>
@@ -19,6 +23,7 @@
 
             <div class="flex-row"> 
                 <h1 class="title">KAOTATUD ESEMED</h1>
+                 
             </div>
 
             
