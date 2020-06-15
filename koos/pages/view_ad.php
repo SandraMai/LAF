@@ -18,7 +18,7 @@
         if(isset($_POST["email"]) and !empty($_POST["email"])){
             if(checkEmail($id, $_POST["email"]) == 1){
                 $deletedNotice = deleteAd($id);
-                $emailError = "DONE!";
+                $emailError = "Kuulutus on kustutatud!";
             }else{
                 $emailError = "E-mailid ei klapi!";
             }
