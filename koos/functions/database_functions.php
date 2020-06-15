@@ -221,29 +221,30 @@
     }
 
 
-    function selectFoundPostsHTML() {
+    function selectFoundPostsHTML($offset) {
         $response = null;
         $monthsET = ["jaanuar", "veebruar", "märts", "aprill", "mai", "juuni", "juuli", "august", "september", "oktoober", "november", "detsember"];
         $page = basename($_SERVER['PHP_SELF']);
         $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
         $stmt = $conn->prepare("SELECT found_item_ad_ID, description,DATE_FORMAT(found_date, '%d'), DATE_FORMAT(found_date, '%c'), DATE_FORMAT(found_date, '%Y'),picture,CATEGORY_category_ID,place_found, storage_place_name
-        FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired=0 AND deleted = 0 ORDER BY found_item_ad_ID DESC");
+        FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired=0 AND deleted = 0 ORDER BY found_item_ad_ID DESC LIMIT 3 OFFSET ?");
+        $stmt->bind_param("i", $offset);
         echo $conn->error;
         $stmt->bind_result($id, $description, $day, $month, $year, $picture, $CATEGORY_category_ID, $place_found, $storage);
         $stmt->execute();
  
         while($stmt->fetch()){
-        $response .= ' <div class="product flex-row">';
-        $response .= '<a class="productImageBox" href="view_ad.php?id=' .$id ."&page=" .$page .'"><img class="productImage" src="' .$GLOBALS["pic_read_dir_thumb"] . $picture  .'"></a>';
-        $response .= '<div class="flex-column productDesc">';
-        $response .= '<p>Kirjeldus: ' . $description . '</p>';
-        $response .= '<p>Leidmise koht:' . $place_found . '</p>';
-        $response .= '<p>Kuupäev: ' .$day .'.' .$monthsET[$month-1] .' ' .$year .'</p>';
-        $response .= '<p>Hoiupaik: ' . $storage . '</p>';
-        $response .= '</div><div class="aside"></div></div>';
+            $response .= ' <div class="product flex-row">';
+            $response .= '<a class="productImageBox" href="view_ad.php?id=' .$id ."&page=" .$page .'"><img class="productImage" src="' .$GLOBALS["pic_read_dir_thumb"] . $picture  .'"></a>';
+            $response .= '<div class="flex-column productDesc">';
+            $response .= '<p>Kirjeldus: ' . $description . '</p>';
+            $response .= '<p>Leidmise koht:' . $place_found . '</p>';
+            $response .= '<p>Kuupäev: ' .$day .'.' .$monthsET[$month-1] .' ' .$year .'</p>';
+            $response .= '<p>Hoiupaik: ' . $storage . '</p>';
+            $response .= '</div><div class="aside"></div></div>';
         }
         if($response == null){
-            $response .= '<p class="flex-row">Hetkel esemeid pole!</p>';
+            $response = 100; // no more items error code
         }
         $response .= "\n";
 
