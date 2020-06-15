@@ -1,11 +1,16 @@
 <?php
 $database = "if19_LAF";
+$show=null;
+$searchedName=null;
+$searchedCategory=null;
+$searchedArea=null;
 if(isset($_POST["submitSearch"])){
     $searchedName = ($_POST["otsingSona"]);
     $searchedCategory =($_POST["category"]);
     $searchedArea =($_POST["area"]);
-    searchedItems($searchedName,$searchedCategory,$searchedArea);
-     $notice = "Su pakkutud hind on väiksem praegusest";
+    $thisLink =($_POST["linkname"]);
+    getAuctionElements($show,$searchedName,$searchedCategory,$searchedArea,$thisLink);
+     $notice = "otsing YEET";
 }
 ?>
 
@@ -25,8 +30,8 @@ if(isset($_POST["submitSearch"])){
                     <li><input id="other" name="area" type="input" placeholder="Asukoht"></li>
                     <li><input id="start-date" name="Date-Start" type="date"></li>
                     <li><input id="end-date" name="Date-End" type="date"></li>
-                    <li>
-                        <input name="submitSearch" id="submitSearch" type="submit" value="Otsi">
+                    <li><input type="hidden" name="linkname" value="<?php echo $linkValue?>"></li>
+                    <input name="submitSearch" id="submitSearch" type="submit" value="Otsi">
                         <span id="notice">
                             <?php  ?>
                         </span>

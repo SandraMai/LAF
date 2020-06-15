@@ -1,10 +1,10 @@
 <?php
-	function getAuctionElements($auctionListing){
+	function getAuctionElements($auctionListing,$searchedName,$searchedCategory,$searchedArea,$thisLink){
 		$monthsET = ["jaanuar", "veebruar", "märts", "aprill", "mai", "juuni", "juuli", "august", "september", "oktoober", "november", "detsember"];
 		$response = null;
 		$expiredElement;
 		$conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]); 
-		if($auctionListing==null){
+		if($auctionListing==null && $searchedName==null){
 			$stmt = $conn->prepare("SELECT found_item_ad_ID,description,DATE_FORMAT(found_date, '%d'), DATE_FORMAT(found_date, '%c'), DATE_FORMAT(found_date, '%Y'),picture,CATEGORY_category_ID,place_found 
 			FROM FOUND_ITEM_AD WHERE expired=1 AND auctioned=1");
 			echo $conn->error;
@@ -21,7 +21,7 @@
 				$response .= '<span class="productImageBox"><img class="productImage" src="' .$GLOBALS["pic_read_dir_thumb"] . $picture  . '"></span>';
 				$response .= '<div class="productDesc">';
 				$response .= '<p>Kirjeldus: ' . $description . '</p>';
-				$response .= '<p>Leidmise koht: ' . $place_found . '</p>';
+				$response .= '<p>'.$thisLink.'Leidmise koht: ' . $place_found . '</p>';
 				$response .= '<p>Leitud kuupäev: ' .$day .'.' .$monthsET[$month-1] .' ' .$year .'</p>';
 				$response .= '<br><p>Aegub ';
 				$response .= '<a class="productexplinationsDATE" data-time="' . $timestamps . '">';
@@ -72,7 +72,38 @@
 			$stmt->close();
 			$conn->close();
 			return $response;
+		
+		}else if($auctionListing==null && $searchedName!=null){
+			$stmt = $conn->prepare("SELECT found_item_ad_ID,description,DATE_FORMAT(found_date, '%d'), DATE_FORMAT(found_date, '%c'), DATE_FORMAT(found_date, '%Y'),picture,CATEGORY_category_ID,place_found FROM FOUND_ITEM_AD WHERE expired=1 AND auctioned=1 AND description LIKE '%{$searchedName}%' ");
+			echo $conn->error;
+			$stmt->bind_result($id,$description, $day, $month, $year, $picture, $CATEGORY_category_ID, $place_found);
+			$stmt->execute();
+			while($stmt->fetch()){
+			$auctionID=getAuctionId($id);
+			$checkIfactive=getAuctionExpiration($auctionID);		
+			if($checkIfactive!=1){
+				$timestamps = getAuctionCountdown($id);
+				$echoing=htmlspecialchars($_SERVER["PHP_SELF"]);
+				$response .= ' <div class="product">';
+				$response .= '<span class="productImageBox"><img class="productImage" src="' .$GLOBALS["pic_read_dir_thumb"] . $picture  . '"></span>';
+				$response .= '<div class="productDesc">';
+				$response .= '<p>Kirjeldus: ' . $description . '</p>';
+				$response .= '<p>Leidmise koht: ' . $place_found . '</p>';
+				$response .= '<p>Leitud kuupäev: ' .$day .'.' .$monthsET[$month-1] .' ' .$year .'</p>';
+				$response .= '<br><p>Aegub ';
+				$response .= '<a class="productexplinationsDATE" data-time="' . $timestamps . '">';
+				$response .= '<span class="days"></span> p <span class="hours"></span> h <span class="minutes">';
+				$response .= '</span> min <span class="seconds"></span> s </a></p>';
+				$response .= '<p><a class="newOffer" href="new_offer.php?item='.$id.'">';
+				$response .= '<input type="submit" id="priceSuggested" name="priceSuggested" value="Paku enda hind"></a></p>';
+				$response .= '</div><div class="aside"></div></div>';
+			}
+			}
+			$stmt->close();
+			$conn->close();
+			return $response;
 		}
+		
 		
 	}
 	function getAuctionCountdown($idofItem){
@@ -197,5 +228,21 @@
         $conn->close();
         return $step;
 	}
+	function searchedItems($searchedName,$searchedCategory,$searchedArea){
+        $step = null;
+        $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
+        $stmt = $conn->prepare("SELECT step FROM AUCTION WHERE FOUND_ITEM_AD_found_item_ad_ID='{$id}'");
+        $stmt->bind_result($stepDB);
+        $stmt->execute();
+        if($stmt->fetch()){
+          $step = $stepDB;
+        } else {
+          $step = $stmt->error;
+        }
+        $stmt->close();
+        $conn->close();
+        return $step;
+	}
+	
 	
 ?>

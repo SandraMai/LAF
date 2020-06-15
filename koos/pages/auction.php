@@ -4,6 +4,10 @@ require('../head.php');
 
 $database = "if19_LAF";
 $show=null;
+$searchedName=null;
+$searchedCategory=null;
+$searchedArea=null;
+$linkValue=3;
 echo auctionFiltration();
 
 ?>
@@ -36,7 +40,7 @@ echo auctionFiltration();
         <div class="filtersProductsLayout"> 
             <?php require("../filter.php") ?>
             <div class="products">
-                <?php echo getAuctionElements($show); ?>
+                <?php echo getAuctionElements($show,$searchedName,$searchedCategory,$searchedArea,$linkValue); ?>
             </div><!--.flex-row-->
         </div><!--.products -->
             
