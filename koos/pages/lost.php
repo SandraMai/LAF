@@ -3,6 +3,7 @@
 
     $filter = null;
     $notice = displayLostItems($filter);
+    lostExpired();
 
 /*  // Praegu ei toota sest pole andmebaasi
     if (isset($_POST["tehnika"])){

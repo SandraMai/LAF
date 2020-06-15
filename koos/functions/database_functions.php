@@ -158,10 +158,32 @@
         return $response;
     }
 
-    function getFAQSection($id){
+    function lostExpired(){
+        $notice = null;
+        $one = 1;
+        $zero = 0;
+        $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
+        $stmt = $conn->prepare("UPDATE LOST_ITEM_AD SET expired = ? WHERE DATEDIFF(NOW(), added_date) > 6 AND deleted = ?");
+
+        echo $conn->error;
+        $stmt->bind_param("ii", $one, $zero);
+        $stmt->execute();
+
+        if($stmt->execute()){
+            $notice = null;
+        }else{
+            $notice = "Andmete uuendamisel tekkis tõrge!" .$stmt->error;
+        }
+
+        $stmt->close();
+        $conn->close();
+        return $notice;
+    }
+
+    function getFAQSectionOne(){
         $notice = null;
         $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
-        $stmt = $conn->prepare("SELECT question, answer FROM FAQ JOIN SECTION ON FAQ.SECTION_section_ID = SECTION.section_ID WHERE section_ID ='{$id}'");
+        $stmt = $conn->prepare("SELECT question, answer FROM FAQ JOIN SECTION ON FAQ.SECTION_section_ID = SECTION.section_ID WHERE section_ID = 1");
         echo $conn->error;
         $stmt->bind_result($question, $answer);
         $stmt->execute();
@@ -174,6 +196,23 @@
         $conn->close();
         return $notice;
     }
+
+    function getFAQSectionTwo(){
+        $notice = null;
+        $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
+        $stmt = $conn->prepare("SELECT question, answer FROM FAQ JOIN SECTION ON FAQ.SECTION_section_ID = SECTION.section_ID WHERE section_ID = 2");
+        echo $conn->error;
+        $stmt->bind_result($question, $answer);
+        $stmt->execute();
+        while($stmt->fetch()){
+            $notice .= '<h4>' .$question .'</h4>';
+            $notice .= '<p>' .$answer .'</p>';
+        }
+        $stmt->close();
+        $conn->close();
+        return $notice;
+    }
+
 
     // LIINA
     function insertFoundPost($storage, $found_date, $fileName, $category, $description, $placeFound) {
