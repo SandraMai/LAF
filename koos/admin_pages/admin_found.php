@@ -1,11 +1,13 @@
 <?php 
 require('../head.php'); 
 foundToExpired();
+$notice = selectFoundPostsAdmin();
 
 
 if(isset($_POST["deleteAd"])){
     $id = $_POST["idInput"];
     deleteFoundAdmin($id);
+    $notice = selectFoundPostsAdmin();
 }
 ?>
 <body>
@@ -43,7 +45,7 @@ if(isset($_POST["deleteAd"])){
 
             <?php require("../filter.php") ?>
             <div class="products">
-                    <?php echo selectFoundPostsAdmin(); ?>
+                    <?php echo $notice ?>
             
             </div><!--.products -->
         </div><!--.flex-row-->
