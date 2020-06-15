@@ -953,12 +953,12 @@ Reorganized stuff for responsiveness
         margin-top: 10px;
         flex-direction: column;
         justify-content: center;
-        align-items: center;
+        align-items: end;
         padding: 0px;
     }
 
     .productDesc p {
-        margin-bottom: 20px;
+        margin-bottom: 15px;
         margin-right: auto;
     }
 
