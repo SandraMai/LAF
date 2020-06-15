@@ -130,7 +130,7 @@ if ($flag == 1) {
 <input class="modalCase" type="hidden" data-case="<?php echo $case;?>">
 <?php 
 
-$url = "found.php";
+$url = "../admin_pages/admin_found.php";
 $urlTitle = 'Tagasi leitud rubriiki';
 require('../pages/modal.php'); ?>
 
