@@ -953,7 +953,7 @@ Reorganized stuff for responsiveness
         margin-top: 10px;
         flex-direction: column;
         justify-content: center;
-        align-items: end;
+        align-items: flex-end;
         padding: 0px;
     }
 
