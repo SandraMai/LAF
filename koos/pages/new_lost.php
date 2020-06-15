@@ -240,7 +240,11 @@ if ($flag == 1) {
 ?>
 
 <input class="modalCase" type="hidden" data-case="<?php echo $case;?>">
-<?php require('modal.php'); ?>
+<?php 
+
+$url = "lost.php";
+$urlTitle = 'Tagasi kaotatud rubriiki';
+require('modal.php'); ?>
 
 <script src="../js/lost.js"></script>
 </body>

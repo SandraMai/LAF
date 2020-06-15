@@ -238,6 +238,20 @@ textarea {
     font-size: x-large;
 }
 
+.modalUrl:visited {
+    color: #6BCABA;
+}
+
+.modalUrl {
+    color: #6BCABA;
+    text-decoration: underline;
+    transition: color .3s;
+}
+
+.modalUrl:hover {
+    color: #386b63;
+}   
+
 /* ANETE */
 
 .faq{
