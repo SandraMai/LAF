@@ -21,7 +21,7 @@ $(document).ready(function() {
             }).done(function(data) {
                 console.log(data);
                 if (data == 100) {
-                    $('.js-more-wrapper').empty().append('<p class="flex-row">Rohekem esemeid ei ole!</p>');
+                    $('.js-more-wrapper').empty().append('<h1 >Rohkem esemeid ei ole!</h1>');
                 } else {
                     createProductHTML(JSON.parse(data));
                 }

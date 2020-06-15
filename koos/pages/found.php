@@ -1,6 +1,7 @@
 <?php 
 require('../head.php'); 
 foundToExpired();
+$offset = 0;
 ?>
 <body>
 
@@ -38,20 +39,23 @@ foundToExpired();
 
             <?php require("../filter.php") ?>
             <div class="products">
-                    <?php echo selectFoundPostsHTML(); ?>
-            
+                    <?php echo selectFoundPostsHTML($offset); ?>
             </div><!--.products -->
-        </div><!--.flex-row-->
+
+        </div><!--.filtersProductsLayout-->
+
+        <div class="js-more-wrapper loadMoreButton"><button data-inf=0 data-type=2 class="js-load-more">lae juurde</button></div>
 
     </div><!--.main-section-->
 
 
     <div class="aside"></div>
-</div>
+</div><!--.main-flex-->
 
 
 
 
 <script src="../js/found.js"></script>
+<script src="../js/infiniteScroll.js"></script>
 </body>
 </html>
