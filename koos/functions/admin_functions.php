@@ -230,4 +230,37 @@
       $conn->close();
       return $notice;
   }
+
+  function selectFoundPostsAdmin() {
+    $response = null;
+    $monthsET = ["jaanuar", "veebruar", "märts", "aprill", "mai", "juuni", "juuli", "august", "september", "oktoober", "november", "detsember"];
+    $page = basename($_SERVER['PHP_SELF']);
+    $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
+    $stmt = $conn->prepare("SELECT found_item_ad_ID, description,DATE_FORMAT(found_date, '%d'), DATE_FORMAT(found_date, '%c'), DATE_FORMAT(found_date, '%Y'),picture,CATEGORY_category_ID,place_found, storage_place_name
+    FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired=0 ORDER BY found_item_ad_ID DESC");
+    echo $conn->error;
+    $stmt->bind_result($id, $description, $day, $month, $year, $picture, $CATEGORY_category_ID, $place_found, $storage);
+    $stmt->execute();
+
+    while($stmt->fetch()){
+    $response .= ' <div class="product flex-row">';
+    $response .= '<img class="productImage" src="' .$GLOBALS["pic_read_dir_thumb"] . $picture  .'"></a>';
+    $response .= '<div class="flex-column productDesc">';
+    $response .= '<p>Kirjeldus: ' . $description . '</p>';
+    $response .= '<p>Leidmise koht:' . $place_found . '</p>';
+    $response .= '<p>Kuupäev: ' .$day .'.' .$monthsET[$month-1] .' ' .$year .'</p>';
+    $response .= '<p>Hoiupaik: ' . $storage . '</p>';
+    $response .= '<form method="POST" action="#"><input type ="hidden" value="' .$id .'" name="idInput">';
+    $response .= '<input type="submit" id="delete" name="deleteAd" value="KUSTUTA"></form>';
+    $response .= '</div><div class="aside"></div></div>';
+    }
+    if($response == null){
+        $response .= '<p class="flex-row">Hetkel esemeid pole!</p>';
+    }
+    $response .= "\n";
+
+    $stmt->close();
+    $conn->close();
+    return $response;
+}
 ?>

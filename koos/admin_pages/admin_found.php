@@ -1,6 +1,11 @@
 <?php 
 require('../head.php'); 
 foundToExpired();
+
+
+if(isset($_POST["deleteAd"])){
+    $id = $_POST["idInput"];
+}
 ?>
 <body>
 
@@ -29,14 +34,16 @@ foundToExpired();
         <div class="flex-row"> 
             <a class="add-ad" href="../pages/new_found.php">LISA ESE</a>
         </div>
-        <div class="clearfix-50"></div>
+        <div class="clearfix-50">
+        <?php echo $id; ?>
+        </div>
         <!-- PAGE BODY -->
 
         <div class="filtersProductsLayout"> 
 
             <?php require("../filter.php") ?>
             <div class="products">
-                    <?php echo selectFoundPostsHTML(); ?>
+                    <?php echo selectFoundPostsAdmin(); ?>
             
             </div><!--.products -->
         </div><!--.flex-row-->
