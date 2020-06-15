@@ -3,7 +3,7 @@
     function displayLostItems($filter, $offset){
         $monthsET = ["jaanuar", "veebruar", "märts", "aprill", "mai", "juuni", "juuli", "august", "september", "oktoober", "november", "detsember"];
         $notice = null;
-        $page = basename($_SERVER['PHP_SELF']);
+        $page = 'lost.php';
         $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
         if($filter == null){
             $stmt = $conn->prepare("SELECT lost_post_ID, description, picture, lost_place, DATE_FORMAT(lost_date, '%d'), DATE_FORMAT(lost_date, '%c'), DATE_FORMAT(lost_date, '%Y') 
@@ -67,7 +67,7 @@
                     if($place == null){
                         $place = "Kaotamise koha kohta info puudub!";
                     }
-                    $notice .= ' <div class="product flex-row >';
+                    $notice .= ' <div class="product flex-row" >';
                     $notice .= '<img class="productImageBox" src="' .$GLOBALS["pic_read_dir_thumb"] ."missing.png" .'">';
                     $notice .= '<div class="productDesc">';
                     $notice .= '<p class="text"> Kirjeldus: ' .$description .'</p>';
@@ -224,7 +224,7 @@
     function selectFoundPostsHTML($offset) {
         $response = null;
         $monthsET = ["jaanuar", "veebruar", "märts", "aprill", "mai", "juuni", "juuli", "august", "september", "oktoober", "november", "detsember"];
-        $page = basename($_SERVER['PHP_SELF']);
+        $page = 'found.php';
         $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
         $stmt = $conn->prepare("SELECT found_item_ad_ID, description,DATE_FORMAT(found_date, '%d'), DATE_FORMAT(found_date, '%c'), DATE_FORMAT(found_date, '%Y'),picture,CATEGORY_category_ID,place_found, storage_place_name
         FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired=0 AND deleted = 0 ORDER BY found_item_ad_ID DESC LIMIT 3 OFFSET ?");
