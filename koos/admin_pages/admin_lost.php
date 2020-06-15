@@ -5,8 +5,10 @@
     $notice = displayLostItemsAdmin($filter);
     lostExpired();
 
-    if(isset($_POST["delete"])){
-        
+    if(isset($_POST["deleteLostAd"])){   
+        $id = $_POST["idInput"];
+        $response = deleteLostAdAdmin($id);
+        $notice = displayLostItemsAdmin($filter);
     }
 
 ?>
@@ -23,9 +25,7 @@
 
             <div class="flex-row"> 
                 <h1 class="title">KAOTATUD ESEMED</h1>
-                 
             </div>
-
             
             <div class="clearfix-50"></div>
             <div class="filtersProductsLayout"> 

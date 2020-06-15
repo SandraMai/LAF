@@ -5,7 +5,7 @@
     $notice = null;
     $id = null;
     $deletedNotice = null;
-    $emailError = null;
+    
 
 
     if(isset($_GET["id"])){
@@ -15,16 +15,8 @@
     }
 
     if(isset($_POST["deleteAd"])){
-        if(isset($_POST["email"]) and !empty($_POST["email"])){
-            if(checkEmail($id, $_POST["email"]) == 1){
-                $deletedNotice = deleteLostAdAdmin($id);
-                $emailError = "DONE!";
-            }else{
-                $emailError = "E-mailid ei klapi!";
-            }
-        }else{
-            $emailError = "Palun sisesta E-mail!";
-        }
+        $id = $_POST["idInput"];
+        $notice = deleteLostAdAdmin($id);
     }
 ?>
 

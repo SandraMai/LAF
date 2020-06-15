@@ -208,7 +208,7 @@
               $notice .= '<p> Kaotamise kuupäev: ' .$day .'.' .$monthsET[$month-1] .' ' .$year .'</p>';
               $notice .= '<p class="text">E-mail: '. $email .'</p>';
               $notice .= '<form method="POST" action="#"><input type ="hidden" value="' .$id .'" name="idInput">';
-              $notice .= '<input type="submit" id="delete" name="deleteAd" value="KUSTUTA"></form>';
+              $notice .= '<input type="submit" id="delete" name="deleteLostAd" value="KUSTUTA"></form>';
               $notice .= '</div></div>';
           }else{
               if($place == null){
@@ -222,7 +222,7 @@
               $notice .= '<p> Kaotamise kuupäev: ' .$day .'.' .$monthsET[$month-1] .' ' .$year .'</p>';
               $notice .= '<p class="text">E-mail: '. $email .'</p>';
               $notice .= '<form method="POST" action="#"><input type ="hidden" value="' .$id .'" name="idInput">';
-              $notice .= '<input type="submit" id="delete" name="deleteAd" value="KUSTUTA"></form>';
+              $notice .= '<input type="submit" id="delete" name="deleteLostAd" value="KUSTUTA"></form>';
               $notice .= '</div></div>';
           }
       }
@@ -239,24 +239,6 @@
     $one = 1;
     $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
     $stmt = $conn->prepare("UPDATE LOST_ITEM_AD SET deleted = ? WHERE lost_post_ID = ?");
-    echo $conn->error;
-    $stmt->bind_param("ii", $one, $id);
-    $stmt->execute();
-    if($stmt->execute()){
-        $response = 2;
-    }else{
-        $response = 404;
-    }
-    $stmt->close();
-    $conn->close();
-    return $response;
-  }
-
-  function deleteFoundAdmin($id){
-    $response = null;
-    $one = 1;
-    $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
-    $stmt = $conn->prepare("UPDATE FOUND_ITEM_AD SET deleted = ? WHERE found_item_ad_ID = ?");
     echo $conn->error;
     $stmt->bind_param("ii", $one, $id);
     $stmt->execute();
@@ -290,12 +272,11 @@
                 $notice .= '<p class="text"> Kirjeldus: ' .$description .'</p>';
                 $notice .= '<p class="text">Kaotamise koht: ' .$place .'</p>';
                 $notice .= '<p class="text">Kaotamise kuupäev: ' .$day .'.' .$monthsET[$month-1] .' ' .$year .'</p>';
-                $notice .= '<p class="text">E-mail: '. $email .'</p>';
-                $notice .= '<button id="delete">KUSTUTA</button>';
+                $notice .= '<p class="text">E-mail: '. $email .'</p>';                
                 $notice .= '<select name="admin-view-ad">' .readStoragesForSelect();
                 $notice .= '</select>';
-                //$notice .= '<form id="deleteForm" method="POST">';
-                //$notice .= '<input class="deleteFormButton" type="submit" value="KUSTUTA" name="deleteAd"></form>';
+                $notice .= '<form method="POST" action="#"><input type ="hidden" value="' .$id .'" name="idInput">';
+                $notice .= '<input type="submit" id="delete" name="deleteAd" value="KUSTUTA"></form>';
                 $notice .= '</div></div>';
             }else{
                 if($place == null){
@@ -308,11 +289,10 @@
                 $notice .= '<p class="text">Kaotamise koht: ' .$place .'</p>';
                 $notice .= '<p class="text">Kaotamise kuupäev: ' .$day .'.' .$monthsET[$month-1] .' ' .$year .'</p>';
                 $notice .= '<p class="text">E-mail: '. $email .'</p>';
-                $notice .= '<button id="delete">KUSTUTA</button>';
                 $notice .= '<select name="admin-view-ad">' .readStoragesForSelect();
                 $notice .= '</select>';
-                $notice .= '<form id="deleteForm" method="POST">';
-                $notice .= '<input class="deleteFormButton" type="submit" value="KUSTUTA" name="deleteAd"></form>';
+                $notice .= '<form method="POST" action="#"><input type ="hidden" value="' .$id .'" name="idInput">';
+                $notice .= '<input type="submit" id="delete" name="deleteAd" value="KUSTUTA"></form>';
                 $notice .= '</div></div>';
             }
         }
@@ -327,7 +307,7 @@
     $page = basename($_SERVER['PHP_SELF']);
     $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
     $stmt = $conn->prepare("SELECT found_item_ad_ID, description,DATE_FORMAT(found_date, '%d'), DATE_FORMAT(found_date, '%c'), DATE_FORMAT(found_date, '%Y'),picture,CATEGORY_category_ID,place_found, storage_place_name
-    FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired=0 AND deleted = 0 ORDER BY found_item_ad_ID DESC");
+    FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired=0 ORDER BY found_item_ad_ID DESC");
     echo $conn->error;
     $stmt->bind_result($id, $description, $day, $month, $year, $picture, $CATEGORY_category_ID, $place_found, $storage);
     $stmt->execute();
