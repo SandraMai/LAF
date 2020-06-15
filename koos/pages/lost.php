@@ -1,8 +1,12 @@
 <?php
     require("../head.php");
 
+    $offset = 0;
     $filter = null;
-    $notice = displayLostItems($filter);
+    $notice = displayLostItems($filter, $offset);
+    if ($notice == 100) {
+        $notice = '<p class="flex-row">Hetkel esemeid pole!</p>';
+    }
     lostExpired();
 
 /*  // Praegu ei toota sest pole andmebaasi
@@ -44,10 +48,17 @@
                 <?php require("../filter.php") ?>
                 <div class="products">
                     <?php echo $notice?>
-                </div>
-            </div>
+                    
+                </div><!--.products-->
+                
+            </div><!--.filtersProductsLayout-->
+
+            <div class="js-more-wrapper loadMoreButton"><button data-inf=0 data-type=1 class="js-load-more">lae juurde</button></div>
         </div> <!--main section -->
         <div class="aside"></div>
     </div><!-- main-flex-->
     
+
+
+<script src="../js/infiniteScroll.js"></script>
 </body>

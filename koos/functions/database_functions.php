@@ -1,17 +1,18 @@
 <?php
     // SANDRA
-    function displayLostItems($filter){
+    function displayLostItems($filter, $offset){
         $monthsET = ["jaanuar", "veebruar", "märts", "aprill", "mai", "juuni", "juuli", "august", "september", "oktoober", "november", "detsember"];
         $notice = null;
         $page = basename($_SERVER['PHP_SELF']);
         $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
         if($filter == null){
             $stmt = $conn->prepare("SELECT lost_post_ID, description, picture, lost_place, DATE_FORMAT(lost_date, '%d'), DATE_FORMAT(lost_date, '%c'), DATE_FORMAT(lost_date, '%Y') 
-            FROM LOST_ITEM_AD WHERE expired = 0 AND deleted = 0 ORDER BY lost_post_ID DESC");
+            FROM LOST_ITEM_AD WHERE expired = 0 AND deleted = 0 ORDER BY lost_post_ID DESC LIMIT 3 OFFSET ?");
+            $stmt->bind_param("i", $offset);
         }else{
             $stmt = $conn->prepare("SELECT lost_post_ID, description, picture, lost_place, DATE_FORMAT(lost_date, '%d'), DATE_FORMAT(lost_date, '%c'), DATE_FORMAT(lost_date, '%Y')
-            FROM LOST_ITEM_AD WHERE CATEGORY_category_ID = ? AND expired = 0 AND deleted = 0 ORDER BY lost_date DESC");
-            $stmt->bind_param("s", $filter);
+            FROM LOST_ITEM_AD WHERE CATEGORY_category_ID = ? AND expired = 0 AND deleted = 0 ORDER BY lost_date DESC LIMIT 3 OFFSET ?");
+            $stmt->bind_param("si", $filter, $offset);
         }
         echo $conn->error;
         $stmt->bind_result($id, $description, $pic, $place, $day, $month, $year);
@@ -43,7 +44,8 @@
             }
         }
         if($notice == null){
-            $notice .= '<p class="flex-row">Hetkel esemeid pole!</p>';
+            //$notice .= '<p class="flex-row">Hetkel esemeid pole!</p>';
+            $notice = 100; // no more items;
         }
         
         $stmt->close();
