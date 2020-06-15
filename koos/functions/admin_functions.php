@@ -314,7 +314,7 @@
 
     while($stmt->fetch()){
     $response .= ' <div class="product flex-row">';
-    $response .= '<img class="productImage" src="' .$GLOBALS["pic_read_dir_thumb"] . $picture  .'"></a>';
+    $response .= '<img class="productImageBox" src="' .$GLOBALS["pic_read_dir_thumb"] . $picture  .'"></a>';
     $response .= '<div class="flex-column productDesc">';
     $response .= '<p>Kirjeldus: ' . $description . '</p>';
     $response .= '<p>Leidmise koht:' . $place_found . '</p>';
