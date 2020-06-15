@@ -158,10 +158,10 @@
         return $response;
     }
 
-    function getFAQSectionOne(){
+    function getFAQSection($id){
         $notice = null;
         $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
-        $stmt = $conn->prepare("SELECT question, answer FROM FAQ JOIN SECTION ON FAQ.SECTION_section_ID = SECTION.section_ID WHERE section_ID = 1");
+        $stmt = $conn->prepare("SELECT question, answer FROM FAQ JOIN SECTION ON FAQ.SECTION_section_ID = SECTION.section_ID WHERE section_ID ='{$id}'");
         echo $conn->error;
         $stmt->bind_result($question, $answer);
         $stmt->execute();
@@ -174,23 +174,6 @@
         $conn->close();
         return $notice;
     }
-
-    function getFAQSectionTwo(){
-        $notice = null;
-        $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
-        $stmt = $conn->prepare("SELECT question, answer FROM FAQ JOIN SECTION ON FAQ.SECTION_section_ID = SECTION.section_ID WHERE section_ID = 2");
-        echo $conn->error;
-        $stmt->bind_result($question, $answer);
-        $stmt->execute();
-        while($stmt->fetch()){
-            $notice .= '<h4>' .$question .'</h4>';
-            $notice .= '<p>' .$answer .'</p>';
-        }
-        $stmt->close();
-        $conn->close();
-        return $notice;
-    }
-
 
     // LIINA
     function insertFoundPost($storage, $found_date, $fileName, $category, $description, $placeFound) {

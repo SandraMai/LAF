@@ -1,8 +1,7 @@
 <?php 
 
 require('../head.php'); 
-$faqHTMLOne = getFAQSectionOne();
-$faqHTMLTwo = getFAQSectionTwo();
+ 
 
 ?>
 <body>
@@ -27,12 +26,20 @@ $faqHTMLTwo = getFAQSectionTwo();
         <div class="flex-column"> 
         <h1>LEITUD</h1>
             <?php 
-                echo $faqHTMLOne;           
+                echo getFAQSection(1);         
             ?>
     
         <h1>KAOTATUD</h1>
         <?php
-            echo $faqHTMLTwo;
+            echo getFAQSection(2);
+        ?>
+        <h1>OKSJON</h1>
+        <?php
+            echo getFAQSection(3);
+        ?>
+        <h1>MUU</h1>
+        <?php
+            echo getFAQSection(4);
         ?>
         </div>
     </div>
