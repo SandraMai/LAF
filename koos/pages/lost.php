@@ -7,7 +7,8 @@
     $thisLink=null;
     $offset = 0;
     $filter = null;
-    $notice = displayLostItems($filter, $offset,$searchedName,$searchedCategory,$searchedArea,$thisLink);
+    $notice = displayLostItems($offset,$searchedName,$searchedCategory,$searchedArea,$thisLink);
+
 
     lostExpired();
     if ($notice==100) {

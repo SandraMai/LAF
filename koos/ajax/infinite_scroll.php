@@ -9,11 +9,13 @@ $database = "if19_LAF";
 if( isset($_POST['inf'])) {
 
     $offset = $_POST['inf'];
-    $filter = null;
+    $searchedName = $_POST['name'];
+    $searchedCategory = $_POST['cat'];
+    $searchedArea = $_POST['area'];
 
     if ($_POST['type'] == 1) {
 
-        $getMore = displayLostItems($filter, $offset,$filter, $offset,$searchedName,$searchedCategory,$searchedArea,$thisLink);
+        $getMore = displayLostItems($offset, $searchedName, $searchedCategory, $searchedArea, 0);
 
         if ($getMore == 100) {
             echo $getMore;

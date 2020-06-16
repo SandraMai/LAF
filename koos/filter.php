@@ -44,9 +44,9 @@ if(isset($_POST["submitSearch"])){
                 <ul class="ul flex-column">
                 <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" class="filterForm">
                     <li><input id="other" name="otsingSona" type="input" placeholder="Otsingusõna" value="<?php
-                    echo $searchedName;?>"></li>
+                    echo $searchedName;?>" data-value="<?php echo $searchedName;?>"></li>
                     <li>
-                        <select name="category" id="category"  value="<?php echo $searchedCategory;?>">
+                        <select name="category" id="category" data-value="<?php echo $searchedCategory;?>" value="<?php echo $searchedCategory;?>">
                         <option disabled selected value>  Vali kategooria  </option>
                         <?php 
                             $array = array("riided", "tehnika", "muu");
@@ -61,7 +61,7 @@ if(isset($_POST["submitSearch"])){
                             
                         </select>
                     </li>
-                    <li><input id="other" name="area" type="input" placeholder="Asukoht" value="<?php echo $searchedArea;?>"></li>
+                    <li><input id="other" name="area" type="input" placeholder="Asukoht" value="<?php echo $searchedArea;?>" data-value="<?php echo $searchedArea;?>"></li>
                     <li><input id="start-date" name="Date-Start" type="date"></li>
                     <li><input id="end-date" name="Date-End" type="date"></li>
                     <li><input type="hidden" name="linkname" value="<?php echo $linkValue?>"></li>
