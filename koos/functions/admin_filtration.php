@@ -206,7 +206,8 @@
         $stmt->close();
         $conn->close();
         return $response;
-		
+        
+        CATEGORY_category_ID LIKE 
     }
 */
     function getSuccessfulAuctions($searchedName,$searchedCategory,$searchedArea,$thisLink, $offset){
@@ -218,6 +219,31 @@
         }else if($searchedName!=null&&$searchedArea==null&&$searchedCategory==null){
             $stmt = $conn->prepare("SELECT found_item_ad_ID, description, picture, storage_place_name FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON 
             FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired = 1 AND auctioned = 1 AND deleted = 0 AND description LIKE '%{$searchedName}%' ");
+
+        
+        }else if($searchedName==null&&$searchedArea!=null&&$searchedCategory==null){
+            $stmt = $conn->prepare("SELECT found_item_ad_ID, description, picture, storage_place_name FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON 
+            FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired = 1 AND auctioned = 1 AND deleted = 0 AND place_found LIKE '%{$searchedArea}%' ");
+
+        }else if($searchedName==null&&$searchedArea==null&&$searchedCategory!=null){
+            $stmt = $conn->prepare("SELECT found_item_ad_ID, description, picture, storage_place_name FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON 
+            FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired = 1 AND auctioned = 1 AND deleted = 0 AND CATEGORY_category_ID LIKE '%{$searchedCategory}%' ");
+
+        }else if($searchedName!=null&&$searchedArea!=null&&$searchedCategory==null){
+            $stmt = $conn->prepare("SELECT found_item_ad_ID, description, picture, storage_place_name FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON 
+            FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired = 1 AND auctioned = 1 AND deleted = 0 AND description LIKE '%{$searchedName}%'AND place_found LIKE '%{$searchedArea}%' ");
+
+        }else if($searchedName!=null&&$searchedArea==null&&$searchedCategory!=null){
+            $stmt = $conn->prepare("SELECT found_item_ad_ID, description, picture, storage_place_name FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON 
+            FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired = 1 AND auctioned = 1 AND deleted = 0 AND description LIKE '%{$searchedName}%'AND  CATEGORY_category_ID LIKE '%{$searchedCategory}%'  ");
+
+        }else if($searchedName==null&&$searchedArea!=null&&$searchedCategory!=null){
+            $stmt = $conn->prepare("SELECT found_item_ad_ID, description, picture, storage_place_name FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON 
+            FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired = 1 AND auctioned = 1 AND deleted = 0 AND  place_found LIKE '%{$searchedArea}%' AND CATEGORY_category_ID LIKE '%{$searchedCategory}%' ");
+        
+        }else if($searchedName!=null&&$searchedArea!=null&&$searchedCategory!=null){
+            $stmt = $conn->prepare("SELECT found_item_ad_ID, description, picture, storage_place_name FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON 
+            FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired = 1 AND auctioned = 1 AND deleted = 0 AND description LIKE '%{$searchedName}%'AND place_found LIKE '%{$searchedArea}%' AND CATEGORY_category_ID LIKE '%{$searchedCategory}%' ");
         }
 
 
@@ -235,7 +261,7 @@
                     $notice .= ' <div class="product flex-row" >';
                     $notice .= '<img class="productImageBox" src="' .$GLOBALS["pic_read_dir_thumb"] .$pic .'">';
                     $notice .= '<div class="productDesc">';
-                    $notice .= '<p class="text">Kirjeldus: ' .$searchedName .'</p>';
+                    $notice .= '<p class="text">Kirjeldus: ' .$description .'</p>';
                     $notice .= '<p class="text">Hoiupaik: ' .$storage_place .'</p>';
                     $notice .= '<p class="text">E-mail: ' .$email .'</p>';
                     $notice .= '<p class="text">Parim pakkumine: ' .$bestOffer .' €</p>';
