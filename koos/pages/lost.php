@@ -30,11 +30,9 @@
 ?>
 
 <body>
-    <div class="main-flex header">
-        <div class="main-section">
+
             <?php require("../header.php"); ?>
-        </div>
-    </div>
+
     
     <div class="main-flex page-body">
         <div class="aside"></div>
