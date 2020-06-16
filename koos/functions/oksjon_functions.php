@@ -55,13 +55,12 @@
 				}
 				$response .= '</div><div class="aside"></div></div>';
 			}
-			if($response == null){
-			$response = "<p>Kahjuks hetkel pole ühtegi aktiivset oksjoni kuulutust</p>";
-			}
 			
 
 			$response .= "\n";
-
+			if($response == null){
+				$response = "<p>Kahjuks hetkel pole ühtegi aktiivset oksjoni kuulutust</p>";
+				}
 			}
 			$stmt->close();
 			$conn->close();
