@@ -1,10 +1,9 @@
 <?php
     function getSuccessfulAuctions(){
-        $monthsET = ["jaanuar", "veebruar", "märts", "aprill", "mai", "juuni", "juuli", "august", "september", "oktoober", "november", "detsember"];
         $notice = null;
         $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]); 
         $stmt = $conn->prepare("SELECT found_item_ad_ID, description, picture, storage_place_name FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON 
-        FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired = 1 AND auctioned = 1 ");
+        FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired = 1 AND auctioned = 1 ORDER BY DESC");
 
         echo $conn->error;
         $stmt->bind_result($id, $description, $pic, $storage_place);
@@ -24,6 +23,40 @@
                     $notice .= '<p class="text">Hoiupaik: ' .$storage_place .'</p>';
                     $notice .= '<p class="text">E-mail: ' .$email .'</p>';
                     $notice .= '<p class="text">Parim pakkumine: ' .$bestOffer .' €</p>';
+                    $notice .= '</div></div>';
+                }
+            }
+        }
+
+        $stmt->close();
+		$conn->close();
+		return $notice;
+    }
+
+    function getExpiredAuctions(){
+        $notice = null;
+        $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]); 
+        $stmt = $conn->prepare("SELECT found_item_ad_ID, description, picture, storage_place_name FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON 
+        FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired = 1 AND auctioned = 1 AND deleted = 0 ");
+
+        echo $conn->error;
+        $stmt->bind_result($id, $description, $pic, $storage_place);
+        $stmt->execute();
+
+        while($stmt->fetch()){
+            $isAuctionExpired = checkIfExpiredAuction($id);
+            $auctionID = getAuctionIDAdmin($id);
+            if($isAuctionExpired == 1){
+                $email = getBidEmail($auctionID);
+                if($email == "lostandfound@tlu.ee"){
+                    $bestOffer = getHighestBid($auctionID);
+                    $notice .= ' <div class="product flex-row" >';
+                    $notice .= '<img class="productImageBox" src="' .$GLOBALS["pic_read_dir_thumb"] .$pic .'">';
+                    $notice .= '<div class="productDesc">';
+                    $notice .= '<p class="text">Kirjeldus: ' .$description .'</p>';
+                    $notice .= '<p class="text">Hoiupaik: ' .$storage_place .'</p>';
+                    $notice .= '<form method="POST" action="#"><input type ="hidden" value="' .$id .'" name="idInput">';
+                    $notice .= '<input type="submit" id="delete" name="deleteAd" value="KUSTUTA"></form>';
                     $notice .= '</div></div>';
                 }
             }
