@@ -26,7 +26,7 @@
         header("Location: admin_login.php");
         exit();
     }
-    $notice = getAuctionElements($show,$searchedName,$searchedCategory,$searchedArea, $linkValue, $offset);
+
 ?>
 
 <body>
@@ -61,7 +61,7 @@
 
             <?php require("../admin_filter.php") ?>
             <div class="products">
-                    <?php echo $notice; ?>
+                    <?php echo getSuccessfulAuctions($searchedName,$searchedCategory,$searchedArea, $adminLinkValue, $offset); ?>
             
             </div><!--.products -->
             </div><!--.filtersProductsLayout-->
