@@ -48,6 +48,7 @@
                     <li><input id="other" name="otsingSona" type="input" placeholder="Otsingusõna" value="<?php echo $searchedName;?>"></li>
 
                     <li>
+                        <?php if ($adminLinkValue!=1):?>
                         <select name="storagePlace" id="storagePlace">
                             <option disabled selected value>Hoiupaik</option>
                             <?php $arrayStorage = $storageHTML;
@@ -62,7 +63,7 @@
                         endfor; ?>
                             
                         </select>
-
+                    <?php endif;?>
                         <!-- <input id="other" name="area" type="input" placeholder="Asukoht" value="<?php //echo $searchedArea;?>"></li> -->
 
                     <li>
@@ -82,7 +83,7 @@
                         </select>
                     </li>
 
-                    <li><input id="other" name="area" type="input" placeholder="Asukoht" value="<?php echo $searchedArea;?>" data-value="<?php echo $searchedArea;?>"></li>
+                    <li><?php if ($adminLinkValue!=4):?><input id="other" name="area" type="input" placeholder="Asukoht" value="<?php echo $searchedArea;?>" data-value="<?php echo $searchedArea;?>"><?php endif;?></li>
                     <li><input id="start-date" name="Date-Start" type="date"></li>
                     <li><input id="end-date" name="Date-End" type="date"></li>
                     <li><input type="hidden" name="linkname" value="<?php echo $linkValue?>"></li>
