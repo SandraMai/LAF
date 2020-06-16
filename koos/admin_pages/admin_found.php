@@ -5,7 +5,7 @@
     $searchedArea=null;
     $searchedName=null;
     $searchedCategory=null;
-    $offset;
+    $offset=0;
 
     if(isset($_SESSION["LAST_ACTIVITY"]) && (time() - $_SESSION["LAST_ACTIVITY"] > 1800)){
         session_unset(); 
@@ -68,13 +68,17 @@
 
             <?php require("../admin_filter.php") ?>
             <div class="products">
-                    <?php echo $notice; ?>
-            
+            <?php
+                        if ($notice==100) {
+                            $notice = '<p class="flex-row">Hetkel esemeid pole!</p>';
+                        }
+                    
+                     echo $notice; ?>
             </div><!--.products -->
         </div><!--.flex-row-->
-
+        <div class="js-more-wrapper loadMoreButton"><button data-inf=0 data-type=2 class="js-load-more">lae juurde</button></div>
     </div><!--.main-section-->
-
+    
 
     <div class="aside"></div>
 </div>
