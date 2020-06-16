@@ -29,7 +29,7 @@ auctionFiltration();
         <div class="filtersProductsLayout"> 
             <?php require("../filter.php") ?>
             <div class="products">
-                <?php echo getAuctionElements($show,$searchedName,$searchedCategory,$searchedArea,$linkValue); ?>
+                <?php echo getAuctionElements($show,$searchedName,$sentElement,$searchedArea,$linkValue); ?>
             </div><!--.flex-row-->
         </div><!--.products -->
             

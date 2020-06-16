@@ -28,12 +28,9 @@ if(isset($_POST["submitSearch"])){
     $thisLink =($_POST["linkname"]);
     if($linkValue=1){
         $notice = displayLostItems($offset,$searchedName,$sentElement,$searchedArea,$thisLink);
-    }else if($linkValue=2){
-        getAuctionElements($show,$searchedName,$searchedCategory,$searchedArea,$thisLink);
-         $notice = "otsing YEET";
     }else if($linkValue=3){
-        getAuctionElements($show,$searchedName,$searchedCategory,$searchedArea,$thisLink);
-         $notice = "otsing YEET";
+        $notice=getAuctionElements($show,$searchedName,$sentElement,$searchedArea,$thisLink);
+         
     }
 }
 

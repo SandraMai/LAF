@@ -35,6 +35,7 @@
             FROM LOST_ITEM_AD WHERE expired = 0 AND description LIKE'%{$searchedName}%' AND lost_place LIKE '%{$searchedArea}%' AND CATEGORY_category_ID='{$searchedCategory}' AND deleted = 0 ORDER BY lost_post_ID DESC LIMIT 3 OFFSET ?");
             
         }
+        
         $stmt->bind_param("i", $offset);
         echo $conn->error;
         $stmt->bind_result($id, $description, $pic, $place, $day, $month, $year);
