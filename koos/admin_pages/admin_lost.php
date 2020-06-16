@@ -1,6 +1,19 @@
 <?php
     require("../head.php");
     $adminLinkValue=1;
+    if(isset($_SESSION["LAST_ACTIVITY"]) && (time() - $_SESSION["LAST_ACTIVITY"] > 10)){
+        session_unset(); 
+        session_destroy();  
+        header("Location: admin_login.php");
+        exit();
+    }
+    
+    if(isset($_SESSION["user_IP"]) != $_SERVER["REMOTE_ADDR"]){
+        session_unset(); 
+        session_destroy();  
+        header("Location: admin_login.php");
+        exit();
+    }
     if(!isset($_SESSION["userId"])){
         header("Location: admin_login.php");
         exit();
