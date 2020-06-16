@@ -3,18 +3,20 @@
         $monthsET = ["jaanuar", "veebruar", "märts", "aprill", "mai", "juuni", "juuli", "august", "september", "oktoober", "november", "detsember"];
         $notice = null;
         $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]); 
-        $stmt = $conn->prepare("SELECT found_item_id, description, picture, storage_place_name FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON 
+        $stmt = $conn->prepare("SELECT found_item_ad_ID, description, picture, storage_place_name FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON 
         FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired = 1 AND auctioned = 1 ");
 
         echo $conn->error;
         $stmt->bind_result($id, $description, $pic, $storage_place);
         $stmt->execute();
 
-        while($stmt->execute()){
+        while($stmt->fetch()){
             $isAuctionExpired = checkIfExpiredAuction($id);
             $auctionID = getAuctionIDAdmin($id);
+            echo $auctionID;
             if($isAuctionExpired == 1){
                 $email = getBidEmail($auctionID);
+                echo $email;
                 if($email != "lostandfound@tlu.ee"){
                     $bestOffer = getHighestBid($auctionID);
                     $notice .= ' <div class="product flex-row" >';
@@ -23,7 +25,7 @@
                     $notice .= '<p class="text">Kirjeldus: ' .$description .'</p>';
                     $notice .= '<p class="text">Hoiupaik: ' .$storage_place .'</p>';
                     $notice .= '<p class="text">E-mail: ' .$email .'</p>';
-                    $notice .= '<p class="text">Parim pakkumine: ' .$highestBid .'</p>';
+                    $notice .= '<p class="text">Parim pakkumine: ' .$bestOffer .'</p>';
                     $notice .= '</div></div>';
                 }
             }
@@ -37,10 +39,9 @@
     function checkIfExpiredAuction($id){
         $notice = null;
         $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]); 
-        $stmt = $conn->prepare("SELECT expired FROM AUCTION WHERE FOUND_ITEM_AD_found_item_ad_ID = ? ");
+        $stmt = $conn->prepare("SELECT expired FROM AUCTION WHERE FOUND_ITEM_AD_found_item_ad_ID = '{$id}' ");
 
         echo $conn->error;
-        $stmt->bind_param("i", $id);
         $stmt->bind_result($result);
         $stmt->execute();
 
