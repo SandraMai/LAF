@@ -1,6 +1,8 @@
 <?php 
     require('../head.php'); 
 
+    $notice = null;
+    
     if(!isset($_SESSION["userId"])){
         header("Location: admin_login.php");
         exit();
