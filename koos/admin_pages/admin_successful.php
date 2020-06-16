@@ -1,7 +1,7 @@
 <?php 
     require('../head.php'); 
 
-    $notice = null;
+    $notice = getSuccessfulAuctions();
     
     if(!isset($_SESSION["userId"])){
         header("Location: admin_login.php");
