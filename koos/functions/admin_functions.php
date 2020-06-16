@@ -265,7 +265,7 @@
                   $place = "Kaotamise koha kohta info puudub!";
               }
               $notice .= ' <div class="product">';
-              $notice .= '<a class="productImageBox" href="admin_view_ad.php?id=' .$id ."&page=" .$page .'"><img class="productImage" src="' .$GLOBALS["pic_read_dir_thumb"] ."missing.png" .'"></a>';
+              $notice .= '<a class="productImageBox" href="admin_view_ad.php?id=' .$id ."&page=" .$page .'"><img class="productImage" src="../images/missing.png"' .'"></a>';
               $notice .= '<div class="productDesc">';
               $notice .= '<p> Kirjeldus: ' .$description .'</p>';
               $notice .= '<p>Kaotamise koht: ' .$place .'</p>';
@@ -331,7 +331,7 @@
                     $place = "Kaotamise koha kohta info puudub!";
                 }
                 $notice .= '<div class="product flex-row >';
-                $notice .= '<img class="productImageBox" src="' .$GLOBALS["pic_read_dir_thumb"] ."missing.png" .'">';
+                $notice .= '<img class="productImageBox" src="../images/missing.png">';
                 $notice .= '<div class="productDesc">';
                 $notice .= '<p class="text"> Kirjeldus: ' .$description .'</p>';
                 $notice .= '<p class="text">Kaotamise koht: ' .$place .'</p>';
