@@ -66,7 +66,7 @@
 
             <?php require("../admin_filter.php") ?>
             <div class="products">
-                    <?php echo $notice ?>
+                    <?php echo selectFoundPostsAdmin($offset,$searchedName,$searchedCategory,$searchedArea,$adminLinkValue) ?>
             
             </div><!--.products -->
         </div><!--.flex-row-->

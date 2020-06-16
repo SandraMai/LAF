@@ -6,7 +6,7 @@
     $searchedName=null;
     $searchedCategory=null;
     $searchedStorage = null;
-    //$searchedArea=null;
+    $searchedArea=null;
     $offset = 0;
 
     if(isset($_POST["submitSearch"])){

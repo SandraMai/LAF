@@ -24,13 +24,13 @@
     
     $response = null;
     $filter = null;
-    $notice = displayLostItemsAdmin($filter);
+
     lostExpired();
 
     if(isset($_POST["deleteLostAd"])){   
         $id = $_POST["idInput"];
         $response = deleteLostAdAdmin($id);
-        $notice = displayLostItemsAdmin($filter);
+        $notice = displayLostItemsAdmin($offset,$searchedName,$searchedCategory,$searchedArea,$adminLinkValue);
     }
 
 ?>
@@ -53,7 +53,7 @@
             <div class="filtersProductsLayout"> 
                 <?php require("../admin_filter.php") ?>
                 <div class="products">
-                    <?php echo $notice?>
+                    <?php echo displayLostItemsAdmin($offset,$searchedName,$searchedCategory,$searchedArea,$adminLinkValue)?>
                 </div>
             </div>
         </div> <!--main section -->
