@@ -3,7 +3,7 @@
         $notice = null;
         $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]); 
         $stmt = $conn->prepare("SELECT found_item_ad_ID, description, picture, storage_place_name FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON 
-        FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired = 1 AND auctioned = 1 ORDER BY DESC");
+        FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired = 1 AND auctioned = 1 AND deleted = 0 ORDER BY found_item_ad_ID DESC");
 
         echo $conn->error;
         $stmt->bind_result($id, $description, $pic, $storage_place);
@@ -37,7 +37,7 @@
         $notice = null;
         $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]); 
         $stmt = $conn->prepare("SELECT found_item_ad_ID, description, picture, storage_place_name FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON 
-        FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired = 1 AND auctioned = 1 AND deleted = 0 ");
+        FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired = 1 AND auctioned = 1 AND deleted = 0 ORDER BY found_item_ad_ID DESC");
 
         echo $conn->error;
         $stmt->bind_result($id, $description, $pic, $storage_place);
