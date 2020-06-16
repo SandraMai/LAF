@@ -1,7 +1,6 @@
 <?php 
     require('../head.php'); 
 
-    $notice = getExpiredAuctions();
     $adminLinkValue=4;
 
     if(isset($_SESSION["LAST_ACTIVITY"]) && (time() - $_SESSION["LAST_ACTIVITY"] > 1800)){
@@ -26,7 +25,7 @@
     if(isset($_POST["deleteAd"])){
         $id = $_POST["idInput"];
         deleteFoundAdmin($id);
-        $notice = getExpiredAuctions();
+        $notice = getExpiredAuctions($searchedName,$sentElement,$searchedArea,$adminLinkValue, $offset);
     }
 ?>
 
@@ -62,7 +61,7 @@
 
             <?php require("../admin_filter.php") ?>
             <div class="products">
-                    <?php echo $notice ?>
+                    <?php echo getExpiredAuctions($searchedName,$sentElement,$searchedArea,$adminLinkValue, $offset); ?>
             
             </div><!--.products -->
         </div><!--.flex-row-->

@@ -24,8 +24,9 @@
             $sentElement=null;
         }
     
-        
-        $searchedArea =($_POST["area"]);
+        if ($adminLinkValue!=4):
+            $searchedArea =($_POST["area"]);
+        endif;
         $thisLink =($_POST["linkname"]);
         if($thisLink==1){
             $notice = displayLostItemsAdmin($offset,$searchedName,$sentElement,$searchedArea,$thisLink);
@@ -33,6 +34,9 @@
             $notice = selectFoundPostsAdmin($offset,$searchedName,$sentElement,$searchedArea,$thisLink);
         }else if($thisLink==3){
             $notice=getSuccessfulAuctions($searchedName,$sentElement,$searchedArea,$thisLink, $offset);   
+        }else if($thisLink==4){
+            $searchedArea=null;
+            $notice=getExpiredAuctions($searchedName,$sentElement,$searchedArea,$thisLink, $offset);   
         }
     
     
