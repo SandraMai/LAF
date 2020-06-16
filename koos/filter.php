@@ -30,7 +30,7 @@ if(isset($_POST["submitSearch"])){
                 <h2 class="flex-column" onClick="window.location.reload();" id="filterMain" >FILTREERI</h2>
                 <ul class="ul flex-column">
                 <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" class="filterForm">
-                    <li><input id="other" name="otsingSona" type="input" placeholder="Otsingu sõna" value="<?php
+                    <li><input id="other" name="otsingSona" type="input" placeholder="Otsingusõna" value="<?php
                     echo $searchedName;?>"></li>
                     <li>
                         <select name="category" id="category" value="<?php echo $searchedCategory;?>">

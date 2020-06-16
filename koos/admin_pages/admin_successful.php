@@ -44,7 +44,7 @@
 
         <div class="filtersProductsLayout"> 
 
-            <?php require("../filter.php") ?>
+            <?php require("../admin_filter.php") ?>
             <div class="products">
                     <?php echo $notice ?>
             
