@@ -64,20 +64,21 @@
     }
 
     function readStoragesForSelect(){
-        $storageHTML = null;
-        $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
-        $stmt = $conn->prepare("SELECT storage_place_ID, storage_place_name FROM STORAGE_PLACE");
-        $stmt->bind_result($id, $storage_name);
-        $stmt->execute();
-        $array=array();
-        while($stmt->fetch()){
-            array_push($array,$storage_name);
-            
-        }
-        $stmt->close();
-	    $conn->close();
-	    return $array;
-    }
+      $storageHTML = null;
+      $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
+      $stmt = $conn->prepare("SELECT storage_place_ID, storage_place_name FROM STORAGE_PLACE");
+      $stmt->bind_result($id, $storage_name);
+      $stmt->execute();
+      while($stmt->fetch()){
+          $storageHTML .= '<option value="' .$id .'"';
+          $storageHTML .= '>' .$storage_name .'</option> \n';
+
+
+      }
+      $stmt->close();
+      $conn->close();
+      return $storageHTML;
+  }
 
     function readSectionForSelect(){
       $sectionHTML = null;
