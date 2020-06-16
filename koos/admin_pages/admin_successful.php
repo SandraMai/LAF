@@ -55,7 +55,7 @@
 
             <?php require("../admin_filter.php") ?>
             <div class="products">
-                    <?php echo getSuccessfulAuctions($auctionListing,$searchedName,$searchedCategory,$searchedArea,$thisLink, $offset) ?>
+                    <?php echo getSuccessfulAuctions($auctionListing,$searchedName,$searchedCategory,$searchedArea,$adminLinkValue, $offset) ?>
             
             </div><!--.products -->
         </div><!--.flex-row-->

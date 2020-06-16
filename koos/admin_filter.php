@@ -1,7 +1,7 @@
 <?php
     $database = "if19_LAF";
     $storageHTML = readStoragesForSelect();
-
+    $auctionListing=null;
     $show=null;
     $searchedName=null;
     $searchedCategory=null;

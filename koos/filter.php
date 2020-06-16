@@ -26,11 +26,11 @@ if(isset($_POST["submitSearch"])){
     
     $searchedArea =($_POST["area"]);
     $thisLink =($_POST["linkname"]);
-    if($$thisLink==1){
+    if($thisLink==1){
         $notice = displayLostItems($offset,$searchedName,$sentElement,$searchedArea,$thisLink);
-    }else if($$thisLink==2) {
+    }else if($thisLink==2) {
         $notice = selectFoundPostsHTML($offset,$searchedName,$sentElement,$searchedArea,$thisLink);
-    }else if($$thisLink==3){
+    }else if($thisLink==3){
         $notice=getAuctionElements($show,$searchedName,$sentElement,$searchedArea,$thisLink, $offset);   
     }
 

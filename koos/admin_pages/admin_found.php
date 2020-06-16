@@ -23,8 +23,6 @@
     }
 
     foundToExpired();
-    $notice = selectFoundPostsAdmin();
-
     if(isset($_POST["deleteAd"])){
         $id = $_POST["idInput"];
         deleteFoundAdmin($id);
