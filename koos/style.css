@@ -1074,3 +1074,24 @@ Reorganized stuff for responsiveness
  
     
 }
+
+.auctionForm {
+    width: 300px;
+}
+
+.checkboxLabel {
+    align-self: flex-start;
+    padding-left: 10px;
+}
+
+.foundLabel p {
+    display: flex;
+    align-self: flex-start;
+    color: rgb(65, 70, 69);
+}
+
+.checkboxLabel input {
+    display: flex;
+    align-self: flex-start;
+    margin: 20px 0px 0px 3px;
+}

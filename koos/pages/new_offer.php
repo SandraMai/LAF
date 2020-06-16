@@ -29,9 +29,16 @@ $stepPrice=auctionItemStep($_GET["item"]);
 $maxbid=$stepPrice*10+$compare;
 
 
+
+
 if(isset($_POST["submitPrice"])){
+
+    $notification = 1;
+    if (!isset($_POST["notification"]) ) {
+        $notification = null;
+    } 
+    
     $email = ($_POST["email"]);
-    $notification =($_POST["notification"]);
     $offer =($_POST["offer"]);
 	if((!empty($offer))&&(!empty($email))){
         if($offer>$compare){$notice = setFirstBid($email,$notification,$offer,$neededNumber,$maxbid,$compare);}else{
@@ -65,7 +72,6 @@ if(isset($_POST["submitPrice"])){
                 <div>                
                     <?php
                     echo "Tänane kuupäev " . date("Y/m/d") . "<br>";
-                    
                     ?></div>
                     
             </div>
@@ -74,44 +80,58 @@ if(isset($_POST["submitPrice"])){
             
             
             
-      <?php?>
                 </div><!--.products -->
                 <?php echo $userPicHTML;?>
 
-                <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"])."?item=".$_GET["item"];?>">
-                <label> E-Mail: </label>
-                <br>
-                <input type="text" name="email">
-                <br>
-                <label> Soovin teavitusi valitud oksjonile: </label>
-                <br>
-                <input type="checkbox" name="notification" value="1">
-                <br>
-                <label> Pakumine: </label>
-                <br>
-                <input type="number"  class="size-36" value="<?php echo $compare;?>" min="<?php echo $compare;?>" max="<?php echo $maxbid;?>" step="<?php echo auctionItemStep($_GET["item"]); ?>" name="offer">
-                <br>
-                <br>
-                <input name="submitPrice" type="submit" value="Esita pakkumine">
+                <form name="add_new_offer" class="flex-column auctionForm" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"])."?item=".$_GET["item"];?>">
+
+                    <div class="error-email"></div>
+                    <label class="foundLabel"> 
+                        <p>E-Mail:</p>
+                        <input  class="foundInput textInput inputBoxStyle" type="text" name="email">
+                    </label>
+
+                    <br>
+        
+                    <br>
+
+                    <label class="foundLabel checkboxLabel"> 
+                        <p>Soovin teavitusi valitud oksjonile: </p>
+                        <input class="checkboxInput" type="checkbox" name="notification" value="1">
+                    </label>
+
+                    <br>
 
 
+                    <div class="error-offer"></div>
+                    <label class="foundLabel"> 
+                        <p>Pakkumine: </p>
+                        <input class="foundInput textInput inputBoxStyle numberInput" type="number" class="size-36" value="<?php echo $compare;?>" min="<?php echo $compare;?>" max="<?php echo $maxbid;?>" step="<?php echo auctionItemStep($_GET["item"]); ?>" name="offer">
+                    </label>
 
-                <?php
-		if(!empty($userPicHTML)){
-			echo '<input name="item" type="hidden" value="' .$_GET["item"] .'">';
-			echo '<input name="return" type="hidden" value="' .$return .'">'; 
-			echo "<br>";
-			echo $notice;
-			echo "</span> \n";
-		} else {
-			echo "<p>Pildi laadimisel tekkis viga!</p> \n";
-		}
-	?>
-	</form>
+
+                    <br>
+                    <input name="submitPrice" type="submit" value="Esita pakkumine">
+
+
+                    <?php
+                    if(!empty($userPicHTML)){
+                        echo '<input name="item" type="hidden" value="' .$_GET["item"] .'">';
+                        echo '<input name="return" type="hidden" value="' .$return .'">'; 
+                        echo "<br>";
+                        echo $notice;
+                        echo "</span> \n";
+                    } else {
+                        echo "<p>Pildi laadimisel tekkis viga!</p> \n";
+                    } ?>
+
+                </form>
+
         </div>
         <div class="aside"></div>
     </div>
+    <!-- <script src="../js/newOffer.js"></script> -->
     <script src="../js/timer.js"></script>
-    <script src="../js/script.js"></script>
+
     </body>
     </html>
