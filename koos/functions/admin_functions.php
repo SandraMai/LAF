@@ -394,5 +394,23 @@
     $stmt->close();
     $conn->close();
     return $response;
-}
+  }
+  
+  function deleteFoundAdmin($id){
+    $response = null;
+    $one = 1;
+    $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
+    $stmt = $conn->prepare("UPDATE FOUND_ITEM_AD SET deleted = ? WHERE found_item_ad_ID = ?");
+    echo $conn->error;
+    $stmt->bind_param("ii", $one, $id);
+    $stmt->execute();
+    if($stmt->execute()){
+        $response = 2;
+    }else{
+        $response = 404;
+    }
+    $stmt->close();
+    $conn->close();
+    return $response;
+  }
 ?>
