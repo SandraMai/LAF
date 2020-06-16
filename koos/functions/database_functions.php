@@ -1,6 +1,6 @@
 <?php
     // SANDRA
-    function displayLostItems($filter, $offset,$searchedName,$searchedCategory,$searchedArea,$thisLink){
+    function displayLostItems($offset,$searchedName,$searchedCategory,$searchedArea,$thisLink){
         $monthsET = ["jaanuar", "veebruar", "märts", "aprill", "mai", "juuni", "juuli", "august", "september", "oktoober", "november", "detsember"];
         $notice = null;
         $page = 'lost.php';
