@@ -8,11 +8,11 @@
     $offset = 0;
     $filter = null;
     $notice = displayLostItems($filter, $offset,$searchedName,$searchedCategory,$searchedArea,$thisLink);
-    if ($notice == 100) {
+
+    lostExpired();
+    if ($notice==100) {
         $notice = '<p class="flex-row">Hetkel esemeid pole!</p>';
     }
-    lostExpired();
-
 /*  // Praegu ei toota sest pole andmebaasi
     if (isset($_POST["tehnika"])){
         $filter = 'tehnika';
@@ -49,9 +49,12 @@
             </div>
             <div class="clearfix-50"></div>
             <div class="filtersProductsLayout"> 
-                <?php require("../filter.php") ?>
+                <?php require("../filter.php");
+                if ($notice==100) {
+                    $notice = '<p class="flex-row">Hetkel esemeid pole!</p>';
+                } ?>
                 <div class="products">
-                    <?php echo $notice?>
+                    <?php echo $notice;?>
                     
                 </div><!--.products-->
                 

@@ -8,25 +8,16 @@ $searchedArea=null;
 $offset = 0;
 $filter = null;
 if(isset($_POST["submitSearch"])){
+    $searchedName = ($_POST["otsingSona"]);
+    $searchedCategory =($_POST["category"]);
+    $searchedArea =($_POST["area"]);
+    $thisLink =($_POST["linkname"]);
     if($linkValue=1){
-        $searchedName = ($_POST["otsingSona"]);
-        $searchedCategory =($_POST["category"]);
-        $searchedArea =($_POST["area"]);
-        $thisLink =($_POST["linkname"]);
         $notice = displayLostItems($filter, $offset,$searchedName,$searchedCategory,$searchedArea,$thisLink);
-         
     }else if($linkValue=2){
-        $searchedName = ($_POST["otsingSona"]);
-        $searchedCategory =($_POST["category"]);
-        $searchedArea =($_POST["area"]);
-        $thisLink =($_POST["linkname"]);
         getAuctionElements($show,$searchedName,$searchedCategory,$searchedArea,$thisLink);
          $notice = "otsing YEET";
     }else if($linkValue=3){
-        $searchedName = ($_POST["otsingSona"]);
-        $searchedCategory =($_POST["category"]);
-        $searchedArea =($_POST["area"]);
-        $thisLink =($_POST["linkname"]);
         getAuctionElements($show,$searchedName,$searchedCategory,$searchedArea,$thisLink);
          $notice = "otsing YEET";
     }
