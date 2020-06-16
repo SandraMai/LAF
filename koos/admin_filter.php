@@ -10,24 +10,32 @@
     $offset = 0;
 
     if(isset($_POST["submitSearch"])){
-        $searchedName = $_POST["otsingSona"];
-        $searchedCategory = $_POST["category"];
-        $searchedStorage = $_POST["storagePlace"];
-        
-        //$searchedArea =($_POST["area"]);
-        $thisLink =($_POST["linkname"]);
-        if($linkValue=1){
-            $notice = displayLostItemsFiltrationAdmin($offset,$searchedName,$searchedCategory,$thisLink);
-        }else if($linkValue=2){
-            $searchedStorage = ($_POST["storagePlace"]);
-            getAuctionElements($show,$searchedName,$searchedCategory,$searchedStorage,$thisLink);
-            $notice = "otsing YEET";
-        }else if($linkValue=3){
-            $searchedStorage = ($_POST["storagePlace"]);
-            getAuctionElements($show,$searchedName,$searchedCategory,$searchedStorage,$thisLink);
-            $notice = "otsing YEET";
+        $searchedName = ($_POST["otsingSona"]);
+        if(isset($_POST["category"])){
+            $searchedCategory =($_POST["category"]);
+            if($searchedCategory=="riided"){
+                $sentElement=1;
+            }elseif($searchedCategory=="tehnika"){
+                $sentElement=2;
+            }elseif($searchedCategory=="muu"){
+                $sentElement=3;
+            }
+        }else{$searchedCategory =null;
+            $sentElement=null;
         }
-
+    
+        
+        $searchedArea =($_POST["area"]);
+        $thisLink =($_POST["linkname"]);
+        if($thisLink==1){
+            $notice = displayLostItemsAdmin($offset,$searchedName,$searchedCategory,$searchedArea,$thisLink);
+        }else if($thisLink==2) {
+            $notice = selectFoundPostsAdmin($offset,$searchedName,$searchedCategory,$searchedArea,$thisLink);
+        }else if($thisLink==3){
+            $notice=getSuccessfulAuctions($auctionListing,$searchedName,$searchedCategory,$searchedArea,$thisLink, $offset);   
+        }
+    
+    
     }
 ?>
 
@@ -74,6 +82,7 @@
                         </select>
                     </li>
 
+                    <li><input id="other" name="area" type="input" placeholder="Asukoht" value="<?php echo $searchedArea;?>" data-value="<?php echo $searchedArea;?>"></li>
                     <li><input id="start-date" name="Date-Start" type="date"></li>
                     <li><input id="end-date" name="Date-End" type="date"></li>
                     <li><input type="hidden" name="linkname" value="<?php echo $linkValue?>"></li>

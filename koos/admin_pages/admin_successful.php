@@ -1,8 +1,8 @@
 <?php 
     require('../head.php'); 
 
-    $notice = getSuccessfulAuctions();
     
+    $adminLinkValue=3;
     if(isset($_SESSION["LAST_ACTIVITY"]) && (time() - $_SESSION["LAST_ACTIVITY"] > 1800)){
         session_unset(); 
         session_destroy();  
@@ -55,7 +55,7 @@
 
             <?php require("../admin_filter.php") ?>
             <div class="products">
-                    <?php echo $notice ?>
+                    <?php echo getSuccessfulAuctions($auctionListing,$searchedName,$searchedCategory,$searchedArea,$thisLink, $offset) ?>
             
             </div><!--.products -->
         </div><!--.flex-row-->
