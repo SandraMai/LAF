@@ -9,17 +9,17 @@ $passwordError = null;
 
 if(isset($_POST["login"])){
 
-  if (isset($_POST["username"]) and !empty($_POST["username"])){
+  if (isset($_POST["username"]) && !empty($_POST["username"])){
     $userName = test_input($_POST["username"]);
   } else {
     $usernameError = "Palun sisesta kasutajanimi!";
   }
   
-  if (!isset($_POST["password"]) or strlen($_POST["password"]) < 1){
+  if (!isset($_POST["password"])){
     $passwordError = "Palun sisesta parool!";
   }
   
-  if(empty($usernameError) and empty($passwordError)){
+  if(empty($usernameError) && empty($passwordError)){
     $notice = logIn($userName, $_POST["password"]);
 
   } else {
