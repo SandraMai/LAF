@@ -3,7 +3,9 @@ $(document).ready(function() {
     // Load more
     $(document).on('click', '.js-load-more', function() {
         let offset = $(this).data('inf');
-        let type = $(this).data('type');;
+        let type = $(this).data('type');
+
+
         offset+=3;
         $(this).data('inf', offset);
 
@@ -13,11 +15,14 @@ $(document).ready(function() {
 
 
     function ajaxLoadMore(offset, type) {
+        let name = $('[name="otsingSona"]').data('value');
+        let cat = $('[name="category"]').data('value');
+        let area = $('[name="area"]').data('value');
         let url = '../ajax/infinite_scroll.php';
             $.ajax({
                 type: 'POST',
                 url: url,
-                data: { 'inf': offset, 'type': type }
+                data: { 'inf': offset, 'type': type, 'name': name, 'cat': cat, 'area': area }
             }).done(function(data) {
                 console.log(data);
                 if (data == 100) {
