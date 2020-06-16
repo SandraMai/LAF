@@ -144,6 +144,8 @@
             $stmt->close();
             $mysqli->close();
             $_SESSION["userId"] = $idFromDb;
+            $_SESSION["user_IP"] = $_SERVER["REMOTE_ADDR"];
+            $_SESSION["LAST_ACTIVITY"] = time();
             header("Location: admin_home.php");
             exit();
             } else {
