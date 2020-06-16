@@ -2,6 +2,7 @@
 require('../head.php'); 
 foundToExpired();
 $offset = 0;
+$thisLink=2;
 ?>
 <body>
 
@@ -26,7 +27,7 @@ $offset = 0;
 
             <?php require("../filter.php") ?>
             <div class="products">
-                    <?php echo selectFoundPostsHTML($offset); ?>
+                    <?php echo selectFoundPostsHTML($offset,$searchedName,$sentElement,$searchedArea,$thisLink); ?>
             </div><!--.products -->
 
         </div><!--.filtersProductsLayout-->
