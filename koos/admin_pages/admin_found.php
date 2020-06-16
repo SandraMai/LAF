@@ -2,6 +2,10 @@
     require('../head.php');
 
     $adminLinkValue=2;
+    $searchedArea=null;
+    $searchedName=null;
+    $searchedCategory=null;
+    $offset;
 
     if(isset($_SESSION["LAST_ACTIVITY"]) && (time() - $_SESSION["LAST_ACTIVITY"] > 1800)){
         session_unset(); 
@@ -21,12 +25,12 @@
         header("Location: admin_login.php");
         exit();
     }
-
+    $notice=selectFoundPostsAdmin($offset,$searchedName,$searchedCategory,$searchedArea,$adminLinkValue);
     foundToExpired();
     if(isset($_POST["deleteAd"])){
         $id = $_POST["idInput"];
         deleteFoundAdmin($id);
-        $notice = selectFoundPostsAdmin();
+        $notice;
     }
 ?>
 <body>
@@ -64,7 +68,7 @@
 
             <?php require("../admin_filter.php") ?>
             <div class="products">
-                    <?php echo selectFoundPostsAdmin($offset,$searchedName,$searchedCategory,$searchedArea,$adminLinkValue) ?>
+                    <?php echo $notice; ?>
             
             </div><!--.products -->
         </div><!--.flex-row-->

@@ -3,6 +3,11 @@
 
     
     $adminLinkValue=3;
+    $offset = 0;
+    $show=null;
+    $searchedName=null;
+    $searchedCategory=null;
+    $searchedArea=null;
     if(isset($_SESSION["LAST_ACTIVITY"]) && (time() - $_SESSION["LAST_ACTIVITY"] > 1800)){
         session_unset(); 
         session_destroy();  
@@ -21,6 +26,7 @@
         header("Location: admin_login.php");
         exit();
     }
+    $notice = getAuctionElements($show,$searchedName,$searchedCategory,$searchedArea, $linkValue, $offset);
 ?>
 
 <body>
@@ -55,7 +61,7 @@
 
             <?php require("../admin_filter.php") ?>
             <div class="products">
-                    <?php echo getSuccessfulAuctions($auctionListing,$searchedName,$searchedCategory,$searchedArea,$adminLinkValue, $offset) ?>
+                    <?php echo $notice; ?>
             
             </div><!--.products -->
         </div><!--.flex-row-->
