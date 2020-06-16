@@ -35,6 +35,7 @@
 
 			while($stmt->fetch()){
 			$auctionID=getAuctionId($id);
+			$highestBid = getHighestBid($auctionID);
 			$checkIfactive=getAuctionExpiration($auctionID);		
 			if($checkIfactive!=1){
 				$timestamps = getAuctionCountdown($id);
@@ -45,6 +46,7 @@
 				$response .= '<p>Kirjeldus: ' . $description . '</p>';
 				$response .= '<p>Leidmise koht: ' . $place_found . '</p>';
 				$response .= '<p>Leitud kuupäev: ' .$day .'.' .$monthsET[$month-1] .' ' .$year .'</p>';
+				$response .= '<p>Suurim pakkumine: ' .$highestBid .' €</p>';
 				$response .= '<br><p>Aegub ';
 				$response .= '<a class="productexplinationsDATE" data-time="' . $timestamps . '">';
 				$response .= '<span class="days"></span> p <span class="hours"></span> h <span class="minutes">';
