@@ -25,7 +25,7 @@ if( isset($_POST['inf'])) {
 
     } elseif ($_POST['type'] == 2) {
 
-        $getMore = selectFoundPostsHTML($offset);
+        $getMore = selectFoundPostsHTML($offset,$searchedName,$searchedCategory,$searchedArea,0);
 
         if ($getMore == 100) {
             echo $getMore;
