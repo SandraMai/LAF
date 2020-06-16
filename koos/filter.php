@@ -26,13 +26,15 @@ if(isset($_POST["submitSearch"])){
     
     $searchedArea =($_POST["area"]);
     $thisLink =($_POST["linkname"]);
-    if($linkValue=1){
+    if($linkValue==1){
         $notice = displayLostItems($offset,$searchedName,$sentElement,$searchedArea,$thisLink);
-    }else if($linkValue=2) {selectFoundPostsHTML($offset,$searchedName,$sentElement,$searchedArea,$thisLink);
-    }else if($linkValue=3){
-        $notice=getAuctionElements($show,$searchedName,$sentElement,$searchedArea,$thisLink);
-         
+    }else if($linkValue==2) {
+        $notice = selectFoundPostsHTML($offset,$searchedName,$sentElement,$searchedArea,$thisLink);
+    }else if($linkValue==3){
+        $notice=getAuctionElements($show,$searchedName,$sentElement,$searchedArea,$thisLink, $offset);   
     }
+
+
 }
 
 

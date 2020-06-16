@@ -1,74 +1,73 @@
 <?php
-	function getAuctionElements($auctionListing,$searchedName,$searchedCategory,$searchedArea,$thisLink){
+	function getAuctionElements($auctionListing,$searchedName,$searchedCategory,$searchedArea,$thisLink, $offset){
 		$monthsET = ["jaanuar", "veebruar", "märts", "aprill", "mai", "juuni", "juuli", "august", "september", "oktoober", "november", "detsember"];
 		$response = null;
 		$expiredElement;
 		$conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]); 
 		if($auctionListing!=NULL){
-			$stmt = $conn->prepare("SELECT found_item_ad_ID,description,DATE_FORMAT(found_date, '%d'), DATE_FORMAT(found_date, '%c'), DATE_FORMAT(found_date, '%Y'),picture,CATEGORY_category_ID,place_found FROM FOUND_ITEM_AD WHERE expired=1 AND auctioned=1 AND deleted = 0 AND found_item_ad_ID='{$auctionListing}' ");
+			$stmt = $conn->prepare("SELECT found_item_ad_ID,description,DATE_FORMAT(found_date, '%d'), DATE_FORMAT(found_date, '%c'), DATE_FORMAT(found_date, '%Y'),picture,CATEGORY_category_ID,place_found FROM FOUND_ITEM_AD WHERE expired=1 AND auctioned=1 AND deleted = 0 AND found_item_ad_ID='{$auctionListing}' ORDER BY found_item_ad_ID DESC LIMIT 3 OFFSET ?");
 		}
 		else if($auctionListing==NULL&&$searchedName==null&&$searchedArea==null&&$searchedCategory==null){
-			$stmt = $conn->prepare("SELECT found_item_ad_ID,description,DATE_FORMAT(found_date, '%d'), DATE_FORMAT(found_date, '%c'), DATE_FORMAT(found_date, '%Y'),picture,CATEGORY_category_ID,place_found FROM FOUND_ITEM_AD WHERE expired=1 AND auctioned=1 AND deleted = 0");
+			$stmt = $conn->prepare("SELECT found_item_ad_ID,description,DATE_FORMAT(found_date, '%d'), DATE_FORMAT(found_date, '%c'), DATE_FORMAT(found_date, '%Y'),picture,CATEGORY_category_ID,place_found FROM FOUND_ITEM_AD WHERE expired=1 AND auctioned=1 AND deleted = 0 ORDER BY found_item_ad_ID DESC LIMIT 3 OFFSET ?");
 			
 		}else if($auctionListing==NULL&&$searchedName!=null&&$searchedArea==null&&$searchedCategory==null){
-			$stmt = $conn->prepare("SELECT found_item_ad_ID,description,DATE_FORMAT(found_date, '%d'), DATE_FORMAT(found_date, '%c'), DATE_FORMAT(found_date, '%Y'),picture,CATEGORY_category_ID,place_found FROM FOUND_ITEM_AD WHERE expired=1 AND auctioned=1 AND deleted = 0 AND description LIKE '%{$searchedName}%' ");
+			$stmt = $conn->prepare("SELECT found_item_ad_ID,description,DATE_FORMAT(found_date, '%d'), DATE_FORMAT(found_date, '%c'), DATE_FORMAT(found_date, '%Y'),picture,CATEGORY_category_ID,place_found FROM FOUND_ITEM_AD WHERE expired=1 AND auctioned=1 AND deleted = 0 AND description LIKE '%{$searchedName}%' ORDER BY found_item_ad_ID DESC LIMIT 3 OFFSET ?");
 		}else if($auctionListing==NULL&&$searchedName==null&&$searchedArea!=null&&$searchedCategory==null){
-			$stmt = $conn->prepare("SELECT found_item_ad_ID,description,DATE_FORMAT(found_date, '%d'), DATE_FORMAT(found_date, '%c'), DATE_FORMAT(found_date, '%Y'),picture,CATEGORY_category_ID,place_found FROM FOUND_ITEM_AD WHERE expired=1 AND auctioned=1 AND deleted = 0 AND place_found LIKE '%{$searchedArea}%'");
+			$stmt = $conn->prepare("SELECT found_item_ad_ID,description,DATE_FORMAT(found_date, '%d'), DATE_FORMAT(found_date, '%c'), DATE_FORMAT(found_date, '%Y'),picture,CATEGORY_category_ID,place_found FROM FOUND_ITEM_AD WHERE expired=1 AND auctioned=1 AND deleted = 0 AND place_found LIKE '%{$searchedArea}%' ORDER BY found_item_ad_ID DESC LIMIT 3 OFFSET ?");
 		}else if($auctionListing==NULL&&$searchedName==null&&$searchedArea==null&&$searchedCategory!=null){
-			$stmt = $conn->prepare("SELECT found_item_ad_ID,description,DATE_FORMAT(found_date, '%d'), DATE_FORMAT(found_date, '%c'), DATE_FORMAT(found_date, '%Y'),picture,CATEGORY_category_ID,place_found FROM FOUND_ITEM_AD WHERE expired=1 AND auctioned=1 AND deleted = 0 AND CATEGORY_category_ID LIKE '%{$searchedCategory}%' ");
+			$stmt = $conn->prepare("SELECT found_item_ad_ID,description,DATE_FORMAT(found_date, '%d'), DATE_FORMAT(found_date, '%c'), DATE_FORMAT(found_date, '%Y'),picture,CATEGORY_category_ID,place_found FROM FOUND_ITEM_AD WHERE expired=1 AND auctioned=1 AND deleted = 0 AND CATEGORY_category_ID LIKE '%{$searchedCategory}%' ORDER BY found_item_ad_ID DESC LIMIT 3 OFFSET ?");
 			
 		}else if($auctionListing==NULL&&$searchedName!=null&&$searchedArea!=null&&$searchedCategory==null){
-			$stmt = $conn->prepare("SELECT found_item_ad_ID,description,DATE_FORMAT(found_date, '%d'), DATE_FORMAT(found_date, '%c'), DATE_FORMAT(found_date, '%Y'),picture,CATEGORY_category_ID,place_found FROM FOUND_ITEM_AD WHERE expired=1 AND auctioned=1 AND deleted = 0 AND description LIKE '%{$searchedName}%'AND place_found LIKE '%{$searchedArea}%' ");
+			$stmt = $conn->prepare("SELECT found_item_ad_ID,description,DATE_FORMAT(found_date, '%d'), DATE_FORMAT(found_date, '%c'), DATE_FORMAT(found_date, '%Y'),picture,CATEGORY_category_ID,place_found FROM FOUND_ITEM_AD WHERE expired=1 AND auctioned=1 AND deleted = 0 AND description LIKE '%{$searchedName}%'AND place_found LIKE '%{$searchedArea}%' ORDER BY found_item_ad_ID DESC LIMIT 3 OFFSET ?");
 		}else if($auctionListing==NULL&&$searchedName==null&&$searchedArea!=null&&$searchedCategory!=null){
-			$stmt = $conn->prepare("SELECT found_item_ad_ID,description,DATE_FORMAT(found_date, '%d'), DATE_FORMAT(found_date, '%c'), DATE_FORMAT(found_date, '%Y'),picture,CATEGORY_category_ID,place_found FROM FOUND_ITEM_AD WHERE expired=1 AND auctioned=1 AND deleted = 0 AND place_found LIKE '%{$searchedArea}%' AND CATEGORY_category_ID LIKE '%{$searchedCategory}%' ");
+			$stmt = $conn->prepare("SELECT found_item_ad_ID,description,DATE_FORMAT(found_date, '%d'), DATE_FORMAT(found_date, '%c'), DATE_FORMAT(found_date, '%Y'),picture,CATEGORY_category_ID,place_found FROM FOUND_ITEM_AD WHERE expired=1 AND auctioned=1 AND deleted = 0 AND place_found LIKE '%{$searchedArea}%' AND CATEGORY_category_ID LIKE '%{$searchedCategory}%' ORDER BY found_item_ad_ID DESC LIMIT 3 OFFSET ?");
 			
 		}else if($auctionListing==NULL&&$searchedName!=null&&$searchedArea==null&&$searchedCategory!=null){
-			$stmt = $conn->prepare("SELECT found_item_ad_ID,description,DATE_FORMAT(found_date, '%d'), DATE_FORMAT(found_date, '%c'), DATE_FORMAT(found_date, '%Y'),picture,CATEGORY_category_ID,place_found FROM FOUND_ITEM_AD WHERE expired=1 AND auctioned=1 AND deleted = 0 AND description LIKE '%{$searchedName}%' AND CATEGORY_category_ID LIKE '%{$searchedCategory}%'  ");
+			$stmt = $conn->prepare("SELECT found_item_ad_ID,description,DATE_FORMAT(found_date, '%d'), DATE_FORMAT(found_date, '%c'), DATE_FORMAT(found_date, '%Y'),picture,CATEGORY_category_ID,place_found FROM FOUND_ITEM_AD WHERE expired=1 AND auctioned=1 AND deleted = 0 AND description LIKE '%{$searchedName}%' AND CATEGORY_category_ID LIKE '%{$searchedCategory}%' ORDER BY found_item_ad_ID DESC LIMIT 3 OFFSET ?");
 			
 		}else if($auctionListing==NULL&&$searchedName!=null&&$searchedArea!=null&&$searchedCategory!=null){
-			$stmt = $conn->prepare("SELECT found_item_ad_ID,description,DATE_FORMAT(found_date, '%d'), DATE_FORMAT(found_date, '%c'), DATE_FORMAT(found_date, '%Y'),picture,CATEGORY_category_ID,place_found FROM FOUND_ITEM_AD WHERE expired=1 AND auctioned=1 AND deleted = 0 AND description LIKE '%{$searchedName}%'AND place_found LIKE '%{$searchedArea}%' AND CATEGORY_category_ID LIKE '%{$searchedCategory}%' ");
+			$stmt = $conn->prepare("SELECT found_item_ad_ID,description,DATE_FORMAT(found_date, '%d'), DATE_FORMAT(found_date, '%c'), DATE_FORMAT(found_date, '%Y'),picture,CATEGORY_category_ID,place_found FROM FOUND_ITEM_AD WHERE expired=1 AND auctioned=1 AND deleted = 0 AND description LIKE '%{$searchedName}%'AND place_found LIKE '%{$searchedArea}%' AND CATEGORY_category_ID LIKE '%{$searchedCategory}%' ORDER BY found_item_ad_ID DESC LIMIT 3 OFFSET ?");
 		}
-
+        
+        $stmt->bind_param("i", $offset);
+            
 		echo $conn->error;
 		$stmt->bind_result($id,$description, $day, $month, $year, $picture, $CATEGORY_category_ID, $place_found);
 		$stmt->execute();
 
-			while($stmt->fetch()){
-			$auctionID=getAuctionId($id);
-			$highestBid = getHighestBid($auctionID);
-			$checkIfactive=getAuctionExpiration($auctionID);		
-			if($checkIfactive!=1){
-				$timestamps = getAuctionCountdown($id);
-				$echoing=htmlspecialchars($_SERVER["PHP_SELF"]);
-				$response .= ' <div class="product">';
-				$response .= '<span class="productImageBox"><img class="productImage" src="' .$GLOBALS["pic_read_dir_thumb"] . $picture  . '"></span>';
-				$response .= '<div class="productDesc">';
-				$response .= '<p>Kirjeldus: ' . $description . '</p>';
-				$response .= '<p>Leidmise koht: ' . $place_found . '</p>';
-				$response .= '<p>Leitud kuupäev: ' .$day .'.' .$monthsET[$month-1] .' ' .$year .'</p>';
-				$response .= '<p>Suurim pakkumine: ' .$highestBid .' €</p>';
-				$response .= '<br><p>Aegub ';
-				$response .= '<a class="productexplinationsDATE" data-time="' . $timestamps . '">';
-				$response .= '<span class="days"></span> p <span class="hours"></span> h <span class="minutes">';
-				$response .= '</span> min <span class="seconds"></span> s </a></p>';
-				if($auctionListing==null){
-					$response .= '<p><a class="newOffer" href="new_offer.php?item='.$id.'">';
-					$response .= '<input type="submit" id="priceSuggested" name="priceSuggested" value="Paku enda hind"></a></p>';
-				}
-				$response .= '</div><div class="aside"></div></div>';
-			}
-			
-			
+        while($stmt->fetch()){
+            $auctionID=getAuctionId($id);
+            $highestBid = getHighestBid($auctionID);
+            $checkIfactive=getAuctionExpiration($auctionID);		
+            if($checkIfactive!=1){
+                $timestamps = getAuctionCountdown($id);
+                $echoing=htmlspecialchars($_SERVER["PHP_SELF"]);
+                $response .= ' <div class="product">';
+                $response .= '<span class="productImageBox"><img class="productImage" src="' .$GLOBALS["pic_read_dir_thumb"] . $picture  . '"></span>';
+                $response .= '<div class="productDesc">';
+                $response .= '<p>Kirjeldus: ' . $description . '</p>';
+                $response .= '<p>Leidmise koht: ' . $place_found . '</p>';
+                $response .= '<p>Leitud kuupäev: ' .$day .'.' .$monthsET[$month-1] .' ' .$year .'</p>';
+                $response .= '<p>Suurim pakkumine: ' .$highestBid .' €</p>';
+                $response .= '<br><p>Aegub ';
+                $response .= '<a class="productexplinationsDATE" data-time="' . $timestamps . '">';
+                $response .= '<span class="days"></span> p <span class="hours"></span> h <span class="minutes">';
+                $response .= '</span> min <span class="seconds"></span> s </a></p>';
+                if($auctionListing==null){
+                    $response .= '<p><a class="newOffer" href="new_offer.php?item='.$id.'">';
+                    $response .= '<input type="submit" id="priceSuggested" name="priceSuggested" value="Paku enda hind"></a></p>';
+                }
+                $response .= '</div><div class="aside"></div></div>';
+            }
+        
+        }
 
-			$response .= "\n";
-
-			if($response == null){
-				$response = "<p>Kahjuks hetkel pole ühtegi aktiivset oksjoni kuulutust</p>";
-			}
-			}
-			$stmt->close();
-			$conn->close();
-			return $response;
+        if($response == null){
+            $response = 100;
+        }
+        $stmt->close();
+        $conn->close();
+        return $response;
 		
 	}
 		

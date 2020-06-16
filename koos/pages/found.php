@@ -3,6 +3,16 @@ require('../head.php');
 foundToExpired();
 $offset = 0;
 $thisLink=2;
+
+$searchedName=null;
+$searchedCategory=null;
+$searchedArea=null;
+$thisLink=null;
+
+$notice = selectFoundPostsHTML($offset,$searchedName,$sentCategory,$searchedArea,$thisLink);
+
+
+
 ?>
 <body>
 
@@ -27,7 +37,12 @@ $thisLink=2;
 
             <?php require("../filter.php") ?>
             <div class="products">
-                    <?php echo selectFoundPostsHTML($offset,$searchedName,$sentElement,$searchedArea,$thisLink); ?>
+                    <?php
+                        if ($notice==100) {
+                            $notice = '<p class="flex-row">Hetkel esemeid pole!</p>';
+                        }
+                    
+                     echo $notice; ?>
             </div><!--.products -->
 
         </div><!--.filtersProductsLayout-->

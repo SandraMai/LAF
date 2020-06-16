@@ -1,14 +1,12 @@
 $(document).ready(function() {
 
+    var offset = 0;;
+
     // Load more
     $(document).on('click', '.js-load-more', function() {
-        let offset = $(this).data('inf');
+        
         let type = $(this).data('type');
-
-
         offset+=3;
-        $(this).data('inf', offset);
-
         console.log(offset);
         ajaxLoadMore(offset, type);
     });
