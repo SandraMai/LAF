@@ -8,7 +8,8 @@ $searchedName=null;
 $searchedCategory=null;
 $searchedArea=null;
 $linkValue=3;
-echo auctionFiltration();
+
+auctionFiltration();
 
 ?>
 <body>
@@ -23,15 +24,7 @@ echo auctionFiltration();
         <div class="flex-row"> 
             <h1 class="title">OKSJON</h1>
         </div>
-        <!-- PAGE NUMBERS -->
-        <div class="flex-row"> 
-            <div class="aside"></div>
-            <div>                
-                <?php
-                echo "Tänane kuupäev " . date("Y/m/d") . "<br>";
-                ?>
-                </div>
-        </div>
+        <div class="clearfix-50"></div>
         <!-- PAGE BODY -->
         <div class="filtersProductsLayout"> 
             <?php require("../filter.php") ?>
