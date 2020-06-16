@@ -15,8 +15,9 @@
     }
 
     if(isset($_POST["deleteAd"])){
+        $email = test_input($_POST["email"]);
         if(isset($_POST["email"]) and !empty($_POST["email"])){
-            if(checkEmail($id, $_POST["email"]) == 1){
+            if(checkEmail($id, $email) == 1){
                 $deletedNotice = deleteAd($id);
                 $emailError = "Kuulutus on kustutatud!";
             }else{
