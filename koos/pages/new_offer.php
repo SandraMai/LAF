@@ -106,8 +106,20 @@ if(isset($_POST["submitPrice"])){
                     <div class="error-offer"></div>
                     <label class="foundLabel"> 
                         <p>Pakkumine: </p>
-                        <input class="foundInput textInput inputBoxStyle numberInput" type="number" class="size-36" value="<?php echo $compare;?>" min="<?php echo $compare;?>" max="<?php echo $maxbid;?>" step="<?php echo auctionItemStep($_GET["item"]); ?>" name="offer">
-                    </label>
+
+                        <div class="customNumberInput">
+
+                            <input class="foundInput textInput inputBoxStyle numberInput" type="number" class="size-36" value="<?php echo $compare;?>" min="<?php echo $compare;?>" max="<?php echo $maxbid;?>" data-step="<?php echo auctionItemStep($_GET["item"]); ?>" name="offer">
+                            <div class="upDownButtons">
+                                
+                                    <img class="upImg js-up" src="../images/up.png">
+                               
+                              
+                                    <img class="downImg js-down" src="../images/down.png">
+                                
+                            </div><!--.upDownButtons-->
+                        </div><!--.customNumberInput-->
+                    </label><!--.foundLabel-->
 
 
                     <br>
@@ -130,7 +142,7 @@ if(isset($_POST["submitPrice"])){
         </div>
         <div class="aside"></div>
     </div>
-    <!-- <script src="../js/newOffer.js"></script> -->
+    <script src="../js/newOffer.js"></script>
     <script src="../js/timer.js"></script>
 
     </body>

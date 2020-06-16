@@ -1,5 +1,10 @@
-/*
+
 $(document).ready(function() {
+
+
+    var theStep = parseFloat($('[name="offer"]').attr('data-step'));
+    var theMax = parseFloat($('[name="offer"]').attr('max'));
+    var theMin = parseFloat($('[name="offer"]').attr('min'));
 
     // Only letters, numbers, or dashes allowed
     $.validator.addMethod("aznumeric", function(value, element) {
@@ -7,14 +12,9 @@ $(document).ready(function() {
     });
 
 
-    $.validator.addMethod("actualStep", function(value, element) {
-        console.log(( $('[name="offer"]').val() - $('[name="offer"]').attr('min') ) / 3 == 0);
-        if ( ( $('[name="offer"]').val() - $('[name="offer"]').attr('min') ) / 3 == 0 ){
-            return true;
-        } 
-        return false;
-        
-    });
+    // $.validator.addMethod("actualStep", function(value, element) {
+    //     return checkCurrentPrice();
+    // });
 
     
 
@@ -26,19 +26,19 @@ $(document).ready(function() {
             },
             offer : {
                 required: true,
-                actualStep: true
+                //actualStep: true
             }
         },
         messages: {
             email:  {
-                required: "Palun sisestage meiliaddress.",
-                email: "Palun sisestage korrektne meiliaddress."
+                required: "Palun sisestage meiliaadress.",
+                email: "Palun sisestage korrektne meiliaadress."
             },
             offer: {
                 required: "Palun valige hind.",
-                min: "Pakkumine ei saa olla alghinnast madalam.",
-                max: "Pakkumine on liiga suur.",
-                actualStep: "Palun sisesta arv, mis on " + $('[name="offer"]').attr('data-step') + " sammuga alghinnast."
+                min: "Pakkumine ei saa olla väiksem kui " + theMin,
+                max: "Pakkumine ei saa olla suurem kui " + theMax,
+                //actualStep: "Palun sisesta arv, mis on " + theStep + " sammuga alghinnast " + theMin
             }
             
         },
@@ -51,8 +51,63 @@ $(document).ready(function() {
         
     });
 
+
+
+
+    $(document).on('click', '.js-up', function() {
+        var currentVal = checkCurrentPrice();
+        if(currentVal) {
+            currentVal+=theStep;
+            if (currentVal <= theMax) {
+                $('[name="offer"]').val(currentVal);
+            }
+        }
+    });
+
+    $(document).on('click', '.js-down', function() {
+        var currentVal = checkCurrentPrice();
+        if(currentVal) {
+            currentVal-=theStep;
+            if (currentVal >= theMin) {
+                $('[name="offer"]').val(currentVal);
+            }
+        }
+    });
+
+    function checkCurrentPrice() {
+        var currentVal = parseFloat($('[name="offer"]').val());
+        var valAdded = currentVal - theMin;
+
+        if (currentVal && currentVal >= theMin && currentVal <= theMax && tenner(valAdded) ) {
+            return currentVal;
+        }
+
+        $('[name="offer"]').val(theMin);
+
+        return false;
+    }
     
 
-});
+    function tenner(currentVal) {
+        // let temp = Math.abs((Math.floor((currentVal)*1000))/1000);
+        // console.log(temp);
+        //console.log(currentVal);
+        // if ( currentVal >= 0 && currentVal <= 0.01)  {
+        //     return true;
+        // }
 
-*/
+
+
+        if ( Math.abs(currentVal) < 0.001) {
+            return true;
+        }
+        
+
+        if ( currentVal < 0) {
+            return false;
+        }
+
+        return tenner(currentVal - theStep);
+    }
+
+});
