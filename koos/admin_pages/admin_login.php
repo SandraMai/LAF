@@ -15,7 +15,7 @@ if(isset($_POST["login"])){
     $usernameError = "Palun sisesta kasutajanimi!";
   }
   
-  if (!isset($_POST["password"])){
+  if (!isset($_POST["password"]) || empty($_POST["password"])){
     $passwordError = "Palun sisesta parool!";
   }
   

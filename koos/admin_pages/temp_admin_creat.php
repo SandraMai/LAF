@@ -1,5 +1,5 @@
 <?php
-// see fail läheb hiljem kustutamisele...kuna klient ei soovi võimalust kasutajakontosi juurde teha
+//Please delete this file after you have created your admin account
 
 require('../head.php');
 
@@ -17,7 +17,6 @@ function signUp($userName, $password){
 	$stmt = $conn->prepare("INSERT INTO ADMIN (username, password) VALUES(?,?)");
 	echo $conn->error;
 	
-	//tekitame parooli räsi (hash) ehk krüpteerime. Valmistame parooli salvestamiseks ette
 	$options = ["cost" => 12, "salt" => substr(sha1(rand()), 0, 22)];
 	$pwdhash = password_hash($password, PASSWORD_BCRYPT, $options);
 	
@@ -36,25 +35,21 @@ function signUp($userName, $password){
 }
 
 
-//kui on uue kasutaja loomise nuppu vajutatud teeme sisestatud andmete kontrolli
 if(isset($_POST["create"])){
-    //kasutajanime kontroll
-    if(isset($_POST["username"]) and !empty($_POST["username"])){
+    if(isset($_POST["username"]) && !empty($_POST["username"])){
         $userName = test_input($_POST["username"]);
     } else {
         $userNameError = "Palun sisesta oma kasutajanimi!";
     }
       
-    //parool kontroll
-    if(!isset($_POST["password"]) or empty($_POST["password"])){
+    if(!isset($_POST["password"]) || empty($_POST["password"])){
         $passwordError = "Palun sisesta parool!";
     } else {
         if(strlen($_POST["password"]) < 8){
-            $passwordError = "Liiga lühike parool";
+            $passwordError = "Liiga lühike parool. Miinimum on 8 tähemärki";
         }
     }
 
-    //salvestame kasutaja
     if(empty($userNameError) and empty($passwordError)){
         $notice = signUp($userName, $_POST["password"]);
     } else {
@@ -83,7 +78,7 @@ if(isset($_POST["create"])){
 <div>
     <div class="main-section titleSection">
 
-        <h1 class="title flex-row white">LOO UUS KASUTAJA (ajutiselt)</h1>
+        <h1 class="title flex-row white">LOO UUS KASUTAJA (ajutine abivahend)</h1>
 
         <p class="flex-row white " ><?php echo $passwordError; ?></p>
         <p class="flex-row white" ><?php echo $userNameError; ?></p>
