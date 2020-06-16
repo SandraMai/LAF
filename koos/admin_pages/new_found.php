@@ -1,46 +1,40 @@
-<?php require('../head.php');
+<?php 
+    require('../head.php');
 
-if(isset($_SESSION["LAST_ACTIVITY"]) && (time() - $_SESSION["LAST_ACTIVITY"] > 10)){
-    session_unset(); 
-    session_destroy();  
+    if(isset($_SESSION["LAST_ACTIVITY"]) && (time() - $_SESSION["LAST_ACTIVITY"] > 1800)){
+        session_unset(); 
+        session_destroy();  
+        header("Location: admin_login.php");
+        exit();
+    }
+
+    if(!isset($_SESSION["userId"])){
+        header("Location: admin_login.php");
+        exit();
+    }
+
+    if(isset($_GET["logout"])){
+    session_unset();
+    session_destroy();
     header("Location: admin_login.php");
     exit();
-}
+    }
 
-if(isset($_SESSION["user_IP"]) != $_SERVER["REMOTE_ADDR"]){
-    session_unset(); 
-    session_destroy();  
-    header("Location: admin_login.php");
-    exit();
-}
-if(!isset($_SESSION["userId"])){
-    header("Location: admin_login.php");
-    exit();
-}
+    // LIINA 
+    // -- Modal logic start
+    // Post added: flag needs to return false(or null)
+    // Post not added: flag needs to return true(or anything)
+    $flag = null;
+    $flag = addFound();
 
-if(isset($_GET["logout"])){
-  session_unset();
-  session_destroy();
-  header("Location: admin_login.php");
-  exit();
-}
+    $case = 0;
 
-
-// LIINA 
-// -- Modal logic start
-// Post added: flag needs to return false(or null)
-// Post not added: flag needs to return true(or anything)
-$flag = null;
-$flag = addFound();
-
-$case = 0;
-
-// -- Modal logic end
-if ($flag == 1) {
-    $case = 1;
-} elseif ($flag == 404) {
-    $case = 404;
-}
+    // -- Modal logic end
+    if ($flag == 1) {
+        $case = 1;
+    } elseif ($flag == 404) {
+        $case = 404;
+    }
 ?>
 <body>
 
