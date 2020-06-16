@@ -1,6 +1,6 @@
 <?php
     require("../head.php");
-
+    $adminLinkValue=1;
     if(!isset($_SESSION["userId"])){
         header("Location: admin_login.php");
         exit();

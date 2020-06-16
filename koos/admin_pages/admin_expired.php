@@ -2,7 +2,7 @@
     require('../head.php'); 
 
     $notice = getExpiredAuctions();
-    
+    $adminLinkValue=4;
     if(!isset($_SESSION["userId"])){
         header("Location: admin_login.php");
         exit();

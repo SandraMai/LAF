@@ -12,6 +12,7 @@
     if(isset($_POST["submitSearch"])){
         $searchedName = $_POST["otsingSona"];
         $searchedCategory = $_POST["category"];
+        $searchedStorage = $_POST["storagePlace"];
         
         //$searchedArea =($_POST["area"]);
         $thisLink =($_POST["linkname"]);
@@ -41,17 +42,35 @@
                     <li>
                         <select name="storagePlace" id="storagePlace">
                             <option disabled selected value>Hoiupaik</option>
-                            <?php echo $storageHTML; ?>
+                            <?php $arrayStorage = $storageHTML;
+                            var_dump($arrayStorage);
+                        for ($i=0; $i < sizeof($arrayStorage); $i++) :
+                            $selected = "";
+                            if($arrayStorage[$i] == $searchedCategory) {
+                                $selected = "selected";
+                            }
+                                ?><option value="<?php echo $arrayStorage[$i];?>" <?php echo $selected; ?>><?php echo $arrayStorage[$i]; ?></option><?php
+
+                        endfor; ?>
+                            
                         </select>
 
                         <!-- <input id="other" name="area" type="input" placeholder="Asukoht" value="<?php //echo $searchedArea;?>"></li> -->
 
                     <li>
                         <select name="category" id="category" value="<?php echo $searchedCategory;?>">
-                            <option disabled selected value>Kategooria</option>
-                            <option value="1">Riided</option>
-                            <option value="2">Tehnika</option>
-                            <option value="3">Muu</option>
+                        <option disabled selected value>  Vali kategooria  </option>
+                        <?php 
+                            $array = array("riided", "tehnika", "muu");
+                        for ($i=0; $i < sizeof($array); $i++) :
+                            $selected = "";
+                            if($array[$i] == $searchedCategory) {
+                                $selected = "selected";
+                            }
+                                ?><option value="<?php echo $array[$i];?>" <?php echo $selected; ?>><?php echo $array[$i]; ?></option><?php
+
+                        endfor; ?>
+                            
                         </select>
                     </li>
 
