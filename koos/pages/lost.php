@@ -13,20 +13,6 @@
     if ($notice==100) {
         $notice = '<p class="flex-row">Hetkel esemeid pole!</p>';
     }
-/*  // Praegu ei toota sest pole andmebaasi
-    if (isset($_POST["tehnika"])){
-        $filter = 'tehnika';
-        $notice = displayLostItems($filter);
-    }elseif (isset($_POST["muu"])){
-        $filter = 'muu';
-        $notice = displayLostItems($filter);
-    }elseif (isset($_POST["riided"])){
-        $filter = 'riided';
-        $notice = displayLostItems($filter);
-    }else{
-        $notice = displayLostItems($filter);
-    }
-    */
 ?>
 
 <body>
@@ -58,7 +44,7 @@
                 
             </div><!--.filtersProductsLayout-->
 
-            <div class="js-more-wrapper loadMoreButton"><button data-inf=0 data-type=1 class="js-load-more">lae juurde</button></div>
+            <div class="js-more-wrapper loadMoreButton"><button data-inf=0 data-type=2 class="js-load-more">lae juurde</button></div>
         </div> <!--main section -->
         <div class="aside"></div>
     </div><!-- main-flex-->
