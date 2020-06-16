@@ -330,7 +330,7 @@
                 if($place == null){
                     $place = "Kaotamise koha kohta info puudub!";
                 }
-                $notice .= '<div class="product flex-row >';
+                $notice .= '<div class="product flex-row">';
                 $notice .= '<img class="productImageBox" src="../images/missing.png">';
                 $notice .= '<div class="productDesc">';
                 $notice .= '<p class="text"> Kirjeldus: ' .$description .'</p>';
