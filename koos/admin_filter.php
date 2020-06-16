@@ -16,7 +16,7 @@
         //$searchedArea =($_POST["area"]);
         $thisLink =($_POST["linkname"]);
         if($linkValue=1){
-            $notice = displayLostItemsAdmin($offset,$searchedName,$searchedCategory,$thisLink);
+            $notice = displayLostItemsFiltrationAdmin($offset,$searchedName,$searchedCategory,$thisLink);
         }else if($linkValue=2){
             $searchedStorage = ($_POST["storagePlace"]);
             getAuctionElements($show,$searchedName,$searchedCategory,$searchedStorage,$thisLink);

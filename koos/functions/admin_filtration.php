@@ -1,6 +1,6 @@
 <?php 
 
-function displayLostItems($offset,$searchedName,$searchedCategory,$thisLink){
+function displayLostItemsFiltrationAdmin($offset,$searchedName,$searchedCategory,$thisLink){
     if($searchedName==null && $searchedCategory==null){
         $monthsET = ["jaanuar", "veebruar", "märts", "aprill", "mai", "juuni", "juuli", "august", "september", "oktoober", "november", "detsember"];
         $notice = null;
