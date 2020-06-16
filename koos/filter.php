@@ -13,7 +13,7 @@ if(isset($_POST["submitSearch"])){
     $searchedArea =($_POST["area"]);
     $thisLink =($_POST["linkname"]);
     if($linkValue=1){
-        $notice = displayLostItems($filter, $offset,$searchedName,$searchedCategory,$searchedArea,$thisLink);
+        $notice = displayLostItems($offset,$searchedName,$searchedCategory,$searchedArea,$thisLink);
     }else if($linkValue=2){
         getAuctionElements($show,$searchedName,$searchedCategory,$searchedArea,$thisLink);
          $notice = "otsing YEET";
@@ -33,10 +33,18 @@ if(isset($_POST["submitSearch"])){
                     <li><input id="other" name="otsingSona" type="input" placeholder="Otsingusõna" value="<?php
                     echo $searchedName;?>"></li>
                     <li>
-                        <select name="category" id="category" value="<?php echo $searchedCategory;?>">
-                            <option value="riided">Riided</option>
-                            <option value="tehnika">Tehnika</option>
-                            <option value="muu">Muu</option>
+                        <select name="category" id="category"  value="<?php echo $searchedCategory;?>">
+                        <?php 
+                            $array = array("riided", "tehnika", "muu");
+                        for ($i=0; $i < sizeof($array); $i++) :
+                            $selected = "";
+                            if($array[$i] == $searchedCategory) {
+                                $selected = "selected";
+                            }
+                                ?><option value="<?php echo $array[$i];?>" <?php echo $selected; ?>><?php echo $array[$i]; ?></option><?php
+
+                        endfor; ?>
+                            
                         </select>
                     </li>
                     <li><input id="other" name="area" type="input" placeholder="Asukoht" value="<?php echo $searchedArea;?>"></li>
