@@ -6,7 +6,7 @@
     $searchedArea=null;
     $searchedCategory=null;
     $searchedName=null;
-
+    $sentElement=null;
     if(isset($_SESSION["LAST_ACTIVITY"]) && (time() - $_SESSION["LAST_ACTIVITY"] > 1800)){
         session_unset(); 
         session_destroy();  
@@ -30,11 +30,11 @@
     $filter = null;
 
     lostExpired();
-    $notice = displayLostItemsAdmin($offset,$searchedName,$searchedCategory,$searchedArea,$adminLinkValue);
+
     if(isset($_POST["deleteLostAd"])){   
         $id = $_POST["idInput"];
         $response = deleteLostAdAdmin($id);
-        $notice = displayLostItemsAdmin($offset,$searchedName,$searchedCategory,$searchedArea,$adminLinkValue);
+        $notice = displayLostItemsAdmin($offset,$searchedName,$sentElement,$searchedArea,$adminLinkValue);
     }
 
 ?>
@@ -57,7 +57,7 @@
             <div class="filtersProductsLayout"> 
                 <?php require("../admin_filter.php") ?>
                 <div class="products">
-                    <?php echo $notice;?>
+                    <?php echo displayLostItemsAdmin($offset,$searchedName,$sentElement,$searchedArea,$adminLinkValue);?>
                 </div>
                 </div><!--.filtersProductsLayout-->
 

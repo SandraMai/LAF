@@ -28,11 +28,11 @@
         $searchedArea =($_POST["area"]);
         $thisLink =($_POST["linkname"]);
         if($thisLink==1){
-            $notice = displayLostItemsAdmin($offset,$searchedName,$searchedCategory,$searchedArea,$thisLink);
+            $notice = displayLostItemsAdmin($offset,$searchedName,$sentElement,$searchedArea,$thisLink);
         }else if($thisLink==2) {
-            $notice = selectFoundPostsAdmin($offset,$searchedName,$searchedCategory,$searchedArea,$thisLink);
+            $notice = selectFoundPostsAdmin($offset,$searchedName,$sentElement,$searchedArea,$thisLink);
         }else if($thisLink==3){
-            $notice=getSuccessfulAuctions($auctionListing,$searchedName,$searchedCategory,$searchedArea,$thisLink, $offset);   
+            $notice=getSuccessfulAuctions($searchedName,$sentElement,$searchedArea,$thisLink, $offset);   
         }
     
     

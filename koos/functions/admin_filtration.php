@@ -246,7 +246,8 @@
             FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired = 1 AND auctioned = 1 AND deleted = 0 AND description LIKE '%{$searchedName}%'AND place_found LIKE '%{$searchedArea}%' AND CATEGORY_category_ID LIKE '%{$searchedCategory}%' ");
         }
 
-
+        echo $searchedCategory;
+        echo $searchedArea;
         echo $conn->error;
         $stmt->bind_result($id, $description, $pic, $storage_place);
         $stmt->execute();
