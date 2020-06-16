@@ -19,9 +19,21 @@
             $stmt = $conn->prepare("SELECT lost_post_ID, description, picture, lost_place, DATE_FORMAT(lost_date, '%d'), DATE_FORMAT(lost_date, '%c'), DATE_FORMAT(lost_date, '%Y') 
             FROM LOST_ITEM_AD WHERE expired = 0 AND description LIKE'%{$searchedName}%' AND CATEGORY_category_ID='{$searchedCategory}' AND deleted = 0 ORDER BY lost_post_ID DESC LIMIT 3 OFFSET ?");
             
-        }else if($searchedName!=null&&$searchedArea!=null){
+        }else if($searchedName!=null&&$searchedArea!=null&&$searchedCategory==null){
             $stmt = $conn->prepare("SELECT lost_post_ID, description, picture, lost_place, DATE_FORMAT(lost_date, '%d'), DATE_FORMAT(lost_date, '%c'), DATE_FORMAT(lost_date, '%Y') 
             FROM LOST_ITEM_AD WHERE expired = 0 AND CATEGORY_category_ID='{$searchedCategory}' AND lost_place LIKE '%{$searchedArea}%' AND description LIKE'%{$searchedName}%'   AND deleted = 0 ORDER BY lost_post_ID DESC LIMIT 3 OFFSET ?");
+        }else if($searchedName==null&&$searchedArea!=null&&$searchedCategory!=null){
+            $stmt = $conn->prepare("SELECT lost_post_ID, description, picture, lost_place, DATE_FORMAT(lost_date, '%d'), DATE_FORMAT(lost_date, '%c'), DATE_FORMAT(lost_date, '%Y') 
+            FROM LOST_ITEM_AD WHERE expired = 0 AND lost_place LIKE '%{$searchedArea}%' AND CATEGORY_category_ID='{$searchedCategory}' AND deleted = 0 ORDER BY lost_post_ID DESC LIMIT 3 OFFSET ?");
+            
+        }else if($searchedName!=null&&$searchedArea==null&&$searchedCategory!=null){
+            $stmt = $conn->prepare("SELECT lost_post_ID, description, picture, lost_place, DATE_FORMAT(lost_date, '%d'), DATE_FORMAT(lost_date, '%c'), DATE_FORMAT(lost_date, '%Y') 
+            FROM LOST_ITEM_AD WHERE expired = 0 AND description LIKE'%{$searchedName}%' AND CATEGORY_category_ID='{$searchedCategory}' AND deleted = 0 ORDER BY lost_post_ID DESC LIMIT 3 OFFSET ?");
+            
+        }else if($searchedName!=null&&$searchedArea!=null&&$searchedCategory!=null){
+            $stmt = $conn->prepare("SELECT lost_post_ID, description, picture, lost_place, DATE_FORMAT(lost_date, '%d'), DATE_FORMAT(lost_date, '%c'), DATE_FORMAT(lost_date, '%Y') 
+            FROM LOST_ITEM_AD WHERE expired = 0 AND description LIKE'%{$searchedName}%' AND lost_place LIKE '%{$searchedArea}%' AND CATEGORY_category_ID='{$searchedCategory}' AND deleted = 0 ORDER BY lost_post_ID DESC LIMIT 3 OFFSET ?");
+            
         }
         $stmt->bind_param("i", $offset);
         echo $conn->error;
