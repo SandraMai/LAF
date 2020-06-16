@@ -44,7 +44,7 @@
                 
             </div><!--.filtersProductsLayout-->
 
-            <div class="js-more-wrapper loadMoreButton"><button data-inf=0 data-type=2 class="js-load-more">lae juurde</button></div>
+            <div class="js-more-wrapper loadMoreButton"><button data-inf=0 data-type=1 class="js-load-more">lae juurde</button></div>
         </div> <!--main section -->
         <div class="aside"></div>
     </div><!-- main-flex-->
