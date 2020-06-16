@@ -39,7 +39,7 @@ if(isset($_GET["logout"])){
                     <a class="adminHomeButton" href="admin_lost.php">KAOTATUD ESEMED</a>
                     <a class="adminHomeButton" href="new_found.php">LEITUD ESEME LISAMINE</a>
                     <a class="adminHomeButton" href="admin_found.php">LEITUD ESEMED</a>
-                    <a class="adminHomeButton" href="auction.php">OKSJON</a>
+                    <a class="adminHomeButton" href="admin_successful.php">OKSJON</a>
                     <a class="adminHomeButton" href="auction.php">AEGUNUD KUULUUTSED</a>              
                     <a class="adminHomeButton" href="admin_settings.php">SEADED</a> 
                 </div>
