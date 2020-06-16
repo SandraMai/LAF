@@ -13,10 +13,8 @@
         while($stmt->fetch()){
             $isAuctionExpired = checkIfExpiredAuction($id);
             $auctionID = getAuctionIDAdmin($id);
-            echo $auctionID;
             if($isAuctionExpired == 1){
                 $email = getBidEmail($auctionID);
-                echo $email;
                 if($email != "lostandfound@tlu.ee"){
                     $bestOffer = getHighestBid($auctionID);
                     $notice .= ' <div class="product flex-row" >';
@@ -25,7 +23,7 @@
                     $notice .= '<p class="text">Kirjeldus: ' .$description .'</p>';
                     $notice .= '<p class="text">Hoiupaik: ' .$storage_place .'</p>';
                     $notice .= '<p class="text">E-mail: ' .$email .'</p>';
-                    $notice .= '<p class="text">Parim pakkumine: ' .$bestOffer .'</p>';
+                    $notice .= '<p class="text">Parim pakkumine: ' .$bestOffer .' €</p>';
                     $notice .= '</div></div>';
                 }
             }
