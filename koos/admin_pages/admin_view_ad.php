@@ -31,14 +31,17 @@
         $notice = viewObjectAdmin($id, $page);
     }
 
-    $message = "JAHSJAHSJAHSJAHSJAHJSKHAJKs";
 
     if(isset($_POST["sendEmail"])){
         if(!isset($_POST["storage"])){
             $emailNotice = "Vali hoiupaik";
         }else{
             $email = getEmail($_POST["adId"]);
-            mail($email, "Tere", $message);
+            $message = "Teie kaotatud ese (kirjeldus: " .getDescription($_POST["adId"]) .") on jõudnud hoiupaika: " 
+            .getStorage($_POST["storage"]);
+            $message .= ". Palun tule esemele järele! \r\n Ära sellele meilile vasta! \r\n Sinu LAF <3";
+            //$message = wordwrap($message, 70, "\r\n");
+            mail($email, "TLÜ LAF", $message);
             $emailNotice = "email saadetud!";
         }
     }

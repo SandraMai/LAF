@@ -333,6 +333,46 @@
     return $notice;
 
   }
+
+  function getStorage($id){
+    $notice = null;
+    $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
+    $stmt = $conn->prepare("SELECT storage_place_name FROM STORAGE_PLACE  WHERE storage_place_ID = '{$id}'");
+    echo $conn->error;
+
+    $stmt->bind_result($storage);
+    $stmt->execute();
+
+    if($stmt->fetch()){
+      $notice = $storage;
+    }else{
+      $notice = "wtf";
+    }
+
+    $stmt->close();
+    $conn->close();
+    return $notice;
+  }
+
+  function getDescription($id){
+    $notice = null;
+    $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
+    $stmt = $conn->prepare("SELECT description FROM LOST_ITEM_AD WHERE lost_post_ID = '{$id}'");
+    echo $conn->error;
+
+    $stmt->bind_result($description);
+    $stmt->execute();
+
+    if($stmt->fetch()){
+      $notice = $description;
+    }else{
+      $notice = "wtf";
+    }
+
+    $stmt->close();
+    $conn->close();
+    return $notice;
+  }
   
   function deleteFoundAdmin($id){
     $response = null;
