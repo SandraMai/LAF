@@ -22,6 +22,9 @@ $database = "if19_LAF";
     src="https://code.jquery.com/jquery-3.4.1.js"
     integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
     crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Zebra_datepicker/1.9.14/zebra_datepicker.min.js" integrity="sha256-0BH/n9+YZFq8fb1p7zCEIrRACrHMyKyuT/fmzQNsrxQ=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Zebra_datepicker/1.9.14/css/bootstrap/zebra_datepicker.min.css" integrity="sha256-oqpK+r+GDXzm0Pvxj2fd4nGdea1gkAgACEIzyUfJHTo=" crossorigin="anonymous" />
+    
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js" integrity="sha256-+BEKmIvQ6IsL8sHcvidtDrNOdZO3C9LtFPtF2H0dOHI=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/additional-methods.min.js" integrity="sha256-dppmU3M7PmToUPE0IZQEFK+v6GJaz5YzVOZN+uxRiDw=" crossorigin="anonymous"></script>

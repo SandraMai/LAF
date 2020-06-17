@@ -119,7 +119,7 @@ textarea {
 
 .dialogBox {
     position: relative;
-    width: 360px;
+    width: 320px;
     padding: 60px 20px;
     border-radius: 8px;
     box-shadow: 0 3px 9px 0 rgba(0,0,0,.12);
@@ -1031,6 +1031,7 @@ Reorganized stuff for responsiveness
 }
 
 .header {
+    z-index: 999;
     display: none;
 }
 

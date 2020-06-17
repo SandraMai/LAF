@@ -166,13 +166,13 @@
                     <input class="foundInput textInput inputBoxStyle" name="email" value="<?php echo $email; ?>">
                 </label>
 
+                
                 <div class="error-lostDate"></div>
                 <label class="foundLabel">
                     <p>
                         <span>Kaotamise kuupäev</span><span class="star">&nbsp; *</span> <span><?php echo $lostDate_error; ?></span>
                     </p>
-                    <input class="foundInput textInput inputBoxStyle" name="lostDate" type="date"
-                     min="<?php echo date('Y-m-d', strtotime("-10 years"));?>" max="<?php echo date('Y-m-d');?>"> 
+                    <input class="foundInput textInput inputBoxStyle datepicker" name="lostDate" type="text"> 
                 </label>
 
                 <div class="error-placeLost"></div>

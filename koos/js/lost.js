@@ -61,4 +61,13 @@ $(document).ready(function() {
         $('.js-file-input-name').text(fileName);
     });
 
+
+    $('.datepicker').Zebra_DatePicker({
+        days: ['P', 'E', 'T', 'K', 'N', 'F', 'S'],
+        show_select_today: "Täna",
+        months: ['Jaanuar', 'Veebruar', 'Märts', 'Aprill', 'Mai', 'Juuni', 'Juuli', 'August', 'September', 'Oktoober', 'November', 'Detsember'],
+        direction: false
+        //,format: 'd.m.Y'
+    });
+
 });

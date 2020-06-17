@@ -67,9 +67,7 @@
             <label class="foundLabel">
             <p>Leidmise kuupäev</p>
             
-                <input class="foundInput textInput inputBoxStyle" type="date" name="date"
-                    
-                    min="<?php echo date('Y-m-d', strtotime("-14 days"));?>" max="<?php echo date('Y-m-d');?>">
+                <input class="foundInput textInput inputBoxStyle datepicker" type="text" name="date">
             </label>
             <br>
 
