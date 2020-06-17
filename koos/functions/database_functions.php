@@ -44,41 +44,35 @@
         $stmt->execute();
             
             while($stmt->fetch()){
-                if($pic=="puudub"){
-                    if($place == null){
-                        $place = "Kaotamise koha kohta info puudub!";
-                    }
-                    $notice .= ' <div class="product">';
-                    $notice .= '<a class="productImageBox" href="view_ad.php?id=' .$id ."&page=" .$page .'"><img class="productImage" src="../images/missing.png"' .'"></a>';
-                    $notice .= '<div class="productDesc">';
-                    $notice .= '<p> Kirjeldus: ' .$description .'</p>';
-                    $notice .= '<p> Kaotamise koht: ' .$place .'</p>';
-                    $notice .= '<p> Kaotamise kuupäev: ' .$day .'.' .$monthsET[$month-1] .' ' .$year .'</p>';
-                    $notice .= '</div></div>';
-                }else{
-                    if($place == null){
-                        $place = "Kaotamise koha kohta info puudub!";
-                    }
-                    $notice .= ' <div class="product">';
-                    $notice .= '<a class="productImageBox" href="view_ad.php?id=' .$id ."&page=" .$page .'"><img class="productImage" src="' .$GLOBALS["pic_read_dir_thumb"] .$pic .'"></a>';
-                    $notice .= '<div class="productDesc">';
-                    $notice .= '<p> Kirjeldus: ' .$description .'</p>';
-                    $notice .= '<p>Kaotamise koht: ' .$place .'</p>';
-                    $notice .= '<p> Kaotamise kuupäev: ' .$day .'.' .$monthsET[$month-1] .' ' .$year .'</p>';
-                    $notice .= '</div></div>';
+                if($place == null){
+                    $place = "Kaotamise koha kohta info puudub!";
                 }
+                $notice .= ' <div class="product">';
+                $notice .= '<a class="productImageBox" href="view_ad.php?id=' .$id ."&page=" .$page .'">';
+                if($pic == "puudub"){
+                    $notice .= '<img class="productImage" src="../images/missing.png"' .'"></a>';
+                }else{
+                    $notice .= '<img class="productImage" src="' .$GLOBALS["pic_read_dir_thumb"] .$pic .'"></a>';
+                }
+                $notice .= '<div class="productDesc">';
+                $notice .= '<p> Kirjeldus: ' .$description .'</p>';
+                $notice .= '<p> Kaotamise koht: ' .$place .'</p>';
+                $notice .= '<p> Kaotamise kuupäev: ' .$day .'.' .$monthsET[$month-1] .' ' .$year .'</p>';
+                $notice .= '</div></div>';
             }
-            if($notice == null){
-                //$notice .= '<p class="flex-row">Hetkel esemeid pole!</p>';
-                $notice = 100; // no more items;
-            }
-            
-            $stmt->close();
-            $conn->close();
-            return $notice;
+
+
+        if($notice == null){
+            //$notice .= '<p class="flex-row">Hetkel esemeid pole!</p>';
+            $notice = 100; // no more items;
+        }
         
+        $stmt->close();
+        $conn->close();
+        return $notice;
         
     }
+    
     function viewObject($id, $page){
         $monthsET = ["jaanuar", "veebruar", "märts", "aprill", "mai", "juuni", "juuli", "august", "september", "oktoober", "november", "detsember"];
         $notice = null;
