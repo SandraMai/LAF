@@ -26,7 +26,7 @@
     if(isset($_POST["deleteAd"])){
         $id = $_POST["idInput"];
         deleteFoundAdmin($id);
-        $notice = getExpiredAuctions($searchedName,$sentElement,$searchedArea,$adminLinkValue, $offset);
+        $notice = getExpiredAuctions($searchedName,$sentElement,$searchedStorage,$adminLinkValue, $offset);
     }
 ?>
 
@@ -55,7 +55,7 @@
 
             <?php require("../admin_filter.php") ?>
             <div class="products">
-                    <?php echo getExpiredAuctions($searchedName,$sentElement,$searchedArea,$adminLinkValue, $offset); ?>
+                    <?php echo getExpiredAuctions($searchedName,$sentElement,$searchedStorage,$adminLinkValue, $offset); ?>
             
             </div><!--.products -->
         </div><!--.flex-row-->

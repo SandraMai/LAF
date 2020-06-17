@@ -214,40 +214,41 @@
 
 
 
-    function getExpiredAuctions($searchedName,$searchedCategory,$searchedArea,$thisLink, $offset){
+    function getExpiredAuctions($searchedName,$searchedCategory,$searchedStorage,$thisLink, $offset){
         $notice = null;
+        $searchedStorage=storageToID($searchedStorage);
         $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]); 
-        if($searchedName==null&&$searchedArea==null&&$searchedCategory==null){
+        if($searchedName==null&&$searchedStorage==null&&$searchedCategory==null){
             $stmt = $conn->prepare("SELECT found_item_ad_ID, description, picture, storage_place_name FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON 
         FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired = 1 AND auctioned = 1 AND deleted = 0  ORDER BY found_item_ad_ID DESC");
 
-        }else if($searchedName!=null&&$searchedArea==null&&$searchedCategory==null){
+        }else if($searchedName!=null&&$searchedStorage==null&&$searchedCategory==null){
             $stmt = $conn->prepare("SELECT found_item_ad_ID, description, picture, storage_place_name FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON 
             FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired = 1 AND auctioned = 1 AND deleted = 0 AND description LIKE '%{$searchedName}%' ORDER BY found_item_ad_ID DESC");
 
-        }else if($searchedName==null&&$searchedArea!=null&&$searchedCategory==null){
+        }else if($searchedName==null&&$searchedStorage!=null&&$searchedCategory==null){
             $stmt = $conn->prepare("SELECT found_item_ad_ID, description, picture, storage_place_name FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON 
-            FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired = 1 AND auctioned = 1 AND deleted = 0 AND place_found LIKE '%{$searchedArea}%'   ORDER BY found_item_ad_ID DESC");
+            FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired = 1 AND auctioned = 1 AND deleted = 0 AND STORAGE_PLACE_storage_place_ID LIKE '%{$searchedStorage}%'   ORDER BY found_item_ad_ID DESC");
 
-        }else if($searchedName==null&&$searchedArea==null&&$searchedCategory!=null){
+        }else if($searchedName==null&&$searchedStorage==null&&$searchedCategory!=null){
             $stmt = $conn->prepare("SELECT found_item_ad_ID, description, picture, storage_place_name FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON 
             FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired = 1 AND auctioned = 1 AND deleted = 0 AND CATEGORY_category_ID LIKE '%{$searchedCategory}%'  ORDER BY found_item_ad_ID DESC");
 
-        }else if($searchedName!=null&&$searchedArea!=null&&$searchedCategory==null){
+        }else if($searchedName!=null&&$searchedStorage!=null&&$searchedCategory==null){
             $stmt = $conn->prepare("SELECT found_item_ad_ID, description, picture, storage_place_name FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON 
-            FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired = 1 AND auctioned = 1 AND deleted = 0 AND description LIKE '%{$searchedName}%'AND place_found LIKE '%{$searchedArea}%' ORDER BY found_item_ad_ID DESC");
+            FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired = 1 AND auctioned = 1 AND deleted = 0 AND description LIKE '%{$searchedName}%'AND STORAGE_PLACE_storage_place_ID LIKE '%{$searchedStorage}%' ORDER BY found_item_ad_ID DESC");
 
-        }else if($searchedName==null&&$searchedArea!=null&&$searchedCategory!=null){
+        }else if($searchedName==null&&$searchedStorage!=null&&$searchedCategory!=null){
             $stmt = $conn->prepare("SELECT found_item_ad_ID, description, picture, storage_place_name FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON 
-            FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired = 1 AND auctioned = 1 AND deleted = 0 AND  place_found LIKE '%{$searchedArea}%' AND CATEGORY_category_ID LIKE '%{$searchedCategory}%'  ORDER BY found_item_ad_ID DESC");
+            FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired = 1 AND auctioned = 1 AND deleted = 0 AND STORAGE_PLACE_storage_place_ID LIKE '%{$searchedStorage}%' AND CATEGORY_category_ID LIKE '%{$searchedCategory}%'  ORDER BY found_item_ad_ID DESC");
 
-        }else if($searchedName!=null&&$searchedArea==null&&$searchedCategory!=null){
+        }else if($searchedName!=null&&$searchedStorage==null&&$searchedCategory!=null){
             $stmt = $conn->prepare("SELECT found_item_ad_ID, description, picture, storage_place_name FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON 
             FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired = 1 AND auctioned = 1 AND deleted = 0 AND description LIKE '%{$searchedName}%' AND CATEGORY_category_ID LIKE '%{$searchedCategory}%'  ORDER BY found_item_ad_ID DESC");
 
-        }else if($searchedName!=null&&$searchedArea!=null&&$searchedCategory!=null){
+        }else if($searchedName!=null&&$searchedStorage!=null&&$searchedCategory!=null){
             $stmt = $conn->prepare("SELECT found_item_ad_ID, description, picture, storage_place_name FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON 
-            FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired = 1 AND auctioned = 1 AND deleted = 0 AND description LIKE '%{$searchedName}%'AND place_found LIKE '%{$searchedArea}%' AND CATEGORY_category_ID LIKE '%{$searchedCategory}%'  ORDER BY found_item_ad_ID DESC");
+            FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired = 1 AND auctioned = 1 AND deleted = 0 AND description LIKE '%{$searchedName}%'AND STORAGE_PLACE_storage_place_ID LIKE '%{$searchedStorage}%' AND CATEGORY_category_ID LIKE '%{$searchedCategory}%'  ORDER BY found_item_ad_ID DESC");
 
         }
         echo $conn->error;
@@ -292,6 +293,20 @@
         $stmt->close();
 	    $conn->close();
 	    return $array;
+    }
+    function storageToID($storageName){
+        $storageID = null;
+        $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
+        $stmt = $conn->prepare("SELECT storage_place_ID  FROM STORAGE_PLACE WHERE storage_place_name='{$storageName}'");
+        $stmt->bind_result($id);
+        $stmt->execute();
+        while($stmt->fetch()){
+            $storageID=$id;
+
+        }
+        $stmt->close();
+	    $conn->close();
+	    return $storageID;
     }
 
 ?>

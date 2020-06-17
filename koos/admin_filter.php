@@ -8,6 +8,7 @@
     $searchedStorage = null;
     $searchedArea=null;
     $offset = 0;
+    $searchedStorage=null;
 
     if(isset($_POST["submitSearch"])){
         $searchedName = ($_POST["otsingSona"]);
@@ -36,7 +37,7 @@
             $notice=getSuccessfulAuctions($searchedName,$sentElement,$searchedArea,$thisLink, $offset);   
         }else if($thisLink==4){
             $searchedArea=null;
-            $notice=getExpiredAuctions($searchedName,$sentElement,$searchedArea,$thisLink, $offset);   
+            $notice=getExpiredAuctions($searchedName,$sentElement,$searchedStorage,$thisLink, $offset);   
         }
     
     
@@ -53,7 +54,7 @@
 
                     <li>
                         <?php if ($adminLinkValue!=1):?>
-                        <select name="storagePlace" id="storagePlace">
+                        <select name="storagePlace" id="storagePlace" value="<?php echo $searchedStorage;?>">
                             <option disabled selected value>Hoiupaik</option>
                             <?php $arrayStorage = $storageHTML;
                             var_dump($arrayStorage);
