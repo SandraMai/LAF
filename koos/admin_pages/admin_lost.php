@@ -81,6 +81,6 @@ $urlTitle = '';
 require('../pages/modal.php'); ?>
 
 <script src="../js/lost.js"></script>
-
+<script src="../js/infiniteScroll.js"></script>
 </body>
 </html>

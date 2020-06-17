@@ -31,7 +31,7 @@ $database = "if19_LAF";
     // Is admin page
     if ( $atype == 1 ) {
         if ($_POST['type'] == 1) {
-            //$getMore = displayLostItems($offset, $searchedName, $searchedCategory, $searchedArea, 1);
+            $getMore = displayLostItemsAdmin($offset,$searchedName,$sentElement,$searchedArea,2);
 
         } elseif ($_POST['type'] == 2) {
            $getMore = selectFoundPostsAdmin($offset,$searchedName,$sentElement, $searchedStorageID,$searchedArea,null);

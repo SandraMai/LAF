@@ -9,18 +9,22 @@ $(document).ready(function() {
             atype = 0;
         }
 
+        var storage = $('[name="storagePlace"]').data('value');
+        if(!storage) {
+            storage = 0;
+        }
         var type = $(this).data('type');
         offset+=3;
         console.log(offset);
-        ajaxLoadMore(offset, type, atype);
+        ajaxLoadMore(offset, type, atype, storage);
     });
 
 
-    function ajaxLoadMore(offset, type, atype) {
+    function ajaxLoadMore(offset, type, atype, storage) {
         var name = $('[name="otsingSona"]').data('value');
         var cat = $('[name="category"]').data('value');
         var area = $('[name="area"]').data('value');
-        let storage = $('[name="storagePlace"]').data('value');
+        
         var url = '../ajax/infinite_scroll.php';
             $.ajax({
                 type: 'POST',
