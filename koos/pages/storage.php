@@ -26,7 +26,7 @@
             </div>
 
             <div class="storage-pic">
-                <img class="img-full" src="../linnakukaart.jpg">
+                <img class="img-full" src="../images/linnakukaart.jpg">
             </div>
         </div>
 
