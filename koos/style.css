@@ -875,7 +875,7 @@ Reorganized stuff for responsiveness
         justify-content: center;
         align-items: center;
         color: black;
-        font-size: 12px;
+        font-size: 15px;
     }
 
     .filters {
@@ -957,6 +957,10 @@ Reorganized stuff for responsiveness
 
     #priceSuggested {
         width: 150px;
+    }
+    
+    .foundLabel {
+        font-size: 15px;
     }
 
 }
@@ -1074,12 +1078,6 @@ Reorganized stuff for responsiveness
 .checkboxLabel {
     align-self: flex-start;
     padding-left: 10px;
-}
-
-.foundLabel p {
-    display: flex;
-    align-self: flex-start;
-    color: rgb(65, 70, 69);
 }
 
 .checkboxLabel input {
