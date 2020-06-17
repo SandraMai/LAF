@@ -39,9 +39,9 @@
       $stmt = $conn->prepare("UPDATE FAQ SET question=? WHERE faq_ID='{$id}'");
       $stmt->bind_param("s", $question);
       if($stmt->execute()){
-          $notice = "Küsimus uuendatud!";
+            $notice = 2;
       } else {
-          $notice = "Midagi läks valesti: " .$stmt->error;
+            $notice = 404;
       }
       $stmt->close();
       $conn->close();
@@ -54,9 +54,9 @@
       $stmt = $conn->prepare("UPDATE FAQ SET answer=? WHERE faq_ID='{$id}'");
       $stmt->bind_param("s", $answer);
       if($stmt->execute()){
-          $notice = "Vastus uuendatud!";
+            $notice = 2;
       } else {
-          $notice = "Midagi läks valesti: " .$stmt->error;
+            $notice = 404;
       }
       $stmt->close();
       $conn->close();
@@ -236,9 +236,9 @@
       $stmt = $conn->prepare("INSERT INTO FAQ (question, answer, SECTION_section_ID) VALUES (?,?,?)");
       $stmt->bind_param("ssi", $question, $answer, $sectionID);
       if($stmt->execute()){
-        $notice = "Uus korduma kippuv küsimus lisatud!";
+            $notice = 2;
       } else {
-        $notice = "Midagi läks valesti" .$stmt->error;
+            $notice = 404;
       }
       $stmt->close();
       $conn->close();
