@@ -48,7 +48,7 @@
                 $response .= '<p>Kirjeldus: ' . $description . '</p>';
                 $response .= '<p>Leitud kuupäev: ' .$day .'.' .$monthsET[$month-1] .' ' .$year .'</p>';
                 $response .= '<p>Viimane pakkumine: ' .$highestBid .' €</p>';
-                $response .= '<br><p>Aegub ';
+                $response .= '<p>Aegub ';
                 $response .= '<a class="productexplinationsDATE" data-time="' . $timestamps . '">';
                 $response .= '<span class="days"></span> p <span class="hours"></span> h <span class="minutes">';
                 $response .= '</span> min <span class="seconds"></span> s </a></p>';
