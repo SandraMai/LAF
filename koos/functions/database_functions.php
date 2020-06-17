@@ -291,7 +291,7 @@
             $response .= '<a class="productImageBox" href="view_ad.php?id=' .$id ."&page=" .$page .'"><img class="productImage" src="' .$GLOBALS["pic_read_dir_thumb"] . $picture  .'"></a>';
             $response .= '<div class="flex-column productDesc">';
             $response .= '<p>Kirjeldus: ' . $description . '</p>';
-            $response .= '<p>Leidmise koht:' . $place_found . '</p>';
+            $response .= '<p>Leidmise koht: ' . $place_found . '</p>';
             $response .= '<p>Kuupäev: ' .$day .'.' .$monthsET[$month-1] .' ' .$year .'</p>';
             $response .= '<p>Hoiupaik: ' . $storage . '</p>';
             $response .= '</div><div class="aside"></div></div>';
