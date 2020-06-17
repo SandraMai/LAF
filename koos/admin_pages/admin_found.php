@@ -81,7 +81,21 @@
 
 
 
+<script>
 
+    $(document).on('click', '[name="deleteAd"]', function(e) {
+        var answer = confirm("Olete kindel, et kustutada?");
+        if(answer == true){
+            //alert('navigate!');
+            // reload page
+            console.log("yes");
+        }else{
+            e.preventDefault();
+        }
+    });
+
+
+</script>
 <script src="../js/found.js"></script>
 <script src="../js/infiniteScroll.js"></script>
 </body>

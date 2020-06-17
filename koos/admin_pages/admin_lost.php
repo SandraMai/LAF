@@ -80,6 +80,22 @@ $url = "#";
 $urlTitle = '';
 require('../pages/modal.php'); ?>
 
+
+<script>
+
+    $(document).on('click', '[name="deleteLostAd"]', function(e) {
+        var answer = confirm("Olete kindel, et kustutada?");
+        if(answer == true){
+            //alert('navigate!');
+            // reload page
+            console.log("yes");
+        }else{
+            e.preventDefault();
+        }
+    });
+
+
+</script>
 <script src="../js/lost.js"></script>
 <script src="../js/infiniteScroll.js"></script>
 </body>
