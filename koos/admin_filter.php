@@ -92,7 +92,7 @@
 
                     <li><?php if ($adminLinkValue==4):?><input id="other" hidden name="area" type="input" placeholder="Asukoht" value="<?php echo $searchedArea;?>" data-value="<?php echo $searchedArea;?>"><?php endif;?></li>
                         <?php if ($adminLinkValue==3):?>
-                        <li><input id="other" name="area" type="input"  placeholder="Leidmise koht" value="<?php echo $searchedArea;?>" data-value="<?php echo $searchedArea;?>"></li>
+                        <li><input id="other" name="area" hidden type="input"  placeholder="Leidmise koht" value="<?php echo $searchedArea;?>" data-value="<?php echo $searchedArea;?>"></li>
                     <?php  endif;?>
                     <?php if ($adminLinkValue==2):?>
                         <li><input id="other" name="area" type="input" placeholder="Leidmise koht" value="<?php echo $searchedArea;?>" data-value="<?php echo $searchedArea;?>"></li>
