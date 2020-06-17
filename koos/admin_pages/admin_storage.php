@@ -35,6 +35,8 @@
     $storageID_error = null;
     $phonenr_error = null;
 
+    $case = 0;
+
     //uus hoiupaik
     if(isset($_POST["submitNewStorage"])){
         //nimetuse kontroll
@@ -52,6 +54,12 @@
 
         if(empty($newStorageName_error) and empty($newPhonenr_error)){
             $noticeNew = addNewStorageToDB($newStorageName, $newPhonenr, $_POST["email"]);
+
+            if($noticeNew == 2) {
+                $case = 9;
+            } elseif ($noticeNew == 404) {
+                $case = 10;
+            }
             $newStorageName = null;
             $newPhonenr = null;
             $storageHTML = readStoragesForSelect();
@@ -76,6 +84,11 @@
 
         if(empty($storageID_error) and empty($phonenr_error)){
             $notice = updateStorage($storageID, $phonenr);
+            if($notice == 2) {
+                $case = 8;
+            } elseif ($notice == 404) {
+                $case = 10;
+            }
             $phonenr = null;
         }
     }
@@ -113,7 +126,7 @@
         <input name="email" type="email">
         </label>
 
-        <input name="submitNewStorage" class="add-ad" type="submit" value="LISA UUS"> <span><?php echo $noticeNew; ?></span>
+        <input name="submitNewStorage" class="add-ad" type="submit" value="LISA UUS"> <span></span>
         
         </form>
 
@@ -137,7 +150,7 @@
         <p class="star">*</p> <span><?php echo $phonenr_error; ?></span>
         </label>
 
-        <input name="updateStorage" class="add-ad" type="submit" value="MUUDA"> <span><?php echo $notice; ?></span>
+        <input name="updateStorage" class="add-ad" type="submit" value="MUUDA"> <span></span>
         
         </form>
 
@@ -146,5 +159,12 @@
         </div>
     <div class="aside"></div>
 </div>
+
+<input class="modalCase" type="hidden" data-case="<?php echo $case;?>">
+<?php 
+
+$url = "admin_settings.php";
+$urlTitle = 'Tagasi seadetesse';
+require('../pages/modal.php'); ?>
 </body>
 </html>

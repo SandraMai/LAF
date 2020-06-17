@@ -100,11 +100,13 @@
         $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
         $stmt = $conn->prepare("INSERT INTO STORAGE_PLACE (storage_place_name, phonenr, email) VALUES(?,?,?)");
         $stmt->bind_param("sss", $newStorageName, $newPhonenr, $email);
+
         if($stmt->execute()){
-            $notice = "Uus hoiupaik lisatud!";
+                $notice = 2;
         } else {
-            $notice = "Midagi läks valesti: " .$stmt->error;
+                $notice = 404;
         }
+
         $stmt->close();
         $conn->close();
         return $notice;
@@ -116,9 +118,9 @@
         $stmt = $conn->prepare("UPDATE STORAGE_PLACE SET phonenr=? WHERE storage_place_ID='{$storageID}'");
         $stmt->bind_param("s", $phonenr);
         if($stmt->execute()){
-            $notice = "Telefoninumber uuendatud!";
+                $notice = 2;
         } else {
-            $notice = "Midagi läks valesti: " .$stmt->error;
+                $notice = 404;
         }
         $stmt->close();
         $conn->close();
