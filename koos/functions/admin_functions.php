@@ -267,7 +267,7 @@
     $monthsET = ["jaanuar", "veebruar", "märts", "aprill", "mai", "juuni", "juuli", "august", "september", "oktoober", "november", "detsember"];
     $notice = null;
     $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
-    if($page=="admin_lost.php"){
+    
         $stmt = $conn->prepare("SELECT description, picture, lost_place, DATE_FORMAT(lost_date, '%d'), DATE_FORMAT(lost_date, '%c'), DATE_FORMAT(lost_date, '%Y'), email FROM LOST_ITEM_AD WHERE lost_post_ID='{$id}'");
         echo $conn->error;
         $stmt->bind_result($description, $pic, $place, $day, $month, $year, $email);
@@ -310,7 +310,7 @@
         $stmt->close();
         $conn->close();
         return $notice;
-    }
+    
   }
   
   
