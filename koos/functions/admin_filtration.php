@@ -127,9 +127,8 @@
             $response .= '<img class="productImageBox" src="' .$GLOBALS["pic_read_dir_thumb"] . $picture  .'"></a>';
             $response .= '<div class="flex-column productDesc">';
             $response .= '<p>Kirjeldus: ' . $description . '</p>';
-            $response .= '<p>Leidmise koht:' . $place_found . '</p>';
+            $response .= '<p>Leidmise koht: ' . $place_found . '</p>';
             $response .= '<p>Kuupäev: ' .$day .'.' .$monthsET[$month-1] .' ' .$year .'</p>';
-            $response .= '<p>Hoiupaik: ' . $storage . '</p>';
             $response .= '<p>Hoiupaik: ' . $storage . '</p>';
             $response .= '<form method="POST" action="#"><input type ="hidden" value="' .$id .'" name="idInput">';
             $response .= '<input type="submit" id="delete" name="deleteAd" value="KUSTUTA"></form>';
