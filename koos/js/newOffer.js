@@ -12,9 +12,13 @@ $(document).ready(function() {
     });
 
 
-    // $.validator.addMethod("actualStep", function(value, element) {
-    //     return checkCurrentPrice();
-    // });
+    $.validator.addMethod("actualStep", function(value, element) {
+
+        if (checkCurrentPrice()) {
+            return true;
+        }
+        return false;
+    });
 
     
 
@@ -26,7 +30,7 @@ $(document).ready(function() {
             },
             offer : {
                 required: true,
-                //actualStep: true
+                actualStep: true
             }
         },
         messages: {
@@ -38,7 +42,7 @@ $(document).ready(function() {
                 required: "Palun valige hind.",
                 min: "Pakkumine ei saa olla väiksem kui " + theMin,
                 max: "Pakkumine ei saa olla suurem kui " + theMax,
-                //actualStep: "Palun sisesta arv, mis on " + theStep + " sammuga alghinnast " + theMin
+                actualStep: "Palun sisesta arv, mis on " + theStep + " sammuga alghinnast " + theMin
             }
             
         },
@@ -61,6 +65,8 @@ $(document).ready(function() {
             if (currentVal <= theMax) {
                 $('[name="offer"]').val(currentVal);
             }
+        } else {
+            $('[name="offer"]').val(theMin);
         }
     });
 
@@ -71,6 +77,8 @@ $(document).ready(function() {
             if (currentVal >= theMin) {
                 $('[name="offer"]').val(currentVal);
             }
+        } else {
+            $('[name="offer"]').val(theMin);
         }
     });
 
@@ -82,22 +90,11 @@ $(document).ready(function() {
             return currentVal;
         }
 
-        $('[name="offer"]').val(theMin);
-
         return false;
     }
     
 
     function tenner(currentVal) {
-        // let temp = Math.abs((Math.floor((currentVal)*1000))/1000);
-        // console.log(temp);
-        //console.log(currentVal);
-        // if ( currentVal >= 0 && currentVal <= 0.01)  {
-        //     return true;
-        // }
-
-
-
         if ( Math.abs(currentVal) < 0.001) {
             return true;
         }

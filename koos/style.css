@@ -62,7 +62,8 @@ body {
 .error-found_location,
 .error-email,
 .error-lostDate,
-.error-placeLost {
+.error-placeLost,
+.error-offer {
     color: red;
     font-size: 14px;
     text-align: left;
