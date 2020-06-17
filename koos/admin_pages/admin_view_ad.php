@@ -40,8 +40,9 @@
             $message = "Teie kaotatud ese (kirjeldus: " .getDescription($_POST["adId"]) .") on jõudnud hoiupaika: " 
             .getStorage($_POST["storage"]);
             $message .= ". Palun tule esemele järele! \r\n Ära sellele meilile vasta! \r\n Sinu LAF <3";
-            //$message = wordwrap($message, 70, "\r\n");
-            mail($email, "TLÜ LAF", $message);
+            $headers = 'Lost And Found';
+            
+            mail($email, $headers, $message);
             $emailNotice = "email saadetud!";
         }
     }
