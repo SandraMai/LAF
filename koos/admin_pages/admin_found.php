@@ -9,6 +9,7 @@
     $notice=null;
     $sentElement=null;
     $searchedStorageID=null;
+    $case = 0;
 
     if(isset($_SESSION["LAST_ACTIVITY"]) && (time() - $_SESSION["LAST_ACTIVITY"] > 1800)){
         session_unset(); 
@@ -32,7 +33,7 @@
     foundToExpired();
     if(isset($_POST["deleteAd"])){
         $id = $_POST["idInput"];
-        deleteFoundAdmin($id);
+        $case = deleteFoundAdmin($id);
         $notice;
     }
 ?>
@@ -79,6 +80,12 @@
     <div class="aside"></div>
 </div>
 
+<input class="modalCase" type="hidden" data-case="<?php echo $case;?>">
+<?php 
+
+$url = "#";
+$urlTitle = '';
+require('../pages/modal.php'); ?>
 
 
 <script>
