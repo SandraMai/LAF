@@ -1,6 +1,5 @@
 <?php
     $database = "if19_LAF";
-    $storageHTML = counterOfStorages();
     $auctionListing=null;
     $show=null;
     $searchedName=null;
@@ -8,12 +7,14 @@
     $searchedStorage = null;
     $searchedArea=null;
     $offset = 0;
-    $searchedStorage=null;
+
 
     if(isset($_POST["submitSearch"])){
+        $searchedStorage=($_POST["storagePlace"]);
         $searchedName = ($_POST["otsingSona"]);
         if(isset($_POST["category"])){
             $searchedCategory =($_POST["category"]);
+            
             if($searchedCategory=="riided"){
                 $sentElement=1;
             }elseif($searchedCategory=="tehnika"){
@@ -56,11 +57,10 @@
                         <?php if ($adminLinkValue!=1):?>
                         <select name="storagePlace" id="storagePlace" value="<?php echo $searchedStorage;?>">
                             <option disabled selected value>Hoiupaik</option>
-                            <?php $arrayStorage = $storageHTML;
-                            var_dump($arrayStorage);
+                            <?php $arrayStorage = counterOfStorages();
                         for ($i=0; $i < sizeof($arrayStorage); $i++) :
                             $selected = "";
-                            if($arrayStorage[$i] == $searchedCategory) {
+                            if($arrayStorage[$i] == $searchedStorage) {
                                 $selected = "selected";
                             }
                                 ?><option value="<?php echo $arrayStorage[$i];?>" <?php echo $selected; ?>><?php echo $arrayStorage[$i]; ?></option><?php
