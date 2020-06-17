@@ -72,7 +72,7 @@
         return $notice;
         
     }
-    
+
     function viewObject($id, $page){
         $monthsET = ["jaanuar", "veebruar", "märts", "aprill", "mai", "juuni", "juuli", "august", "september", "oktoober", "november", "detsember"];
         $notice = null;
@@ -83,35 +83,26 @@
             $stmt->bind_result($description, $pic, $place, $day, $month, $year, $email);
             $stmt->execute();
             while($stmt->fetch()){
-                if($pic=="puudub"){
-                    if($place == null){
-                        $place = "Kaotamise koha kohta info puudub!";
-                    }
-                    $notice .= ' <div class="product flex-row" >';
-                    $notice .= '<img class="productImageBox" src="../images/missing.png">';
-                    $notice .= '<div class="productDesc">';
-                    $notice .= '<p class="text"> Kirjeldus: ' .$description .'</p>';
-                    $notice .= '<p class="text">Kaotamise koht: ' .$place .'</p>';
-                    $notice .= '<p class="text">Kaotamise kuupäev: ' .$day .'.' .$monthsET[$month-1] .' ' .$year .'</p>';
-                    $notice .= '<button id="delete">KUSTUTA</button>';
-                    $notice .= '<form id="deleteForm" method="POST"><div class="error-email smallerWidth"></div><input class ="inputBoxStyle" type="text" name="email" placeholder="E-mail">';
-                    $notice .= '<input class="deleteFormButton" type="submit" value="KUSTUTA" name="deleteAd"></form>';
-                    $notice .= '</div></div>';
-                }else{
-                    if($place == null){
-                        $place = "Kaotamise koha kohta info puudub!";
-                    }
-                    $notice .= '<div class="product flex-row">';
-                    $notice .= '<img class="productImageBox" src="' .$GLOBALS["pic_read_dir_thumb"] .$pic .'">';
-                    $notice .= '<div class="productDesc">';
-                    $notice .= '<p class="text">Kirjeldus: ' .$description .'</p>';
-                    $notice .= '<p class="text">Kaotamise koht: ' .$place .'</p>';
-                    $notice .= '<p class="text">Kaotamise kuupäev: ' .$day .'.' .$monthsET[$month-1] .' ' .$year .'</p>';
-                    $notice .= '<button id="delete">KUSTUTA</button>';
-                    $notice .= '<form id="deleteForm" method="POST"><div class="error-email smallerWidth"></div><input class ="inputBoxStyle" type="text" name="email" placeholder="E-mail">';
-                    $notice .= '<input class="deleteFormButton" type="submit" value="KUSTUTA" name="deleteAd"></form>';
-                    $notice .= '</div></div>';
+                if($place == null){
+                    $place = "Kaotamise koha kohta info puudub!";
                 }
+                $notice .= ' <div class="product flex-row" >';
+
+                if($pic=="puudub"){
+                    $notice .= '<img class="productImageBox" src="../images/missing.png">';
+                }else{
+                    $notice .= '<img class="productImageBox" src="' .$GLOBALS["pic_read_dir_thumb"] .$pic .'">';
+                }
+                
+                $notice .= '<div class="productDesc">';
+                $notice .= '<p class="text"> Kirjeldus: ' .$description .'</p>';
+                $notice .= '<p class="text">Kaotamise koht: ' .$place .'</p>';
+                $notice .= '<p class="text">Kaotamise kuupäev: ' .$day .'.' .$monthsET[$month-1] .' ' .$year .'</p>';
+                $notice .= '<button id="delete">KUSTUTA</button>';
+                $notice .= '<form id="deleteForm" method="POST"><div class="error-email smallerWidth"></div><input class ="inputBoxStyle" type="text" name="email" placeholder="E-mail">';
+                $notice .= '<input class="deleteFormButton" type="submit" value="KUSTUTA" name="deleteAd"></form>';
+                $notice .= '</div></div>';
+                
             }
             $stmt->close();
             $conn->close();
