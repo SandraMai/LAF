@@ -6,9 +6,11 @@ $thisLink=2;
 $linkValue=2;
 
 $searchedName=null;
-$searchedCategory=null;
+$sentCategory=null;
 $searchedArea=null;
 $thisLink=null;
+$searchedEndDate=null;
+$searchedStartDate=null;
 
 $notice = selectFoundPostsHTML($offset,$searchedName,$sentCategory,$searchedArea,$thisLink);
 

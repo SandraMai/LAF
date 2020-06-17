@@ -6,6 +6,8 @@ $searchedName=null;
 $searchedCategory=null;
 $searchedArea=null;
 $sentElement=null;
+$searchedEndDate=null;
+$searchedStartDate=null;
 $offset = 0;
 $filter = null;
 if(isset($_POST["submitSearch"])){
@@ -22,12 +24,16 @@ if(isset($_POST["submitSearch"])){
     }else{$searchedCategory =null;
         $sentElement=null;
     }
-
-    
+ if(isset($_POST["Date-Start"])){
+    $searchedStartDate=$_POST["Date-Start"];
+    }
+ if(isset($_POST["Date-Start"])){
+    $searchedEndDate=$_POST["Date-End"];
+   }
     $searchedArea =($_POST["area"]);
     $thisLink =($_POST["linkname"]);
     if($thisLink==1){
-        $notice = displayLostItems($offset,$searchedName,$sentElement,$searchedArea,$thisLink);
+        $notice = displayLostItems($offset,$searchedName,$sentElement,$searchedArea,$thisLink,$searchedEndDate,$searchedStartDate);
     }else if($thisLink==2) {
         $notice = selectFoundPostsHTML($offset,$searchedName,$sentElement,$searchedArea,$thisLink);
     }else if($thisLink==3){
@@ -73,10 +79,11 @@ if(isset($_POST["submitSearch"])){
                         <li><input id="other" name="area" type="input" placeholder="Kaotamise koht" value="<?php echo $searchedArea;?>" data-value="<?php echo $searchedArea;?>"></li>
                     <?php  endif;?>
                     <li class="flex-column"><label>Alguskuupäev</label></li>
-                    <li><input id="start-date" name="Date-Start" type="date"></li>
+                    <li><input id="start-date" name="Date-Start" type="date" value="<?php echo $searchedStartDate?>" data-value="<?php echo $searchedStartDate;?>"></li>
                     <li class="flex-column"><label>Lõppkuupäev</label></li>
-                    <li><input id="end-date" name="Date-End" type="date"></li>
+                    <li><input id="end-date" name="Date-End" type="date" value="<?php echo $searchedEndDate?>" data-value="<?php echo $searchedEndDate;?>"></li>
                     <li><input type="hidden" name="linkname" value="<?php echo $linkValue?>"></li>
+                    
                     <input name="submitSearch" id="submitSearch" type="submit" value="Otsi">
                         <span id="notice">
                             <?php  ?>
