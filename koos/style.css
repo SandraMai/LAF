@@ -803,7 +803,7 @@ Reorganized stuff for responsiveness
 
 .product {
     display: block;
-    width: 140px;
+    width: 250px;
     margin: 10px;
     align-self: stretch;
     background: rgba(255,255,255,0.95);
@@ -818,8 +818,8 @@ Reorganized stuff for responsiveness
 }
 
 .productImage {
-    width: 130px;
-    height: 130px;
+    width: 240px;
+    height: 240px;
     border-radius: 5px;
 }
 
@@ -832,14 +832,17 @@ Reorganized stuff for responsiveness
 }
 
 
-@media (min-width: 414px) {
+@media (min-width: 440px) {
+    .products {
+        width: 440px;
+    }
     .product {
-        width: 160px;
+        width: 180px;
     }
     .productImage,
     .productImageBox {
-        width: 150px;
-        height: 150px;
+        width: 170px;
+        height: 170px;
     }
 }
 
