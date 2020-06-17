@@ -12,7 +12,7 @@ $thisLink=null;
 $searchedEndDate=null;
 $searchedStartDate=null;
 
-$notice = selectFoundPostsHTML($offset,$searchedName,$sentCategory,$searchedArea,$thisLink);
+$notice = selectFoundPostsHTML($offset,$searchedName,$sentCategory,$searchedArea,$thisLink,$searchedStartDate,$searchedEndDate);
 
 
 

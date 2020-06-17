@@ -35,7 +35,7 @@ if(isset($_POST["submitSearch"])){
     if($thisLink==1){
         $notice = displayLostItems($offset,$searchedName,$sentElement,$searchedArea,$thisLink,$searchedStartDate,$searchedEndDate);
     }else if($thisLink==2) {
-        $notice = selectFoundPostsHTML($offset,$searchedName,$sentElement,$searchedArea,$thisLink);
+        $notice = selectFoundPostsHTML($offset,$searchedName,$sentElement,$searchedArea,$thisLink,$searchedStartDate,$searchedEndDate);
     }else if($thisLink==3){
         $notice=getAuctionElements($show,$searchedName,$sentElement,$searchedArea,$thisLink, $offset);   
     }
