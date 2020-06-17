@@ -7,14 +7,15 @@
     $searchedStorage = null;
     $searchedArea=null;
     $offset = 0;
+    $searchedStorageID=null;
 
 
     if(isset($_POST["submitSearch"])){
-        $searchedStorage=($_POST["storagePlace"]);
-        $searchedStorage=storageToID($searchedStorage);
-        $searchedName = ($_POST["otsingSona"]);
+        $searchedStorage=cleanTextInput('storagePlace');
+        $searchedStorageID=storageToID($searchedStorage);
+        $searchedName =cleanTextInput("otsingSona");
         if(isset($_POST["category"])){
-            $searchedCategory =($_POST["category"]);
+            $searchedCategory =cleanTextInput('category');
             
             if($searchedCategory=="riided"){
                 $sentElement=1;
@@ -34,12 +35,12 @@
         if($thisLink==1){
             $notice = displayLostItemsAdmin($offset,$searchedName,$sentElement,$searchedArea,$thisLink);
         }else if($thisLink==2) {
-            $notice = selectFoundPostsAdmin($offset,$searchedName,$sentElement,$searchedStorage,$searchedArea,$thisLink);
+            $notice = selectFoundPostsAdmin($offset,$searchedName,$sentElement, $searchedStorageID,$searchedArea,$thisLink);
         }else if($thisLink==3){
             $notice=getSuccessfulAuctions($searchedName,$sentElement,$searchedArea,$thisLink, $offset);   
         }else if($thisLink==4){
             $searchedArea=null;
-            $notice=getExpiredAuctions($searchedName,$sentElement,$searchedStorage,$thisLink, $offset);   
+            $notice=getExpiredAuctions($searchedName,$sentElement, $searchedStorageID,$thisLink, $offset);   
         }
     
     
