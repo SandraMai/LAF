@@ -28,9 +28,9 @@ LAF-i veebileht on valminud [Tallinna Ülikooli Digitehnoloogiate instituudis](h
 
 ## Ekraanipildid (tava ning admini lehest)
 
-![Source code](Screenshot.jpg)
+![Source code](Screenshots/Screenshot.jpg)
 
-![Source code](Screenshot_admin.jpg)
+![Source code](Screenshots/Screenshot_admin.jpg)
 
 ## Kasutatud tehnoloogiad ja nende versioonid
 - HTML5
