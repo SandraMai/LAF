@@ -241,7 +241,6 @@
                     $notice .= '<p class="text">Kirjeldus: ' .$description .'</p>';
                     $notice .= '<p class="text">Hoiupaik: ' .$storage_place .'</p>';
                     $notice .= '<p class="text">E-mail: ' .$email .'</p>';
-                    $notice .= '<p class="text">Leidmise koht: ' .$found_place .'</p>';
                     $notice .= '<p class="text">Parim pakkumine: ' .$bestOffer .' €</p>';
                     $notice .= '</div></div>';
                 }
