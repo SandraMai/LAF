@@ -8,6 +8,8 @@
     $searchedArea=null;
     $offset = 0;
     $searchedStorageID=null;
+    $searchedEndDate=null;
+    $searchedStartDate=null;
 
 
     if(isset($_POST["submitSearch"])){
@@ -27,20 +29,25 @@
         }else{$searchedCategory =null;
             $sentElement=null;
         }
-    
+        if(isset($_POST["Date-Start"])){
+            $searchedStartDate=$_POST["Date-Start"];
+            }
+         if(isset($_POST["Date-Start"])){
+            $searchedEndDate=$_POST["Date-End"];
+           }
         if ($adminLinkValue!=4):
             $searchedArea =($_POST["area"]);
         endif;
         $thisLink =($_POST["linkname"]);
         if($thisLink==1){
-            $notice = displayLostItemsAdmin($offset,$searchedName,$sentElement,$searchedArea,$thisLink);
+            $notice = displayLostItemsAdmin($offset,$searchedName,$sentElement,$searchedArea,$thisLink,$searchedStartDate,$searchedEndDate);
         }else if($thisLink==2) {
-            $notice = selectFoundPostsAdmin($offset,$searchedName,$sentElement, $searchedStorageID,$searchedArea,$thisLink);
+            $notice = selectFoundPostsAdmin($offset,$searchedName,$sentElement, $searchedStorageID,$searchedArea,$thisLink,$searchedStartDate,$searchedEndDate);
         }else if($thisLink==3){
-            $notice=getSuccessfulAuctions($searchedName,$sentElement,$searchedArea,$searchedStorageID,$thisLink, $offset);   
+            $notice=getSuccessfulAuctions($searchedName,$sentElement,$searchedArea,$searchedStorageID,$thisLink, $offset,$searchedStartDate,$searchedEndDate);   
         }else if($thisLink==4){
             $searchedArea=null;
-            $notice=getExpiredAuctions($searchedName,$sentElement, $searchedStorageID,$thisLink, $offset);   
+            $notice=getExpiredAuctions($searchedName,$sentElement, $searchedStorageID,$thisLink, $offset,$searchedStartDate,$searchedEndDate);   
         }
     
     

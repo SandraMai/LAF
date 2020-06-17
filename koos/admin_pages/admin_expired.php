@@ -3,6 +3,8 @@
 
     $adminLinkValue=4;
     $sentElement=null;
+    $searchedEndDate=null;
+    $searchedStartDate=null;
 
     if(isset($_SESSION["LAST_ACTIVITY"]) && (time() - $_SESSION["LAST_ACTIVITY"] > 1800)){
         session_unset(); 
@@ -26,7 +28,7 @@
     if(isset($_POST["deleteAd"])){
         $id = $_POST["idInput"];
         deleteFoundAdmin($id);
-        $notice = getExpiredAuctions($searchedName,$sentElement, $searchedStorageID,$adminLinkValue, $offset);
+        $notice = getExpiredAuctions($searchedName,$sentElement, $searchedStorageID,$adminLinkValue, $offset,$searchedStartDate,$searchedEndDate);
     }
 ?>
 
@@ -55,7 +57,7 @@
 
             <?php require("../admin_filter.php") ?>
             <div class="products">
-                    <?php echo getExpiredAuctions($searchedName,$sentElement, $searchedStorageID,$adminLinkValue, $offset); ?>
+                    <?php echo getExpiredAuctions($searchedName,$sentElement, $searchedStorageID,$adminLinkValue, $offset,$searchedStartDate,$searchedEndDate); ?>
             
             </div><!--.products -->
         </div><!--.flex-row-->

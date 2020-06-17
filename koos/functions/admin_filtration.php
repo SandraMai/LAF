@@ -1,5 +1,5 @@
 <?php 
-    function displayLostItemsAdmin($offset,$searchedName,$searchedCategory,$searchedArea,$thisLink){
+    function displayLostItemsAdmin($offset,$searchedName,$searchedCategory,$searchedArea,$thisLink,$searchedStartDate,$searchedEndDate){
         $monthsET = ["jaanuar", "veebruar", "märts", "aprill", "mai", "juuni", "juuli", "august", "september", "oktoober", "november", "detsember"];
         $notice = null;
         $page = 'lost.php';
@@ -79,7 +79,7 @@
         
         
     }
-    function selectFoundPostsAdmin($offset,$searchedName,$searchedCategory,$searchedStorage,$searchedArea,$thisLink) {
+    function selectFoundPostsAdmin($offset,$searchedName,$searchedCategory,$searchedStorage,$searchedArea,$thisLink,$searchedStartDate,$searchedEndDate) {
         $response = null;
         $monthsET = ["jaanuar", "veebruar", "märts", "aprill", "mai", "juuni", "juuli", "august", "september", "oktoober", "november", "detsember"];
         $page = 'found.php';    
@@ -166,7 +166,7 @@
         return $response;
     }
 
-    function getSuccessfulAuctions($searchedName,$searchedCategory,$searchedArea,$searchedStorage,$thisLink, $offset){
+    function getSuccessfulAuctions($searchedName,$searchedCategory,$searchedArea,$searchedStorage,$thisLink, $offset,$searchedStartDate,$searchedEndDate){
         $notice = null;
         $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
         $sqlStatementMain="SELECT found_item_ad_ID, description, picture, storage_place_name,place_found FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON 
@@ -255,7 +255,7 @@
 
 
 
-    function getExpiredAuctions($searchedName,$searchedCategory,$searchedStorage,$thisLink, $offset){
+    function getExpiredAuctions($searchedName,$searchedCategory,$searchedStorage,$thisLink, $offset,$searchedStartDate,$searchedEndDate){
         $notice = null;
         
         $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);

@@ -9,6 +9,8 @@
     $notice=null;
     $sentElement=null;
     $searchedStorageID=null;
+    $searchedEndDate=null;
+    $searchedStartDate=null;
     $case = 0;
 
     if(isset($_SESSION["LAST_ACTIVITY"]) && (time() - $_SESSION["LAST_ACTIVITY"] > 1800)){
@@ -70,7 +72,7 @@
                             $notice = '<p class="flex-row">Hetkel esemeid pole!</p>';
                         }
                     
-                     echo selectFoundPostsAdmin($offset,$searchedName,$sentElement, $searchedStorageID,$searchedArea,$adminLinkValue); ?>
+                     echo selectFoundPostsAdmin($offset,$searchedName,$sentElement, $searchedStorageID,$searchedArea,$adminLinkValue,$searchedStartDate,$searchedEndDate); ?>
             </div><!--.products -->
         </div><!--.flex-row-->
         <div class="js-more-wrapper loadMoreButton"><button data-inf=0 data-type=2 class="js-load-more" data-atype=1>lae juurde</button></div>

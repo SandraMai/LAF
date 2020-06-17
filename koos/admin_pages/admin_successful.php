@@ -9,6 +9,8 @@
     $searchedCategory=null;
     $searchedArea=null;
     $sentElement=null;
+    $searchedEndDate=null;
+    $searchedStartDate=null;
     if(isset($_SESSION["LAST_ACTIVITY"]) && (time() - $_SESSION["LAST_ACTIVITY"] > 1800)){
         session_unset(); 
         session_destroy();  
@@ -55,7 +57,7 @@
 
             <?php require("../admin_filter.php") ?>
             <div class="products">
-                    <?php echo getSuccessfulAuctions($searchedName,$sentElement,$searchedArea,$searchedStorageID, $adminLinkValue, $offset); ?>
+                    <?php echo getSuccessfulAuctions($searchedName,$sentElement,$searchedArea,$searchedStorageID, $adminLinkValue, $offset,$searchedStartDate,$searchedEndDate); ?>
             
             </div><!--.products -->
             </div><!--.filtersProductsLayout-->

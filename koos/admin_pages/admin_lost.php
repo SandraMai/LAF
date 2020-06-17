@@ -7,6 +7,8 @@
     $searchedCategory=null;
     $searchedName=null;
     $sentElement=null;
+    $searchedEndDate=null;
+    $searchedStartDate=null;
     $case = 0;
     
     if(isset($_SESSION["LAST_ACTIVITY"]) && (time() - $_SESSION["LAST_ACTIVITY"] > 1800)){
@@ -41,7 +43,7 @@
         } elseif ($response == 404) {
             $case = 10;
         }
-        $notice = displayLostItemsAdmin($offset,$searchedName,$sentElement,$searchedArea,$adminLinkValue);
+        $notice = displayLostItemsAdmin($offset,$searchedName,$sentElement,$searchedArea,$adminLinkValue,$searchedStartDate,$searchedEndDate);
     }
 
 
@@ -63,7 +65,7 @@
             <div class="filtersProductsLayout"> 
                 <?php require("../admin_filter.php") ?>
                 <div class="products">
-                    <?php echo displayLostItemsAdmin($offset,$searchedName,$sentElement,$searchedArea,$adminLinkValue);?>
+                    <?php echo displayLostItemsAdmin($offset,$searchedName,$sentElement,$searchedArea,$adminLinkValue,$searchedStartDate,$searchedEndDate);?>
                 </div>
                 </div><!--.filtersProductsLayout-->
 
