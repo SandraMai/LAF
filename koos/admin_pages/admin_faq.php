@@ -20,11 +20,6 @@
       exit();
     }
 
-    $sectionHTML = readSectionForSelect();
-
-    $questionHTML = getFaqQuestions();
-    $answerHTML = getFaqAnswers();
-
     $notice = null;
     $noticeQuestion = null;
     $noticeAnswer = null;
@@ -37,6 +32,7 @@
     $question_error = null;
     $answer_error = null;
     $sectionName_error = null;
+    $case = 0;
 
     //KKK lisamine
     if(isset($_POST["addFAQ"])){
@@ -60,16 +56,37 @@
 
         if(empty($sectionName_error) and empty($question_error) and empty($answer_error)){
             $notice = addFAQ($_POST["section-id"], $newquestion, $newanswer);
+            if($notice == 2) {
+                $case = 4;
+            } elseif ($notice == 404) {
+                $case = 10;
+            }
         }
     }
     //küsimuse uuendamine
     if(isset($_POST["updateQuestion"]) and !empty($_POST["updateQuestion"])){
         $noticeQuestion = updateFaqQuestion($_POST["question-id"], $_POST["question"]);
+        if($noticeQuestion == 2) {
+            $case = 7;
+        } elseif ($noticeQuestion == 404) {
+            $case = 10;
+        }
     }
     //vastuse uuendamine
     if(isset($_POST["updateAnswer"]) and !empty($_POST["updateAnswer"])){
         $noticeAnswer = updateFaqAnswer($_POST["answer-id"], $_POST["answer"]);
+        if($noticeAnswer == 2) {
+            $case = 7;
+        } elseif ($noticeAnswer == 404) {
+            $case = 10;
+        }
     }
+
+
+    $sectionHTML = readSectionForSelect();
+
+    $questionHTML = getFaqQuestions();
+    $answerHTML = getFaqAnswers();
 
 ?>
 <body>
@@ -107,7 +124,7 @@
                 <p class="star">*</p> <span><?php echo $answer_error; ?></span>
                 </label>
 
-                <input name="addFAQ" class="add-ad" type="submit" value="LISA"><span><?php echo $notice; ?></span>
+                <input name="addFAQ" class="add-ad" type="submit" value="LISA"><span></span>
                 
                 </form>
                 <br>
@@ -127,7 +144,7 @@
                 <textarea name="question" cols="30" rows="5" type="text" placeholder="Uuendatud küsimus..."></textarea>
                 </label>
 
-                <input name="updateQuestion" class="add-ad" type="submit" value="UUENDA"><span><?php echo $noticeQuestion; ?></span>
+                <input name="updateQuestion" class="add-ad" type="submit" value="UUENDA"><span></span>
                 </form>
 
                 <br>                
@@ -144,11 +161,17 @@
                 </label>
                 <br>
 
-                <input name="updateAnswer" class="add-ad" type="submit" value="UUENDA"><span><?php echo $noticeAnswer; ?></span>
+                <input name="updateAnswer" class="add-ad" type="submit" value="UUENDA"><span></span>
                 </form>
             </div>
         <div class="aside"></div>
     </div>
 
+<input class="modalCase" type="hidden" data-case="<?php echo $case;?>">
+<?php 
+
+$url = "admin_settings.php";
+$urlTitle = 'Tagasi seadetesse';
+require('../pages/modal.php'); ?>
 </body>
 </html>
