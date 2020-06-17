@@ -38,17 +38,8 @@
 ?>
 <body>
 
+<?php require('../header_admin.php'); ?>
 
-<div class="main-flex header">
-    <div class="aside"></div>
-
-    <!-- HEADER -->
-    <div class="main-section">
-        <?php require('../header_admin.php'); ?>
-    </div>
-    <div class="aside"></div>
-
-</div>
 
 <div class="main-flex page-body">
     <div class="aside"></div>
