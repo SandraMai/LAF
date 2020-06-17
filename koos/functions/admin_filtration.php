@@ -46,22 +46,27 @@
                         $place = "Kaotamise koha kohta info puudub!";
                     }
                     $notice .= ' <div class="product">';
-                    $notice .= '<a class="productImageBox" href="view_ad.php?id=' .$id ."&page=" .$page .'"><img class="productImage" src="../images/missing.png"' .'"></a>';
+                    $notice .= '<a class="productImageBox" href="admin_view_ad.php?id=' .$id ."&page=" .$page .'"><img class="productImage" src="' .$GLOBALS["pic_read_dir_thumb"] .$pic .'"></a>';
                     $notice .= '<div class="productDesc">';
                     $notice .= '<p> Kirjeldus: ' .$description .'</p>';
                     $notice .= '<p>Kaotamise koht: ' .$place .'</p>';
                     $notice .= '<p> Kaotamise kuupäev: ' .$day .'.' .$monthsET[$month-1] .' ' .$year .'</p>';
+                    $notice .= '<p class="text">E-mail: '. $email .'</p>';
+                    $notice .= '<form method="POST" action="#"><input type ="hidden" value="' .$id .'" name="idInput">';
+                    $notice .= '<input type="submit" id="delete" name="deleteLostAd" value="KUSTUTA"></form>';
                     $notice .= '</div></div>';
                 }else{
                     if($place == null){
                         $place = "Kaotamise koha kohta info puudub!";
                     }
                     $notice .= ' <div class="product">';
-                    $notice .= '<a class="productImageBox" href="view_ad.php?id=' .$id ."&page=" .$page .'"><img class="productImage" src="' .$GLOBALS["pic_read_dir_thumb"] .$pic .'"></a>';
+                    $notice .= '<a class="productImageBox" href="admin_view_ad.php?id=' .$id ."&page=" .$page .'"><img class="productImage" src="' .$GLOBALS["pic_read_dir_thumb"] .$pic .'"></a>';
                     $notice .= '<div class="productDesc">';
                     $notice .= '<p> Kirjeldus: ' .$description .'</p>';
                     $notice .= '<p>Kaotamise koht: ' .$place .'</p>';
                     $notice .= '<p> Kaotamise kuupäev: ' .$day .'.' .$monthsET[$month-1] .' ' .$year .'</p>';
+                    $notice .= '<form method="POST" action="#"><input type ="hidden" value="' .$id .'" name="idInput">';
+                    $notice .= '<input type="submit" id="delete" name="deleteLostAd" value="KUSTUTA"></form>';
                     $notice .= '</div></div>';
                 }
             }
@@ -119,12 +124,15 @@
 
         while($stmt->fetch()){
             $response .= ' <div class="product flex-row">';
-            $response .= '<a class="productImageBox" href="view_ad.php?id=' .$id ."&page=" .$page .'"><img class="productImage" src="' .$GLOBALS["pic_read_dir_thumb"] . $picture  .'"></a>';
+            $response .= '<img class="productImageBox" src="' .$GLOBALS["pic_read_dir_thumb"] . $picture  .'"></a>';
             $response .= '<div class="flex-column productDesc">';
             $response .= '<p>Kirjeldus: ' . $description . '</p>';
             $response .= '<p>Leidmise koht:' . $place_found . '</p>';
             $response .= '<p>Kuupäev: ' .$day .'.' .$monthsET[$month-1] .' ' .$year .'</p>';
             $response .= '<p>Hoiupaik: ' . $storage . '</p>';
+            $response .= '<p>Hoiupaik: ' . $storage . '</p>';
+            $response .= '<form method="POST" action="#"><input type ="hidden" value="' .$id .'" name="idInput">';
+            $response .= '<input type="submit" id="delete" name="deleteAd" value="KUSTUTA"></form>';
             $response .= '</div><div class="aside"></div></div>';
         }
         if($response == null){
