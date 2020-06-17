@@ -187,7 +187,7 @@
             $sqlStatementCondition=" AND place_found LIKE '%{$searchedArea}%' ";
 
         }elseif($searchedName==null&&$searchedArea==null&&$searchedCategory!=null&&$searchedStorage==null){
-            $sqlStatementCondition=" 0 AND CATEGORY_category_ID LIKE '%{$searchedCategory}%' ";
+            $sqlStatementCondition="  AND CATEGORY_category_ID LIKE '%{$searchedCategory}%' ";
 
         }elseif($searchedName!=null&&$searchedArea!=null&&$searchedCategory==null&&$searchedStorage==null){
             $sqlStatementCondition=" AND description LIKE '%{$searchedName}%'AND place_found LIKE '%{$searchedArea}%' ";
