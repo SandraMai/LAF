@@ -30,7 +30,7 @@ $(document).ready(function() {
         messages: {
             email:  {
                 required: "Palun sisestage meiliaddress.",
-                email: "Palun sisestage korrektne meiliaddress."
+                email: "Palun sisestage korrektne meiliaadress."
             },
             lostDate: {
                 required: "Palun valige kaotamise kuupäev.",

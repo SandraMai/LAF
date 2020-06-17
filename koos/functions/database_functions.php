@@ -98,7 +98,7 @@
                     $notice .= '<p class="text">Kaotamise koht: ' .$place .'</p>';
                     $notice .= '<p class="text">Kaotamise kuupäev: ' .$day .'.' .$monthsET[$month-1] .' ' .$year .'</p>';
                     $notice .= '<button id="delete">KUSTUTA</button>';
-                    $notice .= '<form id="deleteForm" method="POST"><input class ="inputBoxStyle" type="text" name="email" placeholder="E-mail">';
+                    $notice .= '<form id="deleteForm" method="POST"><div class="error-email smallerWidth"></div><input class ="inputBoxStyle" type="text" name="email" placeholder="E-mail">';
                     $notice .= '<input class="deleteFormButton" type="submit" value="KUSTUTA" name="deleteAd"></form>';
                     $notice .= '</div></div>';
                 }else{
@@ -112,7 +112,7 @@
                     $notice .= '<p class="text">Kaotamise koht: ' .$place .'</p>';
                     $notice .= '<p class="text">Kaotamise kuupäev: ' .$day .'.' .$monthsET[$month-1] .' ' .$year .'</p>';
                     $notice .= '<button id="delete">KUSTUTA</button>';
-                    $notice .= '<form id="deleteForm" method="POST"><input class ="inputBoxStyle" type="text" name="email" placeholder="E-mail">';
+                    $notice .= '<form id="deleteForm" method="POST"><div class="error-email smallerWidth"></div><input class ="inputBoxStyle" type="text" name="email" placeholder="E-mail">';
                     $notice .= '<input class="deleteFormButton" type="submit" value="KUSTUTA" name="deleteAd"></form>';
                     $notice .= '</div></div>';
                 }
