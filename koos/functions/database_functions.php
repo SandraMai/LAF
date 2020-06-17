@@ -408,4 +408,22 @@
         return $notice;
     }
 
+    function setEmailNotification($id){
+        $notice = null;
+        $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
+        $stmt = $conn->prepare("UPDATE LOST_ITEM_AD SET email_sent = 1 WHERE lost_post_ID = '{$id}'");
+        echo $conn->error;
+
+        $stmt->execute();
+        if($stmt->execute()){
+            $notice = "success";
+        }else{
+            $notice = 404;
+        }
+        
+        $stmt->close();   
+        $conn->close();
+        return $notice;
+    }
+
 ?>

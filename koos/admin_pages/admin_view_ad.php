@@ -42,8 +42,10 @@
             $message .= ". Palun tule esemele järele! \r\n Ära sellele meilile vasta! \r\n Sinu LAF <3";
             $headers = 'Lost And Found';
             
+            setEmailNotification($_POST["adId"]);
             mail($email, $headers, $message);
             $emailNotice = "email saadetud!";
+
         }
     }
 
