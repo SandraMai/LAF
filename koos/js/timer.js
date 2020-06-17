@@ -29,7 +29,7 @@ $(document).ready(function() {
                 var difference = value - now.getTime();
 
                 if (difference <= 0) {
-
+                       
                     // Timer done
                     clearInterval(timer);
                 

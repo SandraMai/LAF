@@ -150,7 +150,7 @@
             $response .= '<img class="productImageBox" src="' .$GLOBALS["pic_read_dir_thumb"] . $picture  .'"></a>';
             $response .= '<div class="flex-column productDesc">';
             $response .= '<p>Kirjeldus: ' . $description . '</p>';
-            $response .= '<p>Leidmise koht:' . $place_found . '</p>';
+            $response .= '<p>Leidmise koht: ' . $place_found . '</p>';
             $response .= '<p>Kuupäev: ' .$day .'.' .$monthsET[$month-1] .' ' .$year .'</p>';
             $response .= '<p>Hoiupaik: ' . $storage . '</p>';
             $response .= '<form method="POST" action="#"><input type ="hidden" value="' .$id .'" name="idInput">';
@@ -242,7 +242,7 @@
                     $notice .= '<p class="text">Kirjeldus: ' .$description .'</p>';
                     $notice .= '<p class="text">Hoiupaik: ' .$storage_place .'</p>';
                     $notice .= '<p class="text">E-mail: ' .$email .'</p>';
-                    $notice .= '<p class="text">Leidmis koht: ' .$found_place .'</p>';
+                    $notice .= '<p class="text">Leidmise koht: ' .$found_place .'</p>';
                     $notice .= '<p class="text">Parim pakkumine: ' .$bestOffer .' €</p>';
                     $notice .= '</div></div>';
                 }
