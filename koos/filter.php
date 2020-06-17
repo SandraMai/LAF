@@ -37,7 +37,7 @@ if(isset($_POST["submitSearch"])){
     }else if($thisLink==2) {
         $notice = selectFoundPostsHTML($offset,$searchedName,$sentElement,$searchedArea,$thisLink,$searchedStartDate,$searchedEndDate);
     }else if($thisLink==3){
-        $notice=getAuctionElements($show,$searchedName,$sentElement,$searchedArea,$thisLink, $offset);   
+        $notice=getAuctionElements($show,$searchedName,$sentElement,$searchedArea,$thisLink, $offset,$searchedStartDate,$searchedEndDate);   
     }
 
 

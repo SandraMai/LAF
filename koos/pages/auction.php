@@ -9,10 +9,12 @@ $searchedName=null;
 $searchedCategory=null;
 $searchedArea=null;
 $linkValue=3;
+$searchedEndDate=null;
+$searchedStartDate=null;
 
 auctionFiltration();
 
-$notice = getAuctionElements($show,$searchedName,$searchedCategory,$searchedArea, $linkValue, $offset);
+$notice = getAuctionElements($show,$searchedName,$searchedCategory,$searchedArea, $linkValue, $offset,$searchedStartDate,$searchedEndDate);
 ?>
 <body>
     

@@ -8,7 +8,10 @@ $searchedName=null;
 $searchedCategory=null;
 $searchedArea=null;
 $thisLink=null;
+$searchedEndDate=null;
+$searchedStartDate=null;
 $start = auctionDefaultStartPrice();
+
 
 
 
@@ -16,10 +19,10 @@ $neededNumber = getAuctionId($_GET["item"]);
 if(isset($_GET["item"])){
     //echo $_GET["photoid"];
     $auctionedItem = $_GET["item"];
-    $userPicHTML = getAuctionElements($_GET["item"],$searchedName,$searchedCategory,$searchedArea,$thisLink);
+    $userPicHTML = getAuctionElements($_GET["item"],$searchedName,$searchedCategory,$searchedArea,$thisLink,$searchedStartDate,$searchedEndDate);
 } elseif(isset($_POST["item"])){
     $auctionedItem = $_POST["item"];
-    $userPicHTML = getAuctionElements($_POST["item"],$searchedName,$searchedCategory,$searchedArea,$thisLink);
+    $userPicHTML = getAuctionElements($_POST["item"],$searchedName,$searchedCategory,$searchedArea,$thisLink,$searchedStartDate,$searchedEndDate);
 } else {
     $userPicHTML = null;
 }
