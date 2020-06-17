@@ -325,7 +325,7 @@
       $notice = $email;
       echo $email;
     }else{
-      $notice = "wtf";
+      $notice = "404";
     }
 
     $stmt->close();
@@ -346,7 +346,7 @@
     if($stmt->fetch()){
       $notice = $storage;
     }else{
-      $notice = "wtf";
+      $notice = "404";
     }
 
     $stmt->close();
@@ -366,7 +366,7 @@
     if($stmt->fetch()){
       $notice = $description;
     }else{
-      $notice = "wtf";
+      $notice = "404";
     }
 
     $stmt->close();
