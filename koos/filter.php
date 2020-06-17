@@ -63,7 +63,9 @@ if(isset($_POST["submitSearch"])){
                             
                         </select>
                     </li>
+                    <?php if ($linkValue!=3):?>
                     <li><input id="other" name="area" type="input" placeholder="Kaotamise koht" value="<?php echo $searchedArea;?>" data-value="<?php echo $searchedArea;?>"></li>
+                    <?php  endif;?>
                     <li class="flex-column"><label>Alguskuupäev</label></li>
                     <li><input id="start-date" name="Date-Start" type="date"></li>
                     <li class="flex-column"><label>Lõppkuupäev</label></li>

@@ -3,6 +3,7 @@ require('../head.php');
 foundToExpired();
 $offset = 0;
 $thisLink=2;
+$linkValue=2;
 
 $searchedName=null;
 $searchedCategory=null;
