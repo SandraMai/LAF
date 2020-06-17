@@ -50,7 +50,7 @@
         <div class="main-section">
             <div class="flex-row header-row"> 
                 <div class="dialogBox__closeIcon js-hide-header">
-                    <div class="dialogBox__close"></div>
+                    <div class="headerClose"></div>
                 </div>
 
                 <div class="headerLogo"><a class="logo"href="../pages/index.php">LAF</a></div>
