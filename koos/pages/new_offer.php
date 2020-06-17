@@ -86,7 +86,9 @@ if(isset($_POST["submitPrice"])){
 
                     <div class="error-email"></div>
                     <label class="foundLabel"> 
-                        <p>E-Mail:</p>
+                        <p>
+                            <span>E-Mail:</span><span class="star">&nbsp; *</span> <span></span>
+                        </p>
                         <input  class="foundInput textInput inputBoxStyle" type="text" name="email">
                     </label>
 
