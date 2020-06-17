@@ -44,6 +44,9 @@ LAF-i veebileht on valminud [Tallinna Ülikooli Digitehnoloogiate instituudis](h
 - Jquery-ui 1.12.1
 - Jquery-validate 1.19.2
 
+- https://github.com/stefangabos/Zebra_Datepicker
+- https://github.com/kamilkp/autoheight
+
 ### Kasutatud serveri andmed:
 - Apache 2.4.6 (CentIO)
 - PHP 5.6.40
