@@ -308,12 +308,12 @@
                 if($email == "lostandfound@tlu.ee"){
                     $bestOffer = getHighestBid($auctionID);
                     $notice .= ' <div class="product flex-row" >';
-                    $notice .= '<img class="productImageBox" src="' .$GLOBALS["pic_read_dir_thumb"] .$pic .'">';
+                    $notice .= '<span class="productImageBox"><img class="productImageBox" src="' .$GLOBALS["pic_read_dir_thumb"] .$pic .'"></span>';
                     $notice .= '<div class="productDesc">';
                     $notice .= '<p class="text">Kirjeldus: ' .$description .'</p>';
                     $notice .= '<p class="text">Hoiupaik: ' .$storage_place .'</p>';
-                    $notice .= '<form method="POST" action="#"><input type ="hidden" value="' .$id .'" name="idInput">';
-                    $notice .= '<input type="submit" id="delete" name="deleteAd" value="KUSTUTA"></form>';
+                    $notice .= '<div class="alignToEnd"><form method="POST" action="#"><input type ="hidden" value="' .$id .'" name="idInput">';
+                    $notice .= '<input type="submit" id="delete" name="deleteAd" value="KUSTUTA"></form></div>';
                     $notice .= '</div></div>';
                 }
             }
