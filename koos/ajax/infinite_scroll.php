@@ -14,6 +14,8 @@ $database = "if19_LAF";
     $searchedCategory = $_POST['cat'];
     $searchedArea = $_POST['area'];
     $atype = $_POST['atype'];
+    $datestart = $_POST['datestart'];
+    $dateend = $_POST['dateend'];
     $getMore = null;
     $searchedStorage = $_POST['storage'];
     $searchedStorageID=storageToID($searchedStorage);
@@ -41,13 +43,13 @@ $database = "if19_LAF";
         }
     } elseif ($atype == 0) {
         if ($_POST['type'] == 1) {
-            $getMore = displayLostItems($offset, $searchedName, $searchedCategory, $searchedArea, 1);
+            $getMore = displayLostItems($offset, $searchedName, $searchedCategory, $searchedArea, 1, $datestart, $dateend);
 
         } elseif ($_POST['type'] == 2) {
-            $getMore = selectFoundPostsHTML($offset, $searchedName, $searchedCategory, $searchedArea, 2);
+            $getMore = selectFoundPostsHTML($offset, $searchedName, $searchedCategory, $searchedArea, 2, $datestart, $dateend);
 
         } elseif ($_POST['type'] == 3) {
-            $getMore = getAuctionElements(null, $searchedName, $sentElement, $searchedArea, 3, $offset );
+            $getMore = getAuctionElements(null, $searchedName, $sentElement, $searchedArea, 3, $offset, $datestart, $dateend );
         }
     }
 

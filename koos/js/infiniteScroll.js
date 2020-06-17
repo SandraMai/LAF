@@ -26,12 +26,15 @@ function ajaxLoadMore(offset, type, atype, storage) {
     var name = $('[name="otsingSona"]').data('value');
     var cat = $('[name="category"]').data('value');
     var area = $('[name="area"]').data('value');
+    var datestart= $('[name="Date-Start"]').data('value');
+    var dateend = $('[name="Date-End"]').data('value');
     
     var url = '../ajax/infinite_scroll.php';
         $.ajax({
             type: 'POST',
             url: url,
-            data: { 'inf': offset, 'type': type, 'name': name, 'cat': cat, 'area': area, 'atype': atype, 'storage': storage }
+            data: { 'inf': offset, 'type': type, 'name': name, 'cat': cat, 'area': area, 'atype': atype, 'storage': storage,
+                    'datestart': datestart, 'dateend': dateend}
         }).done(function(data) {
             console.log(data);
             if (data == 100) {
