@@ -50,8 +50,8 @@
                     $notice .= '<p>Kaotamise koht: ' .$place .'</p>';
                     $notice .= '<p> Kaotamise kuupäev: ' .$day .'.' .$monthsET[$month-1] .' ' .$year .'</p>';
                     $notice .= '<p class="text">E-mail: '. $email .'</p>';
-                    $notice .= '<form method="POST" action="#"><input type ="hidden" value="' .$id .'" name="idInput">';
-                    $notice .= '<input type="submit" id="delete" name="deleteLostAd" value="KUSTUTA"></form>';
+                    $notice .= '<div class="alignToEnd"><form method="POST" action="#"><input type ="hidden" value="' .$id .'" name="idInput">';
+                    $notice .= '<input type="submit" id="delete" name="deleteLostAd" value="KUSTUTA"></form></div>';
                     $notice .= '</div></div>';
                 }else{
                     if($place == null){
@@ -63,8 +63,8 @@
                     $notice .= '<p> Kirjeldus: ' .$description .'</p>';
                     $notice .= '<p>Kaotamise koht: ' .$place .'</p>';
                     $notice .= '<p> Kaotamise kuupäev: ' .$day .'.' .$monthsET[$month-1] .' ' .$year .'</p>';
-                    $notice .= '<form method="POST" action="#"><input type ="hidden" value="' .$id .'" name="idInput">';
-                    $notice .= '<input type="submit" id="delete" name="deleteLostAd" value="KUSTUTA"></form>';
+                    $notice .= '<div class="alignToEnd"><form method="POST" action="#"><input type ="hidden" value="' .$id .'" name="idInput">';
+                    $notice .= '<input type="submit" id="delete" name="deleteLostAd" value="KUSTUTA"></form></div>';
                     $notice .= '</div></div>';
                 }
             }
@@ -145,16 +145,16 @@
         $stmt->bind_result($id, $description, $day, $month, $year, $picture, $CATEGORY_category_ID, $place_found, $storage);
         $stmt->execute();
         while($stmt->fetch()){
-            $response .= ' <div class="product flex-row">';
-            $response .= '<img class="productImageBox" src="' .$GLOBALS["pic_read_dir_thumb"] . $picture  .'"></a>';
-            $response .= '<div class="flex-column productDesc">';
+            $response .= ' <div class="product">';
+            $response .= '<span class="productImageBox"><img class="productImage" src="' .$GLOBALS["pic_read_dir_thumb"] . $picture  .'"></span>';
+            $response .= '<div class="productDesc">';
             $response .= '<p>Kirjeldus: ' . $description . '</p>';
             $response .= '<p>Leidmise koht: ' . $place_found . '</p>';
             $response .= '<p>Kuupäev: ' .$day .'.' .$monthsET[$month-1] .' ' .$year .'</p>';
             $response .= '<p>Hoiupaik: ' . $storage . '</p>';
-            $response .= '<form method="POST" action="#"><input type ="hidden" value="' .$id .'" name="idInput">';
-            $response .= '<input type="submit" id="delete" name="deleteAd" value="KUSTUTA"></form>';
-            $response .= '</div><div class="aside"></div></div>';
+            $response .= '<div class="alignToEnd"><form method="POST" action="#"><input type ="hidden" value="' .$id .'" name="idInput">';
+            $response .= '<input type="submit" id="delete" name="deleteAd" value="KUSTUTA"></form></div>';
+            $response .= '</div></div>';
         }
         if($response == null){
             $response = 100; // no more items error code

@@ -860,6 +860,7 @@ Reorganized stuff for responsiveness
         flex: 1;
         align-items: flex-end;
         justify-content: center;
+        margin-bottom: 10px;
     }
 }
 
@@ -1002,6 +1003,11 @@ Reorganized stuff for responsiveness
     
     .foundLabel {
         font-size: 15px;
+    }
+
+    .alignToEnd {
+        margin-right: 20px;
+        margin-bottom: 10px;
     }
 
 }
