@@ -90,8 +90,19 @@
                         </select>
                     </li>
 
-                    <li><?php if ($adminLinkValue!=4):?><input id="other" name="area" type="input" placeholder="Asukoht" value="<?php echo $searchedArea;?>" data-value="<?php echo $searchedArea;?>"><?php endif;?></li>
+                    <li><?php if ($adminLinkValue==4):?><input id="other" hidden name="area" type="input" placeholder="Asukoht" value="<?php echo $searchedArea;?>" data-value="<?php echo $searchedArea;?>"><?php endif;?></li>
+                        <?php if ($adminLinkValue==3):?>
+                        <li><input id="other" name="area" type="input"  placeholder="Leidmise koht" value="<?php echo $searchedArea;?>" data-value="<?php echo $searchedArea;?>"></li>
+                    <?php  endif;?>
+                    <?php if ($adminLinkValue==2):?>
+                        <li><input id="other" name="area" type="input" placeholder="Leidmise koht" value="<?php echo $searchedArea;?>" data-value="<?php echo $searchedArea;?>"></li>
+                    <?php  endif;?>
+                    <?php if ($adminLinkValue==1):?>
+                        <li><input id="other" name="area" type="input" placeholder="Kaotamise koht" value="<?php echo $searchedArea;?>" data-value="<?php echo $searchedArea;?>"></li>
+                    <?php  endif;?>
+                    <li class="flex-column"><label>Alguskuupäev</label></li>
                     <li><input id="start-date" name="Date-Start" type="date"></li>
+                    <li class="flex-column"><label>Lõppkuupäev</label></li>
                     <li><input id="end-date" name="Date-End" type="date"></li>
                     <li><input type="hidden" name="linkname" value="<?php echo $linkValue?>"></li>
                     <input name="submitSearch" id="submitSearch" type="submit" value="Otsi">
