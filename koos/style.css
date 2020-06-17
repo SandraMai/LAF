@@ -276,24 +276,6 @@ textarea {
 .faq{
     align-items: flex-start;
 }
-/* linnakukaart*/
-.storage-pic{
-    width: 600px;
-    height: 500px;
-    float: right;
-    margin-top: 50px;
-}
-
-.storage-places{
-    float: left;
-    margin-top: 50px;
-       
-}
-.storage-places ul{
-    list-style-type: none;
-    font-size: 20px;
-    line-height: 2.5;
-}
 
 .star{
     color: red;
@@ -1195,3 +1177,59 @@ Reorganized stuff for responsiveness
     width: 170px;
 }
 
+/* Storage.php */
+
+
+
+/* .storageLayout {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+
+} */
+
+
+.storageLayout {
+    margin-top: 15px;
+    display: flex;
+    align-items: center; 
+    flex-direction: column;
+
+}
+
+.storageBox {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+    width: 320px;
+    line-height: 2;
+}
+
+
+
+/* wider than 500px */
+@media (min-width: 900px) { 
+    .storageLayout {
+        margin-top: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center; 
+        flex-direction: row;
+        /* width: 320px; */
+    }
+
+    .storageBox {
+        font-size: 18px;
+        margin-right: 50px;
+    }
+
+    .storageImageBox {
+        width: 550px;
+        height: auto;
+    }
+
+
+}

@@ -49,12 +49,14 @@
         $stmt->bind_result($name, $phone, $email);
         $stmt->execute();
         while($stmt->fetch()){
-            $notice .= "<li><b>" .$name ."</b></li>";
-            $notice .= "<li>Telefoninumber: " .$phone ."</li>";
+            $notice .= '<div class="singleStorage">';
+            $notice .= "<h4>" .$name ."</h4>";
+            $notice .= "<div>Telefoninumber: " .$phone ."</div>";
             if($email != null){
-                $notice .= "<li>Email: " .$email ."</li>";
+                $notice .= "<div>Email: " .$email ."</div>";
             }
-            $notice .= "<hr>";
+            $notice .= '<hr>';
+            $notice .= '</div>';
         }
         $stmt->close();
         $conn->close();

@@ -16,18 +16,20 @@
                 <h1 class="title">HOIUPAIGAD</h1>
             </div>
 
-            <div class="storage-places flex-column">
-                <ul>
-                <?php
-                    echo $storagePlacesHTML;
-                ?>
-                </ul>
+            <div class="storageLayout">
+                <div class="storageBox">
+                    <?php
+                        echo $storagePlacesHTML;
+                    ?>
 
-            </div>
+                </div><!--.storage-places.flex-column-->
 
-            <div class="storage-pic">
-                <img class="img-full" src="../images/linnakukaart.jpg">
-            </div>
+                <div class="storageImageBox">
+                    <img class="img-full storageImage" src="../images/linnakukaart.jpg">
+                </div><!--.storage-pic-->
+            </div><!--.storageLayout-->
+
+
         </div>
 
     <div class="aside"></div>
