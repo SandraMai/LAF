@@ -99,8 +99,5 @@
 $url = "admin_settings.php";
 $urlTitle = 'Tagasi seadetesse';
 require('../pages/modal.php'); ?>
-
-<script src="../js/lost.js"></script>
-
 </body>
 </html>

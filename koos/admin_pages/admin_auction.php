@@ -2,6 +2,7 @@
     require('../head.php');
 
     $adminLinkValue=3;
+    $case = 0;
 
     if(isset($_SESSION["LAST_ACTIVITY"]) && (time() - $_SESSION["LAST_ACTIVITY"] > 1800)){
         session_unset(); 
@@ -29,8 +30,16 @@
 
     if(isset($_POST["submitAuction"])){
         $notice = updateAuction($_POST["start-price"], $_POST["step"]);
+        if($notice == 2) {
+            $case = 7;
+        } elseif ($notice == 404) {
+            $case = 10;
+        }
+        $notice = null;
         $start = auctionDefaultStartPrice();
         $step = auctionDefaultStep();
+
+
     }
 ?>
 <body>
@@ -66,5 +75,11 @@
         <div class="aside"></div>
     </div>
 
+<input class="modalCase" type="hidden" data-case="<?php echo $case;?>">
+<?php 
+
+$url = "admin_settings.php";
+$urlTitle = 'Tagasi seadetesse';
+require('../pages/modal.php'); ?>
 </body>
 </html>

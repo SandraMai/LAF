@@ -187,9 +187,9 @@
       echo $conn->error;
       $stmt->bind_param("dd", $startPrice, $step);
       if($stmt->execute()){
-        $notice = "Uuendus õnnestus!";
+            $notice = 2;
       } else {
-        $notice = "Tekkis tehniline viga: " .$stmt->error;
+            $notice = 404;
       }
       $stmt->close();
       $conn->close();
