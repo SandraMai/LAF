@@ -5,11 +5,19 @@ $(document).ready(function() {
         return this.optional(element) || /^[a-zA-ZäöüõÄÖÜÕ0-9,.!? -]*$/i.test(value);
     });
 
+    // Email by domain
+    $.validator.addMethod("tlumail", function(value, element) {
+        return checkDomain();
+  
+    });
+
+
     $('[name="add_new_lost_form"]').validate({
         rules: {
             email: {
                 required: true,
-                email: true
+                email: true,
+                tlumail: true
             },
             lostDate : {
                 required: true
@@ -30,7 +38,8 @@ $(document).ready(function() {
         messages: {
             email:  {
                 required: "Palun sisestage meiliaddress.",
-                email: "Palun sisestage korrektne meiliaadress."
+                email: "Palun sisestage korrektne meiliaadress.",
+                tlumail: "Palun sisestage meiliaadress lõpuga tlu.ee"
             },
             lostDate: {
                 required: "Palun valige kaotamise kuupäev."
@@ -70,3 +79,10 @@ $(document).ready(function() {
     });
 
 });
+
+
+function checkDomain() {
+    var userEmail = $('[name="email"]').val();
+    console.log(userEmail.substring(userEmail.indexOf('@')));
+    return (userEmail.substring(userEmail.indexOf('@')) === "@tlu.ee");
+}

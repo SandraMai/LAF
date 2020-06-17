@@ -149,7 +149,17 @@
         return false;
     }
 
+    // Checks if valid tlu.ee email
     function emailValidation($email) {
-        return filter_var($email, FILTER_VALIDATE_EMAIL);
+        $allowed = ['tlu.ee'];
+        if( filter_var($email, FILTER_VALIDATE_EMAIL) ) {
+            $parts = explode('@', $email);
+            $domain = array_pop($parts);
+            if ( in_array($domain, $allowed)){
+                return true;
+            }
+            
+        }
+        return false;
     }
-?>
+
