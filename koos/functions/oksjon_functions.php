@@ -53,10 +53,10 @@
                 $response .= '<span class="days"></span> p <span class="hours"></span> h <span class="minutes">';
                 $response .= '</span> min <span class="seconds"></span> s </a></p>';
                 if($auctionListing==null){
-                    $response .= '<p><a class="newOffer" href="new_offer.php?item='.$id.'">';
+                    $response .= '<p class="alignToEnd"><a class="newOffer" href="new_offer.php?item='.$id.'">';
                     $response .= '<input type="submit" id="priceSuggested" name="priceSuggested" value="Paku enda hind"></a></p>';
                 }
-                $response .= '</div><div class="aside"></div></div>';
+                $response .= '</div></div>';
             }
         
         }
