@@ -119,7 +119,7 @@ if(isset($_POST["submitPrice"])){
 
 
                     <br>
-                    <input name="submitPrice" type="submit" value="Esita pakkumine">
+                    <input name="submitPrice" type="submit" value="Tee pakkumine">
 
 
                     <?php
