@@ -15,7 +15,7 @@ $(document).ready(function() {
         // <li data-time="1589922000" class="productexplinationsDATE">Oksjoni aegumiskuupäev: 1589922000</li>
         // saad niimoodi ainult value, ja mitte innerhtml
         let value = $(this).data('time');
-        value=value*1000+86400*6*1000
+        value=value*1000+86400*14*1000
 
         console.log("VALUE "+value)
         var timer;
