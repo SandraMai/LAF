@@ -14,27 +14,104 @@
 			$sqlStatementCondition=" AND found_item_ad_ID='{$auctionListing}' ";
 
 		}
-		else if($auctionListing==NULL&&$searchedName==null&&$searchedArea==null&&$searchedCategory==null){
+		else if($auctionListing==NULL&&$searchedName==null&&$searchedArea==null&&$searchedCategory==null&&$searchedStartDate==null&&$searchedEndDate==null){
 			$sqlStatementCondition=null;
 			
-		}else if($auctionListing==NULL&&$searchedName!=null&&$searchedArea==null&&$searchedCategory==null){
+		}else if($auctionListing==NULL&&$searchedName!=null&&$searchedArea==null&&$searchedCategory==null&&$searchedStartDate==null&&$searchedEndDate==null){
 			$sqlStatementCondition=" AND description LIKE '%{$searchedName}%' ";
-		}else if($auctionListing==NULL&&$searchedName==null&&$searchedArea!=null&&$searchedCategory==null){
+		}else if($auctionListing==NULL&&$searchedName==null&&$searchedArea!=null&&$searchedCategory==null&&$searchedStartDate==null&&$searchedEndDate==null){
 			$sqlStatementCondition=" AND place_found LIKE '%{$searchedArea}%' ";
-		}else if($auctionListing==NULL&&$searchedName==null&&$searchedArea==null&&$searchedCategory!=null){
+		}else if($auctionListing==NULL&&$searchedName==null&&$searchedArea==null&&$searchedCategory!=null&&$searchedStartDate==null&&$searchedEndDate==null){
 			$sqlStatementCondition=" AND CATEGORY_category_ID LIKE '%{$searchedCategory}%' ";
 			
-		}else if($auctionListing==NULL&&$searchedName!=null&&$searchedArea!=null&&$searchedCategory==null){
+		}else if($auctionListing==NULL&&$searchedName!=null&&$searchedArea!=null&&$searchedCategory==null&&$searchedStartDate==null&&$searchedEndDate==null){
 			$sqlStatementCondition=" AND description LIKE '%{$searchedName}%'AND place_found LIKE '%{$searchedArea}%' ";
-		}else if($auctionListing==NULL&&$searchedName==null&&$searchedArea!=null&&$searchedCategory!=null){
+		}else if($auctionListing==NULL&&$searchedName==null&&$searchedArea!=null&&$searchedCategory!=null&&$searchedStartDate==null&&$searchedEndDate==null){
 			$sqlStatementCondition=" AND place_found LIKE '%{$searchedArea}%' AND CATEGORY_category_ID LIKE '%{$searchedCategory}%' ";
 			
-		}else if($auctionListing==NULL&&$searchedName!=null&&$searchedArea==null&&$searchedCategory!=null){
+		}else if($auctionListing==NULL&&$searchedName!=null&&$searchedArea==null&&$searchedCategory!=null&&$searchedStartDate==null&&$searchedEndDate==null){
 			$sqlStatementCondition=" AND description LIKE '%{$searchedName}%' AND CATEGORY_category_ID LIKE '%{$searchedCategory}%' ";
 			
-		}else if($auctionListing==NULL&&$searchedName!=null&&$searchedArea!=null&&$searchedCategory!=null){
+		}else if($auctionListing==NULL&&$searchedName!=null&&$searchedArea!=null&&$searchedCategory!=null&&$searchedStartDate==null&&$searchedEndDate==null){
 			$sqlStatementCondition=" AND description LIKE '%{$searchedName}%'AND place_found LIKE '%{$searchedArea}%' AND CATEGORY_category_ID LIKE '%{$searchedCategory}%' ";
-		}
+		}else if($auctionListing==NULL&&$searchedName==null&&$searchedArea==null&&$searchedCategory==null&&$searchedStartDate!=null&&$searchedEndDate==null){// siit algab startdate
+            $sqlStatementCondition="AND found_date>='$searchedStartDate' ";
+
+            
+        }else if($auctionListing==NULL&&$searchedName!=null&&$searchedArea==null&&$searchedCategory==null&&$searchedStartDate!=null&&$searchedEndDate==null){
+            $sqlStatementCondition=" AND description LIKE'%{$searchedName}%' AND found_date>='$searchedStartDate'  ";
+                
+        }else if($auctionListing==NULL&&$searchedName==null&&$searchedArea!=null&&$searchedCategory==null&&$searchedStartDate!=null&&$searchedEndDate==null){
+            $sqlStatementCondition=" AND place_found LIKE '%{$searchedArea}%' AND found_date>='$searchedStartDate'  ";
+            
+        }else if($auctionListing==NULL&&$searchedName==null&&$searchedArea==null&&$searchedCategory!=null&&$searchedStartDate!=null&&$searchedEndDate==null){
+            $sqlStatementCondition=" AND CATEGORY_category_ID='{$searchedCategory}' AND found_date>='$searchedStartDate'  ";
+            
+        }else if($auctionListing==NULL&&$searchedName!=null&&$searchedArea!=null&&$searchedCategory==null&&$searchedStartDate!=null&&$searchedEndDate==null){
+            $sqlStatementCondition=" AND description LIKE'%{$searchedName}%' AND place_found LIKE '%{$searchedArea}%' AND found_date>='$searchedStartDate'  ";
+            
+        }else if($auctionListing==NULL&&$searchedName==null&&$searchedArea!=null&&$searchedCategory!=null&&$searchedStartDate!=null&&$searchedEndDate==null){
+            $sqlStatementCondition=" AND place_found LIKE '%{$searchedArea}%' AND CATEGORY_category_ID='{$searchedCategory}' AND found_date>='$searchedStartDate'  ";
+            
+        }else if($auctionListing==NULL&&$searchedName!=null&&$searchedArea==null&&$searchedCategory!=null&&$searchedStartDate!=null&&$searchedEndDate==null){
+            $sqlStatementCondition=" AND description LIKE'%{$searchedName}%' AND CATEGORY_category_ID='{$searchedCategory}' AND found_date>='$searchedStartDate'  ";
+            
+        }else if($auctionListing==NULL&&$searchedName!=null&&$searchedArea!=null&&$searchedCategory!=null&&$searchedStartDate!=null&&$searchedEndDate==null){
+            $sqlStatementCondition=" AND description LIKE'%{$searchedName}%' AND place_found LIKE '%{$searchedArea}%' AND CATEGORY_category_ID='{$searchedCategory}' AND found_date>='$searchedStartDate'  ";
+
+        
+        
+        }else if($auctionListing==NULL&&$searchedName==null&&$searchedArea==null&&$searchedCategory==null&&$searchedStartDate==null&&$searchedEndDate!=null){// siit end date
+            $sqlStatementCondition="AND found_date<='$searchedEndDate' ";
+
+            
+        }else if($auctionListing==NULL&&$searchedName!=null&&$searchedArea==null&&$searchedCategory==null&&$searchedStartDate==null&&$searchedEndDate!=null){ 
+            $sqlStatementCondition=" AND description LIKE'%{$searchedName}%' AND found_date>='$searchedEndDate'  ";
+                
+        }else if($auctionListing==NULL&&$searchedName==null&&$searchedArea!=null&&$searchedCategory==null&&$searchedStartDate==null&&$searchedEndDate!=null){
+            $sqlStatementCondition=" AND place_found LIKE '%{$searchedArea}%' AND found_date>='$searchedEndDate'  ";
+            
+        }else if($auctionListing==NULL&&$searchedName==null&&$searchedArea==null&&$searchedCategory!=null&&$searchedStartDate==null&&$searchedEndDate!=null){
+            $sqlStatementCondition=" AND CATEGORY_category_ID='{$searchedCategory}' AND found_date>='$searchedEndDate'  ";
+            
+        }else if($auctionListing==NULL&&$searchedName!=null&&$searchedArea!=null&&$searchedCategory==null&&$searchedStartDate==null&&$searchedEndDate!=null){
+            $sqlStatementCondition=" AND description LIKE'%{$searchedName}%' AND place_found LIKE '%{$searchedArea}%' AND found_date>='$searchedEndDate'  ";
+            
+        }else if($auctionListing==NULL&&$searchedName==null&&$searchedArea!=null&&$searchedCategory!=null&&$searchedStartDate==null&&$searchedEndDate!=null){
+            $sqlStatementCondition=" AND place_found LIKE '%{$searchedArea}%' AND CATEGORY_category_ID='{$searchedCategory}' AND found_date>='$searchedEndDate'  ";
+            
+        }else if($auctionListing==NULL&&$searchedName!=null&&$searchedArea==null&&$searchedCategory!=null&&$searchedStartDate==null&&$searchedEndDate!=null){
+            $sqlStatementCondition=" AND description LIKE'%{$searchedName}%' AND CATEGORY_category_ID='{$searchedCategory}' AND found_date>='$searchedEndDate'  ";
+            
+        }else if($auctionListing==NULL&&$searchedName!=null&&$searchedArea!=null&&$searchedCategory!=null&&$searchedStartDate==null&&$searchedEndDate!=null){
+            $sqlStatementCondition=" AND description LIKE'%{$searchedName}%' AND place_found LIKE '%{$searchedArea}%' AND CATEGORY_category_ID='{$searchedCategory}' AND found_date>='$searchedEndDate'  ";
+        
+        }else if($auctionListing==NULL&&$searchedName==null&&$searchedArea==null&&$searchedCategory==null&&$searchedStartDate!=null&&$searchedEndDate!=null){ // end and start date
+            $sqlStatementCondition="AND (found_date BETWEEN '$searchedStartDate' AND '$searchedEndDate') ";
+
+            
+        }else if($auctionListing==NULL&&$searchedName!=null&&$searchedArea==null&&$searchedCategory==null&&$searchedStartDate!=null&&$searchedEndDate!=null){
+            $sqlStatementCondition=" AND description LIKE'%{$searchedName}%' AND (found_date BETWEEN '$searchedStartDate' AND '$searchedEndDate') ";
+                
+        }else if($auctionListing==NULL&&$searchedName==null&&$searchedArea!=null&&$searchedCategory==null&&$searchedStartDate!=null&&$searchedEndDate!=null){
+            $sqlStatementCondition=" AND place_found LIKE '%{$searchedArea}%' AND (found_date BETWEEN '$searchedStartDate' AND '$searchedEndDate') ";
+            
+        }else if($auctionListing==NULL&&$searchedName==null&&$searchedArea==null&&$searchedCategory!=null&&$searchedStartDate!=null&&$searchedEndDate!=null){
+            $sqlStatementCondition=" AND CATEGORY_category_ID='{$searchedCategory}' AND (found_date BETWEEN '$searchedStartDate' AND '$searchedEndDate') ";
+            
+        }else if($auctionListing==NULL&&$searchedName!=null&&$searchedArea!=null&&$searchedCategory==null&&$searchedStartDate!=null&&$searchedEndDate!=null){
+            $sqlStatementCondition=" AND description LIKE'%{$searchedName}%' AND place_found LIKE '%{$searchedArea}%' AND (found_date BETWEEN '$searchedStartDate' AND '$searchedEndDate') ";
+            
+        }else if($auctionListing==NULL&&$searchedName==null&&$searchedArea!=null&&$searchedCategory!=null&&$searchedStartDate!=null&&$searchedEndDate!=null){
+            $sqlStatementCondition=" AND place_found LIKE '%{$searchedArea}%' AND CATEGORY_category_ID='{$searchedCategory}' AND (found_date BETWEEN '$searchedStartDate' AND '$searchedEndDate') ";
+            
+        }else if($auctionListing==NULL&&$searchedName!=null&&$searchedArea==null&&$searchedCategory!=null&&$searchedStartDate!=null&&$searchedEndDate!=null){
+            $sqlStatementCondition=" AND description LIKE'%{$searchedName}%' AND CATEGORY_category_ID='{$searchedCategory}' AND (found_date BETWEEN '$searchedStartDate' AND '$searchedEndDate') ";
+            
+        }else if($auctionListing==NULL&&$searchedName!=null&&$searchedArea!=null&&$searchedCategory!=null&&$searchedStartDate!=null&&$searchedEndDate!=null){
+            $sqlStatementCondition=" AND description LIKE'%{$searchedName}%' AND place_found LIKE '%{$searchedArea}%' AND CATEGORY_category_ID='{$searchedCategory}' AND (found_date BETWEEN '$searchedStartDate' AND '$searchedEndDate') ";
+        
+        }
 		
 		$sqlStatementMain.=$sqlStatementCondition;
         $sqlStatementMain.=$sqlAfterStatements;
