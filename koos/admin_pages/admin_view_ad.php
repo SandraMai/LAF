@@ -24,6 +24,7 @@
     $notice = null;
     $id = null;
     $deletedNotice = null;
+    $case = 0;
     
 
 
@@ -36,6 +37,11 @@
     if(isset($_POST["deleteAd"])){
         $id = $_POST["idInput"];
         $notice = deleteLostAdAdmin($id);
+        if($notice == 2) {
+            $case = 2;
+        } elseif ($notice == 404) {
+            $case = 10;
+        }
     }
 ?>
 
@@ -51,7 +57,13 @@
     <div class="view"></div>
         <div class="flex-row"> 
             <div class="products">
-                <?php echo $notice;?>
+
+                <?php 
+                if ( $notice != 2 && $notice != 404):
+                    echo $notice;
+                endif;
+                ?>
+
             </div>
         </div>
     </div>
@@ -59,4 +71,16 @@
 </div>
 
 </div>
+
+
+<input class="modalCase" type="hidden" data-case="<?php echo $case;?>">
+<?php 
+
+$url = "admin_lost.php";
+$urlTitle = 'Tagasi kaotatud rubriiki';
+require('../pages/modal.php'); ?>
+
+<script src="../js/lost.js"></script>
+
 </body>
+</html>

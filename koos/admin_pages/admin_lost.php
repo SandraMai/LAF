@@ -7,6 +7,7 @@
     $searchedCategory=null;
     $searchedName=null;
     $sentElement=null;
+    $case = 0;
     
     if(isset($_SESSION["LAST_ACTIVITY"]) && (time() - $_SESSION["LAST_ACTIVITY"] > 1800)){
         session_unset(); 
@@ -35,8 +36,14 @@
     if(isset($_POST["deleteLostAd"])){   
         $id = $_POST["idInput"];
         $response = deleteLostAdAdmin($id);
+        if($response == 2) {
+            $case = 2;
+        } elseif ($response == 404) {
+            $case = 10;
+        }
         $notice = displayLostItemsAdmin($offset,$searchedName,$sentElement,$searchedArea,$adminLinkValue);
     }
+
 
 ?>
 <body>
@@ -66,4 +73,14 @@
     </div><!-- main-flex-->
 
     
+<input class="modalCase" type="hidden" data-case="<?php echo $case;?>">
+<?php 
+
+$url = "#";
+$urlTitle = '';
+require('../pages/modal.php'); ?>
+
+<script src="../js/lost.js"></script>
+
 </body>
+</html>
