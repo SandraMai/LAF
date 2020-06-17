@@ -127,8 +127,9 @@
             $response .= '<img class="productImageBox" src="' .$GLOBALS["pic_read_dir_thumb"] . $picture  .'"></a>';
             $response .= '<div class="flex-column productDesc">';
             $response .= '<p>Kirjeldus: ' . $description . '</p>';
-            $response .= '<p>Leidmise koht: ' . $place_found . '</p>';
+            $response .= '<p>Leidmise koht:' . $place_found . '</p>';
             $response .= '<p>Kuupäev: ' .$day .'.' .$monthsET[$month-1] .' ' .$year .'</p>';
+            $response .= '<p>Hoiupaik: ' . $storage . '</p>';
             $response .= '<p>Hoiupaik: ' . $storage . '</p>';
             $response .= '<form method="POST" action="#"><input type ="hidden" value="' .$id .'" name="idInput">';
             $response .= '<input type="submit" id="delete" name="deleteAd" value="KUSTUTA"></form>';
@@ -277,6 +278,21 @@
 		return $notice;
     }
 
-
+    function counterOfAreas(){
+        $storageHTML = null;
+        $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
+        $stmt = $conn->prepare("SELECT storage_place_ID, storage_place_name FROM STORAGE_PLACE");
+        $stmt->bind_result($id, $storage_name);
+        $stmt->execute();
+        while($stmt->fetch()){
+            $storageHTML .= '<option value="' .$id .'"';
+            $storageHTML .= '>' .$storage_name .'</option> \n';
+  
+  
+        }
+        $stmt->close();
+        $conn->close();
+        return $storageHTML;
+    }
 
 ?>
