@@ -51,6 +51,7 @@
                     $notice .= '<p> Kirjeldus: ' .$description .'</p>';
                     $notice .= '<p>Kaotamise koht: ' .$place .'</p>';
                     $notice .= '<p> Kaotamise kuupäev: ' .$day .'.' .$monthsET[$month-1] .' ' .$year .'</p>';
+                    $notice .= '<p class="text">E-mail: '. $email .'</p>';
                     $notice .= '<form method="POST" action="#"><input type ="hidden" value="' .$id .'" name="idInput">';
                     $notice .= '<input type="submit" id="delete" name="deleteLostAd" value="KUSTUTA"></form>';
                     $notice .= '</div></div>';
@@ -88,7 +89,8 @@
         if($searchedName==null&&$searchedArea==null&&$searchedCategory==null&&$searchedStorage==null){
         $stmt = $conn->prepare("SELECT found_item_ad_ID, description,DATE_FORMAT(found_date, '%d'), DATE_FORMAT(found_date, '%c'), DATE_FORMAT(found_date, '%Y'),picture,CATEGORY_category_ID,place_found, storage_place_name
         FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired=0  AND deleted = 0 ORDER BY found_item_ad_ID DESC LIMIT 3 OFFSET ?");
-        }else if($searchedName!=null&&$searchedArea==null&&$searchedCategory==null&&$searchedStorage==null){
+        }
+        else if($searchedName!=null&&$searchedArea==null&&$searchedCategory==null&&$searchedStorage==null){
         $stmt = $conn->prepare("SELECT found_item_ad_ID, description,DATE_FORMAT(found_date, '%d'), DATE_FORMAT(found_date, '%c'), DATE_FORMAT(found_date, '%Y'),picture,CATEGORY_category_ID,place_found, storage_place_name
         FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired=0 AND description LIKE '%{$searchedName}%' AND deleted = 0 ORDER BY found_item_ad_ID DESC LIMIT 3 OFFSET ?");
         
@@ -153,6 +155,7 @@
             $response .= '<p>Leidmise koht:' . $place_found . '</p>';
             $response .= '<p>Kuupäev: ' .$day .'.' .$monthsET[$month-1] .' ' .$year .'</p>';
             $response .= '<p>Hoiupaik: ' . $storage . '</p>';
+            $response .= '<p>Hoiupaik: ' . $storage . '</p>';
             $response .= '<form method="POST" action="#"><input type ="hidden" value="' .$id .'" name="idInput">';
             $response .= '<input type="submit" id="delete" name="deleteAd" value="KUSTUTA"></form>';
             $response .= '</div><div class="aside"></div></div>';
@@ -170,39 +173,36 @@
     function getSuccessfulAuctions($searchedName,$searchedCategory,$searchedArea,$thisLink, $offset){
         $notice = null;
         $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
+        $sqlStatementMain="SELECT found_item_ad_ID, description, picture, storage_place_name FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON 
+        FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired = 1 AND auctioned = 1 AND deleted = 0 ";
+        $sqlStatementCondition="";
         if($searchedName==null&&$searchedArea==null&&$searchedCategory==null){
-            $stmt = $conn->prepare("SELECT found_item_ad_ID, description, picture, storage_place_name FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON 
-            FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired = 1 AND auctioned = 1 AND deleted = 0 ");
+            $sqlStatementCondition="";
         }else if($searchedName!=null&&$searchedArea==null&&$searchedCategory==null){
-            $stmt = $conn->prepare("SELECT found_item_ad_ID, description, picture, storage_place_name FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON 
-            FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired = 1 AND auctioned = 1 AND deleted = 0 AND description LIKE '%{$searchedName}%' ");
 
-        
+            $sqlStatementCondition=" AND description LIKE '%{$searchedName}%' ";
+
         }else if($searchedName==null&&$searchedArea!=null&&$searchedCategory==null){
-            $stmt = $conn->prepare("SELECT found_item_ad_ID, description, picture, storage_place_name FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON 
-            FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired = 1 AND auctioned = 1 AND deleted = 0 AND place_found LIKE '%{$searchedArea}%' ");
+            
+            $sqlStatementCondition=" AND place_found LIKE '%{$searchedArea}%' ";
 
         }else if($searchedName==null&&$searchedArea==null&&$searchedCategory!=null){
-            $stmt = $conn->prepare("SELECT found_item_ad_ID, description, picture, storage_place_name FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON 
-            FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired = 1 AND auctioned = 1 AND deleted = 0 AND CATEGORY_category_ID LIKE '%{$searchedCategory}%' ");
+            $sqlStatementCondition=" 0 AND CATEGORY_category_ID LIKE '%{$searchedCategory}%' ";
 
         }else if($searchedName!=null&&$searchedArea!=null&&$searchedCategory==null){
-            $stmt = $conn->prepare("SELECT found_item_ad_ID, description, picture, storage_place_name FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON 
-            FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired = 1 AND auctioned = 1 AND deleted = 0 AND description LIKE '%{$searchedName}%'AND place_found LIKE '%{$searchedArea}%' ");
+            $sqlStatementCondition=" AND description LIKE '%{$searchedName}%'AND place_found LIKE '%{$searchedArea}%' ";
 
         }else if($searchedName!=null&&$searchedArea==null&&$searchedCategory!=null){
-            $stmt = $conn->prepare("SELECT found_item_ad_ID, description, picture, storage_place_name FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON 
-            FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired = 1 AND auctioned = 1 AND deleted = 0 AND description LIKE '%{$searchedName}%'AND  CATEGORY_category_ID LIKE '%{$searchedCategory}%'  ");
+            $sqlStatementCondition=" AND description LIKE '%{$searchedName}%'AND  CATEGORY_category_ID LIKE '%{$searchedCategory}%'  ";
 
         }else if($searchedName==null&&$searchedArea!=null&&$searchedCategory!=null){
-            $stmt = $conn->prepare("SELECT found_item_ad_ID, description, picture, storage_place_name FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON 
-            FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired = 1 AND auctioned = 1 AND deleted = 0 AND  place_found LIKE '%{$searchedArea}%' AND CATEGORY_category_ID LIKE '%{$searchedCategory}%' ");
+            $sqlStatementCondition=" AND  place_found LIKE '%{$searchedArea}%' AND CATEGORY_category_ID LIKE '%{$searchedCategory}%' ";
         
         }else if($searchedName!=null&&$searchedArea!=null&&$searchedCategory!=null){
-            $stmt = $conn->prepare("SELECT found_item_ad_ID, description, picture, storage_place_name FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON 
-            FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired = 1 AND auctioned = 1 AND deleted = 0 AND description LIKE '%{$searchedName}%'AND place_found LIKE '%{$searchedArea}%' AND CATEGORY_category_ID LIKE '%{$searchedCategory}%' ");
+            $sqlStatementCondition=" AND description LIKE '%{$searchedName}%'AND place_found LIKE '%{$searchedArea}%' AND CATEGORY_category_ID LIKE '%{$searchedCategory}%' ";
         }
-
+        $sqlStatementMain.=$sqlStatementCondition;
+        $stmt=$conn->prepare($sqlStatementMain);
         echo $searchedCategory;
         echo $searchedArea;
         echo $conn->error;
