@@ -2,6 +2,7 @@
     require('../head.php'); 
 
     $adminLinkValue=4;
+    $sentElement=null;
 
     if(isset($_SESSION["LAST_ACTIVITY"]) && (time() - $_SESSION["LAST_ACTIVITY"] > 1800)){
         session_unset(); 
