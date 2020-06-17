@@ -46,9 +46,8 @@
                 $response .= '<span class="productImageBox"><img class="productImage" src="' .$GLOBALS["pic_read_dir_thumb"] . $picture  . '"></span>';
                 $response .= '<div class="productDesc">';
                 $response .= '<p>Kirjeldus: ' . $description . '</p>';
-                $response .= '<p>Leidmise koht: ' . $place_found . '</p>';
                 $response .= '<p>Leitud kuupäev: ' .$day .'.' .$monthsET[$month-1] .' ' .$year .'</p>';
-                $response .= '<p>Suurim pakkumine: ' .$highestBid .' €</p>';
+                $response .= '<p>Viimane pakkumine: ' .$highestBid .' €</p>';
                 $response .= '<br><p>Aegub ';
                 $response .= '<a class="productexplinationsDATE" data-time="' . $timestamps . '">';
                 $response .= '<span class="days"></span> p <span class="hours"></span> h <span class="minutes">';

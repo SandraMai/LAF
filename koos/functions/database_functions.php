@@ -50,7 +50,7 @@
                     $notice .= '<a class="productImageBox" href="view_ad.php?id=' .$id ."&page=" .$page .'"><img class="productImage" src="../images/missing.png"' .'"></a>';
                     $notice .= '<div class="productDesc">';
                     $notice .= '<p> Kirjeldus: ' .$description .'</p>';
-                    $notice .= '<p>Kaotamise koht: ' .$place .'</p>';
+                    $notice .= '<p> Kaotamise koht: ' .$place .'</p>';
                     $notice .= '<p> Kaotamise kuupäev: ' .$day .'.' .$monthsET[$month-1] .' ' .$year .'</p>';
                     $notice .= '</div></div>';
                 }else{
