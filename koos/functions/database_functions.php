@@ -357,7 +357,8 @@
         $start = auctionDefaultStartPrice();
         $biding = auctionDefaultStep();
 		$notice = null;
-		$expiredElement;
+        $expiredElement;
+        $end_date = null;
 		$conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
 			$stmt = $conn->prepare("SELECT found_item_ad_ID from FOUND_ITEM_AD where expired=1 AND auctioned IS NULL");
 		echo $conn->error;
@@ -380,7 +381,28 @@
             $notice = 0;
         }
 
-		$stmt->close();
+        $stmt->close();
+        
+        $stmt = $conn->prepare("SELECT start_date FROM AUCTION WHERE FOUND_ITEM_AD_found_item_ad_ID = '{$expiredElement}'");
+        echo $conn->error;
+        $stmt->bind_result($start_time);
+        $stmt->execute();
+        if($stmt->fetch()){
+            $end_date = date('Y-m-d H:i:s', strtotime($start_time. ' + 14 days'));
+        }else{
+            $notice = 404;
+        }
+        $stmt->close();
+
+        $stmt = $conn->prepare("UPDATE AUCTION SET end_date = '{$end_date}' WHERE FOUND_ITEM_AD_found_item_ad_ID = '{$expiredElement}'");
+        echo $conn->error;
+        if($stmt->execute()){
+            $notice = $end_date;
+        }else{
+            $notice = 404;
+        }
+        $stmt->close();
+
 		$stmt = $conn->prepare("UPDATE  FOUND_ITEM_AD SET auctioned=1 WHERE  found_item_ad_ID='{$expiredElement}' ");
 		if($stmt->execute()){
             $notice = "Tehtud!";

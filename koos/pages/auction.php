@@ -39,7 +39,9 @@ $notice = getAuctionElements($show,$searchedName,$searchedCategory,$searchedArea
                     $notice = '<p class="flex-row">Hetkel esemeid pole!</p>';
                 }
 
-                echo $notice;?>
+                echo $notice;
+                
+                ;?>
             </div><!--.products -->
 
         </div><!--.filtersProductsLayout-->
