@@ -87,9 +87,7 @@ textarea {
   color: white;
 }
 
-.homeSection {
-    margin-top: 200px;
-}
+
 
 /* Modal styles */
 .modalBox {
@@ -224,6 +222,7 @@ textarea {
 .homeHeading {
     margin-bottom: 60px;
     font-size: x-large;
+    text-align: center;
 }
 
 .modalUrl:visited {
@@ -742,6 +741,10 @@ Reorganized stuff for responsiveness
 320px | 414px | 600px | 768px | 1080px
 */
 
+.homeSection {
+    margin-top: 80px;
+}
+
 .clearfix-50 {
     height: 30px;
 }
@@ -878,6 +881,10 @@ Reorganized stuff for responsiveness
 
 /* Desktop layout */
 @media (min-width: 1024px) {
+
+    .homeSection {
+        margin-top: 230px;
+    }
     .clearfix-50 {
 	    height: 50px;
     }
@@ -1044,6 +1051,8 @@ Reorganized stuff for responsiveness
 }
 
 
+
+
 /* wider than 500px */
 @media (min-width: 500px) {
 
@@ -1081,6 +1090,9 @@ Reorganized stuff for responsiveness
         margin-top: 70px;
     }
 
+    .homeSection {
+        margin-top: 230px;
+    }
  
     
 }
@@ -1155,3 +1167,4 @@ Reorganized stuff for responsiveness
 #deleteForm {
     width: 170px;
 }
+
