@@ -51,7 +51,6 @@
                     $notice .= '<p> Kirjeldus: ' .$description .'</p>';
                     $notice .= '<p>Kaotamise koht: ' .$place .'</p>';
                     $notice .= '<p> Kaotamise kuupäev: ' .$day .'.' .$monthsET[$month-1] .' ' .$year .'</p>';
-                    $notice .= '<p class="text">E-mail: '. $email .'</p>';
                     $notice .= '<form method="POST" action="#"><input type ="hidden" value="' .$id .'" name="idInput">';
                     $notice .= '<input type="submit" id="delete" name="deleteLostAd" value="KUSTUTA"></form>';
                     $notice .= '</div></div>';
