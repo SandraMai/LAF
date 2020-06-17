@@ -1,5 +1,6 @@
 <?php 
 require('../head.php'); 
+$notice = null;
 
 ?>
 
@@ -20,11 +21,26 @@ require('../head.php');
             <h1 class="title">EMAILI SAATMINE</h1>
         </div>
 
+        
         <!-- PAGE BODY -->
         <div class="clearfix-50"></div>
 
-            <div id="flex-row">
 
+            <form class="flex-column" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" enctype="multipart/form-data">
+        
+            <label class="storageLabel">Hoiupaik</label>
+            <select>
+            <option selected disabled value>Vali hoiupaik</option>
+            <?php echo readStoragesForSelect(); ?>
+            </select>       
+            
+            <input name="sendEmail" class="add-ad" type="submit" value="Saada meil"> <span><?php echo $notice; ?></span>
+            
+            </form>
+
+
+            <div>
+            
             </div>
 
     </div><!--.main-section-->
