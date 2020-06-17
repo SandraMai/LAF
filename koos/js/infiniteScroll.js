@@ -4,23 +4,28 @@ $(document).ready(function() {
 
     // Load more
     $(document).on('click', '.js-load-more', function() {
-        
-        let type = $(this).data('type');
+        var atype = $(this).data('atype');
+        if(atype != 1) {
+            atype = 0;
+        }
+
+        var type = $(this).data('type');
         offset+=3;
         console.log(offset);
-        ajaxLoadMore(offset, type);
+        ajaxLoadMore(offset, type, atype);
     });
 
 
-    function ajaxLoadMore(offset, type) {
-        let name = $('[name="otsingSona"]').data('value');
-        let cat = $('[name="category"]').data('value');
-        let area = $('[name="area"]').data('value');
-        let url = '../ajax/infinite_scroll.php';
+    function ajaxLoadMore(offset, type, atype) {
+        var name = $('[name="otsingSona"]').data('value');
+        var cat = $('[name="category"]').data('value');
+        var area = $('[name="area"]').data('value');
+        let storage = $('[name="storagePlace"]').data('value');
+        var url = '../ajax/infinite_scroll.php';
             $.ajax({
                 type: 'POST',
                 url: url,
-                data: { 'inf': offset, 'type': type, 'name': name, 'cat': cat, 'area': area }
+                data: { 'inf': offset, 'type': type, 'name': name, 'cat': cat, 'area': area, 'atype': atype, 'storage': storage }
             }).done(function(data) {
                 console.log(data);
                 if (data == 100) {

@@ -4,6 +4,8 @@ require('../functions/functions.php');
 require('../functions/database_functions.php');
 require('../functions/admin_oksjon_functions.php');
 require('../functions/oksjon_functions.php');
+require('../functions/admin_functions.php');
+require('../functions/admin_filtration.php');
 $database = "if19_LAF";
 
 
@@ -11,6 +13,10 @@ $database = "if19_LAF";
     $searchedName = $_POST['name'];
     $searchedCategory = $_POST['cat'];
     $searchedArea = $_POST['area'];
+    $atype = $_POST['atype'];
+    $getMore = null;
+    $searchedStorage = $_POST['storage'];
+    $searchedStorageID=storageToID($searchedStorage);
 
     if($searchedCategory=="riided"){
         $sentElement=1;
@@ -22,40 +28,39 @@ $database = "if19_LAF";
         $sentElement=null;
     }
 
-    if ($_POST['type'] == 1) {
+    // Is admin page
+    if ( $atype == 1 ) {
+        if ($_POST['type'] == 1) {
+            //$getMore = displayLostItems($offset, $searchedName, $searchedCategory, $searchedArea, 1);
 
-        $getMore = displayLostItems($offset, $searchedName, $searchedCategory, $searchedArea, 1);
+        } elseif ($_POST['type'] == 2) {
+           $getMore = selectFoundPostsAdmin($offset,$searchedName,$sentElement, $searchedStorageID,$searchedArea,null);
 
-        if ($getMore == 100) {
-            echo $getMore;
-        } else {
-            echo json_encode( $getMore, JSON_PRETTY_PRINT );
+        } elseif ($_POST['type'] == 3) {
+           // $getMore = getAuctionElements(null, $searchedName, $sentElement, $searchedArea, 3, $offset );
         }
+    } elseif ($atype == 0) {
+        if ($_POST['type'] == 1) {
+            $getMore = displayLostItems($offset, $searchedName, $searchedCategory, $searchedArea, 1);
 
-    } elseif ($_POST['type'] == 2) {
+        } elseif ($_POST['type'] == 2) {
+            $getMore = selectFoundPostsHTML($offset, $searchedName, $searchedCategory, $searchedArea, 2);
 
-        $getMore = selectFoundPostsHTML($offset, $searchedName, $searchedCategory, $searchedArea, 2);
-
-        if ($getMore == 100) {
-            echo $getMore;
-        } else {
-            echo json_encode( $getMore, JSON_PRETTY_PRINT );
+        } elseif ($_POST['type'] == 3) {
+            $getMore = getAuctionElements(null, $searchedName, $sentElement, $searchedArea, 3, $offset );
         }
-    } elseif ($_POST['type'] == 3) {
-        $getMore = getAuctionElements(null, $searchedName, $sentElement, $searchedArea, 3, $offset );
+    }
 
-        if ($getMore == 100) {
-            echo $getMore;
-        } else {
-            echo json_encode( $getMore, JSON_PRETTY_PRINT );
-        }
+
+
+    if ($getMore == 100) {
+        echo $getMore;
+    } else {
+        echo json_encode( $getMore, JSON_PRETTY_PRINT );
     }
 
        
         
-
-
-
 
 
 

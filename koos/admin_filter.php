@@ -53,11 +53,11 @@
                 <ul class="ul flex-column">
                 <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" class="filterForm">
 
-                    <li><input id="other" name="otsingSona" type="input" placeholder="Otsingusõna" value="<?php echo $searchedName;?>"></li>
+                    <li><input id="other" name="otsingSona" type="input" placeholder="Otsingusõna" value="<?php echo $searchedName;?>" data-value="<?php echo $searchedName;?>"></li>
 
                     <li>
                         <?php if ($adminLinkValue!=1):?>
-                        <select name="storagePlace" id="storagePlace" value="<?php echo $searchedStorage;?>">
+                        <select name="storagePlace" id="storagePlace" value="<?php echo $searchedStorage;?>" data-value="<?php echo $searchedStorage;?>">
                             <option disabled selected value>Hoiupaik</option>
                             <?php $arrayStorage = counterOfStorages();
                         for ($i=0; $i < sizeof($arrayStorage); $i++) :
@@ -74,7 +74,7 @@
                         <!-- <input id="other" name="area" type="input" placeholder="Asukoht" value="<?php //echo $searchedArea;?>"></li> -->
 
                     <li>
-                        <select name="category" id="category" value="<?php echo $searchedCategory;?>">
+                        <select name="category" id="category" value="<?php echo $searchedCategory;?>" data-value="<?php echo $searchedCategory;?>">
                         <option disabled selected value>  Vali kategooria  </option>
                         <?php 
                             $array = array("riided", "tehnika", "muu");

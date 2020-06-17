@@ -72,7 +72,7 @@
                      echo selectFoundPostsAdmin($offset,$searchedName,$sentElement, $searchedStorageID,$searchedArea,$adminLinkValue); ?>
             </div><!--.products -->
         </div><!--.flex-row-->
-        <div class="js-more-wrapper loadMoreButton"><button data-inf=0 data-type=2 class="js-load-more">lae juurde</button></div>
+        <div class="js-more-wrapper loadMoreButton"><button data-inf=0 data-type=2 class="js-load-more" data-atype=1>lae juurde</button></div>
     </div><!--.main-section-->
     
 
@@ -83,5 +83,6 @@
 
 
 <script src="../js/found.js"></script>
+<script src="../js/infiniteScroll.js"></script>
 </body>
 </html>
