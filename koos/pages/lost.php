@@ -7,7 +7,9 @@
     $thisLink=null;
     $offset = 0;
     $filter = null;
-    $notice = displayLostItems($offset,$searchedName,$searchedCategory,$searchedArea,$thisLink);
+    $searchedEndDate=null;
+    $searchedStartDate=null;
+    $notice = displayLostItems($offset,$searchedName,$searchedCategory,$searchedArea,$thisLink,$searchedEndDate,$searchedStartDate);
 
 
     lostExpired();
@@ -40,6 +42,7 @@
                 } ?>
                 <div class="products">
                     <?php echo $notice;?>
+
                     
                 </div><!--.products-->
                 

@@ -1,19 +1,15 @@
 $(document).ready(function() {
 
+    liveTimeUpdate();
 
-    // let dateOfExp=document.getElementsByClassName('productexplinationsDATE');
-    // console.log(dateOfExp.value);
-    // console.log(dateOfExp);
+});
 
-
+function liveTimeUpdate() {
     $('.productexplinationsDATE').each(function(){
         var compareDate = new Date();
         console.log($(this).text());
 
         let that = $(this);
-        // kui teed html selliseks
-        // <li data-time="1589922000" class="productexplinationsDATE">Oksjoni aegumiskuupäev: 1589922000</li>
-        // saad niimoodi ainult value, ja mitte innerhtml
         let value = $(this).data('time');
         value=value*1000+86400*14*1000
 
@@ -51,7 +47,5 @@ $(document).ready(function() {
                 }
             }
     });
-
-});
-
-
+}
+    
