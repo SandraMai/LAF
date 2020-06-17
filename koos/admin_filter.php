@@ -37,7 +37,7 @@
         }else if($thisLink==2) {
             $notice = selectFoundPostsAdmin($offset,$searchedName,$sentElement, $searchedStorageID,$searchedArea,$thisLink);
         }else if($thisLink==3){
-            $notice=getSuccessfulAuctions($searchedName,$sentElement,$searchedArea,$thisLink, $offset);   
+            $notice=getSuccessfulAuctions($searchedName,$sentElement,$searchedArea,$searchedStorageID,$thisLink, $offset);   
         }else if($thisLink==4){
             $searchedArea=null;
             $notice=getExpiredAuctions($searchedName,$sentElement, $searchedStorageID,$thisLink, $offset);   

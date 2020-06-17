@@ -55,7 +55,7 @@
 
             <?php require("../admin_filter.php") ?>
             <div class="products">
-                    <?php echo getSuccessfulAuctions($searchedName,$sentElement,$searchedArea, $adminLinkValue, $offset); ?>
+                    <?php echo getSuccessfulAuctions($searchedName,$sentElement,$searchedArea,$searchedStorageID, $adminLinkValue, $offset); ?>
             
             </div><!--.products -->
             </div><!--.filtersProductsLayout-->
