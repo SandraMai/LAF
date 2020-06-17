@@ -33,8 +33,7 @@ $(document).ready(function() {
                 email: "Palun sisestage korrektne meiliaadress."
             },
             lostDate: {
-                required: "Palun valige kaotamise kuupäev.",
-                max: "Valitud kuupäev ei tohi olla tulevikus."
+                required: "Palun valige kaotamise kuupäev."
             },
             category: "Palun valige eseme kategooria.",
             description: {

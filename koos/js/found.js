@@ -32,8 +32,7 @@ $(document).ready(function() {
         messages: {
             storage:  "Palun valige hoiupaik.",
             date: {
-                required: "Palun valige leidmise kuupäev.",
-                max: "Valitud kuupäev ei tohi olla tulevikus."
+                required: "Palun valige leidmise kuupäev."
             },
             image: "Palun valige eseme pilt.",
             category: "Palun valige eseme kategooria.",
