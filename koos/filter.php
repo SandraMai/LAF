@@ -33,7 +33,7 @@ if(isset($_POST["submitSearch"])){
     $searchedArea =($_POST["area"]);
     $thisLink =($_POST["linkname"]);
     if($thisLink==1){
-        $notice = displayLostItems($offset,$searchedName,$sentElement,$searchedArea,$thisLink,$searchedEndDate,$searchedStartDate);
+        $notice = displayLostItems($offset,$searchedName,$sentElement,$searchedArea,$thisLink,$searchedStartDate,$searchedEndDate);
     }else if($thisLink==2) {
         $notice = selectFoundPostsHTML($offset,$searchedName,$sentElement,$searchedArea,$thisLink);
     }else if($thisLink==3){

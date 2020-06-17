@@ -9,7 +9,7 @@
     $filter = null;
     $searchedEndDate=null;
     $searchedStartDate=null;
-    $notice = displayLostItems($offset,$searchedName,$searchedCategory,$searchedArea,$thisLink,$searchedEndDate,$searchedStartDate);
+    $notice = displayLostItems($offset,$searchedName,$searchedCategory,$searchedArea,$thisLink,$searchedStartDate,$searchedEndDate);
 
 
     lostExpired();
