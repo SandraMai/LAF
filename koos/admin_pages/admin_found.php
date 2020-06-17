@@ -8,6 +8,7 @@
     $offset=0;
     $notice=null;
     $sentElement=null;
+    $searchedStorage=null;
 
     if(isset($_SESSION["LAST_ACTIVITY"]) && (time() - $_SESSION["LAST_ACTIVITY"] > 1800)){
         session_unset(); 
@@ -68,7 +69,7 @@
                             $notice = '<p class="flex-row">Hetkel esemeid pole!</p>';
                         }
                     
-                     echo selectFoundPostsAdmin($offset,$searchedName,$sentElement,$searchedArea,$adminLinkValue); ?>
+                     echo selectFoundPostsAdmin($offset,$searchedName,$sentElement,$searchedStorage,$searchedArea,$adminLinkValue); ?>
             </div><!--.products -->
         </div><!--.flex-row-->
         <div class="js-more-wrapper loadMoreButton"><button data-inf=0 data-type=2 class="js-load-more">lae juurde</button></div>

@@ -11,6 +11,7 @@
 
     if(isset($_POST["submitSearch"])){
         $searchedStorage=($_POST["storagePlace"]);
+        $searchedStorage=storageToID($searchedStorage);
         $searchedName = ($_POST["otsingSona"]);
         if(isset($_POST["category"])){
             $searchedCategory =($_POST["category"]);
@@ -33,7 +34,7 @@
         if($thisLink==1){
             $notice = displayLostItemsAdmin($offset,$searchedName,$sentElement,$searchedArea,$thisLink);
         }else if($thisLink==2) {
-            $notice = selectFoundPostsAdmin($offset,$searchedName,$sentElement,$searchedArea,$thisLink);
+            $notice = selectFoundPostsAdmin($offset,$searchedName,$sentElement,$searchedStorage,$searchedArea,$thisLink);
         }else if($thisLink==3){
             $notice=getSuccessfulAuctions($searchedName,$sentElement,$searchedArea,$thisLink, $offset);   
         }else if($thisLink==4){

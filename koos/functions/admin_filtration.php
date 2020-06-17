@@ -81,7 +81,7 @@
         
         
     }
-    function selectFoundPostsAdmin($offset,$searchedName,$searchedCategory,$searchedArea,$thisLink) {
+    function selectFoundPostsAdmin($offset,$searchedName,$searchedCategory,$searchedStorage,$searchedArea,$thisLink) {
         $response = null;
         $monthsET = ["jaanuar", "veebruar", "märts", "aprill", "mai", "juuni", "juuli", "august", "september", "oktoober", "november", "detsember"];
         $page = 'found.php';
@@ -216,7 +216,7 @@
 
     function getExpiredAuctions($searchedName,$searchedCategory,$searchedStorage,$thisLink, $offset){
         $notice = null;
-        $searchedStorage=storageToID($searchedStorage);
+        
         $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]); 
         if($searchedName==null&&$searchedStorage==null&&$searchedCategory==null){
             $stmt = $conn->prepare("SELECT found_item_ad_ID, description, picture, storage_place_name FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON 
