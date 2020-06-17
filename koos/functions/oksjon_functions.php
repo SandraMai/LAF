@@ -105,7 +105,7 @@
 	
 		$stmt->close();
 		$conn->close();
-		return $expiredElement;;
+		return $expiredElement;
 		}
 	function setFirstBid($email,$notification,$offer,$idofAuctionedItem,$maxCompared,$minCompare){
 		if($offer<=$maxCompared){
