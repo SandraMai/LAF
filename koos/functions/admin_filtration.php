@@ -170,43 +170,66 @@
         return $response;
     }
 
-    function getSuccessfulAuctions($searchedName,$searchedCategory,$searchedArea,$thisLink, $offset){
+    function getSuccessfulAuctions($searchedName,$searchedCategory,$searchedArea,$searchedStorage,$thisLink, $offset){
         $notice = null;
         $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
-        $sqlStatementMain="SELECT found_item_ad_ID, description, picture, storage_place_name FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON 
+        $sqlStatementMain="SELECT found_item_ad_ID, description, picture, storage_place_name,place_found FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON 
         FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired = 1 AND auctioned = 1 AND deleted = 0 ";
         $sqlStatementCondition="";
-        if($searchedName==null&&$searchedArea==null&&$searchedCategory==null){
+        if($searchedName==null&&$searchedArea==null&&$searchedCategory==null&&$searchedStorage==null){
             $sqlStatementCondition="";
-        }else if($searchedName!=null&&$searchedArea==null&&$searchedCategory==null){
+        }elseif($searchedName!=null&&$searchedArea==null&&$searchedCategory==null&&$searchedStorage==null){
 
             $sqlStatementCondition=" AND description LIKE '%{$searchedName}%' ";
 
-        }else if($searchedName==null&&$searchedArea!=null&&$searchedCategory==null){
+        }elseif($searchedName==null&&$searchedArea!=null&&$searchedCategory==null&&$searchedStorage==null){
             
             $sqlStatementCondition=" AND place_found LIKE '%{$searchedArea}%' ";
 
-        }else if($searchedName==null&&$searchedArea==null&&$searchedCategory!=null){
+        }elseif($searchedName==null&&$searchedArea==null&&$searchedCategory!=null&&$searchedStorage==null){
             $sqlStatementCondition=" 0 AND CATEGORY_category_ID LIKE '%{$searchedCategory}%' ";
 
-        }else if($searchedName!=null&&$searchedArea!=null&&$searchedCategory==null){
+        }elseif($searchedName!=null&&$searchedArea!=null&&$searchedCategory==null&&$searchedStorage==null){
             $sqlStatementCondition=" AND description LIKE '%{$searchedName}%'AND place_found LIKE '%{$searchedArea}%' ";
 
-        }else if($searchedName!=null&&$searchedArea==null&&$searchedCategory!=null){
+        }elseif($searchedName!=null&&$searchedArea==null&&$searchedCategory!=null&&$searchedStorage==null){
             $sqlStatementCondition=" AND description LIKE '%{$searchedName}%'AND  CATEGORY_category_ID LIKE '%{$searchedCategory}%'  ";
 
-        }else if($searchedName==null&&$searchedArea!=null&&$searchedCategory!=null){
+        }elseif($searchedName==null&&$searchedArea!=null&&$searchedCategory!=null&&$searchedStorage==null){
             $sqlStatementCondition=" AND  place_found LIKE '%{$searchedArea}%' AND CATEGORY_category_ID LIKE '%{$searchedCategory}%' ";
         
-        }else if($searchedName!=null&&$searchedArea!=null&&$searchedCategory!=null){
+        }elseif($searchedName!=null&&$searchedArea!=null&&$searchedCategory!=null&&$searchedStorage==null){
             $sqlStatementCondition=" AND description LIKE '%{$searchedName}%'AND place_found LIKE '%{$searchedArea}%' AND CATEGORY_category_ID LIKE '%{$searchedCategory}%' ";
+        //////////////////////////////////////////////////////////////////////////////////////INFOLETT
+        }elseif($searchedName==null&&$searchedArea==null&&$searchedCategory==null&&$searchedStorage!=null){
+            $sqlStatementCondition=" AND STORAGE_PLACE_storage_place_ID LIKE '%{$searchedStorage}%' ";
+
+        }elseif($searchedName!=null&&$searchedArea==null&&$searchedCategory==null&&$searchedStorage!=null){
+            $sqlStatementCondition=" AND description LIKE '%{$searchedName}%'AND STORAGE_PLACE_storage_place_ID LIKE '%{$searchedStorage}%' ";
+
+        }elseif($searchedName==null&&$searchedArea!=null&&$searchedCategory==null&&$searchedStorage!=null){
+            $sqlStatementCondition=" AND place_found LIKE '%{$searchedArea}%' AND STORAGE_PLACE_storage_place_ID LIKE '%{$searchedStorage}%' ";
+
+        }elseif($searchedName==null&&$searchedArea==null&&$searchedCategory!=null&&$searchedStorage!=null){
+            $sqlStatementCondition="  AND CATEGORY_category_ID LIKE '%{$searchedCategory}%' AND STORAGE_PLACE_storage_place_ID LIKE '%{$searchedStorage}%' ";
+
+        }elseif($searchedName!=null&&$searchedArea==null&&$searchedCategory!=null&&$searchedStorage!=null){
+            $sqlStatementCondition=" AND description LIKE '%{$searchedName}%' AND CATEGORY_category_ID LIKE '%{$searchedCategory}%' AND STORAGE_PLACE_storage_place_ID LIKE '%{$searchedStorage}%' ";
+
+        }elseif($searchedName==null&&$searchedArea!=null&&$searchedCategory!=null&&$searchedStorage!=null){
+            $sqlStatementCondition=" AND place_found LIKE '%{$searchedArea}%' AND CATEGORY_category_ID LIKE '%{$searchedCategory}%' AND STORAGE_PLACE_storage_place_ID LIKE '%{$searchedStorage}%' ";
+
+        }elseif($searchedName!=null&&$searchedArea!=null&&$searchedCategory==null&&$searchedStorage!=null){
+            $sqlStatementCondition=" AND description LIKE '%{$searchedName}%'AND place_found LIKE '%{$searchedArea}%' AND STORAGE_PLACE_storage_place_ID LIKE '%{$searchedStorage}%' ";
+
+        }elseif($searchedName!=null&&$searchedArea!=null&&$searchedCategory!=null&&$searchedStorage!=null){
+            $sqlStatementCondition=" AND description LIKE '%{$searchedName}%'AND place_found LIKE '%{$searchedArea}%' AND CATEGORY_category_ID LIKE '%{$searchedCategory}%' AND STORAGE_PLACE_storage_place_ID LIKE '%{$searchedStorage}%' ";
         }
         $sqlStatementMain.=$sqlStatementCondition;
         $stmt=$conn->prepare($sqlStatementMain);
-        echo $searchedCategory;
-        echo $searchedArea;
+  
         echo $conn->error;
-        $stmt->bind_result($id, $description, $pic, $storage_place);
+        $stmt->bind_result($id, $description, $pic, $storage_place,$found_place);
         $stmt->execute();
         
         while($stmt->fetch()){
@@ -222,6 +245,7 @@
                     $notice .= '<p class="text">Kirjeldus: ' .$description .'</p>';
                     $notice .= '<p class="text">Hoiupaik: ' .$storage_place .'</p>';
                     $notice .= '<p class="text">E-mail: ' .$email .'</p>';
+                    $notice .= '<p class="text">Leidmis koht: ' .$found_place .'</p>';
                     $notice .= '<p class="text">Parim pakkumine: ' .$bestOffer .' €</p>';
                     $notice .= '</div></div>';
                 }
