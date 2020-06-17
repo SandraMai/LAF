@@ -69,10 +69,6 @@ if(isset($_POST["submitPrice"])){
             <!-- PAGE NUMBERS -->
             <div class="flex-row"> 
                 <div class="aside"></div>
-                <div>                
-                    <?php
-                    echo "Tänane kuupäev " . date("Y/m/d") . "<br>";
-                    ?></div>
                     
             </div>
             <!-- PAGE BODY -->

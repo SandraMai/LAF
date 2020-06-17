@@ -286,7 +286,7 @@
                 $notice .= '<p class="text">Kaotamise koht: ' .$place .'</p>';
                 $notice .= '<p class="text">Kaotamise kuupäev: ' .$day .'.' .$monthsET[$month-1] .' ' .$year .'</p>';
                 $notice .= '<p class="text">E-mail: '. $email .'</p>';                
-                $notice .= '</div><form class="flex-column" method="POST" action="' .htmlspecialchars($_SERVER["PHP_SELF"]) .'" enctype="multipart/form-data">';
+                $notice .= '</div><form class="flex-column emailForm" method="POST" action="' .htmlspecialchars($_SERVER["PHP_SELF"]) .'" enctype="multipart/form-data">';
                 $notice .= '<select name = "storage"> <option selected disabled value>Vali hoiupaik</option>' .readStoragesForSelect();
                 $notice .= '</select> <input type ="hidden" value="' .$id .'" name="adId"> <input name="sendEmail" class="add-ad" type="submit" value="Saada meil">';
                 $notice .= '</form></div>';
@@ -301,7 +301,7 @@
                 $notice .= '<p class="text">Kaotamise koht: ' .$place .'</p>';
                 $notice .= '<p class="text">Kaotamise kuupäev: ' .$day .'.' .$monthsET[$month-1] .' ' .$year .'</p>';
                 $notice .= '<p class="text">E-mail: '. $email .'</p>';
-                $notice .= '</div><form class="flex-column" method="POST" action="' .htmlspecialchars($_SERVER["PHP_SELF"]) .'" enctype="multipart/form-data">';
+                $notice .= '</div><form class="flex-column emailForm" method="POST" action="' .htmlspecialchars($_SERVER["PHP_SELF"]) .'" enctype="multipart/form-data">';
                 $notice .= '<select name = "storage"> <option selected disabled value>Vali hoiupaik</option>' .readStoragesForSelect();
                 $notice .= '</select> <input type ="hidden" value="' .$id .'" name="adId"> <input name="sendEmail" class="add-ad" type="submit" value="Saada meil">';
                 $notice .= '</form></div>';
