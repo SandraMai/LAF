@@ -110,7 +110,7 @@
                 <textarea class="foundInput textInput inputBoxStyle" name="description" id="" cols="30" rows="5"></textarea>
             </label>
             <br>
-
+                <p>Palun vaata kõik täpse pilguga üle, hiljem muuta ei saa!</p>
                <input class="add-ad" type="submit" value="LISA" name="submitButton">
         
         </form><!--.flex-row-->

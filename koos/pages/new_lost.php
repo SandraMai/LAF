@@ -214,7 +214,7 @@
                     <textarea class="foundInput textInput inputBoxStyle" name="description"></textarea>
                     
                 </label>
-
+                    <p>Palun vaata kõik täpse pilguga üle, hiljem muuta ei saa!</p>
                 <input name="submitLost" class="add-ad" id="add-lost" type="submit" value="LISA">
             </form>
         </div>
