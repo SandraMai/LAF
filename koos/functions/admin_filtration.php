@@ -84,65 +84,57 @@
     function selectFoundPostsAdmin($offset,$searchedName,$searchedCategory,$searchedStorage,$searchedArea,$thisLink) {
         $response = null;
         $monthsET = ["jaanuar", "veebruar", "märts", "aprill", "mai", "juuni", "juuli", "august", "september", "oktoober", "november", "detsember"];
-        $page = 'found.php';
+        $page = 'found.php';    
         $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
+        $sqlStatementMain="SELECT found_item_ad_ID, description,DATE_FORMAT(found_date, '%d'), DATE_FORMAT(found_date, '%c'), DATE_FORMAT(found_date, '%Y'),picture,CATEGORY_category_ID,place_found, storage_place_name
+        FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired=0  AND deleted = 0 ";
+        $sqlStatementCondition=null;
+        $sqlStatementOrderByAndOffser=" ORDER BY found_item_ad_ID DESC LIMIT 3 OFFSET ?";
         if($searchedName==null&&$searchedArea==null&&$searchedCategory==null&&$searchedStorage==null){
-        $stmt = $conn->prepare("SELECT found_item_ad_ID, description,DATE_FORMAT(found_date, '%d'), DATE_FORMAT(found_date, '%c'), DATE_FORMAT(found_date, '%Y'),picture,CATEGORY_category_ID,place_found, storage_place_name
-        FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired=0  AND deleted = 0 ORDER BY found_item_ad_ID DESC LIMIT 3 OFFSET ?");
+        $sqlStatementCondition="";
         }
         else if($searchedName!=null&&$searchedArea==null&&$searchedCategory==null&&$searchedStorage==null){
-        $stmt = $conn->prepare("SELECT found_item_ad_ID, description,DATE_FORMAT(found_date, '%d'), DATE_FORMAT(found_date, '%c'), DATE_FORMAT(found_date, '%Y'),picture,CATEGORY_category_ID,place_found, storage_place_name
-        FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired=0 AND description LIKE '%{$searchedName}%' AND deleted = 0 ORDER BY found_item_ad_ID DESC LIMIT 3 OFFSET ?");
+            $sqlStatementCondition=" AND description LIKE '%{$searchedName}%' ";
         
         }elseif($searchedName==null&&$searchedArea!=null&&$searchedCategory==null&&$searchedStorage==null){
-        $stmt = $conn->prepare("SELECT found_item_ad_ID, description,DATE_FORMAT(found_date, '%d'), DATE_FORMAT(found_date, '%c'), DATE_FORMAT(found_date, '%Y'),picture,CATEGORY_category_ID,place_found, storage_place_name
-        FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired=0 AND place_found LIKE '%{$searchedArea}%' AND deleted = 0 ORDER BY found_item_ad_ID DESC LIMIT 3 OFFSET ?");
+            $sqlStatementCondition=" AND place_found LIKE '%{$searchedArea}%' ";
         
         }elseif($searchedName==null&&$searchedArea==null&&$searchedCategory!=null&&$searchedStorage==null){
-        $stmt = $conn->prepare("SELECT found_item_ad_ID, description,DATE_FORMAT(found_date, '%d'), DATE_FORMAT(found_date, '%c'), DATE_FORMAT(found_date, '%Y'),picture,CATEGORY_category_ID,place_found, storage_place_name
-        FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired=0 AND  CATEGORY_category_ID LIKE '{$searchedCategory}' AND deleted = 0 ORDER BY found_item_ad_ID DESC LIMIT 3 OFFSET ?");
+            $sqlStatementCondition=" AND  CATEGORY_category_ID LIKE '{$searchedCategory}' ";
        
         }elseif($searchedName!=null&&$searchedArea!=null&&$searchedCategory==null&&$searchedStorage==null){
-        $stmt = $conn->prepare("SELECT found_item_ad_ID, description,DATE_FORMAT(found_date, '%d'), DATE_FORMAT(found_date, '%c'), DATE_FORMAT(found_date, '%Y'),picture,CATEGORY_category_ID,place_found, storage_place_name
-        FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired=0 AND place_found LIKE '%{$searchedArea}%' AND description LIKE '%{$searchedName}%' AND deleted = 0 ORDER BY found_item_ad_ID DESC LIMIT 3 OFFSET ?");
+            $sqlStatementCondition=" AND place_found LIKE '%{$searchedArea}%' AND description LIKE '%{$searchedName}%' ";
         
         }elseif($searchedName!=null&&$searchedArea==null&&$searchedCategory!=null&&$searchedStorage==null){
-        $stmt = $conn->prepare("SELECT found_item_ad_ID, description,DATE_FORMAT(found_date, '%d'), DATE_FORMAT(found_date, '%c'), DATE_FORMAT(found_date, '%Y'),picture,CATEGORY_category_ID,place_found, storage_place_name
-        FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired=0 AND description LIKE '%{$searchedName}%' AND CATEGORY_category_ID LIKE '{$searchedCategory}' AND deleted = 0 ORDER BY found_item_ad_ID DESC LIMIT 3 OFFSET ?");
+            $sqlStatementCondition=" AND description LIKE '%{$searchedName}%' AND CATEGORY_category_ID LIKE '{$searchedCategory}' ";
         
         }elseif($searchedName==null&&$searchedArea!=null&&$searchedCategory!=null&&$searchedStorage==null){
-        $stmt = $conn->prepare("SELECT found_item_ad_ID, description,DATE_FORMAT(found_date, '%d'), DATE_FORMAT(found_date, '%c'), DATE_FORMAT(found_date, '%Y'),picture,CATEGORY_category_ID,place_found, storage_place_name
-        FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired=0 AND place_found LIKE '%{$searchedArea}%' AND CATEGORY_category_ID LIKE '{$searchedCategory}' AND deleted = 0 ORDER BY found_item_ad_ID DESC LIMIT 3 OFFSET ?");
+            $sqlStatementCondition=" AND place_found LIKE '%{$searchedArea}%' AND CATEGORY_category_ID LIKE '{$searchedCategory}' ";
         
         }elseif($searchedName!=null&&$searchedArea!=null&&$searchedCategory!=null&&$searchedStorage==null){
-        $stmt = $conn->prepare("SELECT found_item_ad_ID, description,DATE_FORMAT(found_date, '%d'), DATE_FORMAT(found_date, '%c'), DATE_FORMAT(found_date, '%Y'),picture,CATEGORY_category_ID,place_found, storage_place_name
-        FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired=0 AND place_found LIKE '%{$searchedArea}%' AND description LIKE '%{$searchedName}%' AND CATEGORY_category_ID LIKE '{$searchedCategory}' AND deleted = 0 ORDER BY found_item_ad_ID DESC LIMIT 3 OFFSET ?");
+            $sqlStatementCondition=" AND place_found LIKE '%{$searchedArea}%' AND description LIKE '%{$searchedName}%' AND CATEGORY_category_ID LIKE '{$searchedCategory}' ";
         /////////////////////////////////////////////////////////TINGIMUSED KOOS SEARCHED STORAGEGA
         }elseif($searchedName==null&&$searchedArea==null&&$searchedCategory==null&&$searchedStorage!=null){
-        $stmt = $conn->prepare("SELECT found_item_ad_ID, description,DATE_FORMAT(found_date, '%d'), DATE_FORMAT(found_date, '%c'), DATE_FORMAT(found_date, '%Y'),picture,CATEGORY_category_ID,place_found, storage_place_name
-        FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired=0 AND STORAGE_PLACE_storage_place_ID LIKE '%{$searchedStorage}%'AND deleted = 0 ORDER BY found_item_ad_ID DESC LIMIT 3 OFFSET ?");
+            $sqlStatementCondition=" AND STORAGE_PLACE_storage_place_ID LIKE '%{$searchedStorage}%'";
         }elseif($searchedName==null&&$searchedArea==null&&$searchedCategory!=null&&$searchedStorage!=null){
-        $stmt = $conn->prepare("SELECT found_item_ad_ID, description,DATE_FORMAT(found_date, '%d'), DATE_FORMAT(found_date, '%c'), DATE_FORMAT(found_date, '%Y'),picture,CATEGORY_category_ID,place_found, storage_place_name
-        FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired=0 AND  STORAGE_PLACE_storage_place_ID LIKE '%{$searchedStorage}%' AND CATEGORY_category_ID LIKE '{$searchedCategory}' AND deleted = 0 ORDER BY found_item_ad_ID DESC LIMIT 3 OFFSET ?");
+            $sqlStatementCondition=" AND  STORAGE_PLACE_storage_place_ID LIKE '%{$searchedStorage}%' AND CATEGORY_category_ID LIKE '{$searchedCategory}' ";
         }elseif($searchedName==null&&$searchedArea!=null&&$searchedCategory==null&&$searchedStorage!=null){
-        $stmt = $conn->prepare("SELECT found_item_ad_ID, description,DATE_FORMAT(found_date, '%d'), DATE_FORMAT(found_date, '%c'), DATE_FORMAT(found_date, '%Y'),picture,CATEGORY_category_ID,place_found, storage_place_name
-        FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired=0 AND place_found LIKE '%{$searchedArea}%' AND STORAGE_PLACE_storage_place_ID LIKE '%{$searchedStorage}%' AND deleted = 0 ORDER BY found_item_ad_ID DESC LIMIT 3 OFFSET ?");
+            $sqlStatementCondition=" AND place_found LIKE '%{$searchedArea}%' AND STORAGE_PLACE_storage_place_ID LIKE '%{$searchedStorage}%' ";
         }elseif($searchedName!=null&&$searchedArea==null&&$searchedCategory==null&&$searchedStorage!=null){
-        $stmt = $conn->prepare("SELECT found_item_ad_ID, description,DATE_FORMAT(found_date, '%d'), DATE_FORMAT(found_date, '%c'), DATE_FORMAT(found_date, '%Y'),picture,CATEGORY_category_ID,place_found, storage_place_name
-        FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired=0 AND STORAGE_PLACE_storage_place_ID LIKE '%{$searchedStorage}%' description LIKE '%{$searchedName}%'  AND deleted = 0 ORDER BY found_item_ad_ID DESC LIMIT 3 OFFSET ?");
+            $sqlStatementCondition=" AND STORAGE_PLACE_storage_place_ID LIKE '%{$searchedStorage}%' AND description LIKE '%{$searchedName}%'  ";
         }elseif($searchedName!=null&&$searchedArea!=null&&$searchedCategory==null&&$searchedStorage!=null){
-        $stmt = $conn->prepare("SELECT found_item_ad_ID, description,DATE_FORMAT(found_date, '%d'), DATE_FORMAT(found_date, '%c'), DATE_FORMAT(found_date, '%Y'),picture,CATEGORY_category_ID,place_found, storage_place_name
-        FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired=0 AND place_found LIKE '%{$searchedArea}%' AND description LIKE '%{$searchedName}%' AND STORAGE_PLACE_storage_place_ID LIKE '%{$searchedStorage}%' AND deleted = 0 ORDER BY found_item_ad_ID DESC LIMIT 3 OFFSET ?");
+            $sqlStatementCondition=" AND place_found LIKE '%{$searchedArea}%' AND description LIKE '%{$searchedName}%' AND STORAGE_PLACE_storage_place_ID LIKE '%{$searchedStorage}%' ";
         }elseif($searchedName!=null&&$searchedArea==null&&$searchedCategory!=null&&$searchedStorage!=null){
-        $stmt = $conn->prepare("SELECT found_item_ad_ID, description,DATE_FORMAT(found_date, '%d'), DATE_FORMAT(found_date, '%c'), DATE_FORMAT(found_date, '%Y'),picture,CATEGORY_category_ID,place_found, storage_place_name
-        FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired=0 AND STORAGE_PLACE_storage_place_ID LIKE '%{$searchedStorage}%' AND description LIKE '%{$searchedName}%' AND CATEGORY_category_ID LIKE '{$searchedCategory}' AND deleted = 0 ORDER BY found_item_ad_ID DESC LIMIT 3 OFFSET ?");
+            $sqlStatementCondition=" AND STORAGE_PLACE_storage_place_ID LIKE '%{$searchedStorage}%' AND description LIKE '%{$searchedName}%' AND CATEGORY_category_ID LIKE '{$searchedCategory}' ";
         }elseif($searchedName==null&&$searchedArea!=null&&$searchedCategory!=null&&$searchedStorage!=null){
-        $stmt = $conn->prepare("SELECT found_item_ad_ID, description,DATE_FORMAT(found_date, '%d'), DATE_FORMAT(found_date, '%c'), DATE_FORMAT(found_date, '%Y'),picture,CATEGORY_category_ID,place_found, storage_place_name
-        FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired=0 AND place_found LIKE '%{$searchedArea}%' AND STORAGE_PLACE_storage_place_ID LIKE '%{$searchedStorage}%' AND CATEGORY_category_ID LIKE '{$searchedCategory}' AND deleted = 0 ORDER BY found_item_ad_ID DESC LIMIT 3 OFFSET ?");
+            $sqlStatementCondition=" AND place_found LIKE '%{$searchedArea}%' AND STORAGE_PLACE_storage_place_ID LIKE '%{$searchedStorage}%' AND CATEGORY_category_ID LIKE '{$searchedCategory}' ";
         }elseif($searchedName!=null&&$searchedArea!=null&&$searchedCategory!=null&&$searchedStorage!=null){
-        $stmt = $conn->prepare("SELECT found_item_ad_ID, description,DATE_FORMAT(found_date, '%d'), DATE_FORMAT(found_date, '%c'), DATE_FORMAT(found_date, '%Y'),picture,CATEGORY_category_ID,place_found, storage_place_name
-        FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired=0 AND place_found LIKE '%{$searchedArea}%' AND description LIKE '%{$searchedName}%' AND CATEGORY_category_ID LIKE '{$searchedCategory}' AND STORAGE_PLACE_storage_place_ID LIKE '%{$searchedStorage}%' AND deleted = 0 ORDER BY found_item_ad_ID DESC LIMIT 3 OFFSET ?");
+            $sqlStatementCondition=" AND place_found LIKE '%{$searchedArea}%' AND description LIKE '%{$searchedName}%' AND CATEGORY_category_ID LIKE '{$searchedCategory}' AND STORAGE_PLACE_storage_place_ID LIKE '%{$searchedStorage}%' ";
         }
+        $sqlStatementMain.=$sqlStatementCondition;
+        $sqlStatementMain.=$sqlStatementOrderByAndOffser;
+        $stmt=$conn->prepare($sqlStatementMain);
+        echo $conn->error;
         $stmt->bind_param("i", $offset);
         echo $conn->error;
         $stmt->bind_result($id, $description, $day, $month, $year, $picture, $CATEGORY_category_ID, $place_found, $storage);
