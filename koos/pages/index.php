@@ -23,7 +23,8 @@ require('../head.php');
         <!-- PAGE BODY -->
         <div class="flex-column homeTextWrap"> 
 
-            <h3 class="homeHeading">Lost and Found</h3>
+            <h1>LOST AND FOUND</h1>
+            <div class="clearfix-50"></div>
             <h4 class="homeHeading">Siia veebisaidile võib lisada Tallinna Ülikoolis kaotatud esemeid või otsida leitute hulgast.</h4>
             <a class="redirect-found homeHeading" href="found.php">LEITUD ESEMEID SIRVIMA</a>
 
