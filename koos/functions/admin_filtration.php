@@ -153,7 +153,6 @@
             $response .= '<p>Leidmise koht:' . $place_found . '</p>';
             $response .= '<p>Kuupäev: ' .$day .'.' .$monthsET[$month-1] .' ' .$year .'</p>';
             $response .= '<p>Hoiupaik: ' . $storage . '</p>';
-            $response .= '<p>Hoiupaik: ' . $storage . '</p>';
             $response .= '<form method="POST" action="#"><input type ="hidden" value="' .$id .'" name="idInput">';
             $response .= '<input type="submit" id="delete" name="deleteAd" value="KUSTUTA"></form>';
             $response .= '</div><div class="aside"></div></div>';
