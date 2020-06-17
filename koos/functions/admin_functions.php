@@ -171,9 +171,9 @@
       $pwdhash = password_hash($newPassword, PASSWORD_BCRYPT, $options);
       $stmt->bind_param("si", $pwdhash, $_SESSION["userId"]);
       if($stmt->execute()){
-            $notice = "Uue parooli salvestamine õnnestus!";
+            $notice = 2;
       } else {
-            $notice = "Parooli salvestamisel tekkis tehniline viga: " .$stmt->error;
+            $notice = 404;
       }
       $stmt->close();
       $conn->close();

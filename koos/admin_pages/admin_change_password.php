@@ -22,6 +22,7 @@
 
     $notice = null;
     $newPassword_error = null;
+    $case = 0;
 
     if(isset($_POST["submitNewPassword"])){ 
         if(strlen($_POST["new-password"]) < 8 && strlen($_POST["new-password-again"]) < 8){
@@ -41,6 +42,11 @@
         if($newPassword_error == null){
             $password = $_POST["new-password"];
             $notice = updatePassword($password);
+            if($notice == 2) {
+                $case = 6;
+            } elseif ($notice == 404) {
+                $case = 10;
+            }
         }        
     }
 
@@ -86,6 +92,15 @@
             </div>
         <div class="aside"></div>
     </div>
+
+<input class="modalCase" type="hidden" data-case="<?php echo $case;?>">
+<?php 
+
+$url = "admin_settings.php";
+$urlTitle = 'Tagasi seadetesse';
+require('../pages/modal.php'); ?>
+
+<script src="../js/lost.js"></script>
 
 </body>
 </html>
