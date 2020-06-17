@@ -35,9 +35,9 @@ LAF-i veebileht on valminud [Tallinna Ülikooli Digitehnoloogiate instituudis](h
 ## Ekraanipildid (tavakasutaja mobiilsest vaatest)
 
 <p float="left">
-  <img src="Screenshots/Mob_screenshot_1.jpg" width="100" />
-  <img src="Screenshots/Mob_screenshot_2.jpg" width="100" /> 
-  <img src="Screenshots/Mob_screenshot_3.jpg" width="100" />
+  <img src="Screenshots/Mob_screenshot_1.jpg" width="300" />
+  <img src="Screenshots/Mob_screenshot_2.jpg" width="300" /> 
+  <img src="Screenshots/Mob_screenshot_3.jpg" width="300" />
 </p>
 
 
