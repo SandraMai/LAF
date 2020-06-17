@@ -56,7 +56,7 @@
         }else if($searchedName!=null&&$searchedArea!=null&&$searchedCategory!=null&&$searchedEndDate!=null&&$searchedStartDate==null){
             $sqlStatementCondition=" AND description LIKE'%{$searchedName}%' AND lost_place LIKE '%{$searchedArea}%' AND CATEGORY_category_ID='{$searchedCategory}' ";
         
-        
+        }
         $sqlStatementMain.=$sqlStatementCondition;
         $sqlStatementMain.=$sqlAfterStatements;
         $stmt=$conn->prepare($sqlStatementMain);
