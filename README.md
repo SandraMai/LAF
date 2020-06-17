@@ -8,8 +8,26 @@ Lehest on suur abi ka ülikoolile kuna varasemalt jäi palju asju kappidesse sei
 - leitud eseme kuulutuse oksjoni rubriiki liikumine
 - e-maili teavitused eseme leidmise/oksjoni võidu puhul
 
+LAF-i veebileht on valminud [Tallinna Ülikooli Digitehnoloogiate instituudis](https://www.tlu.ee/dt) tarkvaraarenduse projekti aine raames.
+
 ## Ekraanipildid (tava ning admini lehest)
 
 ![Source code](Screenshot.jpg)
 
 ![Source code](Screenshot_admin.jpg)
+
+## Kasutatud tehnoloogiad
+
+
+## Projekti liikmed
+Anneli Põldaru, Sandra Maidla, Anete Vaalu, Liina Tobro, Herman Petrov
+
+## Paigaldusjuhised
+
+...täiendamisel
+
+## Litsents
+
+```
+...täiendamisel
+```
