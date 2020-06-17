@@ -48,7 +48,7 @@ LAF-i veebileht on valminud [Tallinna Ülikooli Digitehnoloogiate instituudis](h
 - https://github.com/kamilkp/autoheight
 
 ### Kasutatud serveri andmed:
-- Apache 2.4.6 (CentIO)
+- Apache 2.4.6 (CentOS)
 - PHP 5.6.40
 - 10.2.25-MariaDB 
 
