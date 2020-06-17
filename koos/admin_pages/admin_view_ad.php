@@ -24,21 +24,23 @@
     $notice = null;
     $emailNotice = null;
     $id = null;
+    $email = null;
 
     if(isset($_GET["id"])){
         $id = $_GET["id"];
-        $page = $_GET["page"];
         $notice = viewObjectAdmin($id, $page);
     }
 
-    $email = getEmail($id);
     $message = "JAHSJAHSJAHSJAHSJAHJSKHAJKs";
 
     if(isset($_POST["sendEmail"])){
-        mail($email, "Tere", $message);
-        $emailNotice = "email saadetud!";
-    }else{
-        $emailNotice = "vali hoiupaik!";
+        if(!isset($_POST["storage"])){
+            $emailNotice = "Vali hoiupaik";
+        }else{
+            $email = getEmail($_POST["adId"]);
+            mail($email, "Tere", $message);
+            $emailNotice = "email saadetud!";
+        }
     }
 
 ?>
@@ -58,6 +60,7 @@
 
                 <?php 
                     echo $notice;
+                    echo $emailNotice;
                 ?>
 
             </div>

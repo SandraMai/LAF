@@ -268,9 +268,9 @@
     $notice = null;
     $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
     
-        $stmt = $conn->prepare("SELECT description, picture, lost_place, DATE_FORMAT(lost_date, '%d'), DATE_FORMAT(lost_date, '%c'), DATE_FORMAT(lost_date, '%Y'), email FROM LOST_ITEM_AD WHERE lost_post_ID='{$id}'");
+        $stmt = $conn->prepare("SELECT lost_post_ID, description, picture, lost_place, DATE_FORMAT(lost_date, '%d'), DATE_FORMAT(lost_date, '%c'), DATE_FORMAT(lost_date, '%Y'), email FROM LOST_ITEM_AD WHERE lost_post_ID='{$id}'");
         echo $conn->error;
-        $stmt->bind_result($description, $pic, $place, $day, $month, $year, $email);
+        $stmt->bind_result($id, $description, $pic, $place, $day, $month, $year, $email);
         $stmt->execute();
         while($stmt->fetch()){
             if($pic=="puudub"){
@@ -284,7 +284,10 @@
                 $notice .= '<p class="text">Kaotamise koht: ' .$place .'</p>';
                 $notice .= '<p class="text">Kaotamise kuupäev: ' .$day .'.' .$monthsET[$month-1] .' ' .$year .'</p>';
                 $notice .= '<p class="text">E-mail: '. $email .'</p>';                
-                $notice .= '</div></div>';
+                $notice .= '</div><form class="flex-column" method="POST" action="' .htmlspecialchars($_SERVER["PHP_SELF"]) .'" enctype="multipart/form-data">';
+                $notice .= '<select name = "storage"> <option selected disabled value>Vali hoiupaik</option>' .readStoragesForSelect();
+                $notice .= '</select> <input type ="hidden" value="' .$id .'" name="adId"> <input name="sendEmail" class="add-ad" type="submit" value="Saada meil">';
+                $notice .= '</form></div>';
             }else{
                 if($place == null){
                     $place = "Kaotamise koha kohta info puudub!";
@@ -298,7 +301,7 @@
                 $notice .= '<p class="text">E-mail: '. $email .'</p>';
                 $notice .= '</div><form class="flex-column" method="POST" action="' .htmlspecialchars($_SERVER["PHP_SELF"]) .'" enctype="multipart/form-data">';
                 $notice .= '<select name = "storage"> <option selected disabled value>Vali hoiupaik</option>' .readStoragesForSelect();
-                $notice .= '</select> <input name="sendEmail" class="add-ad" type="submit" value="Saada meil">';
+                $notice .= '</select> <input type ="hidden" value="' .$id .'" name="adId"> <input name="sendEmail" class="add-ad" type="submit" value="Saada meil">';
                 $notice .= '</form></div>';
             }
         }
