@@ -1,7 +1,15 @@
 <?php 
 require('../head.php'); 
 $notice = null;
+$email = "anetevlu@tlu.ee";
+$message = "Tere Anete";
 
+    if(isset($_POST["sendEmail"]) && isset($_POST["storageLabel"])){
+        mail($email, "Tere", $message);
+        $notice = "email saadetud!";
+    }else{
+        $notice = "vali hoiupaik!";
+    }
 ?>
 
 <body>
@@ -28,8 +36,8 @@ $notice = null;
 
             <form class="flex-column" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" enctype="multipart/form-data">
         
-            <label class="storageLabel">Hoiupaik</label>
-            <select>
+            <label class="storageLabel" >Hoiupaik</label>
+            <select name = "storageLabel">
             <option selected disabled value>Vali hoiupaik</option>
             <?php echo readStoragesForSelect(); ?>
             </select>       

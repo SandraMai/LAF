@@ -284,10 +284,6 @@
                 $notice .= '<p class="text">Kaotamise koht: ' .$place .'</p>';
                 $notice .= '<p class="text">Kaotamise kuupäev: ' .$day .'.' .$monthsET[$month-1] .' ' .$year .'</p>';
                 $notice .= '<p class="text">E-mail: '. $email .'</p>';                
-                $notice .= '<select name="admin-view-ad">' .readStoragesForSelect();
-                $notice .= '</select>';
-                $notice .= '<form method="POST" action="#"><input type ="hidden" value="' .$id .'" name="idInput">';
-                $notice .= '<input type="submit" id="delete" name="deleteAd" value="KUSTUTA"></form>';
                 $notice .= '</div></div>';
             }else{
                 if($place == null){
@@ -300,11 +296,10 @@
                 $notice .= '<p class="text">Kaotamise koht: ' .$place .'</p>';
                 $notice .= '<p class="text">Kaotamise kuupäev: ' .$day .'.' .$monthsET[$month-1] .' ' .$year .'</p>';
                 $notice .= '<p class="text">E-mail: '. $email .'</p>';
-                $notice .= '<select name="admin-view-ad">' .readStoragesForSelect();
-                $notice .= '</select>';
-                $notice .= '<form method="POST" action="#"><input type ="hidden" value="' .$id .'" name="idInput">';
-                $notice .= '<input type="submit" id="delete" name="deleteAd" value="KUSTUTA"></form>';
-                $notice .= '</div></div>';
+                $notice .= '</div><form class="flex-column" method="POST" action="' .htmlspecialchars($_SERVER["PHP_SELF"]) .'" enctype="multipart/form-data">';
+                $notice .= '<select name = "storage"> <option selected disabled value>Vali hoiupaik</option>' .readStoragesForSelect();
+                $notice .= '</select> <input name="sendEmail" class="add-ad" type="submit" value="Saada meil">';
+                $notice .= '</form></div>';
             }
         }
         $stmt->close();
@@ -312,7 +307,27 @@
         return $notice;
     
   }
-  
+  function getEmail($id){
+    $notice = null;
+    $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
+    $stmt = $conn->prepare("SELECT email FROM LOST_ITEM_AD WHERE lost_post_ID = '{$id}'");
+    echo $conn->error;
+
+    $stmt->bind_result($email);
+    $stmt->execute();
+
+    if($stmt->fetch()){
+      $notice = $email;
+      echo $email;
+    }else{
+      $notice = "wtf";
+    }
+
+    $stmt->close();
+    $conn->close();
+    return $notice;
+
+  }
   
   function deleteFoundAdmin($id){
     $response = null;

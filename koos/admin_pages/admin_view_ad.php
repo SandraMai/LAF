@@ -22,11 +22,8 @@
     }
 
     $notice = null;
+    $emailNotice = null;
     $id = null;
-    $deletedNotice = null;
-    $case = 0;
-    
-
 
     if(isset($_GET["id"])){
         $id = $_GET["id"];
@@ -34,15 +31,16 @@
         $notice = viewObjectAdmin($id, $page);
     }
 
-    if(isset($_POST["deleteAd"])){
-        $id = $_POST["idInput"];
-        $notice = deleteLostAdAdmin($id);
-        if($notice == 2) {
-            $case = 2;
-        } elseif ($notice == 404) {
-            $case = 10;
-        }
+    $email = getEmail($id);
+    $message = "JAHSJAHSJAHSJAHSJAHJSKHAJKs";
+
+    if(isset($_POST["sendEmail"])){
+        mail($email, "Tere", $message);
+        $emailNotice = "email saadetud!";
+    }else{
+        $emailNotice = "vali hoiupaik!";
     }
+
 ?>
 
 <body>
@@ -59,9 +57,7 @@
             <div class="products">
 
                 <?php 
-                if ( $notice != 2 && $notice != 404):
                     echo $notice;
-                endif;
                 ?>
 
             </div>
@@ -72,15 +68,6 @@
 
 </div>
 
-
-<input class="modalCase" type="hidden" data-case="<?php echo $case;?>">
-<?php 
-
-$url = "admin_lost.php";
-$urlTitle = 'Tagasi kaotatud rubriiki';
-require('../pages/modal.php'); ?>
-
-<script src="../js/lost.js"></script>
 
 </body>
 </html>
