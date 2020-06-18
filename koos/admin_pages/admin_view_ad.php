@@ -29,7 +29,7 @@
 
     if(isset($_GET["id"])){
         $id = $_GET["id"];
-        $notice = viewObjectAdmin($id, $page);
+        $notice = viewObjectAdmin($id);
     }
 
 

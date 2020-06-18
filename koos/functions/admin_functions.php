@@ -265,7 +265,7 @@
     return $response;
   }
 
-  function viewObjectAdmin($id, $page){
+  function viewObjectAdmin($id){
     $monthsET = ["jaanuar", "veebruar", "märts", "aprill", "mai", "juuni", "juuli", "august", "september", "oktoober", "november", "detsember"];
     $notice = null;
     $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
