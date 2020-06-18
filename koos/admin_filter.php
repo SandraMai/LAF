@@ -108,9 +108,9 @@
                         <li><input id="other" name="area" type="input" placeholder="Kaotamise koht" value="<?php echo $searchedArea;?>" data-value="<?php echo $searchedArea;?>"></li>
                     <?php  endif;?>
                     <li class="flex-column"><label>Alguskuupäev</label></li>
-                    <li><input id="start-date" name="Date-Start" type="date"></li>
+                    <li><input id="start-date" name="Date-Start" type="date" value="<?php echo $searchedStartDate?>" data-value="<?php echo $searchedStartDate;?>"></li>
                     <li class="flex-column"><label>Lõppkuupäev</label></li>
-                    <li><input id="end-date" name="Date-End" type="date"></li>
+                    <li><input id="end-date" name="Date-End" type="date" value="<?php echo $searchedEndDate?>" data-value="<?php echo $searchedEndDate;?>"></li>
                     <li><input type="hidden" name="linkname" value="<?php echo $linkValue?>"></li>
                     <input name="submitSearch" id="submitSearch" type="submit" value="Otsi">
                         <span id="notice">
