@@ -28,11 +28,10 @@ if(isset($_GET["item"])){
     $userPicHTML = null;
 }
 
+
 $compare = priceBoundary($_GET["item"]);
 $stepPrice=auctionItemStep($_GET["item"]);
 $maxbid=$stepPrice*10+$compare;
-
-
 
 
 if(isset($_POST["submitPrice"])){
@@ -55,6 +54,9 @@ if(isset($_POST["submitPrice"])){
 	}
 }
 
+$compare = priceBoundary($_GET["item"]);
+$stepPrice=auctionItemStep($_GET["item"]);
+$maxbid=$stepPrice*10+$compare;
 ?>
 <body>
 
