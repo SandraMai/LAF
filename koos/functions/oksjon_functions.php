@@ -194,7 +194,8 @@
 		$stmt->close();
 		$conn->close();
 		return $expiredElement;
-		}
+	}
+
 	function setFirstBid($email,$notification,$offer,$idofAuctionedItem,$maxCompared,$minCompare){
 		if($offer<=$maxCompared){
 			if($offer>=$minCompare){	
@@ -295,6 +296,134 @@
         $stmt->close();
         $conn->close();
         return $step;
+	}
+
+	function checkExpiredAuction(){
+		$today = date("Y-m-d H:i:s");
+		$notice = null;
+		$conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
+		$stmt = $conn->prepare("SELECT auction_ID, end_date, FOUND_ITEM_AD_found_item_ad_ID, winner_email_sent FROM AUCTION");
+		echo $conn->error;
+
+		$stmt->bind_result($auctionID, $endDateDB, $foundItemID, $emailSent);
+		$stmt->execute();
+		while($stmt->fetch()){
+			if($endDateDB < $today && $emailSent == 0){
+				setExpired($auctionID);
+				$email = getWinnerEmail($auctionID);
+				if($email != "lostandfound@tlu.ee"){
+					$storage = selectStorage($foundItemID);
+					$description = selectDescription($foundItemID);
+					$highestBid = getHighestBid($auctionID);
+					$message = "Oled võitnud oksjoni! Ese kirjeldusega: " .$description .") asub hoiupaigas: " 
+					.$storage;
+					$message .= ". Teie pakkumine: " .$highestBid ."€. Arveldamine käib AINULT sularahas. \r\n Ära sellele meilile vasta! \r\n Sinu LAF ❤";
+					$headers = 'Lost And Found';
+					setEmailSent($auctionID);
+					
+					mail($email, $headers, $message);
+					$notice = "success";	
+				}
+			}
+		}
+
+		$stmt->close();
+        $conn->close();
+        return $notice;
+	}
+	function setEmailSent($id){
+		$notice = null;
+		$conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
+		$stmt = $conn->prepare("UPDATE AUCTION SET winner_email_sent = 1 WHERE auction_ID = '{$id}'");
+		echo $conn->error;
+
+		$stmt->execute();
+		if($stmt->execute()){
+			$notice = "success";
+		}else{
+			$notice = 404;
+		}
+		
+		$stmt->close();
+        $conn->close();
+        return $notice;
+	}
+
+	function setExpired($id){
+		$notice = null;
+		$conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
+		$stmt = $conn->prepare("UPDATE AUCTION SET expired = 1 WHERE auction_id='{$id}'");
+		echo $conn->error;
+		if($stmt->execute()){
+			$notice = "yay";
+		}else{
+			$notice = 404;
+		}
+
+		$stmt->close();
+        $conn->close();
+        return $notice;
+	}
+	
+	function getWinnerEmail($id){
+		$notice = null;
+		$conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
+		$stmt = $conn->prepare("SELECT email FROM OFFER WHERE AUCTION_auction_ID = '{$id}'");
+		echo $conn->error;
+
+		$stmt->bind_result($emailDB);
+		$stmt->execute();
+
+		if($stmt->fetch()){
+			$notice = $emailDB;
+		}else{
+			$notice = 404;
+		}
+
+		$stmt->close();
+        $conn->close();
+        return $notice;
+	}
+
+	function selectStorage($id){
+		$notice = null;
+		$conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
+		$stmt = $conn->prepare("SELECT storage_place_name FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON 
+		FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE found_item_ad_ID = '{$id}'");
+		echo $conn->error;
+
+		$stmt->bind_result($storageDB);
+		$stmt->execute();
+
+		if($stmt->fetch()){
+			$notice = $storageDB;
+		}else{
+			$notice = 404;
+		}
+
+		$stmt->close();
+        $conn->close();
+        return $notice;
+	}
+
+	function selectDescription($id){
+		$notice = null;
+		$conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
+		$stmt = $conn->prepare("SELECT description FROM FOUND_ITEM_AD WHERE found_item_ad_ID = '{$id}'");
+		echo $conn->error;
+
+		$stmt->bind_result($descriptionDB);
+		$stmt->execute();
+
+		if($stmt->fetch()){
+			$notice = $descriptionDB;
+		}else{
+			$notice = 404;
+		}
+		
+		$stmt->close();
+        $conn->close();
+        return $notice;
 	}
 	
 	

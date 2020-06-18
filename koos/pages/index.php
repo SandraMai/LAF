@@ -3,9 +3,7 @@
 $pageTitle="LAF";
 
 require('../head.php'); 
-
-
-
+checkExpiredAuction();
 
 ?>
 
