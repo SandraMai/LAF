@@ -201,7 +201,23 @@
 			if($offer>=$minCompare){	
 			$response = null;
 			$expiredElement;
-			$conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]); 
+			$conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
+			$stmt = $conn->prepare("SELECT email, notification FROM OFFER WHERE AUCTION_auction_ID = '{$idofAuctionedItem}'");
+			$stmt->bind_result($emailDB, $notificationDB);
+			echo $conn->error;
+			$stmt->execute();
+			if($stmt->fetch()){
+				if($notificationDB == 1){
+					$description = getOfferDescription($idofAuctionedItem);
+					$message = "Sinu pakkumine on üle pakutud! Ese kirjeldusega: " .$description .".";
+					$message .= "\r\nÄra sellele meilile vasta! \r\n Sinu LAF ❤";
+					$headers = 'Lost And Found oksjon';
+					
+					mail($email, $headers, $message);
+				}
+			}
+			$stmt->close();
+
 			$stmt = $conn->prepare("UPDATE  OFFER SET email=?,notification=?,offer=? WHERE AUCTION_auction_ID='{$idofAuctionedItem}'");
 			$stmt->bind_param("sid",$email,$notification,$offer);
 			echo $conn->error;
@@ -222,6 +238,24 @@
 			return $notice;
 		}
 	
+	}
+
+	function getOfferDescription($id){
+		$notice = null;
+		$conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
+		$stmt = $conn->prepare("SELECT description FROM AUCTION JOIN FOUND_ITEM_AD ON 
+		AUCTION.FOUND_ITEM_AD_found_item_ad_ID = FOUND_ITEM_AD.found_item_ad_ID WHERE auction_ID = '{$id}'");
+		echo $conn->error;
+		$stmt->bind_result($descriptionDB);
+		$stmt->execute();
+		if($stmt->fetch()){
+			$notice = $descriptionDB;
+		}else{
+			$notice = 404;
+		}
+		$stmt->close();
+		$conn->close();
+		return $notice;
 	}
 		function priceBoundary($auctionedItem){
 		$notice = null;
@@ -318,7 +352,7 @@
 					$message = "Oled võitnud oksjoni! Ese kirjeldusega: " .$description .") asub hoiupaigas: " 
 					.$storage;
 					$message .= ". Teie pakkumine: " .$highestBid ."€. Arveldamine käib AINULT sularahas. \r\n Ära sellele meilile vasta! \r\n Sinu LAF ❤";
-					$headers = 'Lost And Found';
+					$headers = 'Lost And Found oksjon';
 					setEmailSent($auctionID);
 					
 					mail($email, $headers, $message);
