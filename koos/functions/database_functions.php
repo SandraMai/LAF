@@ -164,21 +164,20 @@
                 if($place == null){
                     $place = "Kaotamise koha kohta info puudub!";
                 }
-                $notice .= ' <div class="product flex-row" >';
+                $notice .= ' <div class="product">';
 
                 if($pic=="puudub"){
-                    $notice .= '<img class="productImageBox" src="../images/missing.png">';
+                    $notice .= '<span class="productImageBox"><img class="productImageBox" src="../images/missing.png"></span>';
                 }else{
-                    $notice .= '<img class="productImageBox" src="' .$GLOBALS["pic_read_dir_thumb"] .$pic .'">';
+                    $notice .= '<span class="productImageBox"><img class="productImageBox" src="' .$GLOBALS["pic_read_dir_thumb"] .$pic .'"></span>';
                 }
                 
                 $notice .= '<div class="productDesc">';
                 $notice .= '<p class="text"> Kirjeldus: ' .$description .'</p>';
                 $notice .= '<p class="text">Kaotamise koht: ' .$place .'</p>';
                 $notice .= '<p class="text">Kaotamise kuupäev: ' .$day .'.' .$monthsET[$month-1] .' ' .$year .'</p>';
-                $notice .= '<button id="delete">KUSTUTA</button>';
-                $notice .= '<form id="deleteForm" method="POST"><div class="error-email smallerWidth"></div><input class ="inputBoxStyle" type="text" name="email" placeholder="E-mail">';
-                $notice .= '<input class="deleteFormButton" type="submit" value="KUSTUTA" name="deleteAd"></form>';
+                $notice .= '<div class="alignToEnd"><form id="deleteForm" method="POST"><div class="error-email smallerWidth"></div><input class ="inputBoxStyle" type="text" name="email" placeholder="E-mail">';
+                $notice .= '<input class="deleteFormButton" type="submit" value="KUSTUTA" name="deleteAd"></form></div>';
                 $notice .= '</div></div>';
                 
             }
@@ -194,8 +193,8 @@
             $stmt->bind_result($description, $pic, $place, $day, $month, $year, $storage);
             $stmt->execute();
             while($stmt->fetch()){
-                $notice .= ' <div class="product flex-row">';
-                $notice .= '<img class="productImageBox" src="' .$GLOBALS["pic_read_dir_thumb"] .$pic .'">';
+                $notice .= ' <div class="product">';
+                $notice .= '<span class="productImageBox"><img class="productImageBox" src="' .$GLOBALS["pic_read_dir_thumb"] .$pic .'"></span>';
                 $notice .= '<div class="flex-column productDesc">';
                 $notice .= '<p>Kirjeldus: ' .$description .'</p>';
                 $notice .= '<p>Leidmise koht: ' .$place .'</p>';
