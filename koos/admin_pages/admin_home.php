@@ -42,7 +42,7 @@ if(isset($_GET["logout"])){
                     <a class="adminHomeButton" href="new_found.php">LEITUD ESEME LISAMINE</a>
                     <a class="adminHomeButton" href="admin_found.php">LEITUD ESEMED</a>
                     <a class="adminHomeButton" href="admin_successful.php">OKSJON</a>
-                    <a class="adminHomeButton" href="admin_expired.php">AEGUNUD KUULUUTSED</a>              
+                    <a class="adminHomeButton" href="admin_expired.php">AEGUNUD KUULUTUSED</a>              
                     <a class="adminHomeButton" href="admin_settings.php">SEADED</a> 
                 </div>
             </div>
