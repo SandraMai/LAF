@@ -1,4 +1,6 @@
 <?php 
+
+    $pageTitle="LAF admin. Oksjoni seaded";
     require('../head.php');
 
     $adminLinkValue=3;

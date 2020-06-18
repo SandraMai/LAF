@@ -1,4 +1,5 @@
 <?php 
+    $pageTitle="LAF admin. Hoiupaigad";
     require('../head.php'); 
 
     if(isset($_SESSION["LAST_ACTIVITY"]) && (time() - $_SESSION["LAST_ACTIVITY"] > 1800)){

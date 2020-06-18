@@ -1,4 +1,6 @@
 <?php 
+
+    $pageTitle="LAF admin. Leitud esemed";
     require('../head.php');
 
     $adminLinkValue=2;

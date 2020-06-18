@@ -1,4 +1,5 @@
 <?php
+    $pageTitle="Kuulutus";
     require("../head.php");
     require("../../../../config_laf.php");
 

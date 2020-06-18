@@ -1,4 +1,5 @@
 <?php
+    $pageTitle="Lisa kaotatud kuulutus";
     require('../head.php');
     $flag = null;
     $case = 0;

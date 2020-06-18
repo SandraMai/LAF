@@ -1,4 +1,7 @@
 <?php 
+
+$pageTitle="Leitud esemed";
+
 require('../head.php'); 
 foundToExpired();
 $offset = 0;

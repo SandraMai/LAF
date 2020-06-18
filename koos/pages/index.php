@@ -1,5 +1,6 @@
 <?php 
 
+$pageTitle="LAF";
 
 require('../head.php'); 
 

@@ -1,5 +1,7 @@
 <?php 
 
+$pageTitle="LAF admin. Sisselogimine";
+
 require('../head.php');
 
 $notice = null;

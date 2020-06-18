@@ -1,4 +1,6 @@
 <?php 
+
+    $pageTitle="LAF admin. KKK muutmine";
     require('../head.php');
 
     if(isset($_SESSION["LAST_ACTIVITY"]) && (time() - $_SESSION["LAST_ACTIVITY"] > 1800)){

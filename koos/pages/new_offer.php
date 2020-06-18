@@ -1,5 +1,5 @@
 <?php 
-
+$pageTitle="Oksjon";
 require('../head.php');
 $database = "if19_LAF";
 $notice=null;

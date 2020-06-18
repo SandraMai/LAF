@@ -1,6 +1,7 @@
 <?php
 //Please delete this file after you have created your admin account
 
+$pageTitle="LAF admin. Loo konto";
 require('../head.php');
 
 $notice = null;

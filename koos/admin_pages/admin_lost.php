@@ -1,4 +1,5 @@
 <?php
+    $pageTitle="LAF admin. Kaotatud esemed";
     require("../head.php");
 
     $adminLinkValue=1;

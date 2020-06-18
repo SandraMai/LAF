@@ -1,4 +1,6 @@
 <?php 
+
+    $pageTitle="LAF admin. Aegunud kuulutused";
     require('../head.php'); 
 
     $adminLinkValue=4;

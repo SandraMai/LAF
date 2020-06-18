@@ -1,4 +1,5 @@
 <?php
+    $pageTitle="Kaotatud esemed";
     require("../head.php");
     $linkValue=1;
     $searchedName=null;

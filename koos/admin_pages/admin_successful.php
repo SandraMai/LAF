@@ -1,6 +1,6 @@
 <?php 
+    $pageTitle="LAF admin. Edukad oksjonid";
     require('../head.php'); 
-
     
     $adminLinkValue=3;
     $offset = 0;

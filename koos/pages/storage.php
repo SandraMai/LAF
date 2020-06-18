@@ -1,4 +1,5 @@
 <?php
+    $pageTitle="Hoiupaigad";
     require('../head.php');
     $storagePlacesHTML = readStoragePlaces();
 ?>

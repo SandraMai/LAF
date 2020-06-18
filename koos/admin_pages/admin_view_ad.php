@@ -1,4 +1,5 @@
 <?php
+    $pageTitle="LAF admin. Kuulutus";
     require("../head.php");
     require("../../../../config_laf.php");
 

@@ -1,5 +1,7 @@
 <?php 
 
+$pageTitle="KKK";
+
 require('../head.php'); 
  
 
