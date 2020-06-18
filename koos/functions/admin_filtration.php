@@ -7,7 +7,7 @@
         $sqlStatementMain="SELECT lost_post_ID, description, picture, lost_place, DATE_FORMAT(lost_date, '%d'), DATE_FORMAT(lost_date, '%c'), DATE_FORMAT(lost_date, '%Y') 
         FROM LOST_ITEM_AD WHERE expired = 0 AND deleted = 0 ";
         $sqlStatementCondition=null;
-        $sqlAfterStatements=" ORDER BY lost_post_ID DESC LIMIT 3 OFFSET ?";
+        $sqlAfterStatements=" ORDER BY lost_post_ID DESC LIMIT 5 OFFSET ?";
         
         $likeSearchedName = "";
         $likesearchedArea = "";
@@ -91,7 +91,7 @@
         $sqlStatementMain="SELECT found_item_ad_ID, description,DATE_FORMAT(found_date, '%d'), DATE_FORMAT(found_date, '%c'), DATE_FORMAT(found_date, '%Y'),picture,CATEGORY_category_ID,place_found, storage_place_name
         FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired=0  AND deleted = 0 ";
         $sqlStatementCondition=null;
-        $sqlAfterStatements=" ORDER BY found_item_ad_ID DESC LIMIT 3 OFFSET ?";
+        $sqlAfterStatements=" ORDER BY found_item_ad_ID DESC LIMIT 5 OFFSET ?";
         if($searchedName==null&&$searchedArea==null&&$searchedCategory==null&&$searchedStorage==null&&$searchedStartDate==null&&$searchedEndDate==null){
         $sqlStatementCondition="";
         }

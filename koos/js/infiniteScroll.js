@@ -14,7 +14,7 @@ $(document).ready(function() {
             storage = 0;
         }
         var type = $(this).data('type');
-        offset+=3;
+        offset+=5;
         console.log(offset);
         ajaxLoadMore(offset, type, atype, storage);
     });

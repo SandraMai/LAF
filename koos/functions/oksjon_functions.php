@@ -8,7 +8,7 @@
 		$sqlStatementMain="SELECT found_item_ad_ID,description,DATE_FORMAT(found_date, '%d'), DATE_FORMAT(found_date, '%c'), DATE_FORMAT(found_date, '%Y'),picture,CATEGORY_category_ID,place_found FROM FOUND_ITEM_AD WHERE expired=1 AND auctioned=1 AND deleted = 0 ";
         $sqlStatementCondition=null;
 
-        $sqlAfterStatements=" ORDER BY found_item_ad_ID DESC LIMIT 3 OFFSET ?";
+        $sqlAfterStatements="";//" ORDER BY found_item_ad_ID DESC LIMIT 3 OFFSET ?";
 
 		if($auctionListing!=NULL){
 			$sqlStatementCondition=" AND found_item_ad_ID='{$auctionListing}' ";

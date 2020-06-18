@@ -11,7 +11,7 @@
         FROM LOST_ITEM_AD WHERE expired = 0 AND deleted = 0 ";
         $sqlStatementCondition=null;
 
-        $sqlAfterStatements=" ORDER BY lost_post_ID DESC LIMIT 3 OFFSET ?";
+        $sqlAfterStatements=" ORDER BY lost_post_ID DESC LIMIT 5 OFFSET ?";
         if($searchedName==null&&$searchedArea==null&&$searchedCategory==null&&$searchedEndDate==null&&$searchedStartDate==null){
             $sqlStatementCondition="";
             
@@ -319,7 +319,7 @@
         FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired=0  AND deleted = 0 ";
         $sqlStatementCondition=null;
 
-        $sqlAfterStatements=" ORDER BY found_item_ad_ID DESC LIMIT 3 OFFSET ?";
+        $sqlAfterStatements=" ORDER BY found_item_ad_ID DESC LIMIT 5 OFFSET ?";
         if($searchedName==null&&$searchedArea==null&&$searchedCategory==null&&$searchedStartDate==null&&$searchedEndDate==null){
             $sqlStatementCondition="";
         }else if($searchedName!=null&&$searchedArea==null&&$searchedCategory==null&&$searchedStartDate==null&&$searchedEndDate==null){
