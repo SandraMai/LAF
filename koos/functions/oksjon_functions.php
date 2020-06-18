@@ -117,7 +117,6 @@
         $sqlStatementMain.=$sqlAfterStatements;
         $stmt=$conn->prepare($sqlStatementMain);
         echo $conn->error;
-        $stmt->bind_param("i", $offset);
             
 		echo $conn->error;
 		$stmt->bind_result($id,$description, $day, $month, $year, $picture, $CATEGORY_category_ID, $place_found);
