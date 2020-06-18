@@ -33,10 +33,10 @@ $database = "if19_LAF";
     // Is admin page
     if ( $atype == 1 ) {
         if ($_POST['type'] == 1) {
-            $getMore = displayLostItemsAdmin($offset,$searchedName,$sentElement,$searchedArea,2);
+            $getMore = displayLostItemsAdmin($offset,$searchedName,$sentElement,$searchedArea, 1, $datestart, $dateend);
 
         } elseif ($_POST['type'] == 2) {
-           $getMore = selectFoundPostsAdmin($offset,$searchedName,$sentElement, $searchedStorageID,$searchedArea,null);
+           $getMore = selectFoundPostsAdmin($offset,$searchedName,$sentElement, $searchedStorageID,$searchedArea, 2, $datestart, $dateend);
 
         } elseif ($_POST['type'] == 3) {
            // $getMore = getAuctionElements(null, $searchedName, $sentElement, $searchedArea, 3, $offset );
