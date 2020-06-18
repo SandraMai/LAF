@@ -8,24 +8,24 @@
         FROM LOST_ITEM_AD WHERE expired = 0 AND deleted = 0 ";
         $sqlStatementCondition=null;
         $sqlAfterStatements=" ORDER BY lost_post_ID DESC LIMIT 3 OFFSET ?";
-        if($searchedName==null&&$searchedArea==null&&$searchedCategory==null){
+        if($searchedName==null&&$searchedArea==null&&$searchedCategory==null&&$searchedStartDate==null&&$searchedEndDate==null){
             $sqlStatementCondition="";
-        }else if($searchedName!=null&&$searchedArea==null&&$searchedCategory==null){
+        }else if($searchedName!=null&&$searchedArea==null&&$searchedCategory==null&&$searchedStartDate==null&&$searchedEndDate==null){
             $sqlStatementCondition=" AND description LIKE'%{$searchedName}%' ";
-        }else if($searchedName==null&&$searchedArea!=null&&$searchedCategory==null){
+        }else if($searchedName==null&&$searchedArea!=null&&$searchedCategory==null&&$searchedStartDate==null&&$searchedEndDate==null){
             $sqlStatementCondition="  AND lost_place LIKE '%{$searchedArea}%' ";
-        }else if($searchedName==null&&$searchedArea==null&&$searchedCategory!=null){
+        }else if($searchedName==null&&$searchedArea==null&&$searchedCategory!=null&&$searchedStartDate==null&&$searchedEndDate==null){
             $sqlStatementCondition=" AND description LIKE'%{$searchedName}%' AND CATEGORY_category_ID='{$searchedCategory}' ";
             
-        }else if($searchedName!=null&&$searchedArea!=null&&$searchedCategory==null){
+        }else if($searchedName!=null&&$searchedArea!=null&&$searchedCategory==null&&$searchedStartDate==null&&$searchedEndDate==null){
             $sqlStatementCondition=" AND CATEGORY_category_ID='{$searchedCategory}' AND lost_place LIKE '%{$searchedArea}%' AND description LIKE'%{$searchedName}%' ";
-        }else if($searchedName==null&&$searchedArea!=null&&$searchedCategory!=null){
+        }else if($searchedName==null&&$searchedArea!=null&&$searchedCategory!=null&&$searchedStartDate==null&&$searchedEndDate==null){
             $sqlStatementCondition=" AND lost_place LIKE '%{$searchedArea}%' AND CATEGORY_category_ID='{$searchedCategory}' ";
             
-        }else if($searchedName!=null&&$searchedArea==null&&$searchedCategory!=null){
+        }else if($searchedName!=null&&$searchedArea==null&&$searchedCategory!=null&&$searchedStartDate==null&&$searchedEndDate==null){
             $sqlStatementCondition=" AND description LIKE'%{$searchedName}%' AND CATEGORY_category_ID='{$searchedCategory}' ";
             
-        }else if($searchedName!=null&&$searchedArea!=null&&$searchedCategory!=null){
+        }else if($searchedName!=null&&$searchedArea!=null&&$searchedCategory!=null&&$searchedStartDate==null&&$searchedEndDate==null){
             $sqlStatementCondition=" AND description LIKE'%{$searchedName}%' AND lost_place LIKE '%{$searchedArea}%' AND CATEGORY_category_ID='{$searchedCategory}' ";
             
         }
@@ -88,52 +88,52 @@
         FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired=0  AND deleted = 0 ";
         $sqlStatementCondition=null;
         $sqlAfterStatements=" ORDER BY found_item_ad_ID DESC LIMIT 3 OFFSET ?";
-        if($searchedName==null&&$searchedArea==null&&$searchedCategory==null&&$searchedStorage==null){
+        if($searchedName==null&&$searchedArea==null&&$searchedCategory==null&&$searchedStorage==null&&$searchedStartDate==null&&$searchedEndDate==null){
         $sqlStatementCondition="";
         }
-        else if($searchedName!=null&&$searchedArea==null&&$searchedCategory==null&&$searchedStorage==null){
+        else if($searchedName!=null&&$searchedArea==null&&$searchedCategory==null&&$searchedStorage==null&&$searchedStartDate==null&&$searchedEndDate==null){
             $sqlStatementCondition=" AND description LIKE '%{$searchedName}%' ";
         
-        }elseif($searchedName==null&&$searchedArea!=null&&$searchedCategory==null&&$searchedStorage==null){
+        }elseif($searchedName==null&&$searchedArea!=null&&$searchedCategory==null&&$searchedStorage==null&&$searchedStartDate==null&&$searchedEndDate==null){
             $sqlStatementCondition=" AND place_found LIKE '%{$searchedArea}%' ";
         
-        }elseif($searchedName==null&&$searchedArea==null&&$searchedCategory!=null&&$searchedStorage==null){
+        }elseif($searchedName==null&&$searchedArea==null&&$searchedCategory!=null&&$searchedStorage==null&&$searchedStartDate==null&&$searchedEndDate==null){
             $sqlStatementCondition=" AND  CATEGORY_category_ID LIKE '{$searchedCategory}' ";
        
-        }elseif($searchedName!=null&&$searchedArea!=null&&$searchedCategory==null&&$searchedStorage==null){
+        }elseif($searchedName!=null&&$searchedArea!=null&&$searchedCategory==null&&$searchedStorage==null&&$searchedStartDate==null&&$searchedEndDate==null){
             $sqlStatementCondition=" AND place_found LIKE '%{$searchedArea}%' AND description LIKE '%{$searchedName}%' ";
         
-        }elseif($searchedName!=null&&$searchedArea==null&&$searchedCategory!=null&&$searchedStorage==null){
+        }elseif($searchedName!=null&&$searchedArea==null&&$searchedCategory!=null&&$searchedStorage==null&&$searchedStartDate==null&&$searchedEndDate==null){
             $sqlStatementCondition=" AND description LIKE '%{$searchedName}%' AND CATEGORY_category_ID LIKE '{$searchedCategory}' ";
         
-        }elseif($searchedName==null&&$searchedArea!=null&&$searchedCategory!=null&&$searchedStorage==null){
+        }elseif($searchedName==null&&$searchedArea!=null&&$searchedCategory!=null&&$searchedStorage==null&&$searchedStartDate==null&&$searchedEndDate==null){
             $sqlStatementCondition=" AND place_found LIKE '%{$searchedArea}%' AND CATEGORY_category_ID LIKE '{$searchedCategory}' ";
         
-        }elseif($searchedName!=null&&$searchedArea!=null&&$searchedCategory!=null&&$searchedStorage==null){
+        }elseif($searchedName!=null&&$searchedArea!=null&&$searchedCategory!=null&&$searchedStorage==null&&$searchedStartDate==null&&$searchedEndDate==null){
             $sqlStatementCondition=" AND place_found LIKE '%{$searchedArea}%' AND description LIKE '%{$searchedName}%' AND CATEGORY_category_ID LIKE '{$searchedCategory}' ";
 
-        }elseif($searchedName==null&&$searchedArea==null&&$searchedCategory==null&&$searchedStorage!=null){
+        }elseif($searchedName==null&&$searchedArea==null&&$searchedCategory==null&&$searchedStorage!=null&&$searchedStartDate==null&&$searchedEndDate==null){
             $sqlStatementCondition=" AND STORAGE_PLACE_storage_place_ID LIKE '%{$searchedStorage}%'";
 
-        }elseif($searchedName==null&&$searchedArea==null&&$searchedCategory!=null&&$searchedStorage!=null){
+        }elseif($searchedName==null&&$searchedArea==null&&$searchedCategory!=null&&$searchedStorage!=null&&$searchedStartDate==null&&$searchedEndDate==null){
             $sqlStatementCondition=" AND  STORAGE_PLACE_storage_place_ID LIKE '%{$searchedStorage}%' AND CATEGORY_category_ID LIKE '{$searchedCategory}' ";
 
-        }elseif($searchedName==null&&$searchedArea!=null&&$searchedCategory==null&&$searchedStorage!=null){
+        }elseif($searchedName==null&&$searchedArea!=null&&$searchedCategory==null&&$searchedStorage!=null&&$searchedStartDate==null&&$searchedEndDate==null){
             $sqlStatementCondition=" AND place_found LIKE '%{$searchedArea}%' AND STORAGE_PLACE_storage_place_ID LIKE '%{$searchedStorage}%' ";
 
-        }elseif($searchedName!=null&&$searchedArea==null&&$searchedCategory==null&&$searchedStorage!=null){
+        }elseif($searchedName!=null&&$searchedArea==null&&$searchedCategory==null&&$searchedStorage!=null&&$searchedStartDate==null&&$searchedEndDate==null){
             $sqlStatementCondition=" AND STORAGE_PLACE_storage_place_ID LIKE '%{$searchedStorage}%' AND description LIKE '%{$searchedName}%'  ";
 
-        }elseif($searchedName!=null&&$searchedArea!=null&&$searchedCategory==null&&$searchedStorage!=null){
+        }elseif($searchedName!=null&&$searchedArea!=null&&$searchedCategory==null&&$searchedStorage!=null&&$searchedStartDate==null&&$searchedEndDate==null){
             $sqlStatementCondition=" AND place_found LIKE '%{$searchedArea}%' AND description LIKE '%{$searchedName}%' AND STORAGE_PLACE_storage_place_ID LIKE '%{$searchedStorage}%' ";
 
-        }elseif($searchedName!=null&&$searchedArea==null&&$searchedCategory!=null&&$searchedStorage!=null){
+        }elseif($searchedName!=null&&$searchedArea==null&&$searchedCategory!=null&&$searchedStorage!=null&&$searchedStartDate==null&&$searchedEndDate==null){
             $sqlStatementCondition=" AND STORAGE_PLACE_storage_place_ID LIKE '%{$searchedStorage}%' AND description LIKE '%{$searchedName}%' AND CATEGORY_category_ID LIKE '{$searchedCategory}' ";
 
-        }elseif($searchedName==null&&$searchedArea!=null&&$searchedCategory!=null&&$searchedStorage!=null){
+        }elseif($searchedName==null&&$searchedArea!=null&&$searchedCategory!=null&&$searchedStorage!=null&&$searchedStartDate==null&&$searchedEndDate==null){
             $sqlStatementCondition=" AND place_found LIKE '%{$searchedArea}%' AND STORAGE_PLACE_storage_place_ID LIKE '%{$searchedStorage}%' AND CATEGORY_category_ID LIKE '{$searchedCategory}' ";
 
-        }elseif($searchedName!=null&&$searchedArea!=null&&$searchedCategory!=null&&$searchedStorage!=null){
+        }elseif($searchedName!=null&&$searchedArea!=null&&$searchedCategory!=null&&$searchedStorage!=null&&$searchedStartDate==null&&$searchedEndDate==null){
             $sqlStatementCondition=" AND place_found LIKE '%{$searchedArea}%' AND description LIKE '%{$searchedName}%' AND CATEGORY_category_ID LIKE '{$searchedCategory}' AND STORAGE_PLACE_storage_place_ID LIKE '%{$searchedStorage}%' ";
         }
         $sqlStatementMain.=$sqlStatementCondition;
@@ -172,53 +172,53 @@
         $sqlStatementMain="SELECT found_item_ad_ID, description, picture, storage_place_name,place_found FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON 
         FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired = 1 AND auctioned = 1 AND deleted = 0 ";
         $sqlStatementCondition=NULL;
-        if($searchedName==null&&$searchedArea==null&&$searchedCategory==null&&$searchedStorage==null){
+        if($searchedName==null&&$searchedArea==null&&$searchedCategory==null&&$searchedStorage==null&&$searchedStartDate==null&&$searchedEndDate==null){
             $sqlStatementCondition="";
-        }elseif($searchedName!=null&&$searchedArea==null&&$searchedCategory==null&&$searchedStorage==null){
+        }elseif($searchedName!=null&&$searchedArea==null&&$searchedCategory==null&&$searchedStorage==null&&$searchedStartDate==null&&$searchedEndDate==null){
 
             $sqlStatementCondition=" AND description LIKE '%{$searchedName}%' ";
 
-        }elseif($searchedName==null&&$searchedArea!=null&&$searchedCategory==null&&$searchedStorage==null){
+        }elseif($searchedName==null&&$searchedArea!=null&&$searchedCategory==null&&$searchedStorage==null&&$searchedStartDate==null&&$searchedEndDate==null){
             
             $sqlStatementCondition=" AND place_found LIKE '%{$searchedArea}%' ";
 
-        }elseif($searchedName==null&&$searchedArea==null&&$searchedCategory!=null&&$searchedStorage==null){
+        }elseif($searchedName==null&&$searchedArea==null&&$searchedCategory!=null&&$searchedStorage==null&&$searchedStartDate==null&&$searchedEndDate==null){
             $sqlStatementCondition="  AND CATEGORY_category_ID LIKE '%{$searchedCategory}%' ";
 
-        }elseif($searchedName!=null&&$searchedArea!=null&&$searchedCategory==null&&$searchedStorage==null){
+        }elseif($searchedName!=null&&$searchedArea!=null&&$searchedCategory==null&&$searchedStorage==null&&$searchedStartDate==null&&$searchedEndDate==null){
             $sqlStatementCondition=" AND description LIKE '%{$searchedName}%'AND place_found LIKE '%{$searchedArea}%' ";
 
-        }elseif($searchedName!=null&&$searchedArea==null&&$searchedCategory!=null&&$searchedStorage==null){
+        }elseif($searchedName!=null&&$searchedArea==null&&$searchedCategory!=null&&$searchedStorage==null&&$searchedStartDate==null&&$searchedEndDate==null){
             $sqlStatementCondition=" AND description LIKE '%{$searchedName}%'AND  CATEGORY_category_ID LIKE '%{$searchedCategory}%'  ";
 
-        }elseif($searchedName==null&&$searchedArea!=null&&$searchedCategory!=null&&$searchedStorage==null){
+        }elseif($searchedName==null&&$searchedArea!=null&&$searchedCategory!=null&&$searchedStorage==null&&$searchedStartDate==null&&$searchedEndDate==null){
             $sqlStatementCondition=" AND  place_found LIKE '%{$searchedArea}%' AND CATEGORY_category_ID LIKE '%{$searchedCategory}%' ";
         
-        }elseif($searchedName!=null&&$searchedArea!=null&&$searchedCategory!=null&&$searchedStorage==null){
+        }elseif($searchedName!=null&&$searchedArea!=null&&$searchedCategory!=null&&$searchedStorage==null&&$searchedStartDate==null&&$searchedEndDate==null){
             $sqlStatementCondition=" AND description LIKE '%{$searchedName}%'AND place_found LIKE '%{$searchedArea}%' AND CATEGORY_category_ID LIKE '%{$searchedCategory}%' ";
 
-        }elseif($searchedName==null&&$searchedArea==null&&$searchedCategory==null&&$searchedStorage!=null){
+        }elseif($searchedName==null&&$searchedArea==null&&$searchedCategory==null&&$searchedStorage!=null&&$searchedStartDate==null&&$searchedEndDate==null){
             $sqlStatementCondition=" AND STORAGE_PLACE_storage_place_ID LIKE '%{$searchedStorage}%' ";
 
-        }elseif($searchedName!=null&&$searchedArea==null&&$searchedCategory==null&&$searchedStorage!=null){
+        }elseif($searchedName!=null&&$searchedArea==null&&$searchedCategory==null&&$searchedStorage!=null&&$searchedStartDate==null&&$searchedEndDate==null){
             $sqlStatementCondition=" AND description LIKE '%{$searchedName}%'AND STORAGE_PLACE_storage_place_ID LIKE '%{$searchedStorage}%' ";
 
-        }elseif($searchedName==null&&$searchedArea!=null&&$searchedCategory==null&&$searchedStorage!=null){
+        }elseif($searchedName==null&&$searchedArea!=null&&$searchedCategory==null&&$searchedStorage!=null&&$searchedStartDate==null&&$searchedEndDate==null){
             $sqlStatementCondition=" AND place_found LIKE '%{$searchedArea}%' AND STORAGE_PLACE_storage_place_ID LIKE '%{$searchedStorage}%' ";
 
-        }elseif($searchedName==null&&$searchedArea==null&&$searchedCategory!=null&&$searchedStorage!=null){
+        }elseif($searchedName==null&&$searchedArea==null&&$searchedCategory!=null&&$searchedStorage!=null&&$searchedStartDate==null&&$searchedEndDate==null){
             $sqlStatementCondition="  AND CATEGORY_category_ID LIKE '%{$searchedCategory}%' AND STORAGE_PLACE_storage_place_ID LIKE '%{$searchedStorage}%' ";
 
-        }elseif($searchedName!=null&&$searchedArea==null&&$searchedCategory!=null&&$searchedStorage!=null){
+        }elseif($searchedName!=null&&$searchedArea==null&&$searchedCategory!=null&&$searchedStorage!=null&&$searchedStartDate==null&&$searchedEndDate==null){
             $sqlStatementCondition=" AND description LIKE '%{$searchedName}%' AND CATEGORY_category_ID LIKE '%{$searchedCategory}%' AND STORAGE_PLACE_storage_place_ID LIKE '%{$searchedStorage}%' ";
 
-        }elseif($searchedName==null&&$searchedArea!=null&&$searchedCategory!=null&&$searchedStorage!=null){
+        }elseif($searchedName==null&&$searchedArea!=null&&$searchedCategory!=null&&$searchedStorage!=null&&$searchedStartDate==null&&$searchedEndDate==null){
             $sqlStatementCondition=" AND place_found LIKE '%{$searchedArea}%' AND CATEGORY_category_ID LIKE '%{$searchedCategory}%' AND STORAGE_PLACE_storage_place_ID LIKE '%{$searchedStorage}%' ";
 
-        }elseif($searchedName!=null&&$searchedArea!=null&&$searchedCategory==null&&$searchedStorage!=null){
+        }elseif($searchedName!=null&&$searchedArea!=null&&$searchedCategory==null&&$searchedStorage!=null&&$searchedStartDate==null&&$searchedEndDate==null){
             $sqlStatementCondition=" AND description LIKE '%{$searchedName}%'AND place_found LIKE '%{$searchedArea}%' AND STORAGE_PLACE_storage_place_ID LIKE '%{$searchedStorage}%' ";
 
-        }elseif($searchedName!=null&&$searchedArea!=null&&$searchedCategory!=null&&$searchedStorage!=null){
+        }elseif($searchedName!=null&&$searchedArea!=null&&$searchedCategory!=null&&$searchedStorage!=null&&$searchedStartDate==null&&$searchedEndDate==null){
             $sqlStatementCondition=" AND description LIKE '%{$searchedName}%'AND place_found LIKE '%{$searchedArea}%' AND CATEGORY_category_ID LIKE '%{$searchedCategory}%' AND STORAGE_PLACE_storage_place_ID LIKE '%{$searchedStorage}%' ";
         }
         $sqlStatementMain.=$sqlStatementCondition;
@@ -267,28 +267,28 @@
 
         $sqlAfterStatements=" ORDER BY found_item_ad_ID DESC ";
 
-        if($searchedName==null&&$searchedStorage==null&&$searchedCategory==null){
+        if($searchedName==null&&$searchedStorage==null&&$searchedCategory==null&&$searchedStartDate==null&&$searchedEndDate==null){
            $sqlStatementCondition="";
 
-        }else if($searchedName!=null&&$searchedStorage==null&&$searchedCategory==null){
+        }else if($searchedName!=null&&$searchedStorage==null&&$searchedCategory==null&&$searchedStartDate==null&&$searchedEndDate==null){
             $sqlStatementCondition=" AND description LIKE '%{$searchedName}%' ";
 
-        }else if($searchedName==null&&$searchedStorage!=null&&$searchedCategory==null){
+        }else if($searchedName==null&&$searchedStorage!=null&&$searchedCategory==null&&$searchedStartDate==null&&$searchedEndDate==null){
             $sqlStatementCondition=" AND STORAGE_PLACE_storage_place_ID LIKE '%{$searchedStorage}%' ";
 
-        }else if($searchedName==null&&$searchedStorage==null&&$searchedCategory!=null){
+        }else if($searchedName==null&&$searchedStorage==null&&$searchedCategory!=null&&$searchedStartDate==null&&$searchedEndDate==null){
             $sqlStatementCondition=" AND CATEGORY_category_ID LIKE '%{$searchedCategory}%'  ";
 
-        }else if($searchedName!=null&&$searchedStorage!=null&&$searchedCategory==null){
+        }else if($searchedName!=null&&$searchedStorage!=null&&$searchedCategory==null&&$searchedStartDate==null&&$searchedEndDate==null){
             $sqlStatementCondition=" AND description LIKE '%{$searchedName}%'AND STORAGE_PLACE_storage_place_ID LIKE '%{$searchedStorage}%' ";
 
-        }else if($searchedName==null&&$searchedStorage!=null&&$searchedCategory!=null){
+        }else if($searchedName==null&&$searchedStorage!=null&&$searchedCategory!=null&&$searchedStartDate==null&&$searchedEndDate==null){
             $sqlStatementCondition=" AND STORAGE_PLACE_storage_place_ID LIKE '%{$searchedStorage}%' AND CATEGORY_category_ID LIKE '%{$searchedCategory}%'  ";
 
-        }else if($searchedName!=null&&$searchedStorage==null&&$searchedCategory!=null){
+        }else if($searchedName!=null&&$searchedStorage==null&&$searchedCategory!=null&&$searchedStartDate==null&&$searchedEndDate==null){
             $sqlStatementCondition=" AND description LIKE '%{$searchedName}%' AND CATEGORY_category_ID LIKE '%{$searchedCategory}%'  ";
 
-        }else if($searchedName!=null&&$searchedStorage!=null&&$searchedCategory!=null){
+        }else if($searchedName!=null&&$searchedStorage!=null&&$searchedCategory!=null&&$searchedStartDate==null&&$searchedEndDate==null){
             $sqlStatementCondition=" AND description LIKE '%{$searchedName}%'AND STORAGE_PLACE_storage_place_ID LIKE '%{$searchedStorage}%' AND CATEGORY_category_ID LIKE '%{$searchedCategory}%'  ";
 
         }
