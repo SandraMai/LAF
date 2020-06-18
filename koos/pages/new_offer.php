@@ -94,17 +94,10 @@ if(isset($_POST["submitPrice"])){
                         <input  class="foundInput textInput inputBoxStyle" type="text" name="email">
                     </label>
 
-                    <br>
-        
-                    <br>
-
                     <label class="foundLabel checkboxLabel"> 
                         <p>Soovin teavitusi valitud oksjonile: </p>
                         <input class="checkboxInput" type="checkbox" name="notification" value="1">
                     </label>
-
-                    <br>
-
 
                     <div class="error-offer"></div>
                     <label class="foundLabel"> 
@@ -124,8 +117,6 @@ if(isset($_POST["submitPrice"])){
                         </div><!--.customNumberInput-->
                     </label><!--.foundLabel-->
 
-
-                    <br>
                     <input id="priceSuggested" name="submitPrice" type="submit" value="Esita pakkumine">
 
 
