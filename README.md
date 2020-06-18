@@ -64,7 +64,7 @@ LAF-i veebileht on valminud [Tallinna Ülikooli Digitehnoloogiate instituudis](h
 ## Paigaldusjuhised
 1. Installi ja seadista PHP, MySQL ja Apache server. Kui selles osas tekib küsimusi, leiad abi Googlest.
 2. Lae siinses repositooriumis olevad failid GitHubist alla ja lisa need serverisse loodud kausta (kasutades failide lisamiseks nt WinSCP).
-3. Loo andmebaasitabelid kasutades selleks ![SQL kaustas olevaid käske](SQL/create_database.sql).
+3. Loo andmebaasitabelid kasutades selleks [SQL kaustas olevaid käske](SQL/create_database.sql).
 4. Loo config_laf.php nimeline fail ning muuda ära andmebaasiga ühendumiseks vajalike muutujate väärtused.
 
 - config_laf.php faili näide:
