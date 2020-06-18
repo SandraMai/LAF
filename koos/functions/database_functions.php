@@ -167,9 +167,9 @@
                 $notice .= ' <div class="product">';
 
                 if($pic=="puudub"){
-                    $notice .= '<span class="productImageBox"><img class="productImageBox" src="../images/missing.png"></span>';
+                    $notice .= '<span class="productImageBox"><img src="../images/missing.png"></span>';
                 }else{
-                    $notice .= '<span class="productImageBox"><img class="productImageBox" src="' .$GLOBALS["pic_read_dir_thumb"] .$pic .'"></span>';
+                    $notice .= '<span class="productImageBox"><img src="' .$GLOBALS["pic_read_dir_thumb"] .$pic .'"></span>';
                 }
                 
                 $notice .= '<div class="productDesc">';
