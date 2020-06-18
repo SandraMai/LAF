@@ -323,7 +323,7 @@
         $notice = null;
         $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
         $sqlStatementMain="SELECT found_item_ad_ID, description, picture, storage_place_name,place_found FROM FOUND_ITEM_AD JOIN STORAGE_PLACE ON 
-        FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired = 1 AND auctioned = 1 AND deleted = 0 ";
+        FOUND_ITEM_AD.STORAGE_PLACE_storage_place_ID = STORAGE_PLACE.storage_place_ID WHERE expired = 1 AND auctioned = 1 AND deleted = 0 ORDER BY found_item_ad_ID DESC ";
         $sqlStatementCondition=NULL;
         if($searchedName==null&&$searchedCategory==null&&$searchedStorage==null&&$searchedStartDate==null&&$searchedEndDate==null){
             $sqlStatementCondition="";
