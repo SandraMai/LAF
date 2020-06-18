@@ -344,8 +344,8 @@
         }elseif($searchedName!=null&&$searchedArea!=null&&$searchedCategory!=null&&$searchedStartDate==null&&$searchedEndDate==null){
             $sqlStatementCondition=" AND place_found LIKE '%{$searchedArea}%' AND description LIKE '%{$searchedName}%' AND CATEGORY_category_ID LIKE '{$searchedCategory}' ";
             
-        }else if($searchedName==null&&$searchedArea==null&&$searchedCategory==null&&$searchedStartDate!=null&&$searchedEndDate==null){
-            $sqlStatementCondition="AND found_date>='$searchedStartDate' ";
+        }else if($searchedName==null&&$searchedArea==null&&$searchedCategory==null&&$searchedStartDate!=null&& $searchedEndDate==null){
+            $sqlStatementCondition="AND found_date>='$searchedStartDate' "; //siit alates searchdate
 
             
         }else if($searchedName!=null&&$searchedArea==null&&$searchedCategory==null&&$searchedStartDate!=null&&$searchedEndDate==null){
