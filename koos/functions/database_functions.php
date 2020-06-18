@@ -195,7 +195,7 @@
             $stmt->execute();
             while($stmt->fetch()){
                 $notice .= ' <div class="product flex-row">';
-                $notice .= '<img class="productImage" src="' .$GLOBALS["pic_read_dir_thumb"] .$pic .'">';
+                $notice .= '<img class="productImageBox" src="' .$GLOBALS["pic_read_dir_thumb"] .$pic .'">';
                 $notice .= '<div class="flex-column productDesc">';
                 $notice .= '<p>Kirjeldus: ' .$description .'</p>';
                 $notice .= '<p>Leidmise koht: ' .$place .'</p>';
