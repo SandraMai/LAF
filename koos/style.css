@@ -63,11 +63,21 @@ body {
 .error-email,
 .error-lostDate,
 .error-placeLost,
-.error-offer {
+.error-offer{
     color: red;
     font-size: 14px;
     text-align: left;
     width: 280px;
+}
+
+.error-username,
+.error-password,
+.error-new_password,
+.error-new_password_again {
+    color: red;
+    font-size: 14px;
+    text-align: center;
+    width: 150px;
 }
 
 textarea {
@@ -331,7 +341,7 @@ textarea{
     width: 500px;
     height: 300px;
     display: flex;
-    justify-content: center;    
+    justify-content: center;
 }
 
 .password-input{
@@ -1232,4 +1242,9 @@ Reorganized stuff for responsiveness
     }
 
 
+}
+
+
+#filterMain {
+    cursor: pointer;
 }

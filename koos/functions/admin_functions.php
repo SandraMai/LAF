@@ -399,4 +399,37 @@
     $conn->close();
     return $response;
   }
+
+  function validateMinMaxLength($value) {
+      if(strlen($value) < 30 && strlen($value) > 8) {
+          return $value;
+      }
+      return false;
+  }
+
+  function isUsernameAvailable($value) {
+    $notice = null;
+    $conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
+    $stmt = $conn->prepare("SELECT admin_ID FROM ADMIN WHERE username = '{$value}'");
+    echo $conn->error;
+    $stmt->bind_result($id);
+    $stmt->execute();
+
+    if($stmt->fetch()){
+      $notice = false;
+    }else{
+      $notice = true;
+    }
+
+    $stmt->close();
+    $conn->close();
+    return $notice;
+  }
+
+    function areEqual($value1, $value2) {
+        if ($value1 == $value2) {
+            return true;
+        }
+        return false;
+    }
 ?>
