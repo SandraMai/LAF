@@ -7,6 +7,8 @@
     $sentElement=null;
     $searchedEndDate=null;
     $searchedStartDate=null;
+    $offset=null;
+    $searchedStorageID=null;
 
     if(isset($_SESSION["LAST_ACTIVITY"]) && (time() - $_SESSION["LAST_ACTIVITY"] > 1800)){
         session_unset(); 
