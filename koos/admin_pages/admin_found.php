@@ -70,11 +70,12 @@
             <?php require("../admin_filter.php") ?>
             <div class="products">
             <?php
-                        if ($notice==100) {
-                            $notice = '<p class="flex-row">Hetkel esemeid pole!</p>';
-                        }
-                    
-                     echo selectFoundPostsAdmin($offset,$searchedName,$sentElement, $searchedStorageID,$searchedArea,$adminLinkValue,$searchedStartDate,$searchedEndDate); ?>
+            $notice = selectFoundPostsAdmin($offset,$searchedName,$sentElement, $searchedStorageID,$searchedArea,$adminLinkValue,$searchedStartDate,$searchedEndDate);
+            
+            if ($notice==100) {
+                $notice = '<p class="flex-row">Hetkel esemeid pole!</p>';
+            }
+            echo $notice; ?>
             </div><!--.products -->
         </div><!--.flex-row-->
         <div class="js-more-wrapper loadMoreButton"><button data-inf=0 data-type=2 class="js-load-more" data-atype=1>lae juurde</button></div>
