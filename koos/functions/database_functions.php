@@ -23,7 +23,7 @@
             $sqlStatementCondition=" AND description LIKE'%{$searchedName}%' AND CATEGORY_category_ID='{$searchedCategory}' ";
             
         }else if($searchedName!=null&&$searchedArea!=null&&$searchedCategory==null&&$searchedStartDate==null&&$searchedEndDate==null){
-            $sqlStatementCondition=" AND CATEGORY_category_ID='{$searchedCategory}' AND lost_place LIKE '%{$searchedArea}%' AND description LIKE'%{$searchedName}%'   ";
+            $sqlStatementCondition=" AND lost_place LIKE '%{$searchedArea}%' AND description LIKE'%{$searchedName}%'   ";
         }else if($searchedName==null&&$searchedArea!=null&&$searchedCategory!=null&&$searchedStartDate==null&&$searchedEndDate==null){
             $sqlStatementCondition=" AND lost_place LIKE '%{$searchedArea}%' AND CATEGORY_category_ID='{$searchedCategory}' ";
             
