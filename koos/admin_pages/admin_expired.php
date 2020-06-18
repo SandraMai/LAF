@@ -63,7 +63,6 @@
             
             </div><!--.products -->
         </div><!--.flex-row-->
-        <div class="js-more-wrapper loadMoreButton"><button data-inf=0 data-type=2 class="js-load-more">lae juurde</button></div>
     </div><!--.main-section-->
 
 

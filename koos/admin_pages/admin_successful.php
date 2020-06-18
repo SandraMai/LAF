@@ -62,7 +62,6 @@
             </div><!--.products -->
             </div><!--.filtersProductsLayout-->
 
-<div class="js-more-wrapper loadMoreButton"><button data-inf=0 data-type=3 class="js-load-more">lae juurde</button></div>
 
     </div><!--.main-section-->
 

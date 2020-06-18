@@ -1,5 +1,5 @@
 <?php 
-    function displayLostItemsAdmin($offset,$searchedName,$searchedCategory,$searchedArea,$thisLink,$searchedStartDate,$searchedEndDate){
+        function displayLostItemsAdmin($offset,$searchedName,$searchedCategory,$searchedArea,$thisLink,$searchedStartDate,$searchedEndDate){
         $monthsET = ["jaanuar", "veebruar", "märts", "aprill", "mai", "juuni", "juuli", "august", "september", "oktoober", "november", "detsember"];
         $notice = null;
         $page = 'lost.php';
@@ -8,108 +8,30 @@
         FROM LOST_ITEM_AD WHERE expired = 0 AND deleted = 0 ";
         $sqlStatementCondition=null;
         $sqlAfterStatements=" ORDER BY lost_post_ID DESC LIMIT 3 OFFSET ?";
-        if($searchedName==null&&$searchedArea==null&&$searchedCategory==null&&$searchedStartDate==null&&$searchedEndDate==null){
-            $sqlStatementCondition="";
-        }else if($searchedName!=null&&$searchedArea==null&&$searchedCategory==null&&$searchedStartDate==null&&$searchedEndDate==null){
-            $sqlStatementCondition=" AND description LIKE'%{$searchedName}%' ";
-        }else if($searchedName==null&&$searchedArea!=null&&$searchedCategory==null&&$searchedStartDate==null&&$searchedEndDate==null){
-            $sqlStatementCondition="  AND lost_place LIKE '%{$searchedArea}%' ";
-        }else if($searchedName==null&&$searchedArea==null&&$searchedCategory!=null&&$searchedStartDate==null&&$searchedEndDate==null){
-            $sqlStatementCondition=" AND description LIKE'%{$searchedName}%' AND CATEGORY_category_ID='{$searchedCategory}' ";
-            
-        }else if($searchedName!=null&&$searchedArea!=null&&$searchedCategory==null&&$searchedStartDate==null&&$searchedEndDate==null){
-            $sqlStatementCondition=" AND CATEGORY_category_ID='{$searchedCategory}' AND lost_place LIKE '%{$searchedArea}%' AND description LIKE'%{$searchedName}%' ";
-        }else if($searchedName==null&&$searchedArea!=null&&$searchedCategory!=null&&$searchedStartDate==null&&$searchedEndDate==null){
-            $sqlStatementCondition=" AND lost_place LIKE '%{$searchedArea}%' AND CATEGORY_category_ID='{$searchedCategory}' ";
-            
-        }else if($searchedName!=null&&$searchedArea==null&&$searchedCategory!=null&&$searchedStartDate==null&&$searchedEndDate==null){
-            $sqlStatementCondition=" AND description LIKE'%{$searchedName}%' AND CATEGORY_category_ID='{$searchedCategory}' ";
-            
-        }else if($searchedName!=null&&$searchedArea!=null&&$searchedCategory!=null&&$searchedStartDate==null&&$searchedEndDate==null){
-            $sqlStatementCondition=" AND description LIKE'%{$searchedName}%' AND lost_place LIKE '%{$searchedArea}%' AND CATEGORY_category_ID='{$searchedCategory}' ";  
-        }else if($searchedName==null&&$searchedArea==null&&$searchedCategory==null&&$searchedStartDate!=null&&$searchedEndDate==null){
-            $sqlStatementCondition="AND lost_date>='$searchedStartDate' ";
-
-            
-        }else if($searchedName!=null&&$searchedArea==null&&$searchedCategory==null&&$searchedStartDate!=null&&$searchedEndDate==null){
-            $sqlStatementCondition=" AND description LIKE'%{$searchedName}%' AND lost_date>='$searchedStartDate'  ";
-                
-        }else if($searchedName==null&&$searchedArea!=null&&$searchedCategory==null&&$searchedStartDate!=null&&$searchedEndDate==null){
-            $sqlStatementCondition=" AND lost_place LIKE '%{$searchedArea}%' AND lost_date>='$searchedStartDate'  ";
-            
-        }else if($searchedName==null&&$searchedArea==null&&$searchedCategory!=null&&$searchedStartDate!=null&&$searchedEndDate==null){
-            $sqlStatementCondition=" AND CATEGORY_category_ID='{$searchedCategory}' AND lost_date>='$searchedStartDate'  ";
-            
-        }else if($searchedName!=null&&$searchedArea!=null&&$searchedCategory==null&&$searchedStartDate!=null&&$searchedEndDate==null){
-            $sqlStatementCondition=" AND description LIKE'%{$searchedName}%' AND lost_place LIKE '%{$searchedArea}%' AND lost_date>='$searchedStartDate'  ";
-            
-        }else if($searchedName==null&&$searchedArea!=null&&$searchedCategory!=null&&$searchedStartDate!=null&&$searchedEndDate==null){
-            $sqlStatementCondition=" AND lost_place LIKE '%{$searchedArea}%' AND CATEGORY_category_ID='{$searchedCategory}' AND lost_date>='$searchedStartDate'  ";
-            
-        }else if($searchedName!=null&&$searchedArea==null&&$searchedCategory!=null&&$searchedStartDate!=null&&$searchedEndDate==null){
-            $sqlStatementCondition=" AND description LIKE'%{$searchedName}%' AND CATEGORY_category_ID='{$searchedCategory}' AND lost_date>='$searchedStartDate'  ";
-            
-        }else if($searchedName!=null&&$searchedArea!=null&&$searchedCategory!=null&&$searchedStartDate!=null&&$searchedEndDate==null){
-            $sqlStatementCondition=" AND description LIKE'%{$searchedName}%' AND lost_place LIKE '%{$searchedArea}%' AND CATEGORY_category_ID='{$searchedCategory}' AND lost_date>='$searchedStartDate'  ";
-
         
-        
-        }else if($searchedName==null&&$searchedArea==null&&$searchedCategory==null&&$searchedStartDate==null&&$searchedEndDate!=null){// siit end date
-            $sqlStatementCondition="AND lost_date<='$searchedEndDate' ";
+        $likeSearchedName = "";
+        $likesearchedArea = "";
+        $likesearchedCategory = "";
+        $likesearcheddate = "";
 
-            
-        }else if($searchedName!=null&&$searchedArea==null&&$searchedCategory==null&&$searchedStartDate==null&&$searchedEndDate!=null){ 
-            $sqlStatementCondition=" AND description LIKE'%{$searchedName}%' AND lost_date>='$searchedEndDate'  ";
-                
-        }else if($searchedName==null&&$searchedArea!=null&&$searchedCategory==null&&$searchedStartDate==null&&$searchedEndDate!=null){
-            $sqlStatementCondition=" AND lost_place LIKE '%{$searchedArea}%' AND lost_date>='$searchedEndDate'  ";
-            
-        }else if($searchedName==null&&$searchedArea==null&&$searchedCategory!=null&&$searchedStartDate==null&&$searchedEndDate!=null){
-            $sqlStatementCondition=" AND CATEGORY_category_ID='{$searchedCategory}' AND lost_date>='$searchedEndDate'  ";
-            
-        }else if($searchedName!=null&&$searchedArea!=null&&$searchedCategory==null&&$searchedStartDate==null&&$searchedEndDate!=null){
-            $sqlStatementCondition=" AND description LIKE'%{$searchedName}%' AND lost_place LIKE '%{$searchedArea}%' AND lost_date>='$searchedEndDate'  ";
-            
-        }else if($searchedName==null&&$searchedArea!=null&&$searchedCategory!=null&&$searchedStartDate==null&&$searchedEndDate!=null){
-            $sqlStatementCondition=" AND lost_place LIKE '%{$searchedArea}%' AND CATEGORY_category_ID='{$searchedCategory}' AND lost_date>='$searchedEndDate'  ";
-            
-        }else if($searchedName!=null&&$searchedArea==null&&$searchedCategory!=null&&$searchedStartDate==null&&$searchedEndDate!=null){
-            $sqlStatementCondition=" AND description LIKE'%{$searchedName}%' AND CATEGORY_category_ID='{$searchedCategory}' AND lost_date>='$searchedEndDate'  ";
-            
-        }else if($searchedName!=null&&$searchedArea!=null&&$searchedCategory!=null&&$searchedStartDate==null&&$searchedEndDate!=null){
-            $sqlStatementCondition=" AND description LIKE'%{$searchedName}%' AND lost_place LIKE '%{$searchedArea}%' AND CATEGORY_category_ID='{$searchedCategory}' AND lost_date>='$searchedEndDate'  ";
-        
-        }else if($searchedName==null&&$searchedArea==null&&$searchedCategory==null&&$searchedStartDate!=null&&$searchedEndDate!=null){ // end and start date
-            $sqlStatementCondition="AND (lost_date BETWEEN '$searchedStartDate' AND '$searchedEndDate') ";
-
-            
-        }else if($searchedName!=null&&$searchedArea==null&&$searchedCategory==null&&$searchedStartDate!=null&&$searchedEndDate!=null){
-            $sqlStatementCondition=" AND description LIKE'%{$searchedName}%' AND (lost_date BETWEEN '$searchedStartDate' AND '$searchedEndDate') ";
-                
-        }else if($searchedName==null&&$searchedArea!=null&&$searchedCategory==null&&$searchedStartDate!=null&&$searchedEndDate!=null){
-            $sqlStatementCondition=" AND lost_place LIKE '%{$searchedArea}%' AND (lost_date BETWEEN '$searchedStartDate' AND '$searchedEndDate') ";
-            
-        }else if($searchedName==null&&$searchedArea==null&&$searchedCategory!=null&&$searchedStartDate!=null&&$searchedEndDate!=null){
-            $sqlStatementCondition=" AND CATEGORY_category_ID='{$searchedCategory}' AND (lost_date BETWEEN '$searchedStartDate' AND '$searchedEndDate') ";
-            
-        }else if($searchedName!=null&&$searchedArea!=null&&$searchedCategory==null&&$searchedStartDate!=null&&$searchedEndDate!=null){
-            $sqlStatementCondition=" AND description LIKE'%{$searchedName}%' AND lost_place LIKE '%{$searchedArea}%' AND (lost_date BETWEEN '$searchedStartDate' AND '$searchedEndDate') ";
-            
-        }else if($searchedName==null&&$searchedArea!=null&&$searchedCategory!=null&&$searchedStartDate!=null&&$searchedEndDate!=null){
-            $sqlStatementCondition=" AND lost_place LIKE '%{$searchedArea}%' AND CATEGORY_category_ID='{$searchedCategory}' AND (lost_date BETWEEN '$searchedStartDate' AND '$searchedEndDate') ";
-            
-        }else if($searchedName!=null&&$searchedArea==null&&$searchedCategory!=null&&$searchedStartDate!=null&&$searchedEndDate!=null){
-            $sqlStatementCondition=" AND description LIKE'%{$searchedName}%' AND CATEGORY_category_ID='{$searchedCategory}' AND (lost_date BETWEEN '$searchedStartDate' AND '$searchedEndDate') ";
-            
-        }else if($searchedName!=null&&$searchedArea!=null&&$searchedCategory!=null&&$searchedStartDate!=null&&$searchedEndDate!=null){
-            $sqlStatementCondition=" AND description LIKE'%{$searchedName}%' AND lost_place LIKE '%{$searchedArea}%' AND CATEGORY_category_ID='{$searchedCategory}' AND (lost_date BETWEEN '$searchedStartDate' AND '$searchedEndDate') ";
-        
+        if ($searchedName) {
+            $likeSearchedName = " AND description LIKE'%{$searchedName}%'";
+        }
+        if ($searchedCategory) {
+            $likesearchedCategory = " AND CATEGORY_category_ID='{$searchedCategory}'";
+        }
+         if ($searchedArea) {
+            $likesearchedArea = " AND lost_place LIKE '%{$searchedArea}%'";
+        }
+        if ($searchedStartDate && $searchedEndDate) {
+            $likesearcheddate = " AND (lost_date BETWEEN '$searchedStartDate' AND '$searchedEndDate')";
+        } else if ($searchedStartDate && $searchedEndDate == null) {
+            $likesearcheddate = " AND lost_date>='$searchedStartDate'";
+        } else if ($searchedStartDate == null && $searchedEndDate) {
+            $likesearcheddate = " AND lost_date>='$searchedEndDate'";
         }
 
-
-
-
-
+        $sqlStatementCondition = $likeSearchedName . $likesearchedArea . $likesearchedCategory . $likesearcheddate;
 
         $sqlStatementMain.=$sqlStatementCondition;
         $sqlStatementMain.=$sqlAfterStatements;
@@ -158,9 +80,9 @@
             $stmt->close();
             $conn->close();
             return $notice;
-        
-        
+    
     }
+    
     function selectFoundPostsAdmin($offset,$searchedName,$searchedCategory,$searchedStorage,$searchedArea,$thisLink,$searchedStartDate,$searchedEndDate) {
         $response = null;
         $monthsET = ["jaanuar", "veebruar", "märts", "aprill", "mai", "juuni", "juuli", "august", "september", "oktoober", "november", "detsember"];
