@@ -45,7 +45,7 @@ if(isset($_POST["submitPrice"])){
     $offer =($_POST["offer"]);
 	if((!empty($offer))&&(!empty($email))){
         if($offer>$compare){$notice = setFirstBid($email,$notification,$offer,$neededNumber,$maxbid,$compare);}else{
-            $notice = "Su pakkutud hind on väiksem praegusest";
+            $notice = "Su pakutud hind on väiksem praegusest";
         
     }
 	} else {
