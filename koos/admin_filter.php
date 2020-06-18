@@ -10,7 +10,7 @@
     $searchedStorageID=null;
     $searchedEndDate=null;
     $searchedStartDate=null;
-
+    $thisLink=null;
 
     if(isset($_POST["submitSearch"])){
         $searchedStorage=cleanTextInput('storagePlace');
@@ -38,7 +38,6 @@
         if ($adminLinkValue!=4):
             $searchedArea =($_POST["area"]);
         endif;
-        $thisLink =($_POST["linkname"]);
         if($thisLink==1){
             $notice = displayLostItemsAdmin($offset,$searchedName,$sentElement,$searchedArea,$thisLink,$searchedStartDate,$searchedEndDate);
         }else if($thisLink==2) {
