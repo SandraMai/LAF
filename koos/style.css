@@ -425,9 +425,6 @@ a, a:visited{
     font-family: 'Times New Roman', Times, serif;
 }
 
-.view{
-    height: 250px;
-}
 
 .h2-title{
     font-weight: normal;
@@ -453,14 +450,6 @@ a, a:visited{
     background-color: #413f3f;
 }
 
-#deleteForm{
-    position: absolute;
-    align-self: baseline;
-    visibility: hidden;
-    display: flex;
-    flex-direction: column;
-    align-self: center;
-}
 
 .deleteFormButton{
     padding: 10px;
@@ -478,9 +467,6 @@ a, a:visited{
     transition: .5s;
 }
 
-.text{
-    visibility: visible;
-}
 
 .phpError{
     margin-top: px;
@@ -1069,6 +1055,9 @@ Reorganized stuff for responsiveness
     margin-left: 30px;
 }
 
+.view{
+    height: 50px;
+}
 
 
 
@@ -1183,9 +1172,7 @@ Reorganized stuff for responsiveness
     width: 170px !important;
 }
 
-#deleteForm {
-    width: 170px;
-}
+
 
 /* Storage.php */
 
@@ -1241,6 +1228,9 @@ Reorganized stuff for responsiveness
         height: auto;
     }
 
+    .view{
+        height: 250px;
+    }
 
 }
 
