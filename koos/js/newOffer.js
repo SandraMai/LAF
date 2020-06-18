@@ -11,7 +11,6 @@ $(document).ready(function() {
         return this.optional(element) || /^[a-zA-ZäöüõÄÖÜÕ0-9,.!? -]*$/i.test(value);
     });
 
-
     $.validator.addMethod("actualStep", function(value, element) {
 
         if (checkCurrentPrice()) {
@@ -21,12 +20,18 @@ $(document).ready(function() {
     });
 
     
+    // Email by domain
+    $.validator.addMethod("tlumail", function(value, element) {
+        return checkDomain();
+  
+    });
 
     $('[name="add_new_offer"]').validate({
         rules: {
             email: {
                 required: true,
-                email: true
+                email: true,
+                tlumail: true
             },
             offer : {
                 required: true,
@@ -36,7 +41,8 @@ $(document).ready(function() {
         messages: {
             email:  {
                 required: "Palun sisestage meiliaadress.",
-                email: "Palun sisestage korrektne meiliaadress."
+                email: "Palun sisestage korrektne meiliaadress.",
+                tlumail: "Palun sisestage meiliaadress lõpuga tlu.ee"
             },
             offer: {
                 required: "Palun valige hind.",

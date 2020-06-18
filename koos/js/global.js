@@ -11,3 +11,9 @@ $(document).ready(function() {
 
 
 });
+
+function checkDomain() {
+    var userEmail = $('[name="email"]').val();
+    console.log(userEmail.substring(userEmail.indexOf('@')));
+    return (userEmail.substring(userEmail.indexOf('@')) === "@tlu.ee");
+}
