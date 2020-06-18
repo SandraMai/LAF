@@ -213,7 +213,7 @@
 					$message .= "\r\nÄra sellele meilile vasta! \r\n Sinu LAF ❤";
 					$headers = 'Lost And Found oksjon';
 					
-					mail($email, $headers, $message);
+					mail($emailDB, $headers, $message);
 				}
 			}
 			$stmt->close();
