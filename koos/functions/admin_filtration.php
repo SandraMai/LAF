@@ -454,7 +454,7 @@
                 if($email == "lostandfound@tlu.ee"){
                     $bestOffer = getHighestBid($auctionID);
                     $notice .= ' <div class="product flex-row" >';
-                    $notice .= '<span class="productImageBox"><img class="productImageBox" src="' .$GLOBALS["pic_read_dir_thumb"] .$pic .'"></span>';
+                    $notice .= '<span class="productImageBox"><img src="' .$GLOBALS["pic_read_dir_thumb"] .$pic .'"></span>';
                     $notice .= '<div class="productDesc">';
                     $notice .= '<p class="text">Kirjeldus: ' .$description .'</p>';
                     $notice .= '<p class="text">Hoiupaik: ' .$storage_place .'</p>';
