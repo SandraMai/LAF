@@ -8,7 +8,6 @@ require('../functions/database_functions.php');
 require("../functions/oksjon_functions.php");
 require("../functions/admin_oksjon_functions.php");
 require("../functions/admin_filtration.php");
-$database = "if19_LAF";
 
 ?>
 
